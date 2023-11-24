@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: BluePrints
+  m_EditorClassIdentifier: 
+  m_GroupName: BluePrints
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6f8df2d59cee1aa4888df2c37bff28cf
+  m_SerializeEntries:
+  - m_GUID: f4f71b90597041f4d85cd27ab5f95f30
+    m_Address: BluePrints/WalkingStick
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de7de52ce95cc0247983bd32b2f83454
+    m_Address: BluePrints/Plant
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18ba92028b908064881e9097f74ca7bf
+    m_Address: BluePrints/Hoe
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2c5f39b620b9654e839a5a28fc54165
+    m_Address: BluePrints/Gun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39863100565d9c34793de869c81ed710
+    m_Address: Materials/Aluminum
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 17be452ddd832804692cd8d3c0ef7fd3, type: 2}
+    - {fileID: 11400000, guid: 288a799e2a46b5946bc767484b8696a1, type: 2}
