@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 public delegate void UseDelegate();
 
-public enum ItemType {potion,bluePrint,material,questItem,empty };
+public enum ItemType {potion,bluePrint,material,questItem,empty,seed,herb };
 
 public abstract class ItemBehaviour
 {
@@ -300,7 +300,6 @@ public abstract class MaterialItem : ItemBehaviour
 
     public override int GetHashCode()
     {
-        Debug.Log("ORIGINAL");
         return HashCode.Combine(
             is_Usable,
             itemType,
@@ -317,7 +316,6 @@ public abstract class MaterialItem : ItemBehaviour
 
     public class Plastic : MaterialItem
     {
-
         public Plastic()
         {
             maxStack = 10;
@@ -410,6 +408,7 @@ public abstract class MaterialItem : ItemBehaviour
         }
 
     }
+
     public class StainlessSteel : MaterialItem
     {
         public StainlessSteel()
@@ -432,4 +431,263 @@ public abstract class MaterialItem : ItemBehaviour
             Load();
         }
     }
+}
+
+
+public abstract class Seed : ItemBehaviour
+{
+
+    private int harvestAmount;
+
+    // Gets called from the child class to set every related infomation and load icon
+    public void Load()
+    {
+        is_Usable = false;
+        useDelegate = Use;
+        itemType = ItemType.seed;
+        specificAddress = "Seeds/" + specificName + "[Sprite]";
+        is_Stackable = true;
+        itemName = "Seeds";
+        LoadIcon();
+    }
+
+    public override void Use()
+    {
+        Debug.LogWarning("You shouldnt see this but you are trying to use a Material");
+    }
+    public void SetHarvestAmount(int amount)
+    {
+        harvestAmount = amount;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is Seed item &&
+               is_Usable == item.is_Usable &&
+               itemType == item.itemType &&
+               is_Stackable == item.is_Stackable &&
+               itemName == item.itemName &&
+               specificName == item.specificName &&
+               specificAddress == item.specificAddress &&
+               harvestAmount == item.harvestAmount;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(
+            is_Usable,
+            itemType,
+            is_Stackable,
+            itemName,
+            specificName,
+            specificAddress,
+            harvestAmount);
+    }
+
+    public class Chamomile : Seed
+    {
+
+        public Chamomile()
+        {
+            maxStack = 10;
+            specificName = "Chamomile";
+            harvestAmount = 3;
+            Load();
+        }
+
+        public Chamomile(int count)
+        {
+            maxStack = 10;
+            if (count > maxStack)
+            {
+                count = maxStack;
+                Debug.LogWarning("You are making it higher than the max stack. Setting the current stack to max stack");
+            }
+            specificName = "Chamomile";
+            currentStack = count;
+            harvestAmount = 3;
+            Load();
+        }
+
+        public Herb Harvest()
+        {
+            return new Herb.Chamomile(harvestAmount);
+        }
+    }
+
+    public class Lavender : Seed
+    {
+        
+        public Lavender()
+        {
+            maxStack = 10;
+            specificName = "Lavender";
+            harvestAmount = 3;
+            Load();
+        }
+
+        public Lavender(int count)
+        {
+            maxStack = 10;
+            if (count > maxStack)
+            {
+                count = maxStack;
+                Debug.LogWarning("You are making it higher than the max stack. Setting the current stack to max stack");
+            }
+            specificName = "Lavender";
+            currentStack = count;
+            harvestAmount = 3;
+            Load();
+        }
+
+        public Herb Harvest()
+        {
+            return new Herb.Lavender(harvestAmount);
+        }
+    }
+
+    public class Sage : Seed
+    {
+
+        public Sage()
+        {
+            maxStack = 10;
+            specificName = "Sage";
+            harvestAmount = 3;
+            Load();
+        }
+
+        public Sage(int count)
+        {
+            maxStack = 10;
+            if (count > maxStack)
+            {
+                count = maxStack;
+                Debug.LogWarning("You are making it higher than the max stack. Setting the current stack to max stack");
+            }
+            specificName = "Sage";
+            currentStack = count;
+            harvestAmount = 3;
+            Load();
+        }
+
+        public Herb Harvest()
+        {
+            return new Herb.Sage(harvestAmount);
+        }
+
+    }
+}
+
+public abstract class Herb : ItemBehaviour
+{
+    public void Load()
+    {
+        is_Usable = false;
+        useDelegate = Use;
+        itemType = ItemType.herb            ;
+        specificAddress = "Herbs/" + specificName + "[Sprite]";
+        is_Stackable = true;
+        itemName = "Herbs";
+        LoadIcon();
+    }
+
+    public override void Use()
+    {
+        Debug.LogWarning("You shouldnt see this but you are trying to use a Material");
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is Herb item &&
+               is_Usable == item.is_Usable &&
+               itemType == item.itemType &&
+               is_Stackable == item.is_Stackable &&
+               itemName == item.itemName &&
+               specificName == item.specificName &&
+               specificAddress == item.specificAddress;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(
+            is_Usable,
+            itemType,
+            is_Stackable,
+            itemName,
+            specificName,
+            specificAddress);
+    }
+
+    public class Chamomile : Herb
+    {
+        public Chamomile()
+        {
+            maxStack = 10;
+            specificName = "Chamomile";
+            Load();
+        }
+
+        public Chamomile(int count)
+        {
+            maxStack = 10;
+            if (count > maxStack)
+            {
+                count = maxStack;
+                Debug.LogWarning("You are making it higher than the max stack. Setting the current stack to max stack");
+            }
+            specificName = "Chamomile";
+            currentStack = count;
+            Load();
+        }
+    }
+
+    public class Lavender : Herb
+    {
+        public Lavender()
+        {
+            maxStack = 10;
+            specificName = "Lavender";
+            Load();
+        }
+
+        public Lavender(int count)
+        {
+            maxStack = 10;
+            if (count > maxStack)
+            {
+                count = maxStack;
+                Debug.LogWarning("You are making it higher than the max stack. Setting the current stack to max stack");
+            }
+            specificName = "Lavender";
+            currentStack = count;
+            Load();
+        }
+
+    }
+
+    public class Sage : Herb
+    {
+        public Sage()
+        {
+            maxStack = 10;
+            specificName = "Sage";
+            Load();
+        }
+
+        public Sage(int count)
+        {
+            maxStack = 10;
+            if (count > maxStack)
+            {
+                count = maxStack;
+                Debug.LogWarning("You are making it higher than the max stack. Setting the current stack to max stack");
+            }
+            specificName = "Sage";
+            currentStack = count;
+            Load();
+        }
+    }
+
+
 }
