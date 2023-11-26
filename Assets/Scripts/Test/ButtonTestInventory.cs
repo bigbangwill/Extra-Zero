@@ -91,6 +91,33 @@ public class ButtonTestInventory : MonoBehaviour
             Debug.Log(PlayerInventory.Instance.HaveItemInInventory(item, true));
     }
 
+    public void AddSeedSage()
+    {
+        ItemBehaviour item = new Seed.Sage(count);
+        if (!shouldRemove)
+            Debug.Log(PlayerInventory.Instance.HaveEmptySlot(item, true));
+        else
+            Debug.Log(PlayerInventory.Instance.HaveItemInInventory(item, true));
+    }
+
+    public void AddSeedLavender()
+    {
+        ItemBehaviour item = new Seed.Lavender(count);
+        if (!shouldRemove)
+            Debug.Log(PlayerInventory.Instance.HaveEmptySlot(item, true));
+        else
+            Debug.Log(PlayerInventory.Instance.HaveItemInInventory(item, true));
+    }
+
+    public void AddSeedChamomile()
+    {
+        ItemBehaviour item = new Seed.Chamomile(count);
+        if (!shouldRemove)
+            Debug.Log(PlayerInventory.Instance.HaveEmptySlot(item, true));
+        else
+            Debug.Log(PlayerInventory.Instance.HaveItemInInventory(item, true));
+    }
+
     public void Save()
     {
         SaveClassManager.Instance.SaveCurrentState();

@@ -100,13 +100,14 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
             post.SeedHarvested(currentGrowingSeed);
             Debug.Log("Late");
         }
-        Reset();
+        ResetMethod();
     }
 
     private void Decayed()
     {
         isGrowing = false;
         currentGrowingSeed = null;
+        ResetMethod();
         Debug.Log("Decayed");
     }
 
@@ -118,7 +119,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
         }
     }
 
-    public void Reset()
+    public void ResetMethod()
     {
         isGrowing = false;
         currentGrowingSeed = null;

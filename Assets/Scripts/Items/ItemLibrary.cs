@@ -497,7 +497,7 @@ public abstract class Seed : ItemBehaviour
 
         public Chamomile()
         {
-            maxStack = 10;
+            maxStack = 100;
             specificName = "Chamomile";
             harvestAmount = 3;
             maxHarvestTime = 5;
@@ -506,7 +506,7 @@ public abstract class Seed : ItemBehaviour
 
         public Chamomile(int count)
         {
-            maxStack = 10;
+            maxStack = 100;
             if (count > maxStack)
             {
                 count = maxStack;
@@ -527,10 +527,9 @@ public abstract class Seed : ItemBehaviour
 
     public class Lavender : Seed
     {
-        
         public Lavender()
         {
-            maxStack = 10;
+            maxStack = 100;
             specificName = "Lavender";
             harvestAmount = 3;
             maxHarvestTime = 5;
@@ -539,7 +538,7 @@ public abstract class Seed : ItemBehaviour
 
         public Lavender(int count)
         {
-            maxStack = 10;
+            maxStack = 100;
             if (count > maxStack)
             {
                 count = maxStack;
@@ -563,7 +562,7 @@ public abstract class Seed : ItemBehaviour
 
         public Sage()
         {
-            maxStack = 10;
+            maxStack = 100;
             specificName = "Sage";
             harvestAmount = 3;
             maxHarvestTime = 5;
@@ -572,7 +571,7 @@ public abstract class Seed : ItemBehaviour
 
         public Sage(int count)
         {
-            maxStack = 10;
+            maxStack = 100;
             if (count > maxStack)
             {
                 count = maxStack;
@@ -637,14 +636,14 @@ public abstract class Herb : ItemBehaviour
     {
         public Chamomile()
         {
-            maxStack = 10;
+            maxStack = 50;
             specificName = "Chamomile";
             Load();
         }
 
         public Chamomile(int count)
         {
-            maxStack = 10;
+            maxStack = 50;
             if (count > maxStack)
             {
                 count = maxStack;
@@ -660,14 +659,14 @@ public abstract class Herb : ItemBehaviour
     {
         public Lavender()
         {
-            maxStack = 10;
+            maxStack = 50;
             specificName = "Lavender";
             Load();
         }
 
         public Lavender(int count)
         {
-            maxStack = 10;
+            maxStack = 50;
             if (count > maxStack)
             {
                 count = maxStack;
@@ -684,14 +683,14 @@ public abstract class Herb : ItemBehaviour
     {
         public Sage()
         {
-            maxStack = 10;
+            maxStack = 50;
             specificName = "Sage";
             Load();
         }
 
         public Sage(int count)
         {
-            maxStack = 10;
+            maxStack = 50;
             if (count > maxStack)
             {
                 count = maxStack;

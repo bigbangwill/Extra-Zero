@@ -39,7 +39,7 @@ public class GrabButton : MonoBehaviour, IDragHandler, IEndDragHandler
                 if (!spot.IsGrowing())
                 {
                     if(post.CanGetNextSeed())
-                    spot.PlaceNewSeed(post.seedQueue.Dequeue());
+                        spot.PlaceNewSeed(post.GetNextSeed());
                 }
             }
         }
