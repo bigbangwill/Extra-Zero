@@ -438,6 +438,7 @@ public abstract class Seed : ItemBehaviour
 {
 
     private int harvestAmount;
+    private float maxHarvestTime;
 
     // Gets called from the child class to set every related infomation and load icon
     public void Load()
@@ -449,6 +450,13 @@ public abstract class Seed : ItemBehaviour
         is_Stackable = true;
         itemName = "Seeds";
         LoadIcon();
+    }
+
+    public abstract Herb Harvest();
+
+    public float GetMaxHarvestTimer()
+    {
+        return maxHarvestTime;
     }
 
     public override void Use()
@@ -492,6 +500,7 @@ public abstract class Seed : ItemBehaviour
             maxStack = 10;
             specificName = "Chamomile";
             harvestAmount = 3;
+            maxHarvestTime = 5;
             Load();
         }
 
@@ -506,10 +515,11 @@ public abstract class Seed : ItemBehaviour
             specificName = "Chamomile";
             currentStack = count;
             harvestAmount = 3;
+            maxHarvestTime = 5;
             Load();
         }
 
-        public Herb Harvest()
+        public override Herb Harvest()
         {
             return new Herb.Chamomile(harvestAmount);
         }
@@ -523,6 +533,7 @@ public abstract class Seed : ItemBehaviour
             maxStack = 10;
             specificName = "Lavender";
             harvestAmount = 3;
+            maxHarvestTime = 5;
             Load();
         }
 
@@ -537,13 +548,14 @@ public abstract class Seed : ItemBehaviour
             specificName = "Lavender";
             currentStack = count;
             harvestAmount = 3;
+            maxHarvestTime = 5;
             Load();
         }
-
-        public Herb Harvest()
+        public override Herb Harvest()
         {
             return new Herb.Lavender(harvestAmount);
         }
+
     }
 
     public class Sage : Seed
@@ -554,6 +566,7 @@ public abstract class Seed : ItemBehaviour
             maxStack = 10;
             specificName = "Sage";
             harvestAmount = 3;
+            maxHarvestTime = 5;
             Load();
         }
 
@@ -568,10 +581,11 @@ public abstract class Seed : ItemBehaviour
             specificName = "Sage";
             currentStack = count;
             harvestAmount = 3;
+            maxHarvestTime = 5;
             Load();
         }
 
-        public Herb Harvest()
+        public override Herb Harvest()
         {
             return new Herb.Sage(harvestAmount);
         }

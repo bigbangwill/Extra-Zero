@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Seeds
+  m_EditorClassIdentifier: 
+  m_GroupName: Seeds
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f074d7411623a944abfeca6df3f9976e
+  m_SerializeEntries:
+  - m_GUID: fd8df86f60ff383469564cf0d09b4e90
+    m_Address: Seeds/Chamomile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37def047c48f56746aa2b84c0c1bb9e5
+    m_Address: Seeds/Lavender
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c59309713f556f418449788bc962552
+    m_Address: Seeds/Sage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1ff558705b63dca48bad278143685449, type: 2}
+    - {fileID: 11400000, guid: 82d36bd464cefb84abbc687ed7144564, type: 2}

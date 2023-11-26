@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Herbs
+  m_EditorClassIdentifier: 
+  m_GroupName: Herbs
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 238afc8540f816143b464ca637bf3826
+  m_SerializeEntries:
+  - m_GUID: aebb061932ad4e5499e6d5dbc8b259c5
+    m_Address: Herbs/Sage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4875be201671444b8b79a9f620abba3
+    m_Address: Herbs/Chamomile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8ab0b6106fdedb489801bc55746ca26
+    m_Address: Herbs/Lavender
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b158644c78b6b5c479849cd0a97a8194, type: 2}
+    - {fileID: 11400000, guid: 1cb672911bd86ef40ac697d56679e386, type: 2}
