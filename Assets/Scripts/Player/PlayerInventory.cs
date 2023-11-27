@@ -12,7 +12,7 @@ using System.Reflection;
 using System.Linq;
 using static UnityEditor.Progress;
 
-public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable
+public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,IStashable
 {
 
     #region Sinleton
@@ -368,7 +368,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable
     /// <summary>
     /// Method to instantiate item slot for the ui
     /// </summary>
-    private void InitUI()
+    public void InitUI()
     {
         float width, height;
         width = GetComponentInParent<RectTransform>().rect.width;
@@ -376,6 +376,8 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable
 
         int maxDevidedWidth = (int)((width) / itemSlotPrefabWidth);
         int maxDevidedHeight = (int)((height - offsetHeight - startingPointOffsetHeight) / itemSlotPrefabHeight);
+
+        Debug.Log(itemSlotPrefabHeight);
 
         // To automatically turn the extra count of inventory slot available that is more than the 
         // rows needed to offset.
@@ -404,6 +406,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable
                 go.transform.localPosition = itemSlotPosition;
                 go.transform.SetParent(transform, false);
                 ItemSlotUI itemSlotUI = go.GetComponentInChildren<ItemSlotUI>();
+                itemSlotUI.SetStashable(this);
                 itemSlotUI.slotNumber = instantiatedSlots;
                 itemSlotUIList.Add(itemSlotUI);
                 instantiatedSlots++;

@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GrabButton : MonoBehaviour, IDragHandler, IEndDragHandler
+public class GrabButton : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginDragHandler
 {
 
     [SerializeField] private HerbalismPost post;
 
     private Vector3 startPos;
 
-    private void Start()
+    public void OnBeginDrag(PointerEventData eventData)
     {
         startPos = transform.position;
     }
-
-
 
     public void OnDrag(PointerEventData eventData)
     {

@@ -5,7 +5,6 @@ using UnityEngine;
 public class HerbalismPost : MonoBehaviour
 {
 
-    public Queue<Seed> seedQueue = new();
     private List<Seed> inventorySeeds = new();
     private List<QueueIcon> queueIcons = new List<QueueIcon>();
 
@@ -26,24 +25,6 @@ public class HerbalismPost : MonoBehaviour
 
     public Seed GetNextSeed()
     {
-        //Seed targetSeed = seedQueue.Peek();
-        //if (targetSeed.CurrentStack() > 1)
-        //{
-        //    int currentStack = targetSeed.CurrentStack();
-        //    targetSeed.SetCurrentStack(currentStack -1);
-        //    queueIcons[0].SetText((currentStack - 1).ToString());
-        //    InitializeUI();
-        //    return targetSeed;
-        //}
-        //else
-        //{
-        //    Seed dequeue = seedQueue.Dequeue();
-        //    queueIcons.RemoveAt(0);
-        //    inventorySeeds.Remove(dequeue);
-        //    InitializeUI();
-        //    return dequeue;
-        //}
-
         Seed targetSeed = inventorySeeds[0];
         if (targetSeed.CurrentStack() > 1)
         {
@@ -65,11 +46,6 @@ public class HerbalismPost : MonoBehaviour
 
     }
 
-    public void AddSeedToQueue(Seed seed)
-    {
-        seedQueue.Enqueue(seed);
-    }
-
     public void SeedHarvested(Seed seed)
     {
         
@@ -82,6 +58,14 @@ public class HerbalismPost : MonoBehaviour
         {
             PlayerInventory.Instance.HaveItemInInventory(item, true);
         }
+        InitializeUI();
+    }
+
+    public void TopToBottomButton()
+    {
+        Seed firstSeed = inventorySeeds[0];
+        inventorySeeds.RemoveAt(0);
+        inventorySeeds.Add(firstSeed);
         InitializeUI();
     }
 

@@ -12,6 +12,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     
     public int slotNumber;
 
+    private IStashable stashable;
     private Image imageComponent;
     private TextMeshProUGUI stackText;
 
@@ -42,6 +43,11 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         m_GraphicRaycaster = GetComponentInParents<GraphicRaycaster>();
     }
 
+    public void SetStashable(IStashable stashable)
+    {
+        this.stashable = stashable;
+    }
+
     // To loop through all of the parents of the object to find the related object
     public T GetComponentInParents<T>() where T : Component
     {
@@ -61,7 +67,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     {
         if (imageComponent.sprite == null)
         {
-            itemSlot = PlayerInventory.Instance.ItemRefrence(slotNumber);
+            itemSlot = stashable.ItemRefrence(slotNumber);
             GetComponent<Image>().sprite = itemSlot.IconRefrence();
             if (itemSlot.IsStackable())
                 stackText.text = itemSlot.CurrentStack().ToString();
@@ -116,7 +122,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         {
             Debug.Log("Throw out");
             transform.position = startPos;
-            PlayerInventory.Instance.RemoveItemFromInventory(slotNumber);
+            stashable.RemoveItemFromInventory(slotNumber);
         }
         foreach (RaycastResult result in results)
         {
