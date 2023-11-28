@@ -14,9 +14,38 @@ public class HerbalismPost : MonoBehaviour
     [SerializeField] private float iconOffset;
     [SerializeField] private float startingPointOffset;
     [SerializeField] private ItemStash stash;
+    [SerializeField] private GameObject herbalismStashGO;
 
 
+    private bool isStarted = false;
 
+    private void OnEnable()
+    {
+        if (!isStarted)
+        {
+            StartCoroutine(StashActive());
+        }
+    }
+    private void Start()
+    {
+        isStarted = true;
+    }
+
+   
+    // To handle the first enable to set the needed refrences.
+    private IEnumerator StashActive()
+    {
+        Debug.Log("called");
+        herbalismStashGO.gameObject.SetActive(true);
+        yield return null;
+        herbalismStashGO.gameObject.SetActive(false);
+    }
+
+
+    /// <summary>
+    /// A checker to let the grab button if it can put the next seed in the spot.
+    /// </summary>
+    /// <returns></returns>
     public bool CanGetNextSeed()
     {
         if (inventorySeeds.Count == 0)
@@ -25,6 +54,10 @@ public class HerbalismPost : MonoBehaviour
             return true;
     }
 
+    /// <summary>
+    /// if the CanGetNextSeed method returns true this will return the needed Seed.
+    /// </summary>
+    /// <returns></returns>
     public Seed GetNextSeed()
     {
         Seed targetSeed = inventorySeeds[0];
@@ -39,7 +72,6 @@ public class HerbalismPost : MonoBehaviour
         else
         {
             inventorySeeds.RemoveAt(0);
-            //queueIcons.RemoveAt(0);
             InitializeUI();
             return targetSeed;
         }
@@ -48,6 +80,10 @@ public class HerbalismPost : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Will get called from herbalism spot to finilize the harvesting method and add it to the stash.
+    /// </summary>
+    /// <param name="seed"></param>
     public void SeedHarvested(Seed seed)
     {
         Herb harvested = seed.Harvest();
@@ -65,6 +101,9 @@ public class HerbalismPost : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method gets called from the button to deposit every Seed in the player inventory.
+    /// </summary>
     public void DepostHerbsButton()
     {
         List<Seed> newSeeds = PlayerInventory.Instance.SearchInventoryOfItemBehaviour<Seed>(ItemType.seed);
@@ -79,6 +118,9 @@ public class HerbalismPost : MonoBehaviour
         InitializeUI();
     }
 
+    /// <summary>
+    /// To send the first seed to the last place in the list.
+    /// </summary>
     public void TopToBottomButton()
     {
         Seed firstSeed = inventorySeeds[0];

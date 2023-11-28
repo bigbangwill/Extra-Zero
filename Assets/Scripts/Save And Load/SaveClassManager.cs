@@ -31,6 +31,7 @@ public class SaveClassManager : SingletonComponent<SaveClassManager>
 
     private void Awake()
     {
+        Instance = this;
         saveFilePath = Application.persistentDataPath + "/savedData.dat";
     }
 

@@ -26,6 +26,11 @@ public class ScannerSlotManager : SingletonComponent<ScannerSlotManager>
     //will get called from outerScope
     public ScannerHologramUI currentHologram = null;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     /// <summary>
     /// It's used to set the current active scanner slot. might get removed soon.
     /// </summary>

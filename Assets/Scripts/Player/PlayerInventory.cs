@@ -336,11 +336,14 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         {
             foreach (var itemsInArray in inventoryArray)
             {
+                Debug.Log("Before");
                 if (itemsInArray.Equals(item))
                 {
+                    Debug.Log("After");
                     int sum = itemsInArray.CurrentStack() + item.CurrentStack();
                     if (sum <= item.MaxStack())
                     {
+                        Debug.Log("Inside");
                         if (shouldAdd)
                             AddItemToInventory(item);
                         return true;
@@ -355,7 +358,34 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
             }
         }
         Debug.Log("No empty slot");
+        if (shouldAdd)
+        {
+            MaxCurrentStacks(item);
+        }
         return false;
+    }
+
+    // The last step of adding an item in to inventory. if the item is stackable this method will
+    // check if it can add the related stack to different slots so it can drop the starting item 
+    // stack to the minimum value to maximize the stacks of the related object in the invetory.
+    private void MaxCurrentStacks(ItemBehaviour item) 
+    {        
+        int canAdd = 0;
+        for (int i = 0; i < inventoryArray.Length; i++)
+        {
+            if (inventoryArray[i].Equals(item))
+            {
+                canAdd = inventoryArray[i].MaxStack() - inventoryArray[i].CurrentStack();
+                if (canAdd > 0)
+                {
+                    int currentStack = item.CurrentStack();
+                    item.SetCurrentStack(currentStack - canAdd);
+                    inventoryArray[i].SetCurrentStack(inventoryArray[i].MaxStack());
+                    itemSlotUIList[i].Reset();
+                }
+            }
+        }
+        EventManager.Instance.RefreshInventory();
     }
 
     /// <summary>
@@ -420,6 +450,8 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
 
     }
 
+    #region Save System
+
     public void AddISaveableToDictionary()
     {
         SaveClassManager.Instance.AddISaveableToDictionary(GetName(), this,0);
@@ -477,4 +509,5 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     {
         return "PlayerInventory";
     }
+    #endregion
 }

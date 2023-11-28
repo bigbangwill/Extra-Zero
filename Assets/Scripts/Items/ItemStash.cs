@@ -27,9 +27,16 @@ public class ItemStash : MonoBehaviour, IStashable
     private float itemSlotPrefabWidth;
     private float itemSlotPrefabHeight;
 
+    // Variable for the current active item
+    private ItemBehaviour currentActiveItem;
+    private int currentActiveItemSlotNum = int.MaxValue;
+    [SerializeField] private Transform activeItemTranform;
 
-    private void Start()
+
+    private void Awake()
     {
+
+        EventManager.Instance.RefreshUIAddListener(RefreshUI);
         inventoryArray = new ItemBehaviour[inventorySlotCount];
         itemSlotPrefabWidth = itemSlotPrefab.GetComponent<RectTransform>().rect.width;
         itemSlotPrefabHeight = itemSlotPrefab.GetComponent<RectTransform>().rect.height;
@@ -43,20 +50,56 @@ public class ItemStash : MonoBehaviour, IStashable
         HaveEmptySlot(new Herb.Lavender(30), true);
         HaveEmptySlot(new Herb.Sage(30), true);
         HaveEmptySlot(new Herb.Chamomile(30), true);
+        HaveEmptySlot(new Herb.Lavender(30), true);
+        HaveEmptySlot(new Herb.Sage(30), true);
+        HaveEmptySlot(new Herb.Chamomile(30), true);
+        HaveEmptySlot(new Herb.Lavender(30), true);
+        HaveEmptySlot(new Herb.Sage(30), true);
+        HaveEmptySlot(new Herb.Chamomile(30), true);
+        HaveEmptySlot(new Herb.Lavender(30), true);
+        HaveEmptySlot(new Herb.Sage(30), true);
+        HaveEmptySlot(new Herb.Chamomile(30), true);
+        HaveEmptySlot(new Herb.Lavender(30), true);
+        HaveEmptySlot(new Herb.Sage(30), true);
+        HaveEmptySlot(new Herb.Chamomile(30), true);
+        HaveEmptySlot(new Herb.Lavender(30), true);
+        HaveEmptySlot(new Herb.Sage(30), true);
+        HaveEmptySlot(new Herb.Chamomile(30), true);
+        HaveEmptySlot(new Herb.Lavender(30), true);
+        HaveEmptySlot(new Herb.Sage(30), true);
+        HaveEmptySlot(new Herb.Chamomile(30), true);
+        HaveEmptySlot(new Herb.Lavender(30), true);
+        HaveEmptySlot(new Herb.Sage(30), true);
+        HaveEmptySlot(new Herb.Chamomile(30), true);
+        HaveEmptySlot(new Herb.Lavender(30), true);
+        HaveEmptySlot(new Herb.Sage(30), true);
+        HaveEmptySlot(new Herb.Chamomile(30), true);
 
         Debug.Log("Start");
     }
 
     public void RefreshUI()
     {
-
+        foreach (var slotUI in itemSlotUIList)
+        {
+            slotUI.Reset();
+        }
     }
 
+    /// <summary>
+    /// Method to return the related icon of the item
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <returns></returns>
     public ItemBehaviour ItemRefrence(int slot)
     {
         return inventoryArray[slot];
     }
 
+    /// <summary>
+    /// An overall method to check if the item is stackable or not to navigate to the right related method
+    /// </summary>
+    /// <param name="item"></param>
     public void AddItemToInventory(ItemBehaviour item)
     {
         if (item.IsStackable())
@@ -82,6 +125,41 @@ public class ItemStash : MonoBehaviour, IStashable
             }
         }
         Debug.LogWarning("You might wanna check here cause there is no empty slot");
+    }
+
+
+    /// <summary>
+    /// Method to get called from outer scope (the ui) to set the related item slot int to
+    /// be the current active item
+    /// </summary>
+    /// <param name="slot"></param>
+    public void SetActiveItem(int slot)
+    {
+        if (inventoryArray[slot].ItemTypeValue() == ItemType.empty)
+            return;
+        if (currentActiveItemSlotNum != slot)
+        {
+            currentActiveItem = inventoryArray[slot];
+            currentActiveItemSlotNum = slot;
+            activeItemTranform.gameObject.SetActive(true);
+            activeItemTranform.position = itemSlotUIList[slot].transform.position;
+        }
+        else
+        {
+            Debug.Log("here");
+            if (!PlayerInventory.Instance.HaveEmptySlot(currentActiveItem, true))
+            {
+                Debug.Log("Dont have empty Slot");
+            }
+            else
+            {
+                RemoveItemFromInventory(currentActiveItemSlotNum);
+            }
+
+            currentActiveItem = null;
+            currentActiveItemSlotNum = int.MaxValue;
+            activeItemTranform.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -119,6 +197,11 @@ public class ItemStash : MonoBehaviour, IStashable
     }
 
 
+    /// <summary>
+    /// Method to check if there is an empty inventory slot
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
     public bool HaveEmptySlot(ItemBehaviour item, bool shouldAdd)
     {
         if (!item.IsStackable())
@@ -157,9 +240,44 @@ public class ItemStash : MonoBehaviour, IStashable
             }
         }
         Debug.Log("No empty slot");
+        if (shouldAdd)
+        {
+            MaxCurrentStacks(item);
+        }
         return false;
     }
 
+    // The last step of adding an item in to inventory. if the item is stackable this method will
+    // check if it can add the related stack to different slots so it can drop the starting item 
+    // stack to the minimum value to maximize the stacks of the related object in the invetory.
+    private void MaxCurrentStacks(ItemBehaviour item)
+    {
+        int canAdd = 0;
+        for (int i = 0; i < inventoryArray.Length; i++)
+        {
+            if (inventoryArray[i].Equals(item))
+            {
+                canAdd = inventoryArray[i].MaxStack() - inventoryArray[i].CurrentStack();
+                if (canAdd > 0)
+                {
+                    int currentStack = item.CurrentStack();
+                    item.SetCurrentStack(currentStack - canAdd);
+                    inventoryArray[i].SetCurrentStack(inventoryArray[i].MaxStack());
+                    itemSlotUIList[i].Reset();
+                }
+            }
+        }
+        EventManager.Instance.RefreshInventory();
+    }
+
+    /// <summary>
+    /// A method mainly for quests to check if the player has an specific item
+    /// or a stack of an item.the bool shouldRemove will be determine if the
+    /// if the item should be removed after it exists or not.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="shouldRemove"></param>
+    /// <returns></returns>
     public bool HaveItemInInventory(ItemBehaviour item, bool shouldRemove)
     {
         if (!item.IsStackable())
@@ -233,8 +351,6 @@ public class ItemStash : MonoBehaviour, IStashable
         float width, height;
         width = GetComponentInParent<RectTransform>().rect.width;
         height = GetComponentInParent<RectTransform>().rect.height;
-        Debug.Log(width + "Width");
-        Debug.Log(height + "Height");
 
         int maxDevidedWidth = (int)((width) / itemSlotPrefabWidth);
         int maxDevidedHeight = (int)((height - offsetHeight - startingPointOffsetHeight) / itemSlotPrefabHeight);
@@ -248,7 +364,6 @@ public class ItemStash : MonoBehaviour, IStashable
             int extra = maxDevidedWidth - rowCountMax;
             int extraWidth = (int)(extra * itemSlotPrefabWidth);
             offsetWidth = extraWidth / rowCountMax;
-            Debug.Log("Here");
         }
 
 
@@ -256,11 +371,9 @@ public class ItemStash : MonoBehaviour, IStashable
         int instantiatedSlots = 0;
         for (int columnCount = 0; columnCount < maxDevidedHeight; columnCount++)
         {
-            Debug.Log("Here");
             //****There is a minus -2 here to make sure that the col count wouldnt go up to ** slots****
             for (int rowCount = 0; rowCount < rowCountMax; rowCount++)
             {
-                Debug.Log("Here");
                 GameObject go = Instantiate(itemSlotPrefab);
                 // To find the starting point to instantiate the slot UI at the proper position
                 float startingPointWidth = ((width - startingPointOffsetWidth) / 2) * -1;
@@ -274,7 +387,6 @@ public class ItemStash : MonoBehaviour, IStashable
                 itemSlotUI.slotNumber = instantiatedSlots;
                 itemSlotUIList.Add(itemSlotUI);
                 instantiatedSlots++;
-                Debug.Log(itemSlotUIList.Count);
                 if (instantiatedSlots == inventorySlotCount)
                     return;
             }
@@ -293,6 +405,12 @@ public class ItemStash : MonoBehaviour, IStashable
             Debug.LogWarning("Might wanna recheck cause it's null already");
     }
 
+    /// <summary>
+    /// A method for elements that need to find all of the needed item in inventory
+    /// first use is scanner manager to build the content list
+    /// </summary>
+    /// <param name="_ItemType"></param>
+    /// <returns></returns>
     public List<T> SearchInventoryOfItemBehaviour<T>(ItemType _ItemType)
     {
         List<T> itemBehaviours = new();
@@ -307,6 +425,11 @@ public class ItemStash : MonoBehaviour, IStashable
         return itemBehaviours;
     }
 
+    /// <summary>
+    /// Method to get called from outer scope to (the ui) to swap a and b item slots
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
     public void SwapItemInInventory(int a, int b)
     {
         ItemSlotUI slotA = itemSlotUIList[a];

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CraftingItem : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CraftingItem : MonoBehaviour
     [SerializeField] private GameObject greyIndicator;
 
     [SerializeField] private Image materialImage;
+    [SerializeField] private TextMeshProUGUI stackText;
 
     private ItemBehaviour holdingItem;
 
@@ -45,6 +47,7 @@ public class CraftingItem : MonoBehaviour
         redIndicator.SetActive(false);
         greyIndicator.SetActive(false);
         materialImage.sprite = null;
+        stackText.text = sentMaterial.CurrentStack().ToString();
 
         if (sentMaterial.Equals(new EmptyItem()))
         {
@@ -79,8 +82,7 @@ public class CraftingItem : MonoBehaviour
         }
 
 
-        if (state == craftingItemState.CanFill &&
-            PlayerInventory.Instance.HaveItemInInventory(holdingItem, true))
+        if (state == craftingItemState.CanFill && PlayerInventory.Instance.HaveItemInInventory(holdingItem, true))
         {
             state = craftingItemState.Filled;
             greenIndicator.SetActive(false);
@@ -95,6 +97,7 @@ public class CraftingItem : MonoBehaviour
         state = craftingItemState.DontFill;
         holdingItem = null;
         materialImage.sprite = null;
+        stackText.text = string.Empty;
     }
 
 
@@ -102,11 +105,6 @@ public class CraftingItem : MonoBehaviour
     {
         return state;
     }
-
-    //public void SetImage(Sprite image)
-    //{
-    //    materialImage.sprite = image;
-    //}
 
     public void SetState(craftingItemState state)
     {
@@ -136,6 +134,7 @@ public class CraftingItem : MonoBehaviour
         if (holdingItem.Equals(new EmptyItem()))
             holdingItem = null;
         materialImage.sprite = item.IconRefrence();
+        stackText.text = item.CurrentStack().ToString();
     }
 
 

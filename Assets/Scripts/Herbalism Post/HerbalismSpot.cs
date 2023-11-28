@@ -41,11 +41,19 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
             Grow();
     }
 
+    /// <summary>
+    /// Used to check on raycast if it's not growing any seed inside to call the PlaceNewSeed.
+    /// </summary>
+    /// <returns></returns>
     public bool IsGrowing()
     {
         return isGrowing;
     }
 
+    /// <summary>
+    /// gets called after IsGrowing method is false.
+    /// </summary>
+    /// <param name="seed"></param>
     public void PlaceNewSeed(Seed seed)
     {
         currentGrowingSeed = seed;
@@ -55,6 +63,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
         duration = seed.GetMaxHarvestTimer();
     }
 
+    // Gets called in the update method to procced the timer.
     private void Grow()
     {
         currentTimer += Time.deltaTime;
@@ -65,6 +74,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
         }
     }
 
+    // Change color to show the current state of the herb.
     private void ChangeColor(float timerValue)
     {
         float normalizedTime = Mathf.Clamp01(timerValue / duration);
@@ -72,6 +82,8 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
         image.color = lerpedColor;
     }
 
+
+    // Gets called from the OnPointerDown method to start the harvest method.
     private void Harvest()
     {
         float harvestTimer = maxTimer / currentTimer;
@@ -103,6 +115,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
         ResetMethod();
     }
 
+    // Called when the player didnt click the spot in time.
     private void Decayed()
     {
         isGrowing = false;
@@ -119,6 +132,9 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
         }
     }
 
+    /// <summary>
+    /// To reset the slot back to the default value and make it ready for next seed.
+    /// </summary>
     public void ResetMethod()
     {
         isGrowing = false;

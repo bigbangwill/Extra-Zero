@@ -22,6 +22,12 @@ public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveabl
     private GameTime savedTime;
     private bool isSaved = false;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+
     private void Start()
     {
         AddISaveableToDictionary();

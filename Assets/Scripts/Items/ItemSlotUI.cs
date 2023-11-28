@@ -43,6 +43,10 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         m_GraphicRaycaster = GetComponentInParents<GraphicRaycaster>();
     }
 
+    /// <summary>
+    /// This method should get called during the initialization of the related stash.
+    /// </summary>
+    /// <param name="stashable"></param>
     public void SetStashable(IStashable stashable)
     {
         this.stashable = stashable;
@@ -159,21 +163,6 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         rt.anchoredPosition = Vector3.zero;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void OnDrop(PointerEventData eventData)
     {
         
@@ -191,6 +180,6 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         {
             return;
         }
-        PlayerInventory.Instance.SetActiveItem(slotNumber);
+        stashable.SetActiveItem(slotNumber);
     }
 }

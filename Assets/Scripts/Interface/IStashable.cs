@@ -12,6 +12,8 @@ public interface IStashable
     public void SwapItemInInventory(int a, int b);
     public List<T> SearchInventoryOfItemBehaviour<T>(ItemType _ItemType);
     public ItemBehaviour ItemRefrence(int slot);
+    public void SetActiveItem(int slot);
+
 
 
 
