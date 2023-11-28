@@ -52,6 +52,8 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
 
     private void Awake()
     {
+        Instance = this;
+
         inventoryArray = new ItemBehaviour[inventorySlotCount];
         itemSlotPrefabWidth = itemSlotPrefab.GetComponent<RectTransform>().rect.width;
         itemSlotPrefabHeight = itemSlotPrefab.GetComponent<RectTransform>().rect.height;
@@ -139,6 +141,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     /// <param name="b"></param>
     public void SwapItemInInventory(int a, int b)
     {
+        Debug.Log(a + "  " + b);
         ItemSlotUI slotA = itemSlotUIList[a];
         ItemBehaviour itemA = inventoryArray[a];
         ItemSlotUI slotB = itemSlotUIList[b];

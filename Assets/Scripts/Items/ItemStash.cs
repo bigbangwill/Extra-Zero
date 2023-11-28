@@ -39,6 +39,11 @@ public class ItemStash : MonoBehaviour, IStashable
         }
 
         InitUI();
+
+        HaveEmptySlot(new Herb.Lavender(30), true);
+        HaveEmptySlot(new Herb.Sage(30), true);
+        HaveEmptySlot(new Herb.Chamomile(30), true);
+
         Debug.Log("Start");
     }
 
@@ -269,6 +274,7 @@ public class ItemStash : MonoBehaviour, IStashable
                 itemSlotUI.slotNumber = instantiatedSlots;
                 itemSlotUIList.Add(itemSlotUI);
                 instantiatedSlots++;
+                Debug.Log(itemSlotUIList.Count);
                 if (instantiatedSlots == inventorySlotCount)
                     return;
             }

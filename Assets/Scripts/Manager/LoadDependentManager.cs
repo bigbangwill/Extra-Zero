@@ -7,7 +7,7 @@ public class LoadDependentManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> list = new();
 
-    private void OnEnable()
+    private void Awake()
     {
         StartCoroutine(LoadDependecies());
     }

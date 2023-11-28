@@ -141,7 +141,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 slotNumber = targetSlotNumber;
                 targetSwap.SwapToNewPostion(transform.parent.gameObject);
                 SwapToNewPostion(result.gameObject);
-                PlayerInventory.Instance.SwapItemInInventory(selfSlotNumber,targetSlotNumber);
+                stashable.SwapItemInInventory(selfSlotNumber,targetSlotNumber);
                 break;
             }
             transform.position = startPos;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class HerbalismPost : MonoBehaviour
@@ -12,6 +13,7 @@ public class HerbalismPost : MonoBehaviour
     [SerializeField] private RectTransform contentUIGO;
     [SerializeField] private float iconOffset;
     [SerializeField] private float startingPointOffset;
+    [SerializeField] private ItemStash stash;
 
 
 
@@ -48,13 +50,29 @@ public class HerbalismPost : MonoBehaviour
 
     public void SeedHarvested(Seed seed)
     {
-        
+        Herb harvested = seed.Harvest();
+        if (harvested.CurrentStack() == 0)
+        {
+            Debug.Log("Was a zero harvest");
+        }
+        if (stash.HaveEmptySlot(harvested, false))
+        {
+            stash.HaveEmptySlot(harvested, true);
+        }
+        else
+        {
+            Debug.Log("Dont have empty Slot");
+        }
     }
 
     public void DepostHerbsButton()
     {
-        inventorySeeds = PlayerInventory.Instance.SearchInventoryOfItemBehaviour<Seed>(ItemType.seed);
-        foreach (var item in inventorySeeds)
+        List<Seed> newSeeds = PlayerInventory.Instance.SearchInventoryOfItemBehaviour<Seed>(ItemType.seed);
+        foreach (var seed in newSeeds)
+        {
+            inventorySeeds.Add(seed);
+        }
+        foreach (var item in newSeeds)
         {
             PlayerInventory.Instance.HaveItemInInventory(item, true);
         }
