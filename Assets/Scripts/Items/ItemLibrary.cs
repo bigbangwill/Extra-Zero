@@ -11,7 +11,7 @@ public delegate void UseDelegate();
 
 public enum ItemType {potion,bluePrint,material,questItem,empty,seed,herb };
 
-public abstract class ItemBehaviour
+public abstract class ItemBehaviour : IComparable<ItemBehaviour>
 {
     // All of these items will be given the value in their child classes.
 
@@ -51,6 +51,12 @@ public abstract class ItemBehaviour
         {
             Debug.LogError("Failed to load the asset");
         }
+    }
+
+    public int CompareTo(ItemBehaviour other)
+    {
+        if(other == null) return 1;
+        return string.Compare(specificName, other.specificName, StringComparison.Ordinal);
     }
 
     /// <summary>

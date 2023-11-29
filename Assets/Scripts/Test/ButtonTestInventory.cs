@@ -10,6 +10,10 @@ public class ButtonTestInventory : MonoBehaviour
     public int count;
     public bool shouldRemove;
 
+    private void Start()
+    {
+        Debug.Log(UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset.GetType().Name);
+    }
     public void AddWalkingStick()
     {
         ItemBehaviour item = new BluePrintItem.WalkingStick();
