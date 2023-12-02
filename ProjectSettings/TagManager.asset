@@ -7,6 +7,7 @@ TagManager:
   - Scanner Slot
   - Item Slot
   - Herbalism Spot
+  - PopUpSlot
   layers:
   - Default
   - TransparentFX

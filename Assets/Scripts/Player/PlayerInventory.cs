@@ -71,7 +71,6 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     }
 
 
-
     private void Start()
     {
         AddISaveableToDictionary();
@@ -336,14 +335,11 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         {
             foreach (var itemsInArray in inventoryArray)
             {
-                Debug.Log("Before");
                 if (itemsInArray.Equals(item))
                 {
-                    Debug.Log("After");
                     int sum = itemsInArray.CurrentStack() + item.CurrentStack();
                     if (sum <= item.MaxStack())
                     {
-                        Debug.Log("Inside");
                         if (shouldAdd)
                             AddItemToInventory(item);
                         return true;

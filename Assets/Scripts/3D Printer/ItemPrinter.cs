@@ -65,7 +65,11 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         }
     }
 
-
+    /// <summary>
+    /// This method get called from import holder to set the bluepring that the player is trying to create.
+    /// </summary>
+    /// <param name="sentItem"></param>
+    /// <returns></returns>
     public bool SentToPrinter(BluePrintItem sentItem)
     {
         for(int i = 0; i < craftingItemArray.Length; i++)
@@ -83,7 +87,8 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
 
 
     
-
+    // to refill the requiredItemsForCrafting list with the related materials and call the
+    // FillTheCraftingListAndSetIndicator
     private void Initialize()
     {
         itemImage.sprite = currentBluePrint.IconRefrence();
@@ -96,6 +101,10 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         FillTheCraftingListAndSetIndicator();
     }
 
+    /// <summary>
+    ///  To see how many material the current blueprint needs and to set the needed indicator
+    ///  depending on the player inventory.
+    /// </summary>
     private void FillTheCraftingListAndSetIndicator()
     {
         int leftToFillTheList = craftingItemArray.Length - requiredItemsForCrafting.Count;
@@ -111,6 +120,9 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         }
     }
 
+    /// <summary>
+    /// The button method to fill the slots if the player has the material.
+    /// </summary>
     public void FillAllButtonClicked()
     {
 
@@ -126,6 +138,9 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         }
     }
 
+    /// <summary>
+    /// The button method to remove the filled slots.
+    /// </summary>
     public void RemoveAllButtonClicked()
     {
         if (!isCrafting)
@@ -141,6 +156,9 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     }
 
 
+    /// <summary>
+    /// The button method to check if it can start to create the item. 
+    /// </summary>
     public void StartButtonClicked()
     {
         bool allAreFilled = true;
@@ -175,7 +193,9 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         }
     }
 
-
+    
+    // Gets called by the script it self to check if the object went disabled while creating and item
+    // to elapse the seconds that the object was OFFLINE! :D
     private void CheckSavedTime()
     {
         if (isSaved)
@@ -190,6 +210,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
 
     }
 
+    // gets checked before and now it start crafting.
     private void StartCrafting()
     {
         EventManager.Instance.SecondsElapsedAddListener(SecondElapsed);
@@ -212,6 +233,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         }
     }
 
+    // the mothod to reset the printer back to normal state and call the export method.
     private void FinishedCrafting()
     {
         EventManager.Instance.SecondsElapsedRemoveListener(SecondElapsed);
@@ -225,6 +247,9 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         }
     }
 
+    /// <summary>
+    /// The button method to cancel the current active crafting work.
+    /// </summary>
     public void CancledCrafting()
     {
         isCrafting = false;
@@ -238,7 +263,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
 
     }
 
-
+    // Gets implemented when the player can pick up item.
     private void ExportItem(BluePrintItem bluePrintItem)
     {
         Debug.Log("Exported item: " + bluePrintItem.GetName());

@@ -2,21 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public delegate void PotionEffectDelegate();
 
 public static class PotionLibrary
 {
-    private static Dictionary<PotionCombination, PotionEffect> potionEffectDictionary;
+    private static Dictionary<PotionCombination, PotionEffect> potionEffectDictionary = new();
 
     public static void Initialize()
     {
         AddCombination(new Herb.Sage(), new Herb.Sage(), new Herb.Sage(), new PotionEffect.FirstEffect());
         AddCombination(new Herb.Lavender(), new Herb.Lavender(), new Herb.Lavender(), new PotionEffect.SecondEffect());
         AddCombination(new Herb.Chamomile(), new Herb.Chamomile(), new Herb.Chamomile(), new PotionEffect.ThirdEffect());
-
+        AddCombination(new Herb.Sage(), new Herb.Chamomile(), new Herb.Lavender(), new PotionEffect.ForthEffect());
     }
 
+    // to add the related combination herbs and potion effect to the dictionary.
     private static void AddCombination(Herb first,Herb second,Herb third, PotionEffect potionEffectDelegate)
     {
         Herb[] herbsArray = new Herb[3];
@@ -25,6 +28,9 @@ public static class PotionLibrary
         herbsArray[2] = third;
         Array.Sort(herbsArray);
         PotionCombination combination = new(herbsArray[0], herbsArray[1], herbsArray[2]);
+        Debug.Log(combination.first);
+        Debug.Log(combination.second);
+        Debug.Log(combination.third);
         potionEffectDictionary.Add(combination, potionEffectDelegate);
     }
 
@@ -37,14 +43,17 @@ public static class PotionLibrary
         herbsArray[2] = third;
         Array.Sort(herbsArray);
         PotionCombination target = new(herbsArray[0], herbsArray[1], herbsArray[2]);
-        if(potionEffectDictionary.ContainsKey(target))
+        if (potionEffectDictionary.ContainsKey(target))
             return potionEffectDictionary[target];
         else 
             return new PotionEffect.EmptyEffect();
     }
 }
 
-
+/// <summary>
+/// The class to put each combination of the herbs in and turn them into string by their name to make it 
+/// ready for the dictionary to give the related potion effect.
+/// </summary>
 public class PotionCombination
 {
     public string first, second, third;
@@ -54,12 +63,45 @@ public class PotionCombination
         this.second = second.GetName();
         this.third = third.GetName();
     }
+
+    public override bool Equals(object obj)
+    {
+        return obj is PotionCombination combination &&
+               first == combination.first &&
+               second == combination.second &&
+               third == combination.third;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(first, second, third);
+    }
 }
 
 public class PotionEffect
 {
     public string name;
+    public string specificAddress;
     public PotionEffectDelegate effect;
+    public Sprite sprite;
+
+    protected void LoadIcon()
+    {
+        specificAddress = "Potion Effect/" + name;
+        AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(specificAddress);
+        handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
+
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            sprite = handle.Result;
+            Addressables.Release(handle);
+        }
+        else
+        {
+            Debug.LogError("Failed to load the asset");
+        }
+    }
+
 
     public class EmptyEffect : PotionEffect
     {
@@ -67,6 +109,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Empty";
+            LoadIcon();
         }
         public void EffectVoid()
         {
@@ -81,6 +124,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Speed";
+            LoadIcon();
         }
 
         public void EffectVoid()
@@ -94,7 +138,8 @@ public class PotionEffect
         public SecondEffect()
         {
             effect = EffectVoid;
-            name = "health";
+            name = "Health";
+            LoadIcon();
         }
         public void EffectVoid()
         {
@@ -106,11 +151,26 @@ public class PotionEffect
         public ThirdEffect()
         {
             effect = EffectVoid;
-            name = "mana";
+            name = "Mana";
+            LoadIcon();
         }
         public void EffectVoid()
         {
             Debug.Log("Third Effect");
+        }
+    }
+
+    public class ForthEffect : PotionEffect
+    {
+        public ForthEffect()
+        {
+            effect = EffectVoid;
+            name = "Random";
+            LoadIcon();
+        }
+        public void EffectVoid()
+        {
+            Debug.Log("forth Effect");
         }
     }
 }
