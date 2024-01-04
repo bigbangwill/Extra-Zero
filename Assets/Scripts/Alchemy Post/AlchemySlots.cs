@@ -89,6 +89,26 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         }
     }
 
+    public void PotionCreated()
+    {
+        if (holdingHerb != null)
+        {
+            int currentStack = holdingHerb.CurrentStack();
+            holdingHerb.SetCurrentStack(5);
+            if (PlayerInventory.Instance.HaveItemInInventory(holdingHerb, false))
+            {
+                PlayerInventory.Instance.HaveItemInInventory(holdingHerb,true);
+                holdingHerb.SetCurrentStack(currentStack);
+                holdingHerb = null;
+                image.sprite = null;
+            }
+            else
+            {
+                Debug.Log("Player doesnt have the required Item");
+            }
+        }
+    }
+
     private void OnDisable()
     {
         Reset();

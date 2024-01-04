@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class ImportHolder : MonoBehaviour
 {
@@ -28,10 +29,6 @@ public class ImportHolder : MonoBehaviour
 
     private void Start()
     {
-        importedBluePrintList.Add(new BluePrintItem.WalkingStick());
-        importedBluePrintList.Add(new BluePrintItem.Gun());
-        importedBluePrintList.Add(new BluePrintItem.Hoe());
-        importedBluePrintList.Add(new BluePrintItem.Plant());
         InitializeUI();
     }
 
@@ -125,6 +122,8 @@ public class ImportHolder : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        SetSendButtonState(false);
+        activeNumber = -1;
 
         float prefabHeight = blueprintUIPrefab.GetComponent<RectTransform>().rect.height;
         float prefabWidth = blueprintUIPrefab.GetComponent<RectTransform>().rect.width;
@@ -196,6 +195,12 @@ public class ImportHolder : MonoBehaviour
     public void SentButtonClicked()
     {
         itemPrinterRefrence.SentToPrinter(activeImport);
+        if (activeImportUIGO != null)
+        {
+            activeImportUIGO.SetActive(false);
+            activeImportUIGO = null;
+        }
+        SetSendButtonState(false);
     }
 
 

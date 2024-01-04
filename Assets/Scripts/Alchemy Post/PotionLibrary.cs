@@ -78,12 +78,35 @@ public class PotionCombination
     }
 }
 
+/// <summary>
+/// A class for each of the effects that are in gonna be in the game.
+/// </summary>
 public class PotionEffect
 {
     public string name;
     public string specificAddress;
     public PotionEffectDelegate effect;
     public Sprite sprite;
+
+    protected int potionPriority;
+
+    public override bool Equals(object obj)
+    {
+        return obj is PotionEffect effect &&
+               name == effect.name &&
+               specificAddress == effect.specificAddress &&
+               potionPriority == effect.potionPriority;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(name, specificAddress, potionPriority);
+    }
+
+    public int Priority()
+    {
+        return potionPriority;
+    }
 
     protected void LoadIcon()
     {
@@ -109,6 +132,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Empty";
+            potionPriority = int.MaxValue;
             LoadIcon();
         }
         public void EffectVoid()
@@ -124,6 +148,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Speed";
+            potionPriority = 0;
             LoadIcon();
         }
 
@@ -139,6 +164,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Health";
+            potionPriority = 1;
             LoadIcon();
         }
         public void EffectVoid()
@@ -152,6 +178,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Mana";
+            potionPriority = 3;
             LoadIcon();
         }
         public void EffectVoid()
@@ -166,6 +193,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Random";
+            potionPriority = 4;
             LoadIcon();
         }
         public void EffectVoid()

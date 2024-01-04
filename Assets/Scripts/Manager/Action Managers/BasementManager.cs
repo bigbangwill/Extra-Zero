@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class BasementManager : SingletonComponent<BasementManager>
 {
-
     #region Singleton Manager
     public static BasementManager Instance
     {
@@ -16,6 +15,9 @@ public class BasementManager : SingletonComponent<BasementManager>
     #endregion
 
     private UnityEvent InventoryEvent = new();
+    public delegate void Intract();
+    private Intract intractVoid;
+    private Intract intractCancelVoid;
 
     /// <summary>
     /// To add method as a listener to get the inventorybind
@@ -36,9 +38,38 @@ public class BasementManager : SingletonComponent<BasementManager>
     }
 
 
+    public void SetInteractDelegate(Intract action)
+    {
+        intractVoid = action;
+    }
+
+    public void SetIntractCancelDelegate(Intract action)
+    {
+        intractCancelVoid = action;
+    }
+
+    public void RemoveInteractDelegate()
+    {
+        intractVoid = null;
+        intractCancelVoid = null;
+    }
+
+
     private void OnInventory()
     {
         InventoryEvent.Invoke();
+    }
+
+    private void OnInteract()
+    {
+        if (intractVoid != null)
+            intractVoid();
+    }
+
+    private void OnIntractCancel()
+    {
+        if (intractCancelVoid != null)
+            intractCancelVoid();
     }
 
     private void OnFirstSlot()

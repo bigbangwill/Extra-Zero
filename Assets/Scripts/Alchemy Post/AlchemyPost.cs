@@ -9,6 +9,11 @@ public class AlchemyPost : MonoBehaviour
 {
     [SerializeField] private AlchemyHerbsPopUp popUp;
 
+    [SerializeField] private EffectSlots firstSlot;
+    [SerializeField] private EffectSlots secondSlot;
+    [SerializeField] private EffectSlots thirdSlot;
+
+
     private List<Herb> inventoryHerbs;
     [SerializeField] private List<string> herbNames;
     private List<Herb> sendingHerbs;
@@ -17,11 +22,11 @@ public class AlchemyPost : MonoBehaviour
     private void Start()
     {
         PotionLibrary.Initialize();
+        PlayerInventory.Instance.HaveEmptySlot(new Herb.Chamomile(50), true);
+        PlayerInventory.Instance.HaveEmptySlot(new Herb.Lavender(50), true);
         PlayerInventory.Instance.HaveEmptySlot(new Herb.Sage(50), true);
         PlayerInventory.Instance.HaveEmptySlot(new Herb.Chamomile(50), true);
         PlayerInventory.Instance.HaveEmptySlot(new Herb.Lavender(50), true);
-        PlayerInventory.Instance.HaveEmptySlot(new Herb.Lavender(50), true);
-        PlayerInventory.Instance.HaveEmptySlot(new Herb.Sage(50), true);
         PlayerInventory.Instance.HaveEmptySlot(new Herb.Sage(50), true);
         SetLists();
     }
@@ -68,6 +73,89 @@ public class AlchemyPost : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Method for the UI button to get called when ever the create potion is pressed.
+    /// The method sorts the potion effects and reset the ui and remove the related herbs from the player bag.
+    /// </summary>
+    public void CreatePotionClicked()
+    {
+        PotionEffect first, second,third;
+        PotionItem targetPotion;
+        List<PotionEffect> sortedPotionEfect = PotionEffectSorter();
+
+        PotionEffect emptyEffect = new PotionEffect.EmptyEffect();
+        bool allIsEmpty = true;
+        foreach (var item in sortedPotionEfect)
+        {
+            if (!item.Equals(emptyEffect))
+            {
+                allIsEmpty = false;
+            }
+        }
+        if (allIsEmpty)
+        {
+            Debug.Log("No effect is selected");
+            return;
+        }
+
+        first = sortedPotionEfect[0];
+        second = sortedPotionEfect[1];
+        third = sortedPotionEfect[2];
+
+        targetPotion = new PotionItem(first, second, third);
+        if (PlayerInventory.Instance.HaveEmptySlot(targetPotion, false))
+        {
+            PlayerInventory.Instance.HaveEmptySlot(targetPotion, true);
+            Debug.Log("Sent");
+            PotionCreated();
+        }
+        else
+        {
+            Debug.Log("No empty slot");
+        }
+    }
+
+
+    // This method is used to return a list that has it's effect sorted by their priority
+    // so we dont have multiple potions with same effects.
+    private List<PotionEffect> PotionEffectSorter()
+    {
+        List<PotionEffect> sortingList = new()
+        {
+            firstSlot.GetCurrentEffect(),
+            secondSlot.GetCurrentEffect(),
+            thirdSlot.GetCurrentEffect()
+        };
+
+        // Use Sort method to sort the list based on the Priority
+        sortingList.Sort((x, y) => x.Priority().CompareTo(y.Priority()));
+
+        return sortingList;
+    }
+
+    // this method is used to check if the and EffectSlot has an effect in it or not.
+    // if yes it will order it to reduct the related material and reset back to default state.
+    private void PotionCreated()
+    {
+        SetSendingList();
+        if (!firstSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
+        {
+            firstSlot.CreatedThePotion();
+        }
+
+        if (!secondSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
+        {
+            secondSlot.CreatedThePotion();
+        }
+
+        if (!thirdSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
+        {
+            thirdSlot.CreatedThePotion();
+        }
+    }
+
+
 
     /// <summary>
     /// Method to start the activation of the herb selection UI.

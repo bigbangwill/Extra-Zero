@@ -59,9 +59,9 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// To remove the item in scanner slot
     /// </summary>
     /// <param name="item"></param>
-    public void RemoveFromSlot(BluePrintItem item)
+    public void RemoveFromSlot(BluePrintItem item,bool isDone)
     {
-        ScannerSlotManager.Instance.RemovedFromSlot(item,this);
+        ScannerSlotManager.Instance.RemovedFromSlot(item,this,isDone);
         image.sprite = null;
         holdingItem = null;
     }
@@ -85,7 +85,10 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             || state == ScannerSlotManager.slotState.isDone)
         {
             Debug.Log(holdingItem.IsStackable());
-            RemoveFromSlot(holdingItem);
+            if (state == ScannerSlotManager.slotState.isDone)
+                RemoveFromSlot(holdingItem, true);
+            else
+                RemoveFromSlot(holdingItem, false);
         }
     }
 

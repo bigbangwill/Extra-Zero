@@ -25,6 +25,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     List<ItemBehaviour> requiredItemsForCrafting = new();
 
     private bool iscrafting = false;
+    private bool isDone = false;
 
     private bool isCrafting { 
         get 
@@ -56,7 +57,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
 
     private void OnEnable()
     {
-        if(currentBluePrint != null)
+        if(currentBluePrint != null && !isDone)
             Initialize();
         CheckSavedTime();
         if (isCrafting)
@@ -74,12 +75,13 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     {
         for(int i = 0; i < craftingItemArray.Length; i++)
         {
-            if (isCrafting || craftingItemArray[i].GetState() == craftingItemState.Filled)
+            if (isCrafting || craftingItemArray[i].GetState() == craftingItemState.Filled || isDone)
             {
                 Debug.Log("Is false or is crafting");
                 return false;
             }
         }
+        Debug.Log("Ger");
         currentBluePrint = sentItem;
         Initialize();
         return true;
@@ -167,7 +169,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
             if (item.GetState() == craftingItemState.CanFill || item.GetState() == craftingItemState.CantFill)
                 allAreFilled = false;
         }
-        if (allAreFilled)
+        if (allAreFilled && !isDone)
         {
             StartCrafting();
         }
@@ -233,14 +235,14 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         }
     }
 
+    
+
     // the mothod to reset the printer back to normal state and call the export method.
     private void FinishedCrafting()
     {
         EventManager.Instance.SecondsElapsedRemoveListener(SecondElapsed);
-        isCrafting = false;
-        ExportItem(currentBluePrint);
-        currentBluePrint = null;
-        itemImage.sprite = null;
+        iscrafting = false;
+        isDone = true;
         foreach (var item in craftingItemArray)
         {
             item.ResetState();
@@ -261,6 +263,21 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
             item.RemoveItemFromPrinterSlot();
         }
 
+    }
+
+    /// <summary>
+    /// This method gets called from the cover GO in the scene. it's only for when the item is complete and 
+    /// the player has to pick it up.
+    /// </summary>
+    public void CoverClicked()
+    {
+        if (isDone)
+        {
+            ExportItem(currentBluePrint);
+            currentBluePrint = null;
+            itemImage.sprite = null;
+            isDone = false;
+        }
     }
 
     // Gets implemented when the player can pick up item.

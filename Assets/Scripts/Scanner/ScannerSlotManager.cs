@@ -75,9 +75,10 @@ public class ScannerSlotManager : SingletonComponent<ScannerSlotManager>
     /// </summary>
     /// <param name="item"></param>
     /// <param name="slotUI"></param>
-    public void RemovedFromSlot(BluePrintItem item, ScannerSlotUI slotUI)
+    public void RemovedFromSlot(BluePrintItem item, ScannerSlotUI slotUI, bool isDone)
     {
-        PlayerInventory.Instance.AddItemToInventory(item);
+        if(!isDone)
+            PlayerInventory.Instance.AddItemToInventory(item);
         refreshUI();
         slotUI.SetDeactive();
         currentActiveSlot = null;

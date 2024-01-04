@@ -126,6 +126,8 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         }
         else
         {
+            if(currentActiveItem.IsUseable())
+                currentActiveItem.Use();
             currentActiveItem = null;
             currentActiveItemSlotNum = int.MaxValue;
             activeItemTranform.gameObject.SetActive(false);

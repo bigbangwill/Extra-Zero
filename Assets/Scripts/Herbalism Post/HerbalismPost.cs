@@ -123,6 +123,8 @@ public class HerbalismPost : MonoBehaviour
     /// </summary>
     public void TopToBottomButton()
     {
+        if (inventorySeeds.Count <= 0)
+            return;
         Seed firstSeed = inventorySeeds[0];
         inventorySeeds.RemoveAt(0);
         inventorySeeds.Add(firstSeed);

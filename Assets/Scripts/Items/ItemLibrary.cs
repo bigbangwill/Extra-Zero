@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Assertions.Must;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UIElements;
 
@@ -112,6 +113,15 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>
         if (!is_Stackable)
             return;
         currentStack = current;
+    }
+
+    /// <summary>
+    /// To return the useable value
+    /// </summary>
+    /// <returns></returns>
+    public bool IsUseable()
+    {
+        return is_Usable;
     }
 
     /// <summary>
@@ -709,4 +719,75 @@ public abstract class Herb : ItemBehaviour
     }
 
 
+}
+
+
+public class PotionItem : ItemBehaviour
+{
+
+    public PotionEffect firstEffect;
+    public PotionEffect secondEffect;
+    public PotionEffect thirdEffect;
+
+    public PotionItem(PotionEffect first)
+    {
+        firstEffect = first;
+        secondEffect = null;
+        thirdEffect = null;
+        specificName = first.name + " Potion";
+        SetStatic();
+    }
+    public PotionItem(PotionEffect first, PotionEffect second)
+    {
+        firstEffect = first;
+        secondEffect = second;
+        thirdEffect = null;
+        specificName = first.name + " & " + second.name + " Potion";
+        SetStatic();
+    }
+    public PotionItem(PotionEffect first, PotionEffect second, PotionEffect third)
+    {
+        firstEffect = first;
+        secondEffect = second;
+        thirdEffect = third;
+        specificName = first.name + " & " + second.name + " & " + third.name + " Potion";
+        SetStatic();
+    }
+
+    private void SetStatic()
+    {
+        is_Usable = true;
+        is_Stackable = true;
+        useDelegate = Use;
+        maxStack = 5;
+        itemType = ItemType.potion;
+        itemName = "Potion";
+        currentStack = 1;
+        specificAddress = "Potion Effect/InventoryPotion.jpg[Sprite]";
+        LoadIcon();
+    }
+
+
+
+    public override void Use()
+    {
+        if (firstEffect != null) firstEffect.effect();
+        if (secondEffect != null) secondEffect.effect();
+        if (thirdEffect != null) thirdEffect.effect();
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is PotionItem item &&
+               is_Usable == item.is_Usable &&
+               itemType == item.itemType &&
+               is_Stackable == item.is_Stackable &&
+               maxStack == item.maxStack &&
+               specificName == item.specificName;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(is_Usable, itemType, is_Stackable, maxStack, specificName);
+    }
 }

@@ -10,21 +10,6 @@ public class BasementActions : MonoBehaviour
     private bool inventoryIsOpen = false;
 
     [SerializeField] private GameObject inventoryCanvas;
-
-    private void Start()
-    {
-
-        // To automatically set the value of isOpen based on the current active 
-        // state of the inventory canvas.
-        if (inventoryCanvas.activeSelf)
-        {
-            inventoryIsOpen = true;
-            //CloseInventory();
-        }
-        else
-            inventoryIsOpen = false;
-    }
-
     // The method that will be added as listener
     private void InventoryClicked()
     {
@@ -45,7 +30,6 @@ public class BasementActions : MonoBehaviour
         inventoryIsOpen = false;
         inventoryCanvas.SetActive(false);
     }
-
 
 
 
