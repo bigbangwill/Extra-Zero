@@ -22,7 +22,7 @@ public class BoundingBoxTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         { 
-            interactable.ExitBox();
+            interactable.TriggerExit();
         }
     }
 

@@ -1,41 +1,39 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class MouseTester : MonoBehaviour
 {
     private LineRenderer lr;
     private Vector3 startPos;
+    private Mouse mouse;
 
     [SerializeField] private float minDistance;
+
 
     private void Start()
     {
         lr = GetComponent<LineRenderer>();
         lr.positionCount = 1;
         startPos = transform.position;
+        mouse = Mouse.current;
     }
 
 
     private void Update()
     {
 
-        if(Input.GetMouseButtonDown(0))
+        if (mouse.leftButton.wasPressedThisFrame)
         {
             lr.positionCount = 1;
             startPos = transform.position;
         }
 
-
-        if (Input.GetMouseButton(0))
+        if (mouse.leftButton.isPressed)
         {
             Vector3 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currentPos.z = 0;
-            if(Vector3.Distance(currentPos, startPos) >= minDistance)
+            if (Vector3.Distance(currentPos, startPos) >= minDistance)
             {
                 if (startPos == transform.position)
                 {
@@ -51,11 +49,11 @@ public class MouseTester : MonoBehaviour
         }
 
 
-        if (Input.GetMouseButtonUp(0))
+        if (mouse.leftButton.wasReleasedThisFrame)
         {
             Debug.Log("here");
             lr.positionCount++;
-            lr.SetPosition(lr.positionCount -1, lr.GetPosition(0));
+            lr.SetPosition(lr.positionCount - 1, lr.GetPosition(0));
             BakeMesh();
         }
     }
@@ -85,55 +83,6 @@ public class MouseTester : MonoBehaviour
         {
             Debug.Log(i.gameObject.name);
         }
-
-
-        #region CherkList
-        //int[] triangles = new int[(vecArray.Length - 1) * 3];
-        //Vector3 center = FindCenter(vecArray);
-
-        //for (int i = 0; i < vecArray.Length; i++)
-        //{
-        //    vecArrayWithCenter[i] = vecArray[i];
-        //}
-        //vecArrayWithCenter[vecArrayWithCenter.Length - 1] = center;
-
-        //if (GetComponent<MeshFilter>() != null)
-        //{
-        //    Destroy(GetComponent<MeshFilter>());
-        //}
-
-        //if (GetComponent<MeshCollider>() != null)
-        //{
-        //    Destroy(GetComponent<MeshCollider>());
-        //}
-        //transform.AddComponent<MeshFilter>();
-        //GetComponent<MeshFilter>().mesh = lineBakedMesh;
-
-        //lineBakedMesh.vertices = vecArrayWithCenter;
-
-        //for (int i = 0; i < vecArray.Length - 2; i++)
-        //{
-        //    triangles[i * 3] = i;
-        //    triangles[i * 3 + 1] = i + 1;
-        //    triangles[i * 3 + 2] = vecArrayWithCenter.Length - 1;
-        //}
-
-
-        ////triangles[(vecArray.Length - 2) * 3 - 3] = vecArrayWithCenter.Length - 2;
-        ////triangles[(vecArray.Length - 2) * 3 - 2] = 0;
-        ////triangles[(vecArray.Length - 2) * 3 - 1] = vecArrayWithCenter.Length - 1;
-
-        //triangles[(vecArray.Length - 2) * 3] = vecArray.Length - 2;
-        //triangles[(vecArray.Length - 2) * 3 + 1] = 0;
-        //triangles[(vecArray.Length - 2) * 3 + 2] = vecArrayWithCenter.Length - 1;
-
-
-        //lineBakedMesh.triangles = triangles;
-
-        //lr.BakeMesh(lineBakedMesh, Camera.main, true);
-
-        //transform.AddComponent<MeshCollider>().sharedMesh = lineBakedMesh;
-        #endregion
     }
 
 

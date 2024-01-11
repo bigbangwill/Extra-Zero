@@ -47,6 +47,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df84cd52b359bbd4a91a3c58ae8f0581
+    m_Address: Potion Effect/FifthEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 896f9a2776941b34598bafd218a182ef
+    m_Address: Potion Effect/SeventhEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a5aa371436959349a9ee260613f8949
+    m_Address: Potion Effect/SixthEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
   m_SchemaSet:

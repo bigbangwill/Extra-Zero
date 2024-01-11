@@ -263,7 +263,7 @@ public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveabl
     /// <summary>
     /// The method to set the listener of time system tickrate.
     /// </summary>
-    private void SecondElapsed()
+    public void SecondElapsed()
     {
         foreach (var job in jobsList.ToList())
         {

@@ -12,6 +12,7 @@ public interface IInteractable
 
     public void ExitInteract();
 
+    public void TriggerExit();
 
 
 }

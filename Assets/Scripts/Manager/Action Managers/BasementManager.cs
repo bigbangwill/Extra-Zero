@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class BasementManager : SingletonComponent<BasementManager>
 {
@@ -18,6 +20,14 @@ public class BasementManager : SingletonComponent<BasementManager>
     public delegate void Intract();
     private Intract intractVoid;
     private Intract intractCancelVoid;
+
+    private PlayerInput playerInput;
+
+
+    private void Start()
+    {
+        playerInput = GetComponent<PlayerInput>();
+    }
 
     /// <summary>
     /// To add method as a listener to get the inventorybind
@@ -52,6 +62,12 @@ public class BasementManager : SingletonComponent<BasementManager>
     {
         intractVoid = null;
         intractCancelVoid = null;
+    }
+
+    public Vector2 MousePos()
+    {
+        Vector2 mousePos = playerInput.actions["MousePosition"].ReadValue<Vector2>();
+        return mousePos;
     }
 
 

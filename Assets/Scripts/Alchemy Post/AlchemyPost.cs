@@ -9,6 +9,8 @@ public class AlchemyPost : MonoBehaviour
 {
     [SerializeField] private AlchemyHerbsPopUp popUp;
 
+    [SerializeField] private AlchemyMiniGame miniGame;
+
     [SerializeField] private EffectSlots firstSlot;
     [SerializeField] private EffectSlots secondSlot;
     [SerializeField] private EffectSlots thirdSlot;
@@ -17,6 +19,8 @@ public class AlchemyPost : MonoBehaviour
     private List<Herb> inventoryHerbs;
     [SerializeField] private List<string> herbNames;
     private List<Herb> sendingHerbs;
+
+    private bool minigameIsPlaying = false;
     
 
     private void Start()
@@ -33,7 +37,21 @@ public class AlchemyPost : MonoBehaviour
 
     private void OnEnable()
     {
+        //if(minigameIsPlaying)
+        //{
+        //    miniGame.gameObject.SetActive(true);
+        //    transform.parent.gameObject.SetActive(false);
+        //}
         SetLists();
+    }
+
+    /// <summary>
+    /// Method to set the bool for knowing to active the canvas or minigame on player interact
+    /// </summary>
+    /// <param name="isPlaying"></param>
+    public void SetMiniGameStatus(bool isPlaying)
+    {
+        minigameIsPlaying = isPlaying;
     }
 
     
@@ -104,16 +122,12 @@ public class AlchemyPost : MonoBehaviour
         third = sortedPotionEfect[2];
 
         targetPotion = new PotionItem(first, second, third);
-        if (PlayerInventory.Instance.HaveEmptySlot(targetPotion, false))
-        {
-            PlayerInventory.Instance.HaveEmptySlot(targetPotion, true);
-            Debug.Log("Sent");
-            PotionCreated();
-        }
-        else
-        {
-            Debug.Log("No empty slot");
-        }
+
+        miniGame.CreatePotionButtonClicked(targetPotion);
+        transform.parent.gameObject.SetActive(false);
+
+        PotionCreated();
+
     }
 
 

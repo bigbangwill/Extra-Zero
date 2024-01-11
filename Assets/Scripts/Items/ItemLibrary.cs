@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Assertions.Must;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UIElements;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public delegate void UseDelegate();
 
@@ -728,12 +730,15 @@ public class PotionItem : ItemBehaviour
     public PotionEffect firstEffect;
     public PotionEffect secondEffect;
     public PotionEffect thirdEffect;
+    public PotionEffect fourthEffect;
+
 
     public PotionItem(PotionEffect first)
     {
         firstEffect = first;
         secondEffect = null;
         thirdEffect = null;
+        fourthEffect = null;
         specificName = first.name + " Potion";
         SetStatic();
     }
@@ -742,6 +747,7 @@ public class PotionItem : ItemBehaviour
         firstEffect = first;
         secondEffect = second;
         thirdEffect = null;
+        fourthEffect = null;
         specificName = first.name + " & " + second.name + " Potion";
         SetStatic();
     }
@@ -750,8 +756,47 @@ public class PotionItem : ItemBehaviour
         firstEffect = first;
         secondEffect = second;
         thirdEffect = third;
+        fourthEffect = null;
         specificName = first.name + " & " + second.name + " & " + third.name + " Potion";
         SetStatic();
+    }
+    /// <summary>
+    /// Might need to remove this.
+    /// </summary>
+    /// <param name="first"></param>
+    /// <param name="second"></param>
+    /// <param name="third"></param>
+    /// <param name="fourth"></param>
+    public PotionItem(PotionEffect first, PotionEffect second, PotionEffect third, PotionEffect fourth)
+    {
+        firstEffect = first;
+        secondEffect = second;
+        thirdEffect = third;
+        fourthEffect = fourth;
+        specificName = first.name + " & " + second.name + " & " + third.name + " & " + fourth.name +  " Potion";
+        SetStatic();
+    }
+
+    public void SetNextEffect(PotionEffect effect)
+    {
+        if (secondEffect == null)
+        {
+            secondEffect = effect;
+            specificName = firstEffect.name + " & " + secondEffect.name + " Potion";
+        }
+        else if (thirdEffect == null)
+        {
+            thirdEffect = effect;
+            specificName = firstEffect.name + " & " + secondEffect.name + " & " + thirdEffect.name + " Potion";
+        }
+        else if (fourthEffect == null)
+        {
+            fourthEffect = effect;
+            specificName = firstEffect.name + " & " + secondEffect.name + " & " +
+                thirdEffect.name + " & " + fourthEffect.name + " Potion";
+        }
+        else
+            Debug.LogWarning("Check here ASAP");
     }
 
     private void SetStatic()
@@ -771,9 +816,10 @@ public class PotionItem : ItemBehaviour
 
     public override void Use()
     {
-        if (firstEffect != null) firstEffect.effect();
-        if (secondEffect != null) secondEffect.effect();
-        if (thirdEffect != null) thirdEffect.effect();
+        firstEffect?.effect();
+        secondEffect?.effect();
+        thirdEffect?.effect();
+        fourthEffect?.effect();
     }
 
     public override bool Equals(object obj)

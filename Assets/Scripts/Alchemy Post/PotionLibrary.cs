@@ -28,9 +28,6 @@ public static class PotionLibrary
         herbsArray[2] = third;
         Array.Sort(herbsArray);
         PotionCombination combination = new(herbsArray[0], herbsArray[1], herbsArray[2]);
-        Debug.Log(combination.first);
-        Debug.Log(combination.second);
-        Debug.Log(combination.third);
         potionEffectDictionary.Add(combination, potionEffectDelegate);
     }
 
@@ -83,6 +80,8 @@ public class PotionCombination
 /// </summary>
 public class PotionEffect
 {
+    public enum SideEffect { Necrotic, Regenerative, Natural};
+    public SideEffect sideEffect;
     public string name;
     public string specificAddress;
     public PotionEffectDelegate effect;
@@ -106,6 +105,16 @@ public class PotionEffect
     public int Priority()
     {
         return potionPriority;
+    }
+
+    public SideEffect GetSideEffect()
+    {
+        return sideEffect;
+    }
+
+    public string GetEffectName()
+    {
+        return name;
     }
 
     protected void LoadIcon()
@@ -133,6 +142,7 @@ public class PotionEffect
             effect = EffectVoid;
             name = "Empty";
             potionPriority = int.MaxValue;
+            sideEffect = SideEffect.Natural;
             LoadIcon();
         }
         public void EffectVoid()
@@ -148,6 +158,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Speed";
+            sideEffect = SideEffect.Regenerative;
             potionPriority = 0;
             LoadIcon();
         }
@@ -164,6 +175,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Health";
+            sideEffect = SideEffect.Regenerative;
             potionPriority = 1;
             LoadIcon();
         }
@@ -178,6 +190,7 @@ public class PotionEffect
         {
             effect = EffectVoid;
             name = "Mana";
+            sideEffect = SideEffect.Regenerative;
             potionPriority = 3;
             LoadIcon();
         }
@@ -194,11 +207,62 @@ public class PotionEffect
             effect = EffectVoid;
             name = "Random";
             potionPriority = 4;
+            sideEffect = SideEffect.Necrotic;
             LoadIcon();
         }
         public void EffectVoid()
         {
             Debug.Log("forth Effect");
+        }
+    }
+
+    public class FifthEffect : PotionEffect
+    {
+        public FifthEffect()
+        {
+            effect = EffectVoid;
+            name = "FifthEffect";
+            potionPriority = 5;
+            sideEffect = SideEffect.Necrotic;
+            LoadIcon();
+        }
+        public void EffectVoid()
+        {
+            Debug.Log("FifthEffect");
+        }
+    }
+
+
+    public class SixthEffect : PotionEffect
+    {
+        public SixthEffect()
+        {
+            effect = EffectVoid;
+            name = "SixthEffect";
+            potionPriority = 6;
+            sideEffect = SideEffect.Necrotic;
+            LoadIcon();
+        }
+        public void EffectVoid()
+        {
+            Debug.Log("SixthEffect");
+        }
+    }
+
+
+    public class SeventhEffect : PotionEffect
+    {
+        public SeventhEffect()
+        {
+            effect = EffectVoid;
+            name = "SeventhEffect";
+            potionPriority = 7;
+            sideEffect = SideEffect.Necrotic;
+            LoadIcon();
+        }
+        public void EffectVoid()
+        {
+            Debug.Log("SeventhEffect");
         }
     }
 }
