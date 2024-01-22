@@ -2518,7 +2518,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 246214185}
   m_FillRect: {fileID: 427335254}
   m_HandleRect: {fileID: 246214184}
@@ -12453,7 +12453,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 201896375}
   m_FillRect: {fileID: 1358529514}
   m_HandleRect: {fileID: 201896374}
@@ -15353,7 +15353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1337386385
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19100,7 +19100,7 @@ GameObject:
   - component: {fileID: 1649353270}
   - component: {fileID: 1649353271}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: 'Mini Game '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19123,7 +19123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1050, y: 0}
+  m_AnchoredPosition: {x: 1026, y: -266}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1649353271
@@ -22630,7 +22630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1936349063}
   m_Layer: 5
-  m_Name: GameObject (1)
+  m_Name: Mouse pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22905,7 +22905,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 565543791}
   m_FillRect: {fileID: 203349949}
   m_HandleRect: {fileID: 565543790}
@@ -24404,7 +24404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2081286143
 MonoBehaviour:
   m_ObjectHideFlags: 0

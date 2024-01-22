@@ -12,7 +12,7 @@ public class SlotReaderMiniGame : MonoBehaviour
     public void MouseIsPressed()
     {
         mouse.position = BasementManager.Instance.MousePos();
-        Vector3 upAxis = new Vector3(0, 0, -1);
+        Vector3 upAxis = new(0, 0, -1);
 
         float oldRotation = transform.eulerAngles.x;
         transform.LookAt(mouse, upAxis);
