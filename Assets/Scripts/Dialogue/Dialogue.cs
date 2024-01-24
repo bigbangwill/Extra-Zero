@@ -11,20 +11,13 @@ namespace ExtraZero.Dialogue
         [SerializeField]
         List<DialogueNode> nodes = new List<DialogueNode>();
 
+        [NonSerialized]
+        Vector2 newNodeOffset = new Vector2(250, 0);
+        [NonSerialized]
         Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
 
-#if UNITY_EDITOR
-        private void Awake()
-        {
-            if (nodes.Count == 0)
-            {
-                CreateNode(null);
-            }
-        }
-#endif
         private void OnValidate()
         {
-            if (nodes == null || nodes.Count == 0) return;
             nodeLookup.Clear();
             foreach (DialogueNode node in GetAllNodes())
             {
@@ -44,7 +37,7 @@ namespace ExtraZero.Dialogue
 
         public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode)
         {
-            foreach (string childID in parentNode.children)
+            foreach (string childID in parentNode.GetChildren())
             {
                 if (nodeLookup.ContainsKey(childID))
                 {
@@ -53,39 +46,47 @@ namespace ExtraZero.Dialogue
             }
         }
 
+#if UNITY_EDITOR
         public void CreateNode(DialogueNode parent)
         {
             DialogueNode newNode = CreateInstance<DialogueNode>();
             newNode.name = Guid.NewGuid().ToString();
-            Undo.RegisterCreatedObjectUndo(newNode, "Created Dialogue Node");
             if (parent != null)
             {
-                parent.children.Add(newNode.name);
+                parent.AddChild(newNode.name);
+                newNode.SetPlayerIsSpeaking(!parent.IsPlayerSpeaking());
+                newNode.SetPosition(parent.GetRect().position + newNodeOffset);
             }
-
-
+            Undo.RegisterCreatedObjectUndo(newNode, "Created Dialogue Node");
+            if (AssetDatabase.GetAssetPath(this) != "")
+            {
+                Undo.RecordObject(this, "Added Dialogue Node");
+            }
             nodes.Add(newNode);
             OnValidate();
         }
 
         public void DeleteNode(DialogueNode nodeToDelete)
         {
+            Undo.RecordObject(this, "Deleted Dialogue Node");
             nodes.Remove(nodeToDelete);
-            Undo.DestroyObjectImmediate(nodeToDelete);
             OnValidate();
             CleanDanglingChildren(nodeToDelete);
+            Undo.DestroyObjectImmediate(nodeToDelete);
         }
 
         private void CleanDanglingChildren(DialogueNode nodeToDelete)
         {
             foreach (DialogueNode node in GetAllNodes())
             {
-                node.children.Remove(nodeToDelete.name);
+                node.RemoveChild(nodeToDelete.name);
             }
         }
+#endif
 
         public void OnBeforeSerialize()
         {
+#if UNITY_EDITOR
             if (nodes.Count == 0)
             {
                 CreateNode(null);
@@ -95,9 +96,13 @@ namespace ExtraZero.Dialogue
             {
                 foreach (DialogueNode node in GetAllNodes())
                 {
-                    AssetDatabase.AddObjectToAsset(node, this);
+                    if (AssetDatabase.GetAssetPath(node) == "")
+                    {
+                        AssetDatabase.AddObjectToAsset(node, this);
+                    }
                 }
             }
+#endif
         }
 
         public void OnAfterDeserialize()

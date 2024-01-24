@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2904398804005932272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: c047ea45-540e-49d4-8d7d-7be17ee99e95
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 
+  children:
+  - a55aa7d6-5bcf-4aa3-a356-5bf73c75ef92
+  rect:
+    serializedVersion: 2
+    x: 25
+    y: 230
+    width: 200
+    height: 100
+--- !u!114 &-1151343477351078233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: d6888922-209a-424d-8f15-cc12e81b523d
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 502
+    y: 238
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: TEst
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -2904398804005932272}
+  - {fileID: 9159067539715455450}
+  - {fileID: -1151343477351078233}
+--- !u!114 &9159067539715455450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: a55aa7d6-5bcf-4aa3-a356-5bf73c75ef92
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: 
+  children:
+  - d6888922-209a-424d-8f15-cc12e81b523d
+  rect:
+    serializedVersion: 2
+    x: 254
+    y: 120
+    width: 200
+    height: 100

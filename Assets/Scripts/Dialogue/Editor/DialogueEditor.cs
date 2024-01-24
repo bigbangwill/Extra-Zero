@@ -8,21 +8,20 @@ namespace ExtraZero.Dialogue.Editor
 {
     public class DialogueEditor : EditorWindow
     {
-        private Dialogue selectedDialogue = null;
+        Dialogue selectedDialogue = null;
         [NonSerialized] private GUIStyle nodeStyle;
+        [NonSerialized] private GUIStyle playerNodeStyle;
         [NonSerialized] private DialogueNode draggingNode = null;
         [NonSerialized] private Vector2 draggingOffset;
         [NonSerialized] private DialogueNode creatingNode = null;
         [NonSerialized] private DialogueNode deletingNode = null;
         [NonSerialized] private DialogueNode linkingParentNode = null;
+        private Vector2 scrollPosition; 
         [NonSerialized] private bool draggingCanvas = false;
         [NonSerialized] private Vector2 draggingCanvasOffset;
 
         const float canvasSize = 4000;
         const float backgroundSize = 50;
-
-        private Vector2 scrollPosition;
-
 
         [MenuItem("Window/Dialogue Editor")]
         public static void ShowEditorWindow()
@@ -51,6 +50,12 @@ namespace ExtraZero.Dialogue.Editor
             nodeStyle.normal.textColor = Color.white;
             nodeStyle.padding = new RectOffset(20, 20, 20, 20);
             nodeStyle.border = new RectOffset(12, 12, 12, 12);
+
+            playerNodeStyle = new GUIStyle();
+            playerNodeStyle.normal.background = EditorGUIUtility.Load("node1") as Texture2D;
+            playerNodeStyle.normal.textColor = Color.white;
+            playerNodeStyle.padding = new RectOffset(20, 20, 20, 20);
+            playerNodeStyle.border = new RectOffset(12, 12, 12, 12);
         }
 
         private void OnSelectionChanged()
@@ -74,6 +79,7 @@ namespace ExtraZero.Dialogue.Editor
                 ProcessEvents();
 
                 scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+
                 Rect canvas = GUILayoutUtility.GetRect(canvasSize, canvasSize);
                 Texture2D backgroundTex = Resources.Load("background") as Texture2D;
                 Rect texCoords = new Rect(0, 0, canvasSize / backgroundSize, canvasSize / backgroundSize);
@@ -92,13 +98,11 @@ namespace ExtraZero.Dialogue.Editor
 
                 if (creatingNode != null)
                 {
-                    Undo.RecordObject(selectedDialogue, "Added Dialogue Node");
                     selectedDialogue.CreateNode(creatingNode);
                     creatingNode = null;
                 }
                 if (deletingNode != null)
                 {
-                    Undo.RecordObject(selectedDialogue, "Deleted Dialogue Node");
                     selectedDialogue.DeleteNode(deletingNode);
                     deletingNode = null;
                 }
@@ -112,7 +116,7 @@ namespace ExtraZero.Dialogue.Editor
                 draggingNode = GetNodeAtPoint(Event.current.mousePosition + scrollPosition);
                 if (draggingNode != null)
                 {
-                    draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
+                    draggingOffset = draggingNode.GetRect().position - Event.current.mousePosition;
                     Selection.activeObject = draggingNode;
                 }
                 else
@@ -124,8 +128,7 @@ namespace ExtraZero.Dialogue.Editor
             }
             else if (Event.current.type == EventType.MouseDrag && draggingNode != null)
             {
-                Undo.RecordObject(selectedDialogue, "Move Dialogue Node");
-                draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
+                draggingNode.SetPosition(Event.current.mousePosition + draggingOffset);
 
                 GUI.changed = true;
             }
@@ -148,17 +151,15 @@ namespace ExtraZero.Dialogue.Editor
 
         private void DrawNode(DialogueNode node)
         {
-            GUILayout.BeginArea(node.rect, nodeStyle);
+            GUIStyle style = nodeStyle;
+            if (node.IsPlayerSpeaking())
+            {
+                style = playerNodeStyle;
+            }
+            GUILayout.BeginArea(node.GetRect(), style);
             EditorGUI.BeginChangeCheck();
 
-            string newText = EditorGUILayout.TextField(node.text);
-
-            if (EditorGUI.EndChangeCheck())
-            {
-                Undo.RecordObject(selectedDialogue, "Update Dialogue Text");
-
-                node.text = newText;
-            }
+            node.SetText(EditorGUILayout.TextField(node.GetText()));
 
             GUILayout.BeginHorizontal();
 
@@ -177,7 +178,6 @@ namespace ExtraZero.Dialogue.Editor
             GUILayout.EndArea();
         }
 
-
         private void DrawLinkButtons(DialogueNode node)
         {
             if (linkingParentNode == null)
@@ -194,12 +194,11 @@ namespace ExtraZero.Dialogue.Editor
                     linkingParentNode = null;
                 }
             }
-            else if (linkingParentNode.children.Contains(node.name))
+            else if (linkingParentNode.GetChildren().Contains(node.name))
             {
                 if (GUILayout.Button("unlink"))
                 {
-                    Undo.RecordObject(selectedDialogue, "Remove Dialogue Link");
-                    linkingParentNode.children.Remove(node.name);
+                    linkingParentNode.RemoveChild(node.name);
                     linkingParentNode = null;
                 }
             }
@@ -208,7 +207,7 @@ namespace ExtraZero.Dialogue.Editor
                 if (GUILayout.Button("child"))
                 {
                     Undo.RecordObject(selectedDialogue, "Add Dialogue Link");
-                    linkingParentNode.children.Add(node.name);
+                    linkingParentNode.AddChild(node.name);
                     linkingParentNode = null;
                 }
             }
@@ -216,10 +215,10 @@ namespace ExtraZero.Dialogue.Editor
 
         private void DrawConnections(DialogueNode node)
         {
-            Vector3 startPosition = new Vector2(node.rect.xMax, node.rect.center.y);
+            Vector3 startPosition = new Vector2(node.GetRect().xMax, node.GetRect().center.y);
             foreach (DialogueNode childNode in selectedDialogue.GetAllChildren(node))
             {
-                Vector3 endPosition = new Vector2(childNode.rect.xMin, childNode.rect.center.y);
+                Vector3 endPosition = new Vector2(childNode.GetRect().xMin, childNode.GetRect().center.y);
                 Vector3 controlPointOffset = endPosition - startPosition;
                 controlPointOffset.y = 0;
                 controlPointOffset.x *= 0.8f;
@@ -236,7 +235,7 @@ namespace ExtraZero.Dialogue.Editor
             DialogueNode foundNode = null;
             foreach (DialogueNode node in selectedDialogue.GetAllNodes())
             {
-                if (node.rect.Contains(point))
+                if (node.GetRect().Contains(point))
                 {
                     foundNode = node;
                 }
