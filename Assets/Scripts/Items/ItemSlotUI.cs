@@ -73,10 +73,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         {
             itemSlot = stashable.ItemRefrence(slotNumber);
             GetComponent<Image>().sprite = itemSlot.IconRefrence();
-            if (itemSlot.IsStackable())
-                stackText.text = itemSlot.CurrentStack().ToString();
-            else stackText.text = " ";
-             
+            RefreshText();
         }
     }
 
@@ -88,6 +85,13 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             imageComponent.sprite = null;
             stackText.text = " ";
         }
+    }
+
+    public void RefreshText()
+    {
+        if (itemSlot.IsStackable())
+            stackText.text = itemSlot.CurrentStack().ToString();
+        else stackText.text = " ";
     }
 
     
@@ -125,6 +129,11 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         if (results.Count <= 1)
         {
             Debug.Log("Throw out");
+            if (RaycastWorldSpace())
+            {
+                transform.position = startPos;
+                return;
+            }
             transform.position = startPos;
             stashable.RemoveItemFromInventory(slotNumber);
         }
@@ -148,8 +157,27 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 stashable.SwapItemInInventory(selfSlotNumber,targetSlotNumber);
                 break;
             }
-            transform.position = startPos;
+            else if (result.gameObject.CompareTag("Order Post"))
+            {
+                Debug.Log("Targeted the right one");
+            }
+                transform.position = startPos;
         }
+    }
+
+    private bool RaycastWorldSpace()
+    {
+        RaycastHit2D[] hit = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero);
+        foreach (var n in hit)
+        {
+            GameObject go = n.collider.gameObject;
+            if (go.CompareTag("Order Post"))
+            {
+                go.GetComponent<OrderPost>().InsertingItem(itemSlot, slotNumber);
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>

@@ -135,6 +135,20 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     }
 
 
+    public void RemoveFromSlotNumber(int slotNumber, int count)
+    {
+        if (inventoryArray[slotNumber].CurrentStack() <= count)
+        {
+            RemoveItemFromInventory(slotNumber);
+        }
+        else
+        {
+            int currentStack = inventoryArray[slotNumber].CurrentStack();
+            inventoryArray[slotNumber].SetCurrentStack(currentStack - count);
+            itemSlotUIList[slotNumber].RefreshText();
+        }
+    }
+
     /// <summary>
     /// Method to get called from outer scope to (the ui) to swap a and b item slots
     /// </summary>

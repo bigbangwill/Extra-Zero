@@ -146,7 +146,6 @@ namespace ExtraZero.Dialogue.Editor
             {
                 draggingCanvas = false;
             }
-
         }
 
         private void DrawNode(DialogueNode node)

@@ -9,6 +9,7 @@ TagManager:
   - Herbalism Spot
   - PopUpSlot
   - Alchemy Floating Object
+  - Order Post
   layers:
   - Default
   - TransparentFX
