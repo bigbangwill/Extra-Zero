@@ -13,7 +13,7 @@ public class OrderPost : MonoBehaviour
     private Order currentOrder;
     private Order fullfilledOrder;
 
-    private List<ItemBehaviour> orderableItems = new();
+    private List<ItemBehaviour> orderableItems;
 
     private Queue<Order> orderQue = new();
     
@@ -27,22 +27,21 @@ public class OrderPost : MonoBehaviour
     private float timeBetweenOrders = 0;
     private float currentTimer = 0;
 
+    private bool isFinished = false;
+
 
 
     private void Start()
     {
-        List<Type> childTypesList = Assembly.GetAssembly(typeof(ItemBehaviour))
-        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType != typeof(PotionItem) 
-        && !typeof(BluePrintItem).IsAssignableFrom(TheType) && TheType != typeof(EmptyItem)
-        &&  TheType.IsSubclassOf(typeof(ItemBehaviour))).ToList();
-
-        foreach (var item in childTypesList)
-        {
-            ItemBehaviour createdItem = Activator.CreateInstance(item) as ItemBehaviour;
-            orderableItems.Add(createdItem);
-        }
+        
 
         CreateOrderQue(10, 5, 1);
+    }
+
+    public void InitList(List<ItemBehaviour> orderableList)
+    {
+        orderableItems = orderableList;
+
     }
 
 
@@ -64,6 +63,7 @@ public class OrderPost : MonoBehaviour
     public void CreateOrderQue(float timer, int count, int combinationCount)
     {
         timeBetweenOrders = timer;
+        isFinished = false;
         for(int i = 0; i < count; i++)
         {
             orderQue.Enqueue(CreateOrder(combinationCount));
@@ -74,7 +74,7 @@ public class OrderPost : MonoBehaviour
         postUI.SetOrderImage(currentOrder);
     }
 
-    public Order CreateOrder(int combinationCount)
+    private Order CreateOrder(int combinationCount)
     {
         List<ItemBehaviour> targetItems = new();
         for (int i = 0; i < combinationCount; i++)
@@ -141,6 +141,17 @@ public class OrderPost : MonoBehaviour
         fullfilledOrder = currentOrder;
         isFullfilled = true;
         currentOrder = null;
+        if (orderQue.Count == 0)
+        {
+            isFinished = true;
+        }
+        OrderManager.Instance.CheckIfAllIsDone();
+
+    }
+
+    public bool OrdersAreComplete()
+    {
+        return isFinished;
     }
 
     private void CouldnotFullfill()
