@@ -37,6 +37,9 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>
     // Used on the inventory system when it's called by the player
     public abstract void Use();
 
+    // Used on creating items with activator.createinstance to load the needed stuff.
+    public abstract void Load();
+
     /// <summary>
     /// Used localy to load the needed icon
     /// </summary>
@@ -140,6 +143,11 @@ public class EmptyItem : ItemBehaviour
 {
     public EmptyItem()
     {
+        Load();
+    }
+
+    public override void Load()
+    {
         is_Usable = false;
         useDelegate = Use;
         itemType = ItemType.empty;
@@ -187,7 +195,7 @@ public abstract class BluePrintItem : ItemBehaviour
     // For the required materials to create the actual item.
     public List<ItemBehaviour> materialsList = new();
  
-    public void Load()
+    public override void Load()
     {
         is_Usable = false;
         useDelegate = Use;
@@ -294,7 +302,7 @@ public abstract class BluePrintItem : ItemBehaviour
 public abstract class MaterialItem : ItemBehaviour
 {
     // Gets called from the child class to set every related infomation and load icon
-    public void Load()
+    public override void Load()
     {
         is_Usable = false;
         useDelegate = Use;
@@ -459,7 +467,7 @@ public abstract class Seed : ItemBehaviour
     private float maxHarvestTime;
 
     // Gets called from the child class to set every related infomation and load icon
-    public void Load()
+    public override void Load()
     {
         is_Usable = false;
         useDelegate = Use;
@@ -612,7 +620,7 @@ public abstract class Seed : ItemBehaviour
 
 public abstract class Herb : ItemBehaviour
 {
-    public void Load()
+    public override void Load()
     {
         is_Usable = false;
         useDelegate = Use;
@@ -740,7 +748,7 @@ public class PotionItem : ItemBehaviour
         thirdEffect = null;
         fourthEffect = null;
         specificName = first.name + " Potion";
-        SetStatic();
+        Load();
     }
     public PotionItem(PotionEffect first, PotionEffect second)
     {
@@ -749,7 +757,7 @@ public class PotionItem : ItemBehaviour
         thirdEffect = null;
         fourthEffect = null;
         specificName = first.name + " & " + second.name + " Potion";
-        SetStatic();
+        Load();
     }
     public PotionItem(PotionEffect first, PotionEffect second, PotionEffect third)
     {
@@ -758,7 +766,7 @@ public class PotionItem : ItemBehaviour
         thirdEffect = third;
         fourthEffect = null;
         specificName = first.name + " & " + second.name + " & " + third.name + " Potion";
-        SetStatic();
+        Load();
     }
     /// <summary>
     /// Might need to remove this.
@@ -774,7 +782,7 @@ public class PotionItem : ItemBehaviour
         thirdEffect = third;
         fourthEffect = fourth;
         specificName = first.name + " & " + second.name + " & " + third.name + " & " + fourth.name +  " Potion";
-        SetStatic();
+        Load();
     }
 
     public void SetNextEffect(PotionEffect effect)
@@ -799,7 +807,7 @@ public class PotionItem : ItemBehaviour
             Debug.LogWarning("Check here ASAP");
     }
 
-    private void SetStatic()
+    public override void Load()
     {
         is_Usable = true;
         is_Stackable = true;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Order
 {
-    private List<ItemBehaviour> orderItems;
+    private List<ItemBehaviour> orderItems = new();
     private List<ItemBehaviour> fulfilledItems = new();
 
     private OrderPost relatedPost;
@@ -12,8 +12,23 @@ public class Order
 
     public Order(List<ItemBehaviour> orders,OrderPost post)
     {
-        orderItems = orders;
         relatedPost = post;
+        foreach (ItemBehaviour item in orders)
+        {
+            orderItems.Add(item);
+        }
+    }
+
+    public IEnumerable<ItemBehaviour> GetOrderItems()
+    {
+        if (orderItems == null)
+            Debug.Log("KJBHOIJKQHGWRKIJHBQEKJRHBQWK:JRHQWKL:JHRELKJQWHBE");
+        return orderItems;
+    }
+    
+    public IEnumerable<ItemBehaviour> GetFilledItems()
+    {
+        return fulfilledItems;
     }
 
     public int OrderItemCount()
