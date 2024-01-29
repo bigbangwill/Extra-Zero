@@ -24,6 +24,7 @@ public class OrderPost : MonoBehaviour
 
     [SerializeField] private Transform targetPos;
     [SerializeField] private List<Transform> quePosList = new();
+    [SerializeField] private GameObject walkingOrderPrefab;
 
     private float timeBetweenOrders = 0;
     private float currentTimer = 0;
@@ -53,6 +54,13 @@ public class OrderPost : MonoBehaviour
     {
         orderableItems = orderableList;
 
+    }
+
+    public void CreateWalkingOrder()
+    {
+        GameObject walkingOrderGO = Instantiate(walkingOrderPrefab);
+        WalkingOrder walkingOrder = walkingOrderGO.GetComponent<WalkingOrder>();
+        walkingOrder.Init(CreateOrder(1), this, 1, quePosList.LastOrDefault().position);
     }
 
     /// <summary>
@@ -163,9 +171,32 @@ public class OrderPost : MonoBehaviour
         OrderManager.Instance.PostOrderCompleted();
     }
 
+
+    private List<WalkingOrder> walkingOrdersList = new();
+
+    public void AddWalkingOrder(WalkingOrder walkingOrder)
+    {
+        walkingOrdersList.Add(walkingOrder);
+        if (walkingOrdersList.Count < quePosList.Count)
+        {
+            walkingOrder.SetNextPos(quePosList[walkingOrdersList.Count - 1].position);
+        }
+        else
+        {
+            Debug.LogWarning("Check here asap");
+        }
+
+    }
+
     private void RewardforFullfilling()
     {
-
+        if (walkingOrdersList.Count > 0)
+        {
+            for (int i = 0; i < walkingOrdersList.Count && i < quePosList.Count; i++)
+            {
+                walkingOrdersList[i].SetNextPos(quePosList[i].position);
+            }
+        }
     }
 
 }

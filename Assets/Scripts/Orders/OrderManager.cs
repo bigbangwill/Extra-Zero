@@ -20,7 +20,7 @@ public class OrderManager : SingletonComponent<OrderManager>
     [SerializeField] private List<OrderPost> postList = new();
     [SerializeField] private float waveMaxTimer;
 
-
+    private List<ItemBehaviour> orderableItems = new();
 
     private int currentWave = 1;
     private float waveCurrentTimer = 0;
@@ -31,6 +31,7 @@ public class OrderManager : SingletonComponent<OrderManager>
     {
         Init();
         StartWaveTimer();
+        postList[0].CreateWalkingOrder();
     }
 
     private void Update()
@@ -95,7 +96,7 @@ public class OrderManager : SingletonComponent<OrderManager>
         return checker;
     }
 
-
+    
 
     // To add all of the createable items to the list.
     private void Init()
@@ -105,18 +106,26 @@ public class OrderManager : SingletonComponent<OrderManager>
         && !typeof(BluePrintItem).IsAssignableFrom(TheType) && TheType != typeof(EmptyItem)
         && TheType.IsSubclassOf(typeof(ItemBehaviour))).ToList();
 
-        List<ItemBehaviour> orderableItemsList = new();
+        
 
         foreach (var item in childTypesList)
         {
             ItemBehaviour createdItem = Activator.CreateInstance(item) as ItemBehaviour;
-            orderableItemsList.Add(createdItem);
+            orderableItems.Add(createdItem);
         }
 
         foreach (var post in postList)
         {
-            post.InitList(orderableItemsList);
+            post.InitList(orderableItems);
         }
+
+    }
+
+
+
+    public void CreateWalkingOrder()
+    {
+
     }
 
 

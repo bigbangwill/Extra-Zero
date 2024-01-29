@@ -10851,6 +10851,7 @@ MonoBehaviour:
   - {fileID: 671190427}
   - {fileID: 29284082}
   - {fileID: 1547428991}
+  walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
 --- !u!61 &794033212
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16495,6 +16496,7 @@ MonoBehaviour:
   - {fileID: 1203673822}
   - {fileID: 783221435}
   - {fileID: 1629669959}
+  walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
 --- !u!4 &1250287114
 Transform:
   m_ObjectHideFlags: 0
@@ -18390,6 +18392,7 @@ MonoBehaviour:
   - {fileID: 187074077}
   - {fileID: 827660660}
   - {fileID: 1138690146}
+  walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
 --- !u!4 &1393865459
 Transform:
   m_ObjectHideFlags: 0
@@ -28001,6 +28004,7 @@ MonoBehaviour:
   - {fileID: 1643668736}
   - {fileID: 254049739}
   - {fileID: 175086627}
+  walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
 --- !u!4 &2105670494
 Transform:
   m_ObjectHideFlags: 0

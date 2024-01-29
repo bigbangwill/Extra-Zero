@@ -31,7 +31,7 @@ public class WalkingOrder : MonoBehaviour
         holdingOrder = order;
         targetPost = post;
         this.speed = speed;
-        //targetPost.
+        targetPost.AddWalkingOrder(this);
         shouldMove = true;
     }
 
