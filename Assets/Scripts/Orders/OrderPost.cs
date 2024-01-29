@@ -14,8 +14,6 @@ public class OrderPost : MonoBehaviour
     private Order fullfilledOrder;
 
     private List<ItemBehaviour> orderableItems;
-
-    private Queue<Order> orderQue = new();
     
 
     private bool isReady = false;
@@ -24,25 +22,13 @@ public class OrderPost : MonoBehaviour
     [SerializeField] private OrderPostUI postUI;
     [SerializeField] private Image clock;
 
+    [SerializeField] private Transform targetPos;
+    [SerializeField] private List<Transform> quePosList = new();
+
     private float timeBetweenOrders = 0;
     private float currentTimer = 0;
 
     private bool isFinished = false;
-
-
-
-    private void Start()
-    {
-        
-
-        CreateOrderQue(10, 5, 1);
-    }
-
-    public void InitList(List<ItemBehaviour> orderableList)
-    {
-        orderableItems = orderableList;
-
-    }
 
 
     private void Update()
@@ -59,21 +45,32 @@ public class OrderPost : MonoBehaviour
         }
     }
 
-
-    public void CreateOrderQue(float timer, int count, int combinationCount)
+    /// <summary>
+    /// To get called from the order manager to set it's createable items list.
+    /// </summary>
+    /// <param name="orderableList"></param>
+    public void InitList(List<ItemBehaviour> orderableList)
     {
-        timeBetweenOrders = timer;
+        orderableItems = orderableList;
+
+    }
+
+    /// <summary>
+    /// To start the creating of orders and put them in the que. gets called from order manager.
+    /// </summary>
+    /// <param name="timer"></param>
+    /// <param name="count"></param>
+    /// <param name="combinationCount"></param>
+    public void CreateOrderQue(int combinationCount)
+    {
         isFinished = false;
-        for(int i = 0; i < count; i++)
-        {
-            orderQue.Enqueue(CreateOrder(combinationCount));
-        }
-        currentOrder = orderQue.Dequeue();
+        currentOrder = CreateOrder(combinationCount);
         isReady = true;
         isFullfilled = false;
         postUI.SetOrderImage(currentOrder);
     }
 
+    // for creating a single order.
     private Order CreateOrder(int combinationCount)
     {
         List<ItemBehaviour> targetItems = new();
@@ -92,18 +89,13 @@ public class OrderPost : MonoBehaviour
         return creatingOrder;
     }
 
+    // method to trigger when the timer hit the max time.
     private void TimerHit()
     {
         currentTimer = 0;
         if (currentOrder != null)
         {
             CouldnotFullfill();
-        }
-        if (orderQue.Count > 0)
-        {
-            currentOrder = orderQue.Dequeue();
-            postUI.SetOrderImage(currentOrder);
-            isFullfilled = false;
         }
         else
         {
@@ -113,10 +105,14 @@ public class OrderPost : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Method for raycast answer.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="slotNumber"></param>
     public void InsertingItem(ItemBehaviour item,int slotNumber)
     {
-        if (!isFullfilled)
+        if (!isFullfilled && !isFinished)
         {
             if (currentOrder.ItemIsEqual(item,slotNumber))
             {
@@ -136,26 +132,40 @@ public class OrderPost : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Gets called from order class its self to mark the current order to finish.
+    /// </summary>
     public void CurrentOrderFullfilled()
     {
         fullfilledOrder = currentOrder;
         isFullfilled = true;
         currentOrder = null;
-        if (orderQue.Count == 0)
-        {
-            isFinished = true;
-        }
-        OrderManager.Instance.CheckIfAllIsDone();
+        isFinished = true;
+        OrderManager.Instance.PostOrderCompleted();
+        
 
     }
 
+    /// <summary>
+    /// gets called from the ordermanager to check if all of the posts are finished.
+    /// </summary>
+    /// <returns></returns>
     public bool OrdersAreComplete()
     {
         return isFinished;
     }
 
+
+    // to implement later to punish the player!.
     private void CouldnotFullfill()
     {
-        Debug.Log("Couldnt fullfill");
+        isFinished = true;
+        OrderManager.Instance.PostOrderCompleted();
     }
+
+    private void RewardforFullfilling()
+    {
+
+    }
+
 }

@@ -11,6 +11,11 @@ public class OrderPostUI : MonoBehaviour
     [SerializeField] private GameObject filledImagePrefab;
     [SerializeField] private Image image;
 
+
+    /// <summary>
+    /// To create the related prefab in the world canvas and set their icons.
+    /// </summary>
+    /// <param name="order"></param>
     public void SetOrderImage(Order order)
     {
         foreach (Transform child in transform)

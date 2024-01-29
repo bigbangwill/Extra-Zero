@@ -134,7 +134,11 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         }
     }
 
-
+    /// <summary>
+    /// Method to directly remove the items or some stack of an item from the slot.
+    /// </summary>
+    /// <param name="slotNumber"></param>
+    /// <param name="count"></param>
     public void RemoveFromSlotNumber(int slotNumber, int count)
     {
         if (inventoryArray[slotNumber].CurrentStack() <= count)

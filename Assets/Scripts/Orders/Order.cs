@@ -19,17 +19,24 @@ public class Order
         }
     }
 
+    /// <summary>
+    /// To return the current items that are not finished.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerable<ItemBehaviour> GetOrderItems()
     {
-        if (orderItems == null)
-            Debug.Log("KJBHOIJKQHGWRKIJHBQEKJRHBQWK:JRHQWKL:JHRELKJQWHBE");
         return orderItems;
     }
     
+    /// <summary>
+    /// To return the finished item.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerable<ItemBehaviour> GetFilledItems()
     {
         return fulfilledItems;
     }
+
 
     public int OrderItemCount()
     {
@@ -41,6 +48,13 @@ public class Order
         return orderItems.Count + fulfilledItems.Count;
     }
 
+
+    /// <summary>
+    /// To check if the raycast hit item is equal to this item.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="slotNumber"></param>
+    /// <returns></returns>
     public bool ItemIsEqual(ItemBehaviour item,int slotNumber)
     {
         foreach (ItemBehaviour orderItem in orderItems)
@@ -55,8 +69,8 @@ public class Order
     }
 
 
-
-    public void TryToFill(ItemBehaviour inventoryItem,ItemBehaviour orderItem,int slotNumber)
+    // if the item is equals this method gets called to set the current stack of the item.
+    private void TryToFill(ItemBehaviour inventoryItem,ItemBehaviour orderItem,int slotNumber)
     {
         int inventoryStack = inventoryItem.CurrentStack();
         int orderStack = orderItem.CurrentStack();
@@ -72,7 +86,7 @@ public class Order
     }
 
 
-
+    // this gets called if the item is fully met its requirement.
     private void ItemMatched(ItemBehaviour orderItem)
     {
         orderItems.Remove(orderItem);
@@ -84,6 +98,8 @@ public class Order
 
     }
 
+
+    // will get called when it's fullfilled !!!!!!
     private void Fullfilled()
     {
         relatedPost.CurrentOrderFullfilled();
