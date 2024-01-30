@@ -5180,6 +5180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagePrefab: {fileID: 6756185114069644074, guid: 6c1b86036103bdb4487866bb075a0c10, type: 3}
   filledImagePrefab: {fileID: 9148222343431545093, guid: 406e97be1c776354186bc8c0b9b6aa46, type: 3}
+  unFilledImagePrefab: {fileID: 3880828005840852583, guid: 65b9ce171666b2a4792e1290f612941b, type: 3}
   image: {fileID: 366082900}
 --- !u!1 &393546833
 GameObject:
@@ -8554,6 +8555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagePrefab: {fileID: 6756185114069644074, guid: 6c1b86036103bdb4487866bb075a0c10, type: 3}
   filledImagePrefab: {fileID: 9148222343431545093, guid: 406e97be1c776354186bc8c0b9b6aa46, type: 3}
+  unFilledImagePrefab: {fileID: 3880828005840852583, guid: 65b9ce171666b2a4792e1290f612941b, type: 3}
   image: {fileID: 657911858}
 --- !u!1 &671190426
 GameObject:
@@ -10843,8 +10845,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postUI: {fileID: 1029380083}
   clock: {fileID: 1985721411}
-  targetPos: {fileID: 245661176}
   quePosList:
+  - {fileID: 245661176}
   - {fileID: 720197742}
   - {fileID: 1569920113}
   - {fileID: 1585972172}
@@ -10852,6 +10854,7 @@ MonoBehaviour:
   - {fileID: 29284082}
   - {fileID: 1547428991}
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
+  orderMaxTimer: 10
 --- !u!61 &794033212
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13849,6 +13852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagePrefab: {fileID: 6756185114069644074, guid: 6c1b86036103bdb4487866bb075a0c10, type: 3}
   filledImagePrefab: {fileID: 9148222343431545093, guid: 406e97be1c776354186bc8c0b9b6aa46, type: 3}
+  unFilledImagePrefab: {fileID: 3880828005840852583, guid: 65b9ce171666b2a4792e1290f612941b, type: 3}
   image: {fileID: 1029380085}
 --- !u!114 &1029380084
 MonoBehaviour:
@@ -16488,8 +16492,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postUI: {fileID: 657911860}
   clock: {fileID: 285595343}
-  targetPos: {fileID: 1101394684}
   quePosList:
+  - {fileID: 1101394684}
   - {fileID: 1929311756}
   - {fileID: 613587698}
   - {fileID: 1393887792}
@@ -16497,6 +16501,7 @@ MonoBehaviour:
   - {fileID: 783221435}
   - {fileID: 1629669959}
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
+  orderMaxTimer: 10
 --- !u!4 &1250287114
 Transform:
   m_ObjectHideFlags: 0
@@ -18384,8 +18389,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postUI: {fileID: 1778993375}
   clock: {fileID: 761886565}
-  targetPos: {fileID: 1539200258}
   quePosList:
+  - {fileID: 1539200258}
   - {fileID: 1679243770}
   - {fileID: 2098211242}
   - {fileID: 1178053903}
@@ -18393,6 +18398,7 @@ MonoBehaviour:
   - {fileID: 827660660}
   - {fileID: 1138690146}
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
+  orderMaxTimer: 10
 --- !u!4 &1393865459
 Transform:
   m_ObjectHideFlags: 0
@@ -23583,6 +23589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagePrefab: {fileID: 6756185114069644074, guid: 6c1b86036103bdb4487866bb075a0c10, type: 3}
   filledImagePrefab: {fileID: 9148222343431545093, guid: 406e97be1c776354186bc8c0b9b6aa46, type: 3}
+  unFilledImagePrefab: {fileID: 3880828005840852583, guid: 65b9ce171666b2a4792e1290f612941b, type: 3}
   image: {fileID: 1778993373}
 --- !u!1 &1787872630
 GameObject:
@@ -27996,8 +28003,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postUI: {fileID: 366082902}
   clock: {fileID: 298618484}
-  targetPos: {fileID: 1963587606}
   quePosList:
+  - {fileID: 1963587606}
   - {fileID: 1475649929}
   - {fileID: 2064800014}
   - {fileID: 233458207}
@@ -28005,6 +28012,7 @@ MonoBehaviour:
   - {fileID: 254049739}
   - {fileID: 175086627}
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
+  orderMaxTimer: 10
 --- !u!4 &2105670494
 Transform:
   m_ObjectHideFlags: 0

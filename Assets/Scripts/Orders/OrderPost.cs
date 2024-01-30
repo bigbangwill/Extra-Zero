@@ -5,31 +5,28 @@ using System;
 using System.Reflection;
 using System.Linq;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class OrderPost : MonoBehaviour
 {
 
     private Order currentOrder;
-    private Order fullfilledOrder;
 
     private List<ItemBehaviour> orderableItems;
     
 
     private bool isReady = false;
-    private bool isFullfilled = false;
 
     [SerializeField] private OrderPostUI postUI;
     [SerializeField] private Image clock;
 
-    [SerializeField] private Transform targetPos;
     [SerializeField] private List<Transform> quePosList = new();
     [SerializeField] private GameObject walkingOrderPrefab;
 
-    private float timeBetweenOrders = 0;
+    private List<WalkingOrder> walkingOrdersList = new();
+
+    [SerializeField] private float orderMaxTimer;
     private float currentTimer = 0;
 
-    private bool isFinished = false;
 
 
     private void Update()
@@ -37,9 +34,9 @@ public class OrderPost : MonoBehaviour
         if (isReady)
         {
             currentTimer += Time.deltaTime;
-            float percent = currentTimer / timeBetweenOrders;
+            float percent = currentTimer / orderMaxTimer;
             clock.fillAmount = percent;
-            if(timeBetweenOrders < currentTimer )
+            if(orderMaxTimer < currentTimer )
             {
                 TimerHit();
             }
@@ -56,26 +53,12 @@ public class OrderPost : MonoBehaviour
 
     }
 
-    public void CreateWalkingOrder()
+    public WalkingOrder CreateWalkingOrder()
     {
         GameObject walkingOrderGO = Instantiate(walkingOrderPrefab);
         WalkingOrder walkingOrder = walkingOrderGO.GetComponent<WalkingOrder>();
-        walkingOrder.Init(CreateOrder(1), this, 1, quePosList.LastOrDefault().position);
-    }
-
-    /// <summary>
-    /// To start the creating of orders and put them in the que. gets called from order manager.
-    /// </summary>
-    /// <param name="timer"></param>
-    /// <param name="count"></param>
-    /// <param name="combinationCount"></param>
-    public void CreateOrderQue(int combinationCount)
-    {
-        isFinished = false;
-        currentOrder = CreateOrder(combinationCount);
-        isReady = true;
-        isFullfilled = false;
-        postUI.SetOrderImage(currentOrder);
+        walkingOrder.Init(CreateOrder(3), this, 1, quePosList.LastOrDefault().position);
+        return walkingOrder;
     }
 
     // for creating a single order.
@@ -120,23 +103,17 @@ public class OrderPost : MonoBehaviour
     /// <param name="slotNumber"></param>
     public void InsertingItem(ItemBehaviour item,int slotNumber)
     {
-        if (!isFullfilled && !isFinished)
+        if (currentOrder != null)
         {
             if (currentOrder.ItemIsEqual(item,slotNumber))
             {
-                if (currentOrder == null)
-                    postUI.SetOrderImage(fullfilledOrder);
-                else
+                if (currentOrder != null)
                     postUI.SetOrderImage(currentOrder);
             }
             else
             {
                 Debug.Log("Doesnt match");
             }
-        }
-        else
-        {
-            postUI.SetOrderImage(fullfilledOrder);
         }
     }
     
@@ -145,34 +122,37 @@ public class OrderPost : MonoBehaviour
     /// </summary>
     public void CurrentOrderFullfilled()
     {
-        fullfilledOrder = currentOrder;
-        isFullfilled = true;
-        currentOrder = null;
-        isFinished = true;
-        OrderManager.Instance.PostOrderCompleted();
-        
-
+        postUI.SetOrderImage(currentOrder);
+        RemoveTopWalkingOrder();
     }
-
-    /// <summary>
-    /// gets called from the ordermanager to check if all of the posts are finished.
-    /// </summary>
-    /// <returns></returns>
-    public bool OrdersAreComplete()
-    {
-        return isFinished;
-    }
-
 
     // to implement later to punish the player!.
     private void CouldnotFullfill()
     {
-        isFinished = true;
-        OrderManager.Instance.PostOrderCompleted();
+        postUI.SetUnfullfilledOrderImage(currentOrder);
+        //Punish Here.
+        
+        RemoveTopWalkingOrder();
+
+
     }
 
+    private void RemoveTopWalkingOrder()
+    {
+        currentOrder = null;
+        isReady = false;
+        currentTimer = 0;
+        WalkingOrder targetWalkingOrder = walkingOrdersList[0];
+        GameObject targetGO = targetWalkingOrder.gameObject;
+        OrderManager.Instance.FinishedWalkingOrder(targetWalkingOrder);
+        walkingOrdersList.RemoveAt(0);
+        Destroy(targetGO);
+        if(walkingOrdersList.Count > 0 )
+        {
+            MoveNext();
+        }
+    }
 
-    private List<WalkingOrder> walkingOrdersList = new();
 
     public void AddWalkingOrder(WalkingOrder walkingOrder)
     {
@@ -185,18 +165,33 @@ public class OrderPost : MonoBehaviour
         {
             Debug.LogWarning("Check here asap");
         }
-
     }
+
+
+    public void WalkingOrderReachedPoint(WalkingOrder walkingOrder)
+    {
+        if (walkingOrder == walkingOrdersList[0])
+        {
+            currentOrder = walkingOrder.GetHoldingOrder();
+            postUI.SetOrderImage(currentOrder);
+            isReady = true;
+        }
+    }
+
+    public void MoveNext()
+    {
+        for (int i = 0; i < walkingOrdersList.Count && i < quePosList.Count; i++)
+        {
+            walkingOrdersList[i].SetNextPos(quePosList[i].position);
+        }
+    }
+
 
     private void RewardforFullfilling()
     {
-        if (walkingOrdersList.Count > 0)
-        {
-            for (int i = 0; i < walkingOrdersList.Count && i < quePosList.Count; i++)
-            {
-                walkingOrdersList[i].SetNextPos(quePosList[i].position);
-            }
-        }
+
+
+
     }
 
 }

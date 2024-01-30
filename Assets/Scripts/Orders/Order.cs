@@ -7,6 +7,8 @@ public class Order
     private List<ItemBehaviour> orderItems = new();
     private List<ItemBehaviour> fulfilledItems = new();
 
+    private List<ItemBehaviour> unFulFilledItems = new();
+
     private OrderPost relatedPost;
 
 
@@ -104,7 +106,6 @@ public class Order
     {
         relatedPost.CurrentOrderFullfilled();
     }
-
 
 
 }

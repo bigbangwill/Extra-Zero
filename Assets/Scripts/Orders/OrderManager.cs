@@ -22,81 +22,33 @@ public class OrderManager : SingletonComponent<OrderManager>
 
     private List<ItemBehaviour> orderableItems = new();
 
+    private List<WalkingOrder> activeWalkingOrders = new();
+
     private int currentWave = 1;
     private float waveCurrentTimer = 0;
-    private bool isWaitingForNextWave = false;
 
 
     private void Start()
     {
         Init();
-        StartWaveTimer();
-        postList[0].CreateWalkingOrder();
+        //StartWaveTimer();
+        activeWalkingOrders.Add(postList[0].CreateWalkingOrder());
+        activeWalkingOrders.Add(postList[0].CreateWalkingOrder());
+        activeWalkingOrders.Add(postList[0].CreateWalkingOrder());
+        activeWalkingOrders.Add(postList[0].CreateWalkingOrder());
+
     }
 
-    private void Update()
+
+    public void FinishedWalkingOrder(WalkingOrder walkingOrder)
     {
-        if (isWaitingForNextWave)
+        activeWalkingOrders.Remove(walkingOrder);
+        if(activeWalkingOrders.Count == 0 )
         {
-            waveCurrentTimer += Time.deltaTime;
-            if (waveCurrentTimer > waveMaxTimer)
-            {
-                waveCurrentTimer = 0;
-                StartNextWave();
-            }
+            Debug.Log("Wave Finished");
         }
     }
 
-    /// <summary>
-    /// To get called from the post to do a check if all the posts are completed.
-    /// </summary>
-    public void PostOrderCompleted()
-    {
-        if (IsWaveComplete())
-        {
-            StartWaveTimer();
-        }
-    }
-
-
-
-    /// <summary>
-    /// Method to start the next wave.
-    /// </summary>
-    public void StartNextWave()
-    {
-        isWaitingForNextWave = false;
-        currentWave++;
-
-        foreach(OrderPost post in postList)
-        {
-            post.CreateOrderQue(1);
-        }
-    }
-
-
-    // To start the timer between each wave.
-    private void StartWaveTimer()
-    {
-        isWaitingForNextWave = true;
-    }
-
-    // checker to check if all of the posts are done.
-    private bool IsWaveComplete()
-    {
-        bool checker = true;
-
-        foreach (OrderPost post in postList)
-        {
-            if (!post.OrdersAreComplete())
-            {
-                checker = false;
-            }
-        }
-        return checker;
-    }
-
-    
 
     // To add all of the createable items to the list.
     private void Init()
@@ -121,11 +73,10 @@ public class OrderManager : SingletonComponent<OrderManager>
 
     }
 
-
-
-    public void CreateWalkingOrder()
+    private void InitWaveSystem()
     {
-
+        currentWave = 1;
+        waveCurrentTimer = 0;
     }
 
 

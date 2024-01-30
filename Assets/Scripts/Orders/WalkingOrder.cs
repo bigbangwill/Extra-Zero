@@ -21,6 +21,7 @@ public class WalkingOrder : MonoBehaviour
             if (Vector2.Distance(transform.position, targetPos) < 0.5f)
             {
                 shouldMove = false;
+                HitTargetPosition();
             }
         }
     }
@@ -44,6 +45,12 @@ public class WalkingOrder : MonoBehaviour
     public Order GetHoldingOrder()
     {
         return holdingOrder;
+    }
+
+    private void HitTargetPosition()
+    {
+        targetPost.WalkingOrderReachedPoint(this);
+        Debug.Log("Reached");
     }
 
 }
