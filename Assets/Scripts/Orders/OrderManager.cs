@@ -19,6 +19,7 @@ public class OrderManager : SingletonComponent<OrderManager>
 
     [SerializeField] private List<OrderPost> postList = new();
     [SerializeField] private float waveMaxTimer;
+    [SerializeField] private int maxOrderCombination;
 
     private List<ItemBehaviour> orderableItems = new();
 
@@ -79,7 +80,10 @@ public class OrderManager : SingletonComponent<OrderManager>
         waveCurrentTimer = 0;
     }
 
-
+    public int GetMaxOrderCombination()
+    {
+        return maxOrderCombination;
+    }
 
 
 }
