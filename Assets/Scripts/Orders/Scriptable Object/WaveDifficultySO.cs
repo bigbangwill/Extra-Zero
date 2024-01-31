@@ -8,15 +8,18 @@ using UnityEngine;
 public class WaveDifficultySO : ScriptableObject
 {
 
-    public int orderCombination;
-    public int combinationRandomness;
+    [SerializeField] private int orderCombination;
+    [SerializeField] private int combinationRandomness;
 
-    public float orderFrequency;
-    public float frequencyRandomness;
+    [SerializeField] private float orderFrequency;
+    [SerializeField] private float frequencyRandomness;
 
-    public float timerOfOneWave;
-    public float frequencyOfTimer;
+    [SerializeField] private float timerOfOneWave;
+    [SerializeField] private float frequencyOfTimer;
 
+    [SerializeField] private float timeOfAFullCycle;
+
+    [SerializeField] private float walkingOrderSpeed;
 
 
     public int GetOrderCombination()
@@ -41,6 +44,21 @@ public class WaveDifficultySO : ScriptableObject
         float minValue = timerOfOneWave - frequencyOfTimer;
         float maxValue = timerOfOneWave + frequencyOfTimer;
         return Random.Range(minValue, maxValue);
+    }
+
+    public float GetTimeOfAFullCycle()
+    {
+        return timeOfAFullCycle;
+    }
+
+    public float GetNightMaxTime()
+    {
+        return timeOfAFullCycle - timerOfOneWave;
+    }
+
+    public float GetWalkingOrderSpeed()
+    {
+        return walkingOrderSpeed;
     }
 
 }

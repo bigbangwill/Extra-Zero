@@ -53,11 +53,11 @@ public class OrderPost : MonoBehaviour
 
     }
 
-    public WalkingOrder CreateWalkingOrder()
+    public WalkingOrder CreateWalkingOrder(int combinationCount,float walkingOrderSpeed)
     {
         GameObject walkingOrderGO = Instantiate(walkingOrderPrefab);
         WalkingOrder walkingOrder = walkingOrderGO.GetComponent<WalkingOrder>();
-        walkingOrder.Init(CreateOrder(3), this, 1, quePosList.LastOrDefault().position);
+        walkingOrder.Init(CreateOrder(combinationCount), this, walkingOrderSpeed, quePosList.LastOrDefault().position);
         return walkingOrder;
     }
 

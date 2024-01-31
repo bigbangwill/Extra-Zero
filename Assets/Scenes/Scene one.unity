@@ -22703,7 +22703,9 @@ MonoBehaviour:
   - {fileID: 1393865458}
   - {fileID: 2105670493}
   - {fileID: 1250287113}
-  waveMaxTimer: 5
+  maxOrderCombination: 4
+  waveDifficultyList:
+  - {fileID: 11400000, guid: 743caef9390acd0439f653b2d6664d25, type: 2}
 --- !u!1 &1720757997
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class OrderManager : SingletonComponent<OrderManager>
 {
@@ -16,30 +17,120 @@ public class OrderManager : SingletonComponent<OrderManager>
     #endregion
 
 
-
     [SerializeField] private List<OrderPost> postList = new();
-    [SerializeField] private float waveMaxTimer;
     [SerializeField] private int maxOrderCombination;
+
+    [SerializeField] private List<WaveDifficultySO> waveDifficultyList = new();
+    private List<WalkingOrder> activeWalkingOrders = new();
+    private WaveDifficultySO currentWaveDifficulty;
+    private WaveDifficultySO nextWaveDifficulty;
+    private int currentWaveNumber = 1;
+    private float waveCurrentTimer = 0;
+    private float currentWaveMaxTimer;
+    private bool isWaveSpawnTime = false;
+    private bool isNightTime = false;
+    private float nightCurrentTimer = 0;
+    private float nightMaxTimer;
+
+    private int walkingOrdersSummoned = 0;
+
+    private Coroutine currentPendingCoroutine;
+    
+
 
     private List<ItemBehaviour> orderableItems = new();
 
-    private List<WalkingOrder> activeWalkingOrders = new();
 
-    private int currentWave = 1;
-    private float waveCurrentTimer = 0;
 
+
+
+    //For later gameplay system :D nice naming btw
+    private float timeElapsedBetweenNightAndDay;
 
     private void Start()
     {
         Init();
-        //StartWaveTimer();
-        activeWalkingOrders.Add(postList[0].CreateWalkingOrder());
-        activeWalkingOrders.Add(postList[0].CreateWalkingOrder());
-        activeWalkingOrders.Add(postList[0].CreateWalkingOrder());
-        activeWalkingOrders.Add(postList[0].CreateWalkingOrder());
-
+        SetNextWaveDifficulty();
     }
 
+    private void Update()
+    {
+        if (isWaveSpawnTime)
+        {
+            waveCurrentTimer += Time.deltaTime;
+            if(waveCurrentTimer >= currentWaveMaxTimer)
+            {
+                FinishWave();
+            }
+            else if (waveCurrentTimer >= (currentWaveDifficulty.GetOrderFrequency() * walkingOrdersSummoned))
+            {
+                SummonWalkingOrder();
+            }
+        }
+        else if (isNightTime)
+        {
+            nightCurrentTimer += Time.deltaTime;
+            if (nightCurrentTimer >= nightMaxTimer)
+            {
+                FinishNightTime();
+            }
+        }
+    }
+
+
+
+    private void SetNextWaveDifficulty()
+    {
+        nextWaveDifficulty = waveDifficultyList[UnityEngine.Random.Range(0, waveDifficultyList.Count)];
+    }
+
+    public void StartNewWave()
+    {
+        Debug.Log("It's Day Time");
+        currentWaveDifficulty = nextWaveDifficulty;
+        SetNextWaveDifficulty();
+        currentWaveNumber++;
+        waveCurrentTimer = 0;
+        currentWaveMaxTimer = currentWaveDifficulty.GetTimerOfWave();
+        isWaveSpawnTime = true;
+        walkingOrdersSummoned = 0;
+        SummonWalkingOrder();
+    }
+
+    private void SummonWalkingOrder()
+    {
+        int orderCombination = currentWaveDifficulty.GetOrderCombination();
+        float walkingSpeed = currentWaveDifficulty.GetWalkingOrderSpeed();
+        int randomPost = UnityEngine.Random.Range(0, postList.Count);
+
+        WalkingOrder targetOrder = postList[randomPost].CreateWalkingOrder(orderCombination, walkingSpeed);
+        activeWalkingOrders.Add(targetOrder);
+        walkingOrdersSummoned++;
+    }
+
+    private void FinishWave()
+    {
+        isWaveSpawnTime = false;
+        currentPendingCoroutine = StartCoroutine(WaitForPendingOrders());
+    }
+
+    private void StartNightTime()
+    {
+        if (currentPendingCoroutine != null)
+        {
+            StopCoroutine(currentPendingCoroutine);
+        }
+        isNightTime = true;
+        nightCurrentTimer = 0;
+        nightMaxTimer = currentWaveDifficulty.GetNightMaxTime();
+        Debug.Log("It's Night TIME ");
+    }
+
+    private void FinishNightTime()
+    {
+        isNightTime = false;
+        StartNewWave();
+    }
 
     public void FinishedWalkingOrder(WalkingOrder walkingOrder)
     {
@@ -50,6 +141,20 @@ public class OrderManager : SingletonComponent<OrderManager>
         }
     }
 
+
+    private IEnumerator WaitForPendingOrders()
+    {
+        while (true)
+        {
+            timeElapsedBetweenNightAndDay += Time.deltaTime;
+            if (activeWalkingOrders.Count == 0)
+            {
+                timeElapsedBetweenNightAndDay = 0;
+                StartNightTime();
+            }
+            yield return null;
+        }
+    }
 
     // To add all of the createable items to the list.
     private void Init()
@@ -74,16 +179,18 @@ public class OrderManager : SingletonComponent<OrderManager>
 
     }
 
-    private void InitWaveSystem()
-    {
-        currentWave = 1;
-        waveCurrentTimer = 0;
-    }
 
     public int GetMaxOrderCombination()
     {
         return maxOrderCombination;
     }
 
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 10, 150, 100), "StartWave"))
+        {
+            StartNewWave();
+        }
+    }
 
 }

@@ -16,5 +16,7 @@ MonoBehaviour:
   combinationRandomness: 1
   orderFrequency: 5
   frequencyRandomness: 0.5
-  timerOfOneWave: 25
-  frequencyOfTimer: 5
+  timerOfOneWave: 5
+  frequencyOfTimer: 0
+  timeOfAFullCycle: 8
+  walkingOrderSpeed: 2
