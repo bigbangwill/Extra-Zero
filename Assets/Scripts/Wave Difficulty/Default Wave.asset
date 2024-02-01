@@ -20,3 +20,7 @@ MonoBehaviour:
   frequencyOfTimer: 0
   timeOfAFullCycle: 8
   walkingOrderSpeed: 2
+  orderFulfillTimer: 3
+  orderFrequencyHardness: 0.1
+  timerOfOneWaveHardness: 0.1
+  orderFulfilTimerHardness: 0.1

@@ -9,7 +9,6 @@ public class WalkingOrder : MonoBehaviour
     private OrderPost targetPost;
     private Vector2 targetPos;
     private float speed;
-
     private bool shouldMove;
 
 

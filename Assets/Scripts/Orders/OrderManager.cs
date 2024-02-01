@@ -62,7 +62,7 @@ public class OrderManager : SingletonComponent<OrderManager>
             {
                 FinishWave();
             }
-            else if (waveCurrentTimer >= (currentWaveDifficulty.GetOrderFrequency() * walkingOrdersSummoned))
+            else if (waveCurrentTimer >= (currentWaveDifficulty.GetOrderFrequency(currentWaveNumber) * walkingOrdersSummoned))
             {
                 SummonWalkingOrder();
             }
@@ -91,7 +91,7 @@ public class OrderManager : SingletonComponent<OrderManager>
         SetNextWaveDifficulty();
         currentWaveNumber++;
         waveCurrentTimer = 0;
-        currentWaveMaxTimer = currentWaveDifficulty.GetTimerOfWave();
+        currentWaveMaxTimer = currentWaveDifficulty.GetTimerOfWave(currentWaveNumber);
         isWaveSpawnTime = true;
         walkingOrdersSummoned = 0;
         SummonWalkingOrder();
@@ -103,7 +103,10 @@ public class OrderManager : SingletonComponent<OrderManager>
         float walkingSpeed = currentWaveDifficulty.GetWalkingOrderSpeed();
         int randomPost = UnityEngine.Random.Range(0, postList.Count);
 
-        WalkingOrder targetOrder = postList[randomPost].CreateWalkingOrder(orderCombination, walkingSpeed);
+        WalkingOrder targetOrder = postList[randomPost].CreateWalkingOrder(
+            orderCombination,
+            walkingSpeed,
+            currentWaveDifficulty.GetOrderFulfillTimer(currentWaveNumber));
         activeWalkingOrders.Add(targetOrder);
         walkingOrdersSummoned++;
     }

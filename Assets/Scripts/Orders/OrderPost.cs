@@ -34,9 +34,9 @@ public class OrderPost : MonoBehaviour
         if (isReady)
         {
             currentTimer += Time.deltaTime;
-            float percent = currentTimer / orderMaxTimer;
+            float percent = currentTimer / currentOrder.GetOrderTimer();
             clock.fillAmount = percent;
-            if(orderMaxTimer < currentTimer )
+            if(currentOrder.GetOrderTimer() < currentTimer )
             {
                 TimerHit();
             }
@@ -53,16 +53,20 @@ public class OrderPost : MonoBehaviour
 
     }
 
-    public WalkingOrder CreateWalkingOrder(int combinationCount,float walkingOrderSpeed)
+    public WalkingOrder CreateWalkingOrder(int combinationCount,float walkingOrderSpeed,float orderTimer)
     {
         GameObject walkingOrderGO = Instantiate(walkingOrderPrefab);
         WalkingOrder walkingOrder = walkingOrderGO.GetComponent<WalkingOrder>();
-        walkingOrder.Init(CreateOrder(combinationCount), this, walkingOrderSpeed, quePosList.LastOrDefault().position);
+        walkingOrder.Init(
+            CreateOrder(combinationCount, orderTimer),
+            this,
+            walkingOrderSpeed,
+            quePosList.LastOrDefault().position);
         return walkingOrder;
     }
 
     // for creating a single order.
-    private Order CreateOrder(int combinationCount)
+    private Order CreateOrder(int combinationCount, float orderTimer)
     {
         List<ItemBehaviour> targetItems = new();
         for (int i = 0; i < combinationCount; i++)
@@ -76,7 +80,7 @@ public class OrderPost : MonoBehaviour
             }
             targetItems.Add(orderableItems[random]);
         }
-        Order creatingOrder = new(targetItems, this);
+        Order creatingOrder = new(targetItems, this,orderTimer);
         return creatingOrder;
     }
 

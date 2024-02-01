@@ -10,15 +10,18 @@ public class Order
     private List<ItemBehaviour> unFulFilledItems = new();
 
     private OrderPost relatedPost;
+    private float orderFulfillTimer;
 
 
-    public Order(List<ItemBehaviour> orders,OrderPost post)
+    public Order(List<ItemBehaviour> orders,OrderPost post, float orderFulfillTimer)
     {
         relatedPost = post;
         foreach (ItemBehaviour item in orders)
         {
             orderItems.Add(item);
         }
+
+        this.orderFulfillTimer = orderFulfillTimer;
     }
 
     /// <summary>
@@ -105,6 +108,11 @@ public class Order
     private void Fullfilled()
     {
         relatedPost.CurrentOrderFullfilled();
+    }
+
+    public float GetOrderTimer()
+    {
+        return orderFulfillTimer;
     }
 
 

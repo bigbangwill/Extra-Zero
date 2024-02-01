@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 
@@ -21,6 +20,14 @@ public class WaveDifficultySO : ScriptableObject
 
     [SerializeField] private float walkingOrderSpeed;
 
+    [SerializeField] private float orderFulfillTimer;
+
+
+    [Header("In-Game wave harder")]
+    [SerializeField] private float orderFrequencyHardness;
+    [SerializeField] private float timerOfOneWaveHardness;
+    [SerializeField] private float orderFulfilTimerHardness;
+
 
     public int GetOrderCombination()
     {
@@ -32,18 +39,20 @@ public class WaveDifficultySO : ScriptableObject
         return value;
     }
 
-    public float GetOrderFrequency()
+    public float GetOrderFrequency(int currentWaveNumber)
     {
         float minValue = orderFrequency - frequencyRandomness;
         float maxValue = orderFrequency + frequencyOfTimer;
-        return Random.Range(minValue, maxValue);
+        float value = Random.Range(minValue, maxValue);
+        return value - orderFrequencyHardness * currentWaveNumber;
     }
 
-    public float GetTimerOfWave()
+    public float GetTimerOfWave(int currentWaveNumber)
     {
         float minValue = timerOfOneWave - frequencyOfTimer;
         float maxValue = timerOfOneWave + frequencyOfTimer;
-        return Random.Range(minValue, maxValue);
+        float value = Random.Range(minValue, maxValue);
+        return value - timerOfOneWaveHardness * currentWaveNumber;
     }
 
     public float GetTimeOfAFullCycle()
@@ -59,6 +68,11 @@ public class WaveDifficultySO : ScriptableObject
     public float GetWalkingOrderSpeed()
     {
         return walkingOrderSpeed;
+    }
+
+    public float GetOrderFulfillTimer(int currentWaveNumber)
+    {
+        return orderFulfillTimer - orderFulfilTimerHardness * currentWaveNumber;
     }
 
 }
