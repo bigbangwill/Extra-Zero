@@ -9,6 +9,8 @@ public class OrderPostHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
 
+    private List<ItemBehaviour>repairTargetItemsList = new();
+
     private int healthUnlocked;
 
     private int currentHealth;
@@ -26,7 +28,28 @@ public class OrderPostHealth : MonoBehaviour
 
     public void Repair()
     {
-
+        
+        bool playerHasItems = true;
+        foreach (ItemBehaviour item in recoverReceipeList[currentHealth].GetItems())
+        {
+            repairTargetItemsList.Add(item);
+            if (!PlayerInventory.Instance.HaveItemInInventory(item,false))
+            {
+                playerHasItems = false;
+            }
+        }
+        if (playerHasItems)
+        {
+            foreach (var item in repairTargetItemsList)
+            {
+                PlayerInventory.Instance.HaveItemInInventory(item,true);
+            }
+            if (currentHealth == 0)
+            {
+                // Implement the restore the shield  back up.
+            }
+            currentHealth++;
+        }
     }
 
 
@@ -47,12 +70,10 @@ public class OrderPostHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthUnlocked = 3;
-        recoverReceipeList = new HealthRecoverReceipe[6];
-        recoverReceipeList[0] = new HealthRecoverReceipe(new MaterialItem.Plastic(10));
-        recoverReceipeList[1] = new HealthRecoverReceipe(new MaterialItem.Ceramic(10));
-        recoverReceipeList[3] = new HealthRecoverReceipe(new MaterialItem.AluminumAlloy(10));
-        recoverReceipeList[4] = new HealthRecoverReceipe(new MaterialItem.TitaniumAlloy(10));
-        recoverReceipeList[5] = new HealthRecoverReceipe(new MaterialItem.Ceramic(5), new MaterialItem.Plastic(3));
+        for(int i = 0; i < maxHealth; i++)
+        {
+            recoverReceipeList[i] = new HealthRecoverReceipe(i);
+        }
 
 
     }
@@ -63,20 +84,18 @@ public class HealthRecoverReceipe
 {
     private List<ItemBehaviour> itemList = new();
 
-    public HealthRecoverReceipe(params ItemBehaviour[] items)
-    {
-        if (items == null || items.Length == 0)
-        {
-            throw new ArgumentException("At least one item must be provided.");
-        }
-
-        itemList.AddRange(items);
-    }
-
 
     public HealthRecoverReceipe(int stage)
     {
-
+        switch (stage)
+        {
+            case 0: itemList.Add(new MaterialItem.Ceramic(5)); break;
+            case 1: itemList.Add(new MaterialItem.AluminumAlloy(5)); break;
+            case 2: itemList.Add(new MaterialItem.Plastic(5)); break;
+            case 3: itemList.Add(new MaterialItem.StainlessSteel(5)); break;
+            case 4: itemList.Add(new MaterialItem.TitaniumAlloy(5)); break;
+            default: itemList.Add(new MaterialItem.AluminumAlloy(10)); break;
+        }
     }
 
     public IEnumerable<ItemBehaviour> GetItems()
