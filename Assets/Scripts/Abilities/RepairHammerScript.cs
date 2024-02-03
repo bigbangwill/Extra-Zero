@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,22 @@ using UnityEngine;
 public class RepairHammerScript : MonoBehaviour
 {
 
-    private void Start()
+    public Type relatedInterface;
+
+
+    private void OnEnable()
     {
-        Debug.Log("3216516248943216543216546513");
+        //UseableItemCanvasScript.Instance.SetDelegate<IRepairable>(Repair);
+    }
+
+    private void OnDisable()
+    {
+        UseableItemCanvasScript.Instance.RemoveDelegate();
+    }
+
+    public void Repair()
+    {
+        
     }
 
 }
