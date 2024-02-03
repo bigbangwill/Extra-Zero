@@ -68,6 +68,10 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         AddItemToInventory(new BluePrintItem.Hoe());
         AddItemToInventory(new BluePrintItem.Gun());
         AddItemToInventory(new BluePrintItem.Plant());
+
+        AddItemToInventory(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform));
+        AddItemToInventory(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform));
+
     }
 
 
@@ -113,7 +117,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     /// be the current active item
     /// </summary>
     /// <param name="slot"></param>
-    public void SetActiveItem(int slot)
+    public void SetActiveItem2(int slot)
     {
         if (inventoryArray[slot].ItemTypeValue() == ItemType.empty)
             return;
@@ -131,6 +135,32 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
             currentActiveItem = null;
             currentActiveItemSlotNum = int.MaxValue;
             activeItemTranform.gameObject.SetActive(false);
+        }
+    }
+
+
+    public void SetActiveItem(int slot)
+    {
+        if (inventoryArray[slot].IsActiveable())
+        {
+            if (currentActiveItemSlotNum != slot)
+            {
+                currentActiveItem?.OnDeactive();
+                currentActiveItem = inventoryArray[slot];
+                currentActiveItemSlotNum = slot;
+                currentActiveItem.OnActive();
+                activeItemTranform.gameObject.SetActive(true);
+                activeItemTranform.position = itemSlotUIList[slot].transform.position;
+            }
+            else
+            {
+                if (currentActiveItem.IsUseable())
+                    currentActiveItem.Use();
+                currentActiveItem.OnDeactive();
+                currentActiveItem = null;
+                currentActiveItemSlotNum = int.MaxValue;
+                activeItemTranform.gameObject.SetActive(false);
+            }
         }
     }
 

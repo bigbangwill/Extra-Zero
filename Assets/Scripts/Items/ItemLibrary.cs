@@ -2,17 +2,19 @@ using NUnit.Framework.Constraints;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Properties;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders.Simulation;
 using UnityEngine.UIElements;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public delegate void UseDelegate();
 
-public enum ItemType {potion,bluePrint,material,questItem,empty,seed,herb };
+public enum ItemType {potion,bluePrint,material,questItem,empty,seed,herb,craftedItem};
 
 public abstract class ItemBehaviour : IComparable<ItemBehaviour>
 {
@@ -28,10 +30,14 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>
     protected Sprite itemIcon;
     protected Sprite itemSprite;
 
+    protected bool is_Activeable = false;
+
+
     // For loading the icon
     protected string specificName;
     protected string specificAddress;
     protected AsyncOperationHandle<Sprite> AsyncHandle;
+
 
 
     // Used on the inventory system when it's called by the player
@@ -39,6 +45,10 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>
 
     // Used on creating items with activator.createinstance to load the needed stuff.
     public abstract void Load();
+
+    public virtual void OnActive(){ }
+
+    public virtual void OnDeactive(){ }
 
     /// <summary>
     /// Used localy to load the needed icon
@@ -136,6 +146,11 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>
     public ItemType ItemTypeValue()
     {
         return itemType;
+    }
+
+    public bool IsActiveable()
+    {
+        return is_Activeable;
     }
 }
 
@@ -299,6 +314,89 @@ public abstract class BluePrintItem : ItemBehaviour
         
     }
 }
+
+
+
+public abstract class CraftedItem : ItemBehaviour
+{
+    protected GameObject uiPrefab;
+    protected string uiPrefabString;
+
+
+    public override void Load()
+    {
+        is_Usable = true;
+        useDelegate = Use;
+        itemType = ItemType.craftedItem;
+        is_Stackable = false;
+        itemName = "CraftedItem";
+        specificAddress = "CraftedItem/" + specificName + "[Sprite]";
+        uiPrefabString = "UIPrefabGO/" + specificName;
+        LoadIcon();
+    }
+
+    public class RepairHammer : CraftedItem
+    {
+        private Transform canvasRefrence;
+        private GameObject uiElementRefrence;
+
+        // this is for activator create Instance 
+        public RepairHammer()
+        {
+            specificName = "RepairHammer";
+            Load();
+        }
+
+        public RepairHammer(Transform canvas)
+        {
+            canvasRefrence = canvas;
+            specificName = "RepairHammer";
+            Load();
+            LoadAddressable();
+            OnCreate();
+            is_Activeable = true;
+        }
+
+        private void LoadAddressable()
+        {
+            AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(uiPrefabString);
+            handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
+
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                uiPrefab = handle.Result;
+                Addressables.Release(handle);
+            }
+            else
+            {
+                Debug.LogError("Failed to load the asset");
+            }
+        }
+
+
+        private void OnCreate()
+        {
+            Debug.Log("Hellllllkqjywhgerljohqwgrlkjhqgwrtlkjbqtlkjqhwbrelk;jqne");
+            uiElementRefrence = UnityEngine.Object.Instantiate(uiPrefab,canvasRefrence);
+        }
+
+        public override void OnActive()
+        {
+            uiElementRefrence.SetActive(true);
+        }
+
+        public override void OnDeactive()
+        {
+            uiElementRefrence?.SetActive(false);
+        }
+
+        public override void Use()
+        {
+
+        }
+    }
+}
+
 public abstract class MaterialItem : ItemBehaviour
 {
     // Gets called from the child class to set every related infomation and load icon

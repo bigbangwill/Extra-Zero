@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(OrderPost))]
-public class OrderPostHealth : MonoBehaviour
+public class OrderPostHealth : MonoBehaviour, IRepairable
 {
     [SerializeField] private int maxHealth;
 
@@ -21,6 +21,11 @@ public class OrderPostHealth : MonoBehaviour
 
     private bool isAtFullHealth;
 
+    private void Start()
+    {
+        Init();
+    }
+
     public bool NeedsRepair()
     {
         return isAtFullHealth;
@@ -28,7 +33,12 @@ public class OrderPostHealth : MonoBehaviour
 
     public void Repair()
     {
-        
+        if(currentHealth >= healthUnlocked)
+        {
+            Debug.Log("nothing to repair");
+            return;
+        }
+
         bool playerHasItems = true;
         foreach (ItemBehaviour item in recoverReceipeList[currentHealth].GetItems())
         {
@@ -49,6 +59,10 @@ public class OrderPostHealth : MonoBehaviour
                 // Implement the restore the shield  back up.
             }
             currentHealth++;
+            if (currentHealth == healthUnlocked)
+            {
+                isAtFullHealth = true;
+            }
         }
     }
 
@@ -56,6 +70,7 @@ public class OrderPostHealth : MonoBehaviour
     private void TakeDamage()
     {
         currentHealth--;
+        isAtFullHealth = false;
         if(currentHealth <= 0 )
         {
             PostZeroHealth();
