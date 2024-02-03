@@ -24,46 +24,60 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     private void Start()
     {
         Init();
+        TakeDamage();
+        TakeDamage();
+        TakeDamage();
+        TakeDamage();
     }
 
     public bool NeedsRepair()
     {
-        return isAtFullHealth;
+        Debug.Log("Already at full health");
+        return !isAtFullHealth;
     }
 
-    public void Repair()
+    public bool Repair()
     {
+        repairTargetItemsList.Clear();
+        Debug.Log(currentHealth);
         if(currentHealth >= healthUnlocked)
         {
             Debug.Log("nothing to repair");
-            return;
+            return false;
+        }
+        foreach (var item in recoverReceipeList[currentHealth].GetItems())
+        {
+            Debug.Log(item.GetName() + ": " + item.CurrentStack());
         }
 
-        bool playerHasItems = true;
+
         foreach (ItemBehaviour item in recoverReceipeList[currentHealth].GetItems())
         {
             repairTargetItemsList.Add(item);
             if (!PlayerInventory.Instance.HaveItemInInventory(item,false))
             {
-                playerHasItems = false;
+                Debug.Log("need more of " + item.GetName() + item.CurrentStack());
+                return false;
             }
         }
-        if (playerHasItems)
+        Debug.Log(repairTargetItemsList.Count + "kjhqlkjh");
+        foreach (var item in repairTargetItemsList)
         {
-            foreach (var item in repairTargetItemsList)
-            {
-                PlayerInventory.Instance.HaveItemInInventory(item,true);
-            }
-            if (currentHealth == 0)
-            {
-                // Implement the restore the shield  back up.
-            }
-            currentHealth++;
-            if (currentHealth == healthUnlocked)
-            {
-                isAtFullHealth = true;
-            }
+            int savedStack = item.CurrentStack();
+            PlayerInventory.Instance.HaveItemInInventory(item,true);
+            item.SetCurrentStack(savedStack);
         }
+        if (currentHealth == 0)
+        {
+            // Implement the restore the shield  back up.
+        }
+        currentHealth++;
+        if (currentHealth == healthUnlocked)
+        {
+            isAtFullHealth = true;
+        }
+        Debug.Log($"Repaired and current health is {currentHealth}");
+        return true;
     }
 
 
@@ -79,12 +93,13 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     private void PostZeroHealth()
     {
-
+        currentHealth = 0;
     }
     private void Init()
     {
-        currentHealth = maxHealth;
         healthUnlocked = 3;
+        currentHealth = healthUnlocked;
+        recoverReceipeList = new HealthRecoverReceipe[maxHealth];
         for(int i = 0; i < maxHealth; i++)
         {
             recoverReceipeList[i] = new HealthRecoverReceipe(i);

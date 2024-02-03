@@ -11,17 +11,17 @@ public class RepairHammerScript : MonoBehaviour
 
     private void OnEnable()
     {
-        //UseableItemCanvasScript.Instance.SetDelegate<IRepairable>(Repair);
+        UseableItemCanvasScript.Instance.SetDelegate(RepairHammerUsed,OverlayState.RepairMode);
     }
 
     private void OnDisable()
     {
-        UseableItemCanvasScript.Instance.RemoveDelegate();
+        UseableItemCanvasScript.Instance.RemoveDelegate(RepairHammerUsed);
     }
 
-    public void Repair()
+    public void RepairHammerUsed()
     {
-        
+        Debug.Log("used the hammer");
     }
 
 }

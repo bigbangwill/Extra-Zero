@@ -279,6 +279,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     /// <returns></returns>
     public bool HaveItemInInventory(ItemBehaviour item,bool shouldRemove)
     {
+        int savedItemStack = item.CurrentStack();
         if (!item.IsStackable())
         {
             for (int i = 0; i < inventoryArray.Length; i++)
@@ -341,6 +342,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
                 if(removedTillNow > 0)
                     AddItemToInventory(item);
             }
+            item.SetCurrentStack(savedItemStack);
             return false;
         }
     }

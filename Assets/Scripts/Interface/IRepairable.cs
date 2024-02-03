@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IRepairable
 {
-    public void Repair();
+    public bool Repair();
     public bool NeedsRepair();
 }
