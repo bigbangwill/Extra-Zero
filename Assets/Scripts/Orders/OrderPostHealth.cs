@@ -8,6 +8,8 @@ using UnityEngine;
 public class OrderPostHealth : MonoBehaviour, IRepairable
 {
     [SerializeField] private int maxHealth;
+    [SerializeField] private GameObject healingBoarder;
+    [SerializeField] private GameObject noHealingBoarder;
 
     private List<ItemBehaviour>repairTargetItemsList = new();
 
@@ -77,6 +79,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
             isAtFullHealth = true;
         }
         Debug.Log($"Repaired and current health is {currentHealth}");
+        TurnUIUXOn();
         return true;
     }
 
@@ -104,8 +107,21 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         {
             recoverReceipeList[i] = new HealthRecoverReceipe(i);
         }
+    }
 
-
+    public void TurnUIUXOn()
+    {
+        if (NeedsRepair())
+            healingBoarder.SetActive(true);
+        else
+            noHealingBoarder.SetActive(true);
+    }
+    public void TurnUIUXOff()
+    {
+        if(healingBoarder.activeSelf)
+            healingBoarder.SetActive(false);
+        if(noHealingBoarder.activeSelf)
+            noHealingBoarder.SetActive(false);
     }
 }
 

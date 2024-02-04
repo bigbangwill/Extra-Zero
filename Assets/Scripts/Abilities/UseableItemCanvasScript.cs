@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,9 +16,11 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     }
     #endregion
 
+    [SerializeField] private List<OrderPostHealth> repairables = new();
+ 
+
+
     private OverlayState currentState;
-
-
     public event Action UsedItemEvent;
 
 
@@ -36,7 +39,7 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
         overlayImage.enabled = true;
         switch (state) 
         {
-            case OverlayState.RepairMode: overlayImage.color = repairColor; break;
+            case OverlayState.RepairMode: overlayImage.color = repairColor; SetHealingUIOn(); break;
             default: break;        
         }
     }
@@ -45,6 +48,12 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     {
         overlayImage.enabled = false;
         UsedItemEvent -= action;
+
+        switch (currentState)
+        {
+            case OverlayState.RepairMode: SetHealingUIOff(); break;
+            default: break;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -59,9 +68,28 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
                 case OverlayState.RepairMode: if (RepairRaycast(hits))return; break;
                 default: Debug.Log("Couldnt find the needed item"); break;
             }
-            
         }
     }
+
+    private void SetHealingUIOn()
+    {
+        foreach (var repair in repairables)
+        {
+            repair.TurnUIUXOn();
+        }
+    }
+
+    private void SetHealingUIOff()
+    {
+        foreach (var repair in repairables)
+        {
+            repair.TurnUIUXOff();
+        }
+    }
+
+
+
+
 
 
 

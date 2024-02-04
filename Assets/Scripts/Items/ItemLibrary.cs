@@ -376,7 +376,6 @@ public abstract class CraftedItem : ItemBehaviour
 
         private void OnCreate()
         {
-            Debug.Log("Hellllllkqjywhgerljohqwgrlkjhqgwrtlkjbqtlkjqhwbrelk;jqne");
             uiElementRefrence = UnityEngine.Object.Instantiate(uiPrefab,canvasRefrence);
         }
 
