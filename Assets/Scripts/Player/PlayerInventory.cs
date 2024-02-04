@@ -69,8 +69,6 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         AddItemToInventory(new BluePrintItem.Gun());
         AddItemToInventory(new BluePrintItem.Plant());
 
-        AddItemToInventory(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform));
-        AddItemToInventory(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform));
 
     }
 

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public class LevelStationsInteract : MonoBehaviour, IInteractable
+public class LevelStationsInteract : MonoBehaviour, IInteractable, IReacheable
 {
 
     [SerializeField] private GameObject canvas;
@@ -11,6 +12,8 @@ public class LevelStationsInteract : MonoBehaviour, IInteractable
     [SerializeField] private List<GameObject> gameObjects = new List<GameObject>();
 
     [SerializeField] private GameObject lastActive;
+
+    [SerializeField] private Transform reachingTransfrom;
 
     public void EnteredBox()
     {
@@ -65,6 +68,12 @@ public class LevelStationsInteract : MonoBehaviour, IInteractable
         {
             go.SetActive(false);
         }
+    }
+
+    public NavmeshReachableInformation ReachAction()
+    {
+        NavmeshReachableInformation value = new(reachingTransfrom.position, Interact);
+        return value;
     }
     
 }
