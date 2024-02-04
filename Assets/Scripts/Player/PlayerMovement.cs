@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private NavMeshAgent agent;
     private Coroutine currentPendingCoroutine;
     private NavMeshPath path;
+
+    private Action reachingAction;
 
 
     private void Start()
@@ -32,17 +35,37 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void MovetoTarget(Vector2 pos)
+    public void MovetoTarget(NavmeshReachableInformation info)
     {
-        bool isReachable = agent.CalculatePath(pos, path);
+        Vector2 dis = info.GetDistination();
+        bool isReachable = agent.CalculatePath(dis, path);
         if (isReachable && path.status == NavMeshPathStatus.PathComplete)
         {
             if (currentPendingCoroutine != null)
             {
                 StopCoroutine(currentPendingCoroutine);
             }
-            agent.SetDestination(pos);
-            currentPendingCoroutine = StartCoroutine(Moveto(pos));
+            agent.SetDestination(dis);
+            currentPendingCoroutine = StartCoroutine(Moveto(dis));
+            reachingAction = info.GetCallingMethod();
+        }
+        else
+        {
+            Debug.Log("Cant reach the target");
+            return;
+        }
+    }
+    public void MovetoTarget(Vector2 target)
+    {
+        bool isReachable = agent.CalculatePath(target, path);
+        if (isReachable && path.status == NavMeshPathStatus.PathComplete)
+        {
+            if (currentPendingCoroutine != null)
+            {
+                StopCoroutine(currentPendingCoroutine);
+            }
+            agent.SetDestination(target);
+            currentPendingCoroutine = StartCoroutine(Moveto(target));
         }
         else
         {
@@ -71,7 +94,8 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("reached");
         if (currentPendingCoroutine != null)
         {
-            StopCoroutine(currentPendingCoroutine);            
+            StopCoroutine(currentPendingCoroutine);
+            reachingAction();
         }
     }
 
