@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(OrderPost))]
 public class OrderPostHealth : MonoBehaviour, IRepairable
@@ -18,6 +19,8 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     private OrderPost orderPostScript;
     private int currentHealth;
 
+    private OrderPostHealthImageSetter healthImageSetter;
+    [SerializeField] private SpriteRenderer image;
 
     private HealthRecoverReceipe[] recoverReceipeList;
 
@@ -26,6 +29,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     private void Start()
     {
+        healthImageSetter = GetComponent<OrderPostHealthImageSetter>();
         orderPostScript = GetComponent<OrderPost>();
         Init();
         TakeDamage();
@@ -82,6 +86,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         }
         Debug.Log($"Repaired and current health is {currentHealth}");
         TurnUIUXOn();
+        SetHealthImage();
         return true;
     }
 
@@ -94,6 +99,12 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         {
             PostZeroHealth();
         }
+        SetHealthImage();
+    }
+
+    private void SetHealthImage()
+    {
+        image.sprite = healthImageSetter.SetHealthImage(currentHealth);
     }
 
     private void PostZeroHealth()
@@ -105,7 +116,8 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         healthUnlocked = 3;
         currentHealth = healthUnlocked;
         recoverReceipeList = new HealthRecoverReceipe[maxHealth];
-        for(int i = 0; i < maxHealth; i++)
+        SetHealthImage();
+        for (int i = 0; i < maxHealth; i++)
         {
             recoverReceipeList[i] = new HealthRecoverReceipe(i);
         }
