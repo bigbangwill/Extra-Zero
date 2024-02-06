@@ -17,7 +17,8 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     #endregion
 
     [SerializeField] private List<OrderPostHealth> repairables = new();
- 
+
+    private IRepairable currentRepairable;
 
 
     private OverlayState currentState;
@@ -88,24 +89,31 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     }
 
 
-
+    private void CallRepair()
+    {        
+        if (currentRepairable != null && currentRepairable.Repair())
+        {
+            UsedItemEvent.Invoke();
+        }
+    }
 
 
 
 
     private bool RepairRaycast(RaycastHit2D[] hits)
     {
+        currentRepairable = null;
         foreach (RaycastHit2D hit in hits)
         {
             IRepairable repairable = hit.collider.GetComponent<IRepairable>();
             if (repairable != null)
             {
+                currentRepairable = repairable;
                 if (repairable.NeedsRepair())
                 {
-                    if (repairable.Repair())
-                    {
-                        UsedItemEvent.Invoke();
-                    }
+                    NavmeshReachableInformation navInfo = new(repairable.GetReachingTransfrom().position,
+                        CallRepair);
+                    PlayerMovement.Instance.MovetoTarget(navInfo);
                 }
                 return true;
             }

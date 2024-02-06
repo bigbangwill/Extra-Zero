@@ -15,6 +15,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     private int healthUnlocked;
 
+    private OrderPost orderPostScript;
     private int currentHealth;
 
 
@@ -25,6 +26,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     private void Start()
     {
+        orderPostScript = GetComponent<OrderPost>();
         Init();
         TakeDamage();
         TakeDamage();
@@ -122,6 +124,11 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
             healingBoarder.SetActive(false);
         if(noHealingBoarder.activeSelf)
             noHealingBoarder.SetActive(false);
+    }
+
+    public Transform GetReachingTransfrom()
+    {
+        return orderPostScript.GetReachingTransfrom();
     }
 }
 

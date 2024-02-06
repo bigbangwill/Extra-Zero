@@ -4,8 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : SingletonComponent<PlayerMovement>
 {
+
+    #region Sinleton
+    public static PlayerMovement Instance
+    {
+        get { return ((PlayerMovement) _Instance); }
+        set { _Instance = value; }
+    }
+    #endregion
+
 
     [SerializeField] private float movementSpeed;
 
@@ -15,8 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine currentPendingCoroutine;
     private NavMeshPath path;
 
-    private Action reachingAction;
-
+    private NavmeshReachableInformation currentNavInfo;
 
     private void Start()
     {
@@ -47,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             }
             agent.SetDestination(dis);
             currentPendingCoroutine = StartCoroutine(Moveto(dis));
-            reachingAction = info.GetCallingMethod();
+            currentNavInfo = info;
         }
         else
         {
@@ -57,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void MovetoTarget(Vector2 target)
     {
+        currentNavInfo = null;
         bool isReachable = agent.CalculatePath(target, path);
         if (isReachable && path.status == NavMeshPathStatus.PathComplete)
         {
@@ -95,7 +104,11 @@ public class PlayerMovement : MonoBehaviour
         if (currentPendingCoroutine != null)
         {
             StopCoroutine(currentPendingCoroutine);
-            reachingAction();
+
+            if (currentNavInfo != null)
+            {
+                currentNavInfo.GetCallingMethod().Invoke();
+            }
         }
     }
 

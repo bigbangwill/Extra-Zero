@@ -194,6 +194,10 @@ public class OrderManager : SingletonComponent<OrderManager>
         {
             StartNewWave();
         }
+        if (GUI.Button(new Rect(300, 10, 150, 100), "Add Hammer"))
+        {
+            PlayerInventory.Instance.HaveEmptySlot(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform),true);
+        }
     }
 
 }

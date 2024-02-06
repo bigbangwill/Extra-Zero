@@ -75,5 +75,10 @@ public class LevelStationsInteract : MonoBehaviour, IInteractable, IReacheable
         NavmeshReachableInformation value = new(reachingTransfrom.position, Interact);
         return value;
     }
-    
+
+    public NavmeshReachableInformation ReachAction(ItemBehaviour item, int slotnum)
+    {
+        Debug.LogWarning("Check Here asap");
+        return null;
+    }
 }

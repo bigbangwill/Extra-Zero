@@ -21,6 +21,7 @@ public class OrderPost : MonoBehaviour
 
     [SerializeField] private List<Transform> quePosList = new();
     [SerializeField] private GameObject walkingOrderPrefab;
+    [SerializeField] private Transform reaching;
 
     private List<WalkingOrder> walkingOrdersList = new();
 
@@ -198,4 +199,8 @@ public class OrderPost : MonoBehaviour
 
     }
 
+    public Transform GetReachingTransfrom()
+    {
+        return reaching;
+    }
 }

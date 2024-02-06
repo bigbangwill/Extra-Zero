@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class NavmeshReachableInformation
 {
     private Vector2 navmeshDistination;
     private Action callingMethod;
+
 
     public NavmeshReachableInformation(Vector2 navmeshDistination, Action callingMethod)
     {
@@ -20,8 +22,9 @@ public class NavmeshReachableInformation
     }
 
     public Action GetCallingMethod()
-    {
+    {        
         return callingMethod;
     }
+
 
 }

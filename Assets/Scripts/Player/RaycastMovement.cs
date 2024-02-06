@@ -22,8 +22,6 @@ public class RaycastMovement : MonoBehaviour, IPointerDownHandler
             {
                 NavmeshReachableInformation navInfo = reacheable.ReachAction();
                 playerMovementScript.MovetoTarget(navInfo);
-                navInfo.GetCallingMethod();
-                Debug.Log("YAHOOOOOOOO");
                 return;
             }
         }

@@ -10,6 +10,7 @@ public class BoundingBoxTrigger : MonoBehaviour
     {
         interactable = GetComponentInParent<IInteractable>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -25,6 +26,4 @@ public class BoundingBoxTrigger : MonoBehaviour
             interactable.TriggerExit();
         }
     }
-
-
 }

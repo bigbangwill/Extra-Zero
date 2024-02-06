@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using System;
 
 public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
@@ -19,6 +20,8 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private bool isStarted = false;
 
     private ItemBehaviour itemSlot;
+
+    private OrderPost currentPost;
 
     #region Graphic raycast related
     private Vector2 startPos;
@@ -165,6 +168,8 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         }
     }
 
+    
+
     private bool RaycastWorldSpace()
     {
         RaycastHit2D[] hit = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition),Vector2.zero);
@@ -173,11 +178,24 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             GameObject go = n.collider.gameObject;
             if (go.CompareTag("Order Post"))
             {
-                go.GetComponent<OrderPost>().InsertingItem(itemSlot, slotNumber);
+                //go.GetComponent<OrderPost>().InsertingItem(itemSlot, slotNumber);
+                currentPost = go.GetComponent<OrderPost>();
+                NavmeshReachableInformation navInfo = new(currentPost.GetReachingTransfrom().position, ReachedInserting);
+                PlayerMovement.Instance.MovetoTarget(navInfo);
                 return true;
             }
         }
         return false;
+    }
+
+    private void ReachedInserting()
+    {
+        if(currentPost != null)
+        {
+            currentPost.InsertingItem(itemSlot, slotNumber);
+        }
+        currentPost = null;
+
     }
 
     /// <summary>
