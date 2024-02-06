@@ -11,6 +11,8 @@ public class WalkingOrder : MonoBehaviour
     private float speed;
     private bool shouldMove;
 
+    private bool isOver = false;
+
 
     private void Update()
     {
@@ -21,6 +23,15 @@ public class WalkingOrder : MonoBehaviour
             {
                 shouldMove = false;
                 HitTargetPosition();
+            }
+        }
+        else if (isOver)
+        {
+            transform.position = Vector2.Lerp(transform.position, targetPos, speed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, targetPos) < 0.5f)
+            {
+                shouldMove = false;
+                Destroy(gameObject);
             }
         }
     }
@@ -44,6 +55,13 @@ public class WalkingOrder : MonoBehaviour
     public Order GetHoldingOrder()
     {
         return holdingOrder;
+    }
+
+    public void WalkToDeath(Vector2 pos)
+    {
+        isOver = true;
+        shouldMove = false;
+        targetPos = pos;
     }
 
     private void HitTargetPosition()

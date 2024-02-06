@@ -21,7 +21,11 @@ public class OrderPost : MonoBehaviour
 
     [SerializeField] private List<Transform> quePosList = new();
     [SerializeField] private GameObject walkingOrderPrefab;
+    [SerializeField] private Transform WalkingOrderDeathSpot;
+
+
     [SerializeField] private Transform reaching;
+
 
     private List<WalkingOrder> walkingOrdersList = new();
 
@@ -148,10 +152,9 @@ public class OrderPost : MonoBehaviour
         isReady = false;
         currentTimer = 0;
         WalkingOrder targetWalkingOrder = walkingOrdersList[0];
-        GameObject targetGO = targetWalkingOrder.gameObject;
         OrderManager.Instance.FinishedWalkingOrder(targetWalkingOrder);
         walkingOrdersList.RemoveAt(0);
-        Destroy(targetGO);
+        targetWalkingOrder.WalkToDeath(WalkingOrderDeathSpot.position);
         if(walkingOrdersList.Count > 0 )
         {
             MoveNext();

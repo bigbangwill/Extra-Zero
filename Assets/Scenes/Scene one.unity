@@ -7149,6 +7149,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &515492541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 515492542}
+  m_Layer: 0
+  m_Name: Walking Order Deathspot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &515492542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515492541}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.86, y: -1.98, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1250287114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &516470096
 GameObject:
   m_ObjectHideFlags: 0
@@ -12110,6 +12141,7 @@ Transform:
   - {fileID: 1320209021}
   - {fileID: 547019942}
   - {fileID: 408104649}
+  - {fileID: 1409883516}
   m_Father: {fileID: 658527922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &794033211
@@ -12135,6 +12167,7 @@ MonoBehaviour:
   - {fileID: 29284082}
   - {fileID: 1547428991}
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
+  WalkingOrderDeathSpot: {fileID: 1409883516}
   reaching: {fileID: 408104649}
   orderMaxTimer: 10
 --- !u!61 &794033212
@@ -14224,6 +14257,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935568919}
   m_CullTransparentMesh: 1
+--- !u!1 &938930357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 938930358}
+  m_Layer: 0
+  m_Name: Walking Order Deathspot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &938930358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938930357}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.33, y: -1.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2105670494}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &940721698
 GameObject:
   m_ObjectHideFlags: 0
@@ -18319,6 +18383,7 @@ MonoBehaviour:
   - {fileID: 783221435}
   - {fileID: 1629669959}
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
+  WalkingOrderDeathSpot: {fileID: 515492542}
   reaching: {fileID: 1300572579}
   orderMaxTimer: 10
 --- !u!4 &1250287114
@@ -18338,6 +18403,7 @@ Transform:
   - {fileID: 909857620}
   - {fileID: 562472755}
   - {fileID: 1300572579}
+  - {fileID: 515492542}
   m_Father: {fileID: 658527922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1250287115
@@ -20441,6 +20507,7 @@ MonoBehaviour:
   - {fileID: 827660660}
   - {fileID: 1138690146}
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
+  WalkingOrderDeathSpot: {fileID: 1554627632}
   reaching: {fileID: 362425601}
   orderMaxTimer: 10
 --- !u!4 &1393865459
@@ -20460,6 +20527,7 @@ Transform:
   - {fileID: 234097835}
   - {fileID: 711779857}
   - {fileID: 362425601}
+  - {fileID: 1554627632}
   m_Father: {fileID: 658527922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1393865460
@@ -20709,6 +20777,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404674758}
   m_CullTransparentMesh: 1
+--- !u!1 &1409883515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1409883516}
+  m_Layer: 0
+  m_Name: Walking Order Deathspot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1409883516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409883515}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.38, y: 1.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 794033210}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1410820348
 GameObject:
   m_ObjectHideFlags: 0
@@ -22988,6 +23087,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 547019942}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1554627631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1554627632}
+  m_Layer: 0
+  m_Name: Walking Order Deathspot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1554627632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554627631}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.38, y: -1.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1393865459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1558707961
 GameObject:
@@ -31248,6 +31378,7 @@ MonoBehaviour:
   - {fileID: 254049739}
   - {fileID: 175086627}
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
+  WalkingOrderDeathSpot: {fileID: 938930358}
   reaching: {fileID: 1938242284}
   orderMaxTimer: 10
 --- !u!4 &2105670494
@@ -31267,6 +31398,7 @@ Transform:
   - {fileID: 1323699371}
   - {fileID: 983227539}
   - {fileID: 1938242284}
+  - {fileID: 938930358}
   m_Father: {fileID: 658527922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2105670495
