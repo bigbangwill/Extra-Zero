@@ -44,6 +44,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
         m_EventSystem = EventSystem.current;
         m_GraphicRaycaster = GetComponentInParents<GraphicRaycaster>();
+
     }
 
     /// <summary>

@@ -398,6 +398,8 @@ public abstract class CraftedItem : ItemBehaviour
 
 public abstract class MaterialItem : ItemBehaviour
 {
+    private int itemLevel;
+
     // Gets called from the child class to set every related infomation and load icon
     public override void Load()
     {
@@ -407,6 +409,8 @@ public abstract class MaterialItem : ItemBehaviour
         specificAddress = "Materials/" + specificName + "[Sprite]";
         is_Stackable = true;
         itemName = "Materials";
+        SetItemLevel();
+        GetItemLevel();
         LoadIcon();
     }
 
@@ -430,6 +434,14 @@ public abstract class MaterialItem : ItemBehaviour
             itemName,
             specificName,
             specificAddress);
+    }
+
+    public abstract void SetItemLevel();
+
+    public int GetItemLevel()
+    {
+        Debug.Log(itemLevel);
+        return itemLevel;
     }
 
     public override void Use()
@@ -458,6 +470,11 @@ public abstract class MaterialItem : ItemBehaviour
             currentStack = count;
             Load();
         }
+
+        public override void SetItemLevel()
+        {
+            itemLevel = 1;
+        }
     }
 
     public class Ceramic : MaterialItem
@@ -481,6 +498,10 @@ public abstract class MaterialItem : ItemBehaviour
             Load();
         }
 
+        public override void SetItemLevel()
+        {
+            itemLevel = 1;
+        }
     }
 
     public class TitaniumAlloy : MaterialItem
@@ -504,7 +525,10 @@ public abstract class MaterialItem : ItemBehaviour
             currentStack = count;
             Load();
         }
-
+        public override void SetItemLevel()
+        {
+            itemLevel = 2;
+        }
     }
 
     public class AluminumAlloy : MaterialItem
@@ -529,7 +553,10 @@ public abstract class MaterialItem : ItemBehaviour
             currentStack = count;
             Load();
         }
-
+        public override void SetItemLevel()
+        {
+            itemLevel = 2;
+        }
     }
 
     public class StainlessSteel : MaterialItem
@@ -552,6 +579,10 @@ public abstract class MaterialItem : ItemBehaviour
             specificName = "Stainless Steel";
             currentStack = count;
             Load();
+        }
+        public override void SetItemLevel()
+        {
+            itemLevel = 3;
         }
     }
 }
