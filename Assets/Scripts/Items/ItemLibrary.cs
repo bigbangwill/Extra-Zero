@@ -1,16 +1,8 @@
-using NUnit.Framework.Constraints;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Properties;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Assertions.Must;
-using UnityEngine.InputSystem.Utilities;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceProviders.Simulation;
-using UnityEngine.UIElements;
-using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public delegate void UseDelegate();
 
@@ -440,7 +432,6 @@ public abstract class MaterialItem : ItemBehaviour
 
     public int GetItemLevel()
     {
-        Debug.Log(itemLevel);
         return itemLevel;
     }
 

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Wave Effects
+  m_EditorClassIdentifier: 
+  m_GroupName: Wave Effects
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 06dfadf357248de42bfc1424317f60d7
+  m_SerializeEntries:
+  - m_GUID: 4616bb91d929bc1458ef1a3d1055b5ab
+    m_Address: Wave Effects/BadEffectsIconSheet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bda1613139095274387d0f795467c737
+    m_Address: Wave Effects/GoodEffectsIconSheet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09fb969d4a3c71f46b917ff88940f8e2
+    m_Address: Assets/Texture/WaveEffects/_6f973afa-cf9a-4be9-aa9a-ac386dd77978.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1cf13c0eb2535548b54ab24514f3da2
+    m_Address: Assets/Texture/WaveEffects/_8a23abf8-2de4-44c7-860a-49b3a6345497.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bccd27d39a26f7541ad18ef29cbbecc8, type: 2}
+    - {fileID: 11400000, guid: 0ee8a9a99fb337345bbf373169c224d3, type: 2}
