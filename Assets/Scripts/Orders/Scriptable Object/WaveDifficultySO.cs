@@ -28,6 +28,9 @@ public class WaveDifficultySO : ScriptableObject
     [SerializeField] private float timerOfOneWaveHardness;
     [SerializeField] private float orderFulfilTimerHardness;
 
+    [Header("Appreance!")]
+    [SerializeField] private Sprite waveIcon;
+
 
     public int GetOrderCombination()
     {
@@ -73,6 +76,11 @@ public class WaveDifficultySO : ScriptableObject
     public float GetOrderFulfillTimer(int currentWaveNumber)
     {
         return orderFulfillTimer - orderFulfilTimerHardness * currentWaveNumber;
+    }
+
+    public Sprite GetWaveIcon()
+    {
+        return waveIcon;
     }
 
 }

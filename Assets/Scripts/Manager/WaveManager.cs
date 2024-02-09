@@ -84,6 +84,15 @@ public class WaveManager : SingletonComponent<WaveManager>
         }
     }
 
+    //
+    //
+    //
+    //
+    public void SelectRandomEffectAndWave()
+    {
+
+    }
+
     private WaveDifficultySO GetRandomNextWave()
     {
         WaveDifficultySO targetWave = waveDifficultyList[UnityEngine.Random.Range(0, waveDifficultyList.Count)];
