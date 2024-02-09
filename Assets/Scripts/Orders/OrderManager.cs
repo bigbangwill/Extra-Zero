@@ -62,7 +62,7 @@ public class OrderManager : SingletonComponent<OrderManager>
             {
                 FinishWave();
             }
-            else if (waveCurrentTimer >= (currentWaveDifficulty.GetOrderFrequency(currentWaveNumber) * walkingOrdersSummoned))
+            else if (waveCurrentTimer >= (currentWaveDifficulty.GetOrderFrequency() * walkingOrdersSummoned))
             {
                 SummonWalkingOrder();
             }
@@ -84,14 +84,14 @@ public class OrderManager : SingletonComponent<OrderManager>
         nextWaveDifficulty = waveDifficultyList[UnityEngine.Random.Range(0, waveDifficultyList.Count)];
     }
 
-    public void StartNewWave()
+    public void StartNewWave(WaveDifficultySO waveDifficulty)
     {
         Debug.Log("It's Day Time");
-        currentWaveDifficulty = nextWaveDifficulty;
+        currentWaveDifficulty = waveDifficulty;
         SetNextWaveDifficulty();
         currentWaveNumber++;
         waveCurrentTimer = 0;
-        currentWaveMaxTimer = currentWaveDifficulty.GetTimerOfWave(currentWaveNumber);
+        currentWaveMaxTimer = currentWaveDifficulty.GetTimerOfWave();
         isWaveSpawnTime = true;
         walkingOrdersSummoned = 0;
         SummonWalkingOrder();
@@ -106,7 +106,7 @@ public class OrderManager : SingletonComponent<OrderManager>
         WalkingOrder targetOrder = postList[randomPost].CreateWalkingOrder(
             orderCombination,
             walkingSpeed,
-            currentWaveDifficulty.GetOrderFulfillTimer(currentWaveNumber));
+            currentWaveDifficulty.GetOrderFulfillTimer());
         activeWalkingOrders.Add(targetOrder);
         walkingOrdersSummoned++;
     }
@@ -132,7 +132,11 @@ public class OrderManager : SingletonComponent<OrderManager>
     private void FinishNightTime()
     {
         isNightTime = false;
-        StartNewWave();
+        //
+        //
+        //
+        //
+        //StartNewWave();
     }
 
     public void FinishedWalkingOrder(WalkingOrder walkingOrder)
@@ -190,11 +194,7 @@ public class OrderManager : SingletonComponent<OrderManager>
 
     private void OnGUI()
     {
-        if (GUI.Button(new Rect(10, 10, 150, 100), "StartWave"))
-        {
-            StartNewWave();
-        }
-        if (GUI.Button(new Rect(300, 10, 150, 100), "Add Hammer"))
+        if (GUI.Button(new Rect(10, 10, 150, 100), "Add Hammer"))
         {
             PlayerInventory.Instance.HaveEmptySlot(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform),true);
         }

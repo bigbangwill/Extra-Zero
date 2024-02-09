@@ -4,82 +4,94 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
+using static WaveManager;
+using Unity.Mathematics;
+using UnityEngine.UI;
+using TMPro;
 
 public class WaveOptionUI : MonoBehaviour, IPointerDownHandler
 {
-    [SerializeField] private Sprite harderIcon;
-    [SerializeField] private string harderDescription;
-    [SerializeField] private Sprite waveIcon;
-    [SerializeField] private string waveDescription;
-    [SerializeField] private Sprite rewardIcon;
-    [SerializeField] private string rewardDescription;
+    [SerializeField] private Image harderIcon;
+    [SerializeField] private TextMeshProUGUI harderDescription;
+    [SerializeField] private Image waveIcon;
+    [SerializeField] private TextMeshProUGUI waveDescription;
+    [SerializeField] private Image rewardIcon;
+    [SerializeField] private TextMeshProUGUI rewardDescription;
+
+    [SerializeField] private GameObject markedImage;
+
+    private WaveChosingUI relatedCanvas;
 
 
+    private List<PermanentWaveEffectLibrary> waveEffectList = new(); 
 
-    private List<Action> relatedImpactsList = new(); 
 
-
-    public void SetRelatedImpactLists(params Action[] actions)
+    public void SetRelatedEffectsLists(params PermanentWaveEffectLibrary[] effects)
     {
-        foreach (Action impact in actions)
+        foreach (PermanentWaveEffectLibrary effect in effects)
         {
-            relatedImpactsList.Add(impact);
+            waveEffectList.Add(effect);
         }
+    }
+
+    public void SetWaveChosingUI(WaveChosingUI canvas)
+    {
+        relatedCanvas = canvas;
     }
 
     public void ExecuteImpact()
     {
-        foreach (Action impact in relatedImpactsList)
+        foreach (PermanentWaveEffectLibrary effect in waveEffectList)
         {
-            impact.Invoke();
+            effect.ImpactEffect();
         }
     }
 
 
     public void SetHarderIcon(Sprite icon)
     {
-        harderIcon = icon;
+        harderIcon.sprite = icon;
     }
 
     public void SetHarderDescription(string description)
     {
-        harderDescription = description;
+        harderDescription.text = description;
     }
 
 
     public void SetWaveIcon(Sprite icon)
     {
-        waveIcon = icon;
+        waveIcon.sprite = icon;
     }
 
     public void SetWaveDescription(string description)
     {
-        waveDescription = description;
+        waveDescription.text = description;
     }
 
     public void SetRewardIcon(Sprite icon)
     {
-        rewardIcon = icon;
+        rewardIcon.sprite = icon;
     }
 
     public void SetRewardDescription(string description)
     {
-        rewardDescription = description;
+        rewardDescription.text = description;
     }
 
     public void SelectThisOption()
     {
-
+        markedImage.SetActive(true);
     }
 
     public void DeselectThisOption()
     {
-
+        markedImage.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        relatedCanvas.SetSelectedWaveOption(this);
     }
 
 

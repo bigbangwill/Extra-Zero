@@ -7,20 +7,15 @@ using UnityEngine;
 public class WaveDifficultySO : ScriptableObject
 {
 
-    [SerializeField] private int orderCombination;
-    [SerializeField] private int combinationRandomness;
-
-    [SerializeField] private float orderFrequency;
-    [SerializeField] private float frequencyRandomness;
-
-    [SerializeField] private float timerOfOneWave;
-    [SerializeField] private float frequencyOfTimer;
-
-    [SerializeField] private float timeOfAFullCycle;
-
-    [SerializeField] private float walkingOrderSpeed;
-
-    [SerializeField] private float orderFulfillTimer;
+    public int orderCombination;
+    public int combinationRandomness;
+    public float orderFrequency;
+    public float frequencyRandomness;
+    public float timerOfOneWave;
+    public float frequencyOfTimer;
+    public float timeOfAFullCycle;
+    public float walkingOrderSpeed;
+    public float orderFulfillTimer;
 
 
     [Header("In-Game wave harder")]
@@ -30,7 +25,6 @@ public class WaveDifficultySO : ScriptableObject
 
     [Header("Appreance!")]
     [SerializeField] private Sprite waveIcon;
-
 
     public int GetOrderCombination()
     {
@@ -42,20 +36,20 @@ public class WaveDifficultySO : ScriptableObject
         return value;
     }
 
-    public float GetOrderFrequency(int currentWaveNumber)
+    public float GetOrderFrequency()
     {
         float minValue = orderFrequency - frequencyRandomness;
         float maxValue = orderFrequency + frequencyOfTimer;
         float value = Random.Range(minValue, maxValue);
-        return value - orderFrequencyHardness * currentWaveNumber;
+        return value;
     }
 
-    public float GetTimerOfWave(int currentWaveNumber)
+    public float GetTimerOfWave()
     {
         float minValue = timerOfOneWave - frequencyOfTimer;
         float maxValue = timerOfOneWave + frequencyOfTimer;
         float value = Random.Range(minValue, maxValue);
-        return value - timerOfOneWaveHardness * currentWaveNumber;
+        return value;
     }
 
     public float GetTimeOfAFullCycle()
@@ -73,9 +67,9 @@ public class WaveDifficultySO : ScriptableObject
         return walkingOrderSpeed;
     }
 
-    public float GetOrderFulfillTimer(int currentWaveNumber)
+    public float GetOrderFulfillTimer()
     {
-        return orderFulfillTimer - orderFulfilTimerHardness * currentWaveNumber;
+        return orderFulfillTimer;
     }
 
     public Sprite GetWaveIcon()

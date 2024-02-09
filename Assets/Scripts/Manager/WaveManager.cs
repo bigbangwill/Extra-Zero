@@ -7,6 +7,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using System;
 using System.Reflection;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class WaveManager : SingletonComponent<WaveManager>
 {
@@ -18,10 +19,14 @@ public class WaveManager : SingletonComponent<WaveManager>
     }
     #endregion
 
+    [SerializeField] private int totalWaveOptionCount;
+    
     [SerializeField] private List<WaveDifficultySO> waveDifficultyList = new();
 
-    private List<PermanentWaveEffectLibrary.HarderSideEffects> hardEffectList = new();
-    private List<PermanentWaveEffectLibrary.RewardSideEffects> rewardEffectList = new();
+    [SerializeField] private WaveChosingUI chosingUI;
+
+    private List<HarderSideEffects> hardEffectList = new();
+    private List<RewardSideEffects> rewardEffectList = new();
 
     #region Bad Side Multiplier
     protected int orderCombinationEffectsApplied;
@@ -44,25 +49,26 @@ public class WaveManager : SingletonComponent<WaveManager>
     private void Start()
     {
         Init();
+        chosingUI.CreateWaveOptionUI();
     }
 
     private void Init()
     {
-        List<Type> childTypesList = Assembly.GetAssembly(typeof(PermanentWaveEffectLibrary.HarderSideEffects))
+        List<Type> childTypesList = Assembly.GetAssembly(typeof(HarderSideEffects))
         .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract 
-        && TheType.IsSubclassOf(typeof(PermanentWaveEffectLibrary.HarderSideEffects))).ToList();
+        && TheType.IsSubclassOf(typeof(HarderSideEffects))).ToList();
         foreach (Type childType in childTypesList)
         {
-            PermanentWaveEffectLibrary.HarderSideEffects targetEffect = (PermanentWaveEffectLibrary.HarderSideEffects)Activator.CreateInstance(childType);
+            HarderSideEffects targetEffect = (HarderSideEffects)Activator.CreateInstance(childType);
             hardEffectList.Add(targetEffect);
         }
         childTypesList.Clear();
-        childTypesList = Assembly.GetAssembly(typeof(PermanentWaveEffectLibrary.RewardSideEffects))
+        childTypesList = Assembly.GetAssembly(typeof(RewardSideEffects))
         .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract
-        && TheType.IsSubclassOf(typeof(PermanentWaveEffectLibrary.RewardSideEffects))).ToList();
+        && TheType.IsSubclassOf(typeof(RewardSideEffects))).ToList();
         foreach (Type childType in childTypesList)
         {
-            PermanentWaveEffectLibrary.RewardSideEffects targetEffect = (PermanentWaveEffectLibrary.RewardSideEffects)Activator.CreateInstance(childType);
+            RewardSideEffects targetEffect = (RewardSideEffects)Activator.CreateInstance(childType);
             rewardEffectList.Add(targetEffect);
         }
 
@@ -73,7 +79,6 @@ public class WaveManager : SingletonComponent<WaveManager>
 
     public WaveDifficultySO GetNextWave()
     {
-
         if (selectedWave != null)
         {
             return selectedWave;
@@ -84,13 +89,27 @@ public class WaveManager : SingletonComponent<WaveManager>
         }
     }
 
-    //
-    //
-    //
-    //
-    public void SelectRandomEffectAndWave()
+    public HarderSideEffects GetRandomHarderEffect()
     {
+        int random = UnityEngine.Random.Range(0, hardEffectList.Count);
+        Debug.Log(random + " RANDOM HARDER");
+        return hardEffectList[random];
+    }
 
+    public RewardSideEffects GetRandomRewardEffect()
+    {
+        int random = UnityEngine.Random.Range(0, rewardEffectList.Count);
+        Debug.Log(random + " RANDOM Reward");
+        return rewardEffectList[random];
+    }
+
+    
+    public void ExecuteRandomEffectsAndWave()
+    {
+        WaveDifficultySO targetWave = waveDifficultyList[UnityEngine.Random.Range(0, waveDifficultyList.Count)];
+        GetRandomHarderEffect().ImpactEffect();
+        GetRandomRewardEffect().ImpactEffect();
+        OrderManager.Instance.StartNewWave(ApplyCurrentEffectsToTheWave(targetWave));
     }
 
     private WaveDifficultySO GetRandomNextWave()
@@ -99,12 +118,30 @@ public class WaveManager : SingletonComponent<WaveManager>
         return targetWave;
     }
 
+    public WaveDifficultySO ApplyCurrentEffectsToTheWave(WaveDifficultySO targetedWave)
+    {
+        WaveDifficultySO tweakedWave = Instantiate(targetedWave);
+        tweakedWave.orderCombination = targetedWave.orderCombination + orderCombinationEffectsApplied;
+        tweakedWave.orderFrequency = targetedWave.orderFrequency + orderFrequencyEffectsApplied;
+        tweakedWave.timerOfOneWave = targetedWave.timerOfOneWave + timerOfOneWaveEffectsApplied;
+        tweakedWave.timeOfAFullCycle = targetedWave.timeOfAFullCycle + timerOfAFullCycleEffectsApplied;
+        tweakedWave.walkingOrderSpeed = targetedWave.walkingOrderSpeed + walkingOrderSpeedEffectsApplied;
+        tweakedWave.orderFulfillTimer = targetedWave.orderFulfillTimer + orderFulfillTimerEffectsApplied;
+        return tweakedWave;
+    }
+
+    public int GetTotalWaveOptionCount()
+    {
+        return totalWaveOptionCount;
+    }
+
+
     public abstract class PermanentWaveEffectLibrary
     {
-        private Sprite iconEffect;
-        private string iconAddress;
-        private string description;
-        private string specificName;
+        protected Sprite iconEffect;
+        protected string iconAddress;
+        protected string description;
+        protected string specificName;
 
         protected void LoadIcon()
         {
@@ -133,156 +170,154 @@ public class WaveManager : SingletonComponent<WaveManager>
         }
 
         public abstract void ImpactEffect();
-
-
-        public abstract class HarderSideEffects : PermanentWaveEffectLibrary
+    }
+    public abstract class HarderSideEffects : PermanentWaveEffectLibrary
+    {
+        protected void SetIconAddress()
         {
-            protected void SetIconAddress()
+            iconAddress = $"Wave Effects/BadEffectsIconSheet[{specificName}]";
+        }
+
+        public class IncresedDayTime : HarderSideEffects
+        {
+            public IncresedDayTime()
             {
-                iconAddress = $"Wave Effects/BadEffectsIconSheet[{specificName}]";
+                specificName = "Glow";
+                description = "Increased Day Time";
+                SetIconAddress();
+                LoadIcon();
             }
 
-            public class IncresedDayTime : HarderSideEffects
+            public override void ImpactEffect()
             {
-                public IncresedDayTime()
-                {
-                    specificName = "Glow";
-                    description = "Increased Day Time";
-                    SetIconAddress();
-                    LoadIcon();
-                }
-
-                public override void ImpactEffect()
-                {
-                    Instance.timerOfOneWaveEffectsApplied += 2f;
-                    Debug.Log(GetEffectDescription() + "  2");
-                }
-            }
-
-            public class IncreasedNightTime : HarderSideEffects
-            {
-                public IncreasedNightTime()
-                {
-                    specificName = "Hidle";
-                    description = "Increased Night Time";
-                    SetIconAddress();
-                    LoadIcon();
-                }
-
-                public override void ImpactEffect()
-                {
-                    Instance.timerOfAFullCycleEffectsApplied += 2f;
-                    Debug.Log(GetEffectDescription() + "  2");
-                }
-            }
-
-            public class IncreasedSummonFrequency : HarderSideEffects
-            {
-                public IncreasedSummonFrequency()
-                {
-                    specificName = "Pulse";
-                    description = "Increased Night Time";
-                    SetIconAddress();
-                    LoadIcon();
-                }
-
-                public override void ImpactEffect()
-                {
-                    Instance.orderFrequencyEffectsApplied -= 0.5f;
-                    Debug.Log(GetEffectDescription() + "  0.5f");
-                }
-            }
-
-            public class IncreaseOrderCombinationCount : HarderSideEffects
-            {
-                public IncreaseOrderCombinationCount()
-                {
-                    specificName = "Rotation";
-                    description = "Increased Order Combination Count";
-                    SetIconAddress();
-                    LoadIcon();
-                }
-
-                public override void ImpactEffect()
-                {
-                    Instance.orderCombinationEffectsApplied += 1;
-                    Debug.Log(GetEffectDescription() + "  1");
-                }
+                Instance.timerOfOneWaveEffectsApplied += 2f;
+                Debug.Log(GetEffectDescription() + "  2");
             }
         }
 
-        public abstract class RewardSideEffects : PermanentWaveEffectLibrary
+        public class IncreasedNightTime : HarderSideEffects
         {
-            protected void SetIconAddress()
+            public IncreasedNightTime()
             {
-                iconAddress = $"Wave Effects/GoodEffectsIconSheet[{specificName}]";
-            }
-            public class GainCurrencyOfTitanium : RewardSideEffects
-            {
-                public GainCurrencyOfTitanium()
-                {
-                    specificName = "Glow";
-                    description = "Gained Titanium";
-                    SetIconAddress();
-                    LoadIcon();
-                }
-
-                public override void ImpactEffect()
-                {
-                    PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
-                    Debug.Log(GetEffectDescription() + "  10");
-                }
+                specificName = "Hidle";
+                description = "Increased Night Time";
+                SetIconAddress();
+                LoadIcon();
             }
 
-            public class GainCurrencyOfPlastic : RewardSideEffects
+            public override void ImpactEffect()
             {
-                public GainCurrencyOfPlastic()
-                {
-                    specificName = "Glow2";
-                    description = "Gained Plastic";
-                    SetIconAddress();
-                    LoadIcon();
-                }
+                Instance.timerOfAFullCycleEffectsApplied += 2f;
+                Debug.Log(GetEffectDescription() + "  2");
+            }
+        }
 
-                public override void ImpactEffect()
-                {
-                    PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Plastic(10), true);
-                    Debug.Log(GetEffectDescription() + "  10");
-                }
+        public class IncreasedSummonFrequency : HarderSideEffects
+        {
+            public IncreasedSummonFrequency()
+            {
+                specificName = "Pulse";
+                description = "Increased Night Time";
+                SetIconAddress();
+                LoadIcon();
             }
 
-            public class GainCurrencyOfAluminumAlloy : RewardSideEffects
+            public override void ImpactEffect()
             {
-                public GainCurrencyOfAluminumAlloy()
-                {
-                    specificName = "Motlion";
-                    description = "Gained Almuminum";
-                    SetIconAddress();
-                    LoadIcon();
-                }
+                Instance.orderFrequencyEffectsApplied -= 0.5f;
+                Debug.Log(GetEffectDescription() + "  0.5f");
+            }
+        }
 
-                public override void ImpactEffect()
-                {
-                    PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
-                    Debug.Log(GetEffectDescription() + "  10");
-                }
+        public class IncreaseOrderCombinationCount : HarderSideEffects
+        {
+            public IncreaseOrderCombinationCount()
+            {
+                specificName = "Rotation";
+                description = "Increased Order Combination Count";
+                SetIconAddress();
+                LoadIcon();
             }
 
-            public class GainCurrencyOfCeramic : RewardSideEffects
+            public override void ImpactEffect()
             {
-                public GainCurrencyOfCeramic()
-                {
-                    specificName = "Rotation";
-                    description = "Gained Ceramic";
-                    SetIconAddress();
-                    LoadIcon();
-                }
+                Instance.orderCombinationEffectsApplied += 1;
+                Debug.Log(GetEffectDescription() + "  1");
+            }
+        }
+    }
 
-                public override void ImpactEffect()
-                {
-                    PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
-                    Debug.Log(GetEffectDescription() + "  10");
-                }
+    public abstract class RewardSideEffects : PermanentWaveEffectLibrary
+    {
+        protected void SetIconAddress()
+        {
+            iconAddress = $"Wave Effects/GoodEffectsIconSheet[{specificName}]";
+        }
+        public class GainCurrencyOfTitanium : RewardSideEffects
+        {
+            public GainCurrencyOfTitanium()
+            {
+                specificName = "Glow";
+                description = "Gained Titanium";
+                SetIconAddress();
+                LoadIcon();
+            }
+
+            public override void ImpactEffect()
+            {
+                PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
+                Debug.Log(GetEffectDescription() + "  10");
+            }
+        }
+
+        public class GainCurrencyOfPlastic : RewardSideEffects
+        {
+            public GainCurrencyOfPlastic()
+            {
+                specificName = "Glow2";
+                description = "Gained Plastic";
+                SetIconAddress();
+                LoadIcon();
+            }
+
+            public override void ImpactEffect()
+            {
+                PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Plastic(10), true);
+                Debug.Log(GetEffectDescription() + "  10");
+            }
+        }
+
+        public class GainCurrencyOfAluminumAlloy : RewardSideEffects
+        {
+            public GainCurrencyOfAluminumAlloy()
+            {
+                specificName = "Motlion";
+                description = "Gained Almuminum";
+                SetIconAddress();
+                LoadIcon();
+            }
+
+            public override void ImpactEffect()
+            {
+                PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
+                Debug.Log(GetEffectDescription() + "  10");
+            }
+        }
+
+        public class GainCurrencyOfCeramic : RewardSideEffects
+        {
+            public GainCurrencyOfCeramic()
+            {
+                specificName = "Rotation";
+                description = "Gained Ceramic";
+                SetIconAddress();
+                LoadIcon();
+            }
+
+            public override void ImpactEffect()
+            {
+                PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
+                Debug.Log(GetEffectDescription() + "  10");
             }
         }
     }
