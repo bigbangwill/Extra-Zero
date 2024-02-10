@@ -31,7 +31,13 @@ public class OrderPost : MonoBehaviour
 
     [SerializeField] private float orderMaxTimer;
     private float currentTimer = 0;
+    private OrderPostHealth postHealthScript;
 
+
+    private void Start()
+    {
+        postHealthScript = GetComponent<OrderPostHealth>();
+    }
 
 
     private void Update()
@@ -138,6 +144,7 @@ public class OrderPost : MonoBehaviour
     // to implement later to punish the player!.
     private void CouldnotFullfill()
     {
+        postHealthScript.TakeDamage();
         postUI.SetUnfullfilledOrderImage(currentOrder);
         //Punish Here.
         

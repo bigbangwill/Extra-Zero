@@ -51,6 +51,7 @@ public class WaveManager : SingletonComponent<WaveManager>
         Init();
     }
 
+    // To create every existed effects and add them to related list
     private void Init()
     {
         List<Type> childTypesList = Assembly.GetAssembly(typeof(HarderSideEffects))
@@ -75,19 +76,10 @@ public class WaveManager : SingletonComponent<WaveManager>
         Debug.Log(rewardEffectList.Count);
     }
 
-
-    public WaveDifficultySO GetNextWave()
-    {
-        if (selectedWave != null)
-        {
-            return selectedWave;
-        }
-        else
-        {
-            return GetRandomNextWave();
-        }
-    }
-
+    /// <summary>
+    /// To get a random harder effect out of the list.
+    /// </summary>
+    /// <returns></returns>
     public HarderSideEffects GetRandomHarderEffect()
     {
         int random = UnityEngine.Random.Range(0, hardEffectList.Count);
@@ -95,6 +87,10 @@ public class WaveManager : SingletonComponent<WaveManager>
         return hardEffectList[random];
     }
 
+    /// <summary>
+    /// To get a random reward effect out of the list
+    /// </summary>
+    /// <returns></returns>
     public RewardSideEffects GetRandomRewardEffect()
     {
         int random = UnityEngine.Random.Range(0, rewardEffectList.Count);
@@ -102,7 +98,9 @@ public class WaveManager : SingletonComponent<WaveManager>
         return rewardEffectList[random];
     }
 
-    
+    /// <summary>
+    /// Called when no wave option is chosen and a random one gets chosen here.
+    /// </summary>
     public void ExecuteRandomEffectsAndWave()
     {
         WaveDifficultySO targetWave = waveDifficultyList[UnityEngine.Random.Range(0, waveDifficultyList.Count)];
@@ -111,24 +109,37 @@ public class WaveManager : SingletonComponent<WaveManager>
         OrderManager.Instance.StartNewWave(ApplyCurrentEffectsToTheWave(targetWave));
     }
 
+    /// <summary>
+    /// To get random wave from the list that is inside wave manager script
+    /// </summary>
+    /// <returns></returns>
     public WaveDifficultySO GetRandomNextWave()
     {
         WaveDifficultySO targetWave = waveDifficultyList[UnityEngine.Random.Range(0, waveDifficultyList.Count)];
         return targetWave;
     }
 
+    /// <summary>
+    /// The return of this method is ready to be fed in to the order manager as the tweaked wave
+    /// </summary>
+    /// <param name="targetedWave"></param>
+    /// <returns></returns>
     public WaveDifficultySO ApplyCurrentEffectsToTheWave(WaveDifficultySO targetedWave)
     {
         WaveDifficultySO tweakedWave = Instantiate(targetedWave);
         tweakedWave.orderCombination = targetedWave.orderCombination + orderCombinationEffectsApplied;
         tweakedWave.orderFrequency = targetedWave.orderFrequency + orderFrequencyEffectsApplied;
         tweakedWave.timerOfOneWave = targetedWave.timerOfOneWave + timerOfOneWaveEffectsApplied;
-        tweakedWave.timeOfAFullCycle = targetedWave.timeOfAFullCycle + timerOfAFullCycleEffectsApplied;
+        tweakedWave.timerOfNightTime = targetedWave.timerOfNightTime + timerOfAFullCycleEffectsApplied;
         tweakedWave.walkingOrderSpeed = targetedWave.walkingOrderSpeed + walkingOrderSpeedEffectsApplied;
         tweakedWave.orderFulfillTimer = targetedWave.orderFulfillTimer + orderFulfillTimerEffectsApplied;
         return tweakedWave;
     }
 
+    /// <summary>
+    /// To get the number of total waveoptions the choosing canvas should instantiate.
+    /// </summary>
+    /// <returns></returns>
     public int GetTotalWaveOptionCount()
     {
         return totalWaveOptionCount;
@@ -216,7 +227,7 @@ public class WaveManager : SingletonComponent<WaveManager>
             public IncreasedSummonFrequency()
             {
                 specificName = "Pulse";
-                description = "Increased Night Time";
+                description = "Increased Summon Frequency";
                 SetIconAddress();
                 LoadIcon();
             }

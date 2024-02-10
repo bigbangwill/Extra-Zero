@@ -22,7 +22,7 @@ public class OrderManager : SingletonComponent<OrderManager>
 
     [SerializeField] private WaveChosingUI waveChosingUI;
 
-    [SerializeField] private List<WaveDifficultySO> waveDifficultyList = new();
+    [SerializeField] private WaveDifficultySO defaultWave;
     private List<WalkingOrder> activeWalkingOrders = new();
     private WaveDifficultySO currentWaveDifficulty;
     private WaveDifficultySO nextWaveDifficulty;
@@ -48,7 +48,7 @@ public class OrderManager : SingletonComponent<OrderManager>
     private void Start()
     {
         Init();
-        StartNewWave(waveDifficultyList[0]);
+        StartNewWave(defaultWave);
     }
 
     private void Update()
@@ -76,7 +76,10 @@ public class OrderManager : SingletonComponent<OrderManager>
     }
 
 
-
+    /// <summary>
+    /// This method only gets called when the first wave of the game should spawn.
+    /// </summary>
+    /// <param name="waveDifficulty"></param>
     public void StartNewWave(WaveDifficultySO waveDifficulty)
     {
         Debug.Log("It's Day Time");
@@ -89,6 +92,7 @@ public class OrderManager : SingletonComponent<OrderManager>
         SummonWalkingOrder();
     }
 
+    // method to get called to summon walking order.
     private void SummonWalkingOrder()
     {
         int orderCombination = currentWaveDifficulty.GetOrderCombination();
@@ -102,6 +106,7 @@ public class OrderManager : SingletonComponent<OrderManager>
         activeWalkingOrders.Add(targetOrder);
         walkingOrdersSummoned++;
     }
+
 
     private void FinishWave()
     {

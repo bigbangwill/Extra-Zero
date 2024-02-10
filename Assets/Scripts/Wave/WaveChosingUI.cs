@@ -29,11 +29,22 @@ public class WaveChosingUI : MonoBehaviour
             targetOptionUI.SetWaveChosingUI(this);
             HarderSideEffects targetHarder = Instance.GetRandomHarderEffect();
             RewardSideEffects targetReward = Instance.GetRandomRewardEffect();
+            WaveDifficultySO waveDifficulty = Instance.GetRandomNextWave();
             targetOptionUI.SetRelatedEffectsLists(targetHarder, targetReward);
-            targetOptionUI.SetWaveDififculty(Instance.GetRandomNextWave());
+            targetOptionUI.SetWaveDififculty(waveDifficulty);
+            targetOptionUI.SetHarderIcon(targetHarder.IconRefrence());
+            targetOptionUI.SetWaveIcon(waveDifficulty.GetWaveIcon());
+            targetOptionUI.SetRewardIcon(targetReward.IconRefrence());
+            targetOptionUI.SetHarderDescription(targetHarder.GetEffectDescription());
+            targetOptionUI.SetWaveDescription(waveDifficulty.GetWaveDescription());
+            targetOptionUI.SetRewardDescription(targetReward.GetEffectDescription());
         }
     }
 
+    /// <summary>
+    /// Method to be called by the waveOptions to set the current selected wave option.
+    /// </summary>
+    /// <param name="waveOption"></param>
     public void SetSelectedWaveOption(WaveOptionUI waveOption)
     {
         if (currentWaveOption == waveOption)
@@ -50,6 +61,9 @@ public class WaveChosingUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// To get called after the night time is over and set the selected wave options/
+    /// </summary>
     public void GetNextWaveAndExecuteEffects()
     {
         ClearWaveOptions();
@@ -63,6 +77,7 @@ public class WaveChosingUI : MonoBehaviour
         OrderManager.Instance.StartNewWave(tweakedWave);
     }
 
+    // to clear the UI from the waveOptions.
     private void ClearWaveOptions()
     {
         foreach (Transform child in optionUIHolder)

@@ -13,9 +13,10 @@ public class WaveDifficultySO : ScriptableObject
     public float frequencyRandomness;
     public float timerOfOneWave;
     public float frequencyOfTimer;
-    public float timeOfAFullCycle;
+    public float timerOfNightTime;
     public float walkingOrderSpeed;
     public float orderFulfillTimer;
+
 
 
     [Header("In-Game wave harder")]
@@ -25,6 +26,7 @@ public class WaveDifficultySO : ScriptableObject
 
     [Header("Appreance!")]
     [SerializeField] private Sprite waveIcon;
+    [SerializeField] private string waveDescription;
 
     public int GetOrderCombination()
     {
@@ -36,6 +38,10 @@ public class WaveDifficultySO : ScriptableObject
         return value;
     }
 
+    /// <summary>
+    /// How fast they should get summond
+    /// </summary>
+    /// <returns></returns>
     public float GetOrderFrequency()
     {
         float minValue = orderFrequency - frequencyRandomness;
@@ -44,6 +50,10 @@ public class WaveDifficultySO : ScriptableObject
         return value;
     }
 
+    /// <summary>
+    /// How long the day is.
+    /// </summary>
+    /// <returns></returns>
     public float GetTimerOfWave()
     {
         float minValue = timerOfOneWave - frequencyOfTimer;
@@ -52,29 +62,52 @@ public class WaveDifficultySO : ScriptableObject
         return value;
     }
 
+
+    /// <summary>
+    /// Night timer + Day timer
+    /// </summary>
+    /// <returns></returns>
     public float GetTimeOfAFullCycle()
     {
-        return timeOfAFullCycle;
+        return timerOfOneWave + timerOfNightTime;
     }
 
+    /// <summary>
+    /// How long the night is.
+    /// </summary>
+    /// <returns></returns>
     public float GetNightMaxTime()
     {
-        return timeOfAFullCycle - timerOfOneWave;
+        return timerOfNightTime;
     }
 
+    /// <summary>
+    /// Speed of the walking orders.
+    /// </summary>
+    /// <returns></returns>
     public float GetWalkingOrderSpeed()
     {
         return walkingOrderSpeed;
     }
 
+    /// <summary>
+    /// The timer of the order to be fulfilled.
+    /// </summary>
+    /// <returns></returns>
     public float GetOrderFulfillTimer()
     {
         return orderFulfillTimer;
     }
 
+
     public Sprite GetWaveIcon()
     {
         return waveIcon;
+    }
+
+    public string GetWaveDescription()
+    {
+        return waveDescription;
     }
 
 }

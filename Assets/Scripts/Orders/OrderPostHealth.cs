@@ -32,10 +32,6 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         healthImageSetter = GetComponent<OrderPostHealthImageSetter>();
         orderPostScript = GetComponent<OrderPost>();
         Init();
-        TakeDamage();
-        TakeDamage();
-        TakeDamage();
-        TakeDamage();
     }
 
     public bool NeedsRepair()
@@ -91,7 +87,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     }
 
 
-    private void TakeDamage()
+    public void TakeDamage()
     {
         currentHealth--;
         isAtFullHealth = false;

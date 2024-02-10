@@ -18,10 +18,11 @@ MonoBehaviour:
   frequencyRandomness: 0.5
   timerOfOneWave: 5
   frequencyOfTimer: 0
-  timeOfAFullCycle: 8
+  timerOfNightTime: 0
   walkingOrderSpeed: 2
   orderFulfillTimer: 5
   orderFrequencyHardness: 0.1
   timerOfOneWaveHardness: 0.1
   orderFulfilTimerHardness: 0.1
-  waveIcon: {fileID: 0}
+  waveIcon: {fileID: 1993861087375315171, guid: 3525e76daf54e7241bf6bb658c8ed5bd, type: 3}
+  waveDescription: A Very Default Wave!
