@@ -20,10 +20,19 @@ public class WaveOptionUI : MonoBehaviour, IPointerDownHandler
 
     [SerializeField] private GameObject markedImage;
 
+    private WaveDifficultySO waveDifficulty;
+
     private WaveChosingUI relatedCanvas;
 
+    public WaveDifficultySO TargetWaveDifficulty {get => waveDifficulty;}
 
     private List<PermanentWaveEffectLibrary> waveEffectList = new(); 
+
+
+    public void SetWaveDififculty(WaveDifficultySO waveDifficulty)
+    {
+        this.waveDifficulty = waveDifficulty;
+    }
 
 
     public void SetRelatedEffectsLists(params PermanentWaveEffectLibrary[] effects)

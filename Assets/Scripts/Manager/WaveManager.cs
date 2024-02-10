@@ -49,7 +49,6 @@ public class WaveManager : SingletonComponent<WaveManager>
     private void Start()
     {
         Init();
-        chosingUI.CreateWaveOptionUI();
     }
 
     private void Init()
@@ -112,7 +111,7 @@ public class WaveManager : SingletonComponent<WaveManager>
         OrderManager.Instance.StartNewWave(ApplyCurrentEffectsToTheWave(targetWave));
     }
 
-    private WaveDifficultySO GetRandomNextWave()
+    public WaveDifficultySO GetRandomNextWave()
     {
         WaveDifficultySO targetWave = waveDifficultyList[UnityEngine.Random.Range(0, waveDifficultyList.Count)];
         return targetWave;

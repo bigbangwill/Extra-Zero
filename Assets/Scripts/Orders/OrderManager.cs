@@ -20,6 +20,8 @@ public class OrderManager : SingletonComponent<OrderManager>
     [SerializeField] private List<OrderPost> postList = new();
     [SerializeField] private int maxOrderCombination;
 
+    [SerializeField] private WaveChosingUI waveChosingUI;
+
     [SerializeField] private List<WaveDifficultySO> waveDifficultyList = new();
     private List<WalkingOrder> activeWalkingOrders = new();
     private WaveDifficultySO currentWaveDifficulty;
@@ -40,17 +42,13 @@ public class OrderManager : SingletonComponent<OrderManager>
 
     private List<ItemBehaviour> orderableItems = new();
 
-
-
-
-
     //For later gameplay system :D nice naming btw
     private float timeElapsedBetweenNightAndDay;
 
     private void Start()
     {
         Init();
-        SetNextWaveDifficulty();
+        StartNewWave(waveDifficultyList[0]);
     }
 
     private void Update()
@@ -79,16 +77,10 @@ public class OrderManager : SingletonComponent<OrderManager>
 
 
 
-    private void SetNextWaveDifficulty()
-    {
-        nextWaveDifficulty = waveDifficultyList[UnityEngine.Random.Range(0, waveDifficultyList.Count)];
-    }
-
     public void StartNewWave(WaveDifficultySO waveDifficulty)
     {
         Debug.Log("It's Day Time");
         currentWaveDifficulty = waveDifficulty;
-        SetNextWaveDifficulty();
         currentWaveNumber++;
         waveCurrentTimer = 0;
         currentWaveMaxTimer = currentWaveDifficulty.GetTimerOfWave();
@@ -126,17 +118,14 @@ public class OrderManager : SingletonComponent<OrderManager>
         isNightTime = true;
         nightCurrentTimer = 0;
         nightMaxTimer = currentWaveDifficulty.GetNightMaxTime();
+        waveChosingUI.CreateWaveOptionUI();
         Debug.Log("It's Night TIME ");
     }
 
     private void FinishNightTime()
     {
         isNightTime = false;
-        //
-        //
-        //
-        //
-        //StartNewWave();
+        waveChosingUI.GetNextWaveAndExecuteEffects();
     }
 
     public void FinishedWalkingOrder(WalkingOrder walkingOrder)

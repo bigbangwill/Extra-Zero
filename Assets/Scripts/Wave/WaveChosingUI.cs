@@ -18,7 +18,7 @@ public class WaveChosingUI : MonoBehaviour
     {
         foreach (Transform child in optionUIHolder)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
         int waveOptionToSpawn = Instance.GetTotalWaveOptionCount();
         for (int i = 0; i < waveOptionToSpawn; i++)
@@ -30,15 +30,8 @@ public class WaveChosingUI : MonoBehaviour
             HarderSideEffects targetHarder = Instance.GetRandomHarderEffect();
             RewardSideEffects targetReward = Instance.GetRandomRewardEffect();
             targetOptionUI.SetRelatedEffectsLists(targetHarder, targetReward);
+            targetOptionUI.SetWaveDififculty(Instance.GetRandomNextWave());
         }
-    }
-    public void RunTheWaveEffects()
-    {
-        if (currentWaveOption == null)
-        {
-            Instance.ExecuteRandomEffectsAndWave();
-        }
-        currentWaveOption.ExecuteImpact();
     }
 
     public void SetSelectedWaveOption(WaveOptionUI waveOption)
@@ -57,6 +50,25 @@ public class WaveChosingUI : MonoBehaviour
         }
     }
 
+    public void GetNextWaveAndExecuteEffects()
+    {
+        ClearWaveOptions();
+        if(currentWaveOption == null)
+        {
+            Instance.ExecuteRandomEffectsAndWave();
+            return;
+        }
+        currentWaveOption.ExecuteImpact();
+        WaveDifficultySO tweakedWave = Instance.ApplyCurrentEffectsToTheWave(currentWaveOption.TargetWaveDifficulty);
+        OrderManager.Instance.StartNewWave(tweakedWave);
+    }
 
+    private void ClearWaveOptions()
+    {
+        foreach (Transform child in optionUIHolder)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 
 }
