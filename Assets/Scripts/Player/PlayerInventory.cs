@@ -68,8 +68,14 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         AddItemToInventory(new BluePrintItem.Hoe());
         AddItemToInventory(new BluePrintItem.Gun());
         AddItemToInventory(new BluePrintItem.Plant());
+        
+
+    }
 
 
+    public void TESTADDHAMMER()
+    {
+        HaveEmptySlot(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform),true);
     }
 
 
@@ -211,6 +217,11 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
             AddStackableItemToInventory(item);
         else
             AddNonStackableItemToInventory(item);
+        if (item.IsActiveable())
+        {
+            Debug.Log("Here");
+            item.OnCreate();
+        }
         CallUIRefreshEvent();
     }
 
@@ -374,8 +385,10 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
             {
                 if (itemsInArray.Equals(new EmptyItem()))
                 {
-                    if(shouldAdd)
+                    if (shouldAdd)
+                    {
                         AddItemToInventory(item);
+                    }
                     return true;
                 }
 

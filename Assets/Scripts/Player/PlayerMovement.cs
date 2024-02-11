@@ -88,6 +88,8 @@ public class PlayerMovement : SingletonComponent<PlayerMovement>
     {
         while (true)
         {
+            Debug.Log(agent.remainingDistance + "  remaining");
+            Debug.Log(agent.stoppingDistance + "   Stopping");
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 Reached();

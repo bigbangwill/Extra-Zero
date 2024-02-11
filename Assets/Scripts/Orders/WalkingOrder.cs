@@ -67,7 +67,6 @@ public class WalkingOrder : MonoBehaviour
     private void HitTargetPosition()
     {
         targetPost.WalkingOrderReachedPoint(this);
-        Debug.Log("Reached");
     }
 
 }

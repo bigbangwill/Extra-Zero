@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,9 +19,11 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     #endregion
 
     [SerializeField] private List<OrderPostHealth> repairables = new();
+    [SerializeField] private GameObject repairIconPrefab;
+    [SerializeField] private Transform repairInstantiateParent;
+    [SerializeField] private Transform repairInfoPanel;
 
     private IRepairable currentRepairable;
-
 
     private OverlayState currentState;
     public event Action UsedItemEvent;
@@ -33,11 +37,13 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
         overlayImage = GetComponent<Image>();
     }
 
-    public void SetDelegate(Action action ,OverlayState state)
+    public void SetDelegate(Action action ,OverlayState state,Transform UIPanel,Transform parent)
     {
         currentState = state;
         UsedItemEvent += action;
         overlayImage.enabled = true;
+        repairInstantiateParent = parent;
+        repairInfoPanel = UIPanel;
         switch (state) 
         {
             case OverlayState.RepairMode: overlayImage.color = repairColor; SetHealingUIOn(); break;
@@ -74,6 +80,7 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
 
     private void SetHealingUIOn()
     {
+        repairInfoPanel.gameObject.SetActive(true);
         foreach (var repair in repairables)
         {
             repair.TurnUIUXOn();
@@ -82,15 +89,31 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
 
     private void SetHealingUIOff()
     {
+        repairInfoPanel.gameObject.SetActive(false);
         foreach (var repair in repairables)
         {
             repair.TurnUIUXOff();
         }
     }
-
+    
 
     private void CallRepair()
-    {        
+    {
+        foreach (Transform transform in repairInstantiateParent)
+        {
+            Destroy(transform.gameObject);
+        }
+
+        List<ItemBehaviour> repairMaterials = currentRepairable.RepairMaterials().ToList();
+        
+        foreach (var material in repairMaterials)
+        {
+            GameObject repair = Instantiate(repairIconPrefab);
+            repair.transform.SetParent(repairInstantiateParent);
+            repair.GetComponent<Image>().sprite = material.IconRefrence();
+            repair.GetComponentInChildren<TextMeshProUGUI>().text = material.CurrentStack().ToString();
+        }
+
         if (currentRepairable != null && currentRepairable.Repair())
         {
             UsedItemEvent.Invoke();

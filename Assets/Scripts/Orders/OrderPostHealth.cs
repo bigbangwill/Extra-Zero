@@ -36,8 +36,12 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     public bool NeedsRepair()
     {
-        Debug.Log("Already at full health");
         return !isAtFullHealth;
+    }
+
+    public IEnumerable<ItemBehaviour> RepairMaterials()
+    {
+        return recoverReceipeList[currentHealth].GetItems();
     }
 
     public bool Repair()

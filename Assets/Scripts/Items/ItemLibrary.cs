@@ -144,6 +144,11 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>
     {
         return is_Activeable;
     }
+
+    public virtual void OnCreate()
+    {
+        Debug.Log("Cant Be Created");
+    }
 }
 
 public class EmptyItem : ItemBehaviour
@@ -236,7 +241,6 @@ public abstract class BluePrintItem : ItemBehaviour
 
     public override int GetHashCode()
     {
-        Debug.Log("ORIGINAL");
         return HashCode.Combine(
             is_Usable,
             itemType,
@@ -327,6 +331,29 @@ public abstract class CraftedItem : ItemBehaviour
         LoadIcon();
     }
 
+    public override bool Equals(object obj)
+    {
+        return obj is CraftedItem item &&
+               is_Usable == item.is_Usable &&
+               itemType == item.itemType &&
+               is_Stackable == item.is_Stackable &&
+               itemName == item.itemName &&
+               specificName == item.specificName &&
+               specificAddress == item.specificAddress;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(
+            is_Usable,
+            itemType,
+            is_Stackable,
+            itemName,
+            specificName,
+            specificAddress);
+    }
+
+
     public class RepairHammer : CraftedItem
     {
         private Transform canvasRefrence;
@@ -345,7 +372,7 @@ public abstract class CraftedItem : ItemBehaviour
             specificName = "RepairHammer";
             Load();
             LoadAddressable();
-            OnCreate();
+            //OnCreate();
             is_Activeable = true;
         }
 
@@ -366,9 +393,10 @@ public abstract class CraftedItem : ItemBehaviour
         }
 
 
-        private void OnCreate()
+        public override void OnCreate()
         {
             uiElementRefrence = UnityEngine.Object.Instantiate(uiPrefab,canvasRefrence);
+            uiElementRefrence.SetActive(false);
         }
 
         public override void OnActive()
