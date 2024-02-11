@@ -28,6 +28,8 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     private OverlayState currentState;
     public event Action UsedItemEvent;
 
+    private Button currentRelatedButton;
+
 
     [SerializeField] private Color repairColor;
     private Image overlayImage;
@@ -35,15 +37,21 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     private void Start()
     {
         overlayImage = GetComponent<Image>();
+
+        PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
+        PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
+        PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
+        PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Plastic(10), true);
     }
 
-    public void SetDelegate(Action action ,OverlayState state,Transform UIPanel,Transform parent)
+    public void SetDelegate(Action action ,OverlayState state,Transform UIPanel,Transform parent, Button repairButton)
     {
         currentState = state;
         UsedItemEvent += action;
         overlayImage.enabled = true;
         repairInstantiateParent = parent;
         repairInfoPanel = UIPanel;
+        currentRelatedButton = repairButton;
         switch (state) 
         {
             case OverlayState.RepairMode: overlayImage.color = repairColor; SetHealingUIOn(); break;
@@ -97,7 +105,7 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     }
     
 
-    private void CallRepair()
+    public void CallRepair()
     {
         foreach (Transform transform in repairInstantiateParent)
         {
@@ -113,10 +121,28 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
             repair.GetComponent<Image>().sprite = material.IconRefrence();
             repair.GetComponentInChildren<TextMeshProUGUI>().text = material.CurrentStack().ToString();
         }
+        currentRelatedButton.onClick.RemoveAllListeners();
+        currentRelatedButton.onClick.AddListener(() => CheckAndRepair());
+    }
 
-        if (currentRepairable != null && currentRepairable.Repair())
+    private void CheckAndRepair()
+    {
+        if (currentRepairable.NeedsRepair())
         {
-            UsedItemEvent.Invoke();
+            bool haveEveryMaterial = true;
+            foreach (var item in currentRepairable.RepairMaterials())
+            {
+                if (!PlayerInventory.Instance.HaveItemInInventory(item, false))
+                {
+                    haveEveryMaterial = false;
+                    return;
+                }
+            }
+            if (haveEveryMaterial)
+            {
+                currentRepairable.Repair();
+                CallRepair();
+            }
         }
     }
 
@@ -131,7 +157,10 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
             IRepairable repairable = hit.collider.GetComponent<IRepairable>();
             if (repairable != null)
             {
+                if (currentRepairable != null)
+                    currentRepairable.Targeted = false;
                 currentRepairable = repairable;
+                currentRepairable.Targeted = true;
                 if (repairable.NeedsRepair())
                 {
                     NavmeshReachableInformation navInfo = new(repairable.GetReachingTransfrom().position,

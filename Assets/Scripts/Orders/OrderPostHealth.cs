@@ -24,7 +24,9 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     private HealthRecoverReceipe[] recoverReceipeList;
 
-
+    private bool targeted = false;
+    public bool Targeted { get => targeted; set => targeted = value; }
+    
     private bool isAtFullHealth;
 
     private void Start()
@@ -100,11 +102,17 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
             PostZeroHealth();
         }
         SetHealthImage();
+        if (targeted)
+        {
+            UseableItemCanvasScript.Instance.CallRepair();
+        }
     }
+
 
     private void SetHealthImage()
     {
         image.sprite = healthImageSetter.SetHealthImage(currentHealth);
+        TurnUIUXOn();
     }
 
     private void PostZeroHealth()

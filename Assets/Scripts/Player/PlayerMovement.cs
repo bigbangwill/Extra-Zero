@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -74,6 +75,8 @@ public class PlayerMovement : SingletonComponent<PlayerMovement>
                 StopCoroutine(currentPendingCoroutine);
             }
             agent.SetDestination(target);
+            Debug.Log(transform.position + " Transfoom pos");
+            Debug.Log(target + " Target");
             currentPendingCoroutine = StartCoroutine(Moveto(target));
         }
         else
@@ -88,15 +91,9 @@ public class PlayerMovement : SingletonComponent<PlayerMovement>
     {
         while (true)
         {
-            Debug.Log(agent.remainingDistance + "  remaining");
-            Debug.Log(agent.stoppingDistance + "   Stopping");
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                Reached();
-                yield return null;
-            }
             agent.SetDestination(pos);
-            yield return null;
+            yield return new WaitUntil(() => Vector2.Distance(transform.position, pos) <= agent.stoppingDistance);
+            Reached();
         }
     }
 
