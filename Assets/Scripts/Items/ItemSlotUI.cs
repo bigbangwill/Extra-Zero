@@ -139,7 +139,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 return;
             }
             transform.position = startPos;
-            stashable.RemoveItemFromInventory(slotNumber);
+            //stashable.RemoveItemFromInventory(slotNumber);
         }
         foreach (RaycastResult result in results)
         {

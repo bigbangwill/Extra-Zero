@@ -29,6 +29,9 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     public event Action UsedItemEvent;
 
     private Button currentRelatedButton;
+    private bool isOnRepairMode = false;
+
+    public bool IsOnRepairMode { get => isOnRepairMode; set => isOnRepairMode = value;}
 
 
     [SerializeField] private Color repairColor;
@@ -52,6 +55,7 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
         repairInstantiateParent = parent;
         repairInfoPanel = UIPanel;
         currentRelatedButton = repairButton;
+        isOnRepairMode = true;
         switch (state) 
         {
             case OverlayState.RepairMode: overlayImage.color = repairColor; SetHealingUIOn(); break;
@@ -63,6 +67,7 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     {
         overlayImage.enabled = false;
         UsedItemEvent -= action;
+        isOnRepairMode = false;
 
         switch (currentState)
         {

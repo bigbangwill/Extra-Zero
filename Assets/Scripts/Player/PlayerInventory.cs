@@ -462,6 +462,16 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     /// </summary>
     public void InitUI()
     {
+        int count = 0;
+        foreach (Transform child in transform)
+        {
+            ItemSlotUI target = child.GetComponentInChildren<ItemSlotUI>();
+            target.SetStashable(this);
+            target.slotNumber = count;
+            itemSlotUIList.Add(target);
+            count++;
+        }
+        return;
         float width, height;
         width = GetComponentInParent<RectTransform>().rect.width;
         height = GetComponentInParent<RectTransform>().rect.height;

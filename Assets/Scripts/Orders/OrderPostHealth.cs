@@ -26,8 +26,6 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     private bool targeted = false;
     public bool Targeted { get => targeted; set => targeted = value; }
-    
-    private bool isAtFullHealth;
 
     private void Start()
     {
@@ -38,7 +36,8 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     public bool NeedsRepair()
     {
-        return !isAtFullHealth;
+        if (currentHealth >= healthUnlocked) return false;
+        else return true;
     }
 
     public IEnumerable<ItemBehaviour> RepairMaterials()
@@ -82,10 +81,6 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
             // Implement the restore the shield  back up.
         }
         currentHealth++;
-        if (currentHealth == healthUnlocked)
-        {
-            isAtFullHealth = true;
-        }
         Debug.Log($"Repaired and current health is {currentHealth}");
         TurnUIUXOn();
         SetHealthImage();
@@ -96,7 +91,6 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     public void TakeDamage()
     {
         currentHealth--;
-        isAtFullHealth = false;
         if(currentHealth <= 0 )
         {
             PostZeroHealth();
@@ -106,13 +100,17 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         {
             UseableItemCanvasScript.Instance.CallRepair();
         }
+        Debug.Log(UseableItemCanvasScript.Instance.IsOnRepairMode + "    bool cheker");
+        if (UseableItemCanvasScript.Instance.IsOnRepairMode)
+        {
+            TurnUIUXOn();
+        }
     }
 
 
     private void SetHealthImage()
     {
         image.sprite = healthImageSetter.SetHealthImage(currentHealth);
-        TurnUIUXOn();
     }
 
     private void PostZeroHealth()
@@ -134,9 +132,15 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     public void TurnUIUXOn()
     {
         if (NeedsRepair())
+        {
+            noHealingBoarder.SetActive(false);
             healingBoarder.SetActive(true);
+        }
         else
+        {
             noHealingBoarder.SetActive(true);
+            healingBoarder.SetActive(false);
+        }
     }
     public void TurnUIUXOff()
     {
