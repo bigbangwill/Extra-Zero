@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldMove: 0
   speed: 30
-  slowSpeed: 5
+  slowSpeed: 30
   val: 0
 --- !u!1001 &3190386263528294193
 PrefabInstance:
@@ -107,6 +107,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 836211014667879848, guid: d2c7e97b9d489bc419daa8d199c015fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2384818474707084336, guid: d2c7e97b9d489bc419daa8d199c015fc, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8752518378100040813, guid: d2c7e97b9d489bc419daa8d199c015fc, type: 3}
