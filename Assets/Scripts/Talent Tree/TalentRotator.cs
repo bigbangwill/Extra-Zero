@@ -8,10 +8,14 @@ using UnityEngine.EventSystems;
 public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
 
-    [SerializeField] private Transform TalentTree;
+    [SerializeField] private Camera talentCamera;
+    [SerializeField] private LayerMask targetMask;
 
+    [SerializeField] private Transform TalentTree;
     [SerializeField] private Vector2 slowdown;
     [SerializeField] private float fastdown;
+
+    [SerializeField] private TalentManager talentManager;
 
 
     
@@ -24,6 +28,11 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        
+        Ray ray = talentCamera.ScreenPointToRay(eventData.position);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask))
+        {
+            talentManager.SetTargetNode(hit.collider.GetComponentInParent<NodeMovement>());
+        }
     }
 }

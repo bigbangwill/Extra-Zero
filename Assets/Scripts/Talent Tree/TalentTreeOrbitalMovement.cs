@@ -21,16 +21,11 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
         StartCoroutine(StartMovement());
     }
 
-    private void Update()
+    public List<Transform> GetAllNodes()
     {
-        if(shouldMove)
-        foreach (Transform t in transform)
-        {
-            t.Rotate(Vector3.forward, Time.deltaTime * speed);
-        }
+        return nodeList;
     }
-
-
+ 
     private IEnumerator StartMovement()
     {
         float timeSpent = 0;
