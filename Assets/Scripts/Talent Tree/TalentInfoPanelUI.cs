@@ -19,4 +19,9 @@ public class TalentInfoPanelUI : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
+
+    public void DeactivePanel()
+    {
+        gameObject.SetActive(false);
+    }
 }

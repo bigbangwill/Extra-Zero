@@ -28,9 +28,17 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
         foreach(var talent in givenTalents)
         {
             GameObject summonedNode = Instantiate(nodePrefab,transform);
-            summonedNode.GetComponent<NodePassive>().SetTalent(talent);
+            NodePassive passive = summonedNode.GetComponent<NodePassive>();
+            NodeMovement movement = summonedNode.GetComponent<NodeMovement>();
+            passive.SetTalent(talent);
+            if (passive.IsPurchased)
+                movement.SetColor(TalentManager.Instance.passivePurchased);
+            else
+                movement.SetColor(TalentManager.Instance.passiveUnpurchased);
+
             nodeList.Add(summonedNode.transform);
         }
+        nodeList[0].GetComponent<NodePassive>().PurchaseTalent();
         StartRotating();
     }
 

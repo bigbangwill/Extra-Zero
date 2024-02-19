@@ -5,9 +5,19 @@ using System.Linq;
 using System;
 using System.Reflection;
 using Unity.PlasticSCM.Editor.WebApi;
+using Unity.VisualScripting;
 
-public class TalentManager : MonoBehaviour
+public class TalentManager : SingletonComponent<TalentManager>
 {
+
+    #region Singleton
+    public static TalentManager Instance
+    {
+        get { return (TalentManager)_Instance; }
+        set { _Instance = value; }
+    }
+    #endregion
+
     [SerializeField] private List<TalentTreeOrbitalMovement> talentTrees = new();
     [SerializeField] private TalentInfoPanelUI infoPanel;
 
@@ -25,11 +35,11 @@ public class TalentManager : MonoBehaviour
 
 
     [Header("Color Setting")]
-    [SerializeField] private Color passivePurchased;
-    [SerializeField] private Color passiveUnpurchased;
-    [SerializeField] private Color selectedPurchased;
-    [SerializeField] private Color selectedUnpurchased;
-    [SerializeField] private Color closePurchasable;
+    public Color passivePurchased;
+    public Color passiveUnpurchased;
+    public Color selectedPurchased;
+    public Color selectedUnpurchased;
+    public Color closePurchasable;
 
     private void Start()
     {
@@ -50,16 +60,26 @@ public class TalentManager : MonoBehaviour
 
 
     private bool isPurchaseMode = false;
+
+    public void SetColor(NodePassive passive, NodeMovement movement)
+    {
+        if (passive.IsPurchased)
+            movement.SetColor(passivePurchased);
+        else
+            movement.SetColor(passiveUnpurchased);
+    }
+
     public void SetTargetNode(NodeMovement targetNode)
     {
         currentDistance.Clear();
         NodePassive targetPassive = targetNode.GetComponent<NodePassive>();
-        bool isPurchased = targetPassive.IsPurchased;
+        bool isTargetPurchased = targetPassive.IsPurchased;
 
-        if(currentTargetedNode ==  null)
-            currentTargetedNode = targetNode;
+        if(currentTargetedNode != null)
+            SetColor(currentTargetedNode.GetComponent<NodePassive>(),currentTargetedNode);
 
-
+        //DO ANYTHING THAT IS RELATED TO THE PREVIUS NODE HERE BEFORE THE NEXT SET OF THE NODE.
+        
         if (isPurchaseMode)
         {
             foreach (var orbit in closeOrbits)
@@ -67,34 +87,38 @@ public class TalentManager : MonoBehaviour
                 if (orbit == targetNode)
                 {
                     infoPanel.SetActivePanel(targetPassive);
-                    currentTargetedNode = targetNode;
                     targetNode.SetColor(selectedUnpurchased);
                     return;
                 }
             }
         }
-        if (targetNode.GetComponent<NodePassive>().IsPurchased)
-        {
-            targetNode.SetColor(passivePurchased);
-        }
-        else
-        {
-            targetNode.SetColor(passiveUnpurchased);
-        }
 
         if (targetNode == currentTargetedNode)
         {
-            // Selected the same
+            Debug.Log("Hereee");
+            SetColor(targetPassive, targetNode);
+            foreach (var orbit in closeOrbits)
+            {
+                NodePassive passive = orbit.GetComponent<NodePassive>();
+                SetColor(passive,orbit);
+            }
+            currentTargetedNode = null;
+            closeOrbits = new NodeMovement[3];
+            return;
         }
 
 
-        if (isPurchased)
+        if (isTargetPurchased)
         {
             currentTargetedNode = targetNode;
             currentTargetedNode.SetColor(selectedPurchased);
             TargetClosest(currentTargetedNode);
             isPurchaseMode = true;
             infoPanel.SetActivePanel(targetPassive);
+            foreach (var orbit in closeOrbits)
+            {
+                orbit.SetColor(closePurchasable);
+            }
         }
         else
         {
@@ -104,36 +128,6 @@ public class TalentManager : MonoBehaviour
             isPurchaseMode = false;
             infoPanel.SetActivePanel(targetPassive);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-        foreach (var orbit in closeOrbits)
-        {
-            if(orbit != null)
-                orbit.SetColor(Color.blue);
-        }
-        if (targetNode == currentTargetedNode)
-        {
-            currentTargetedNode.SetColor(Color.blue);
-            currentTargetedNode = null;
-            return;
-        }
-        TargetClosest(targetNode);
-        
-        currentTargetedNode.SetColor(Color.green);
-        closeOrbits[0].SetColor(Color.red);
-        closeOrbits[1].SetColor(Color.red);
-        closeOrbits[2].SetColor(Color.red);
 
     }
 
@@ -183,10 +177,5 @@ public class TalentManager : MonoBehaviour
         {
             tree.StartSummonNodes();
         }
-
     }
-    
-
-
-    
 }

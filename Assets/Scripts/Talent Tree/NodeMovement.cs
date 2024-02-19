@@ -15,7 +15,6 @@ public class NodeMovement : MonoBehaviour
     private void Start()
     {
         rend = GetComponentInChildren<Renderer>();
-        //rend.material.shader = Shader.Find("Orbit");
     }
 
     private void Update()
@@ -28,6 +27,8 @@ public class NodeMovement : MonoBehaviour
 
     public void SetColor(Color inputColor) 
     {
+        if(rend == null)
+            rend = GetComponentInChildren<Renderer>();
         rend.material.SetColor("_Base_Color", inputColor);
     }
 

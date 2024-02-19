@@ -74,8 +74,6 @@ public class ItemStash : MonoBehaviour, IStashable
         HaveEmptySlot(new Herb.Lavender(30), true);
         HaveEmptySlot(new Herb.Sage(30), true);
         HaveEmptySlot(new Herb.Chamomile(30), true);
-
-        Debug.Log("Start");
     }
 
     public void RefreshUI()
@@ -354,7 +352,6 @@ public class ItemStash : MonoBehaviour, IStashable
 
         int maxDevidedWidth = (int)((width) / itemSlotPrefabWidth);
         int maxDevidedHeight = (int)((height - offsetHeight - startingPointOffsetHeight) / itemSlotPrefabHeight);
-        Debug.Log(itemSlotPrefabHeight);
 
         // To automatically turn the extra count of inventory slot available that is more than the 
         // rows needed to offset.

@@ -20,6 +20,7 @@ public class NodePassive : MonoBehaviour
     {
         talent.TalentEffect();
         isPurchased = true;
+        TalentManager.Instance.SetColor(this, GetComponent<NodeMovement>());
     }
 
     public int GetTalentCost()
