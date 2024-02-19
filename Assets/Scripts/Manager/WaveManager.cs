@@ -71,9 +71,6 @@ public class WaveManager : SingletonComponent<WaveManager>
             RewardSideEffects targetEffect = (RewardSideEffects)Activator.CreateInstance(childType);
             rewardEffectList.Add(targetEffect);
         }
-
-        Debug.Log(hardEffectList.Count);
-        Debug.Log(rewardEffectList.Count);
     }
 
     /// <summary>

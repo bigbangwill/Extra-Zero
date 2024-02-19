@@ -1,31 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TalentTreeOrbitalMovement : MonoBehaviour
 {
+    [SerializeField] private GameObject nodePrefab;
+
     public float speed;
     public List<Transform> nodeList = new List<Transform>();
-    public bool shouldMove;
     public float timeOffset = 5f;
 
-    private void Start()
-    {
-        float angleStep = 360f / nodeList.Count; // Angle between each object
-
-        for (int i = 0; i < nodeList.Count; i++)
-        {
-            nodeList[i].Rotate(new Vector3(0 , angleStep * i, 0));
-        }
-        StartCoroutine(StartMovement());
-    }
+    private List<TalentLibrary> givenTalents = new List<TalentLibrary>();
 
     public List<Transform> GetAllNodes()
     {
         return nodeList;
     }
- 
+
+
+    public void AddToTalentList(TalentLibrary talent)
+    {
+        givenTalents.Add(talent);
+    }
+
+    public void StartSummonNodes()
+    {
+        foreach(var talents in givenTalents)
+        {
+            GameObject summonedNode = Instantiate(nodePrefab,transform);
+            nodeList.Add(summonedNode.transform);
+        }
+        StartRotating();
+    }
+
+    public void StartRotating()
+    {
+        float angleStep = 360f / nodeList.Count; // Angle between each object
+
+        for (int i = 0; i < nodeList.Count; i++)
+        {
+            nodeList[i].Rotate(new Vector3(0, angleStep * i, 0));
+        }
+        StartCoroutine(StartMovement());
+    }
+
     private IEnumerator StartMovement()
     {
         float timeSpent = 0;
@@ -52,6 +70,5 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
             }
         }
     }
-
 
 }

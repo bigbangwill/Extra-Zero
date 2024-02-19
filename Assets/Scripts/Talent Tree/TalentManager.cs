@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using System.Reflection;
 
 public class TalentManager : MonoBehaviour
 {
     [SerializeField] private List<TalentTreeOrbitalMovement> talentTrees = new();
 
+
+    private List<TalentLibrary> talentLibraries = new();
     private List<NodeMovement> orbits = new();
 
     private NodeMovement currentTargetedNode;
@@ -18,6 +22,7 @@ public class TalentManager : MonoBehaviour
 
     private void Start()
     {
+        CreateNodes();
         GetAllOrbs();
     }
 
@@ -62,7 +67,6 @@ public class TalentManager : MonoBehaviour
             Vector3 targetNodeChild = targetNode.transform.GetChild(0).position;
             Vector3 orbitNodeChild = orbit.transform.GetChild(0).position;
             float distance = Vector3.Distance(targetNodeChild, orbitNodeChild);
-            Debug.Log(distance);
             currentDistance.Add(orbit, distance);
         }
 
@@ -72,6 +76,33 @@ public class TalentManager : MonoBehaviour
         closeOrbits[0].SetColor(Color.red);
         closeOrbits[1].SetColor(Color.red);
         closeOrbits[2].SetColor(Color.red);
+
+    }
+
+    public void CreateNodes()
+    {
+        List<Type> talentEffects = Assembly.GetAssembly(typeof(TalentLibrary)).GetTypes().Where
+            (TheType => TheType.IsClass && !TheType.IsAbstract &&
+            TheType.IsSubclassOf(typeof(TalentLibrary))).ToList();
+        foreach (var effect in talentEffects)
+        {
+            TalentLibrary talent = (TalentLibrary)Activator.CreateInstance(effect);
+            talentLibraries.Add(talent);
+            talent.TalentEffect();
+        }
+
+        int counter = 0;
+        foreach(TalentLibrary talent in talentLibraries)
+        {
+            talentTrees[counter].AddToTalentList(talent);
+            counter++;
+            if (counter == talentTrees.Count)
+                counter = 0;            
+        }
+        foreach (var tree in talentTrees)
+        {
+            tree.StartSummonNodes();
+        }
 
     }
     

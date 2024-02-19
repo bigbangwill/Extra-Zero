@@ -162,7 +162,6 @@ public class EventManager : SingletonComponent<EventManager>
     {
         if(_RefreshInventoryEvent != null)
             _RefreshInventoryEvent.Invoke();
-        Debug.Log("Inventory Refreshed Event");
     }
 
     public void Pause()

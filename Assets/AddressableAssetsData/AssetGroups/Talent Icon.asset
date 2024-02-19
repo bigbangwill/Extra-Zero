@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Talent Icon
+  m_EditorClassIdentifier: 
+  m_GroupName: Talent Icon
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 786b50a41cb8bbc4a91de96e005a5bdc
+  m_SerializeEntries:
+  - m_GUID: af52af06b66f96544ae64f46e9f50ac7
+    m_Address: Talent Icon/SeventhTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ce217c9a94191845b091546303e7545
+    m_Address: Talent Icon/ThirdTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 454673eb7d7b5044da11342481ec1f7f
+    m_Address: Talent Icon/SixthTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3a1ea857eaaa504ba0c87dd4ce810a2
+    m_Address: Talent Icon/FirstTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9d4b768838b32f41a1ff9af020a1b30
+    m_Address: Talent Icon/ForthTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 160723b09fea58948bd7a0b96884d56b
+    m_Address: Talent Icon/SecondTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9393d0fda0db9914ea453c48fade8882
+    m_Address: Talent Icon/FifthTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f197299998dd3f14a823ae1677af1084, type: 2}
+    - {fileID: 11400000, guid: 2c68e5af7ba63684a976c6ee39e2fc67, type: 2}
