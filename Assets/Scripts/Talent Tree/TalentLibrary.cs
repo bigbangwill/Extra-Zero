@@ -32,6 +32,17 @@ public abstract class TalentLibrary
     {
         return talentIcon;
     }
+
+    public string GetTalentDescription()
+    {
+        return talentDescription;
+    }
+
+    public int GetTalentCost()
+    {
+        return talentCost;
+    }
+
 }
 
 public class FirstTalent : TalentLibrary

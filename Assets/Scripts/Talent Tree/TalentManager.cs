@@ -4,11 +4,12 @@ using UnityEngine;
 using System.Linq;
 using System;
 using System.Reflection;
+using Unity.PlasticSCM.Editor.WebApi;
 
 public class TalentManager : MonoBehaviour
 {
     [SerializeField] private List<TalentTreeOrbitalMovement> talentTrees = new();
-
+    [SerializeField] private TalentInfoPanelUI infoPanel;
 
     private List<TalentLibrary> talentLibraries = new();
     private List<NodeMovement> orbits = new();
@@ -19,6 +20,16 @@ public class TalentManager : MonoBehaviour
 
     private Dictionary<NodeMovement, float> currentDistance = new();
 
+    [SerializeField] private Transform talentInfoPanel;
+    private bool isPurchasable = false;
+
+
+    [Header("Color Setting")]
+    [SerializeField] private Color passivePurchased;
+    [SerializeField] private Color passiveUnpurchased;
+    [SerializeField] private Color selectedPurchased;
+    [SerializeField] private Color selectedUnpurchased;
+    [SerializeField] private Color closePurchasable;
 
     private void Start()
     {
@@ -38,9 +49,74 @@ public class TalentManager : MonoBehaviour
     }
 
 
+    private bool isPurchaseMode = false;
     public void SetTargetNode(NodeMovement targetNode)
     {
         currentDistance.Clear();
+        NodePassive targetPassive = targetNode.GetComponent<NodePassive>();
+        bool isPurchased = targetPassive.IsPurchased;
+
+        if(currentTargetedNode ==  null)
+            currentTargetedNode = targetNode;
+
+
+        if (isPurchaseMode)
+        {
+            foreach (var orbit in closeOrbits)
+            {
+                if (orbit == targetNode)
+                {
+                    infoPanel.SetActivePanel(targetPassive);
+                    currentTargetedNode = targetNode;
+                    targetNode.SetColor(selectedUnpurchased);
+                    return;
+                }
+            }
+        }
+        if (targetNode.GetComponent<NodePassive>().IsPurchased)
+        {
+            targetNode.SetColor(passivePurchased);
+        }
+        else
+        {
+            targetNode.SetColor(passiveUnpurchased);
+        }
+
+        if (targetNode == currentTargetedNode)
+        {
+            // Selected the same
+        }
+
+
+        if (isPurchased)
+        {
+            currentTargetedNode = targetNode;
+            currentTargetedNode.SetColor(selectedPurchased);
+            TargetClosest(currentTargetedNode);
+            isPurchaseMode = true;
+            infoPanel.SetActivePanel(targetPassive);
+        }
+        else
+        {
+            currentTargetedNode = targetNode;
+            currentTargetedNode.SetColor(selectedUnpurchased);
+            TargetClosest(currentTargetedNode);
+            isPurchaseMode = false;
+            infoPanel.SetActivePanel(targetPassive);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         foreach (var orbit in closeOrbits)
         {
             if(orbit != null)
@@ -52,16 +128,25 @@ public class TalentManager : MonoBehaviour
             currentTargetedNode = null;
             return;
         }
+        TargetClosest(targetNode);
+        
+        currentTargetedNode.SetColor(Color.green);
+        closeOrbits[0].SetColor(Color.red);
+        closeOrbits[1].SetColor(Color.red);
+        closeOrbits[2].SetColor(Color.red);
 
+    }
+
+    private void TargetClosest(NodeMovement targetNode)
+    {
         closeOrbits = new NodeMovement[3];
-        if(currentTargetedNode != null)
+        if (currentTargetedNode != null)
             currentTargetedNode.SetColor(Color.blue);
         currentTargetedNode = targetNode;
         foreach (var orbit in orbits)
         {
             if (orbit == targetNode)
             {
-
                 continue;
             }
             Vector3 targetNodeChild = targetNode.transform.GetChild(0).position;
@@ -72,11 +157,6 @@ public class TalentManager : MonoBehaviour
 
         var sortedDistances = currentDistance.OrderBy(x => x.Value);
         closeOrbits = sortedDistances.Take(3).Select(pair => pair.Key).ToArray();
-        currentTargetedNode.SetColor(Color.green);
-        closeOrbits[0].SetColor(Color.red);
-        closeOrbits[1].SetColor(Color.red);
-        closeOrbits[2].SetColor(Color.red);
-
     }
 
     public void CreateNodes()

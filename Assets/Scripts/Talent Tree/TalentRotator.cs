@@ -23,7 +23,6 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     public void OnDrag(PointerEventData eventData)
     {
         TalentTree.Rotate(new Vector3(eventData.delta.y, eventData.delta.x , 0) * slowdown,fastdown,Space.World);
-        //TalentTree.rotation *= Quaternion.AngleAxis(fastdown * Time.deltaTime, eventData.delta);
     }
 
     public void OnPointerDown(PointerEventData eventData)

@@ -25,9 +25,10 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
 
     public void StartSummonNodes()
     {
-        foreach(var talents in givenTalents)
+        foreach(var talent in givenTalents)
         {
             GameObject summonedNode = Instantiate(nodePrefab,transform);
+            summonedNode.GetComponent<NodePassive>().SetTalent(talent);
             nodeList.Add(summonedNode.transform);
         }
         StartRotating();
