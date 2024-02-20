@@ -22,13 +22,13 @@ public class TalentManager : SingletonComponent<TalentManager>
     [SerializeField] private TalentInfoPanelUI infoPanel;
 
     private List<TalentLibrary> talentLibraries = new();
-    private List<NodeMovement> orbits = new();
+    private List<NodePassive> orbits = new();
 
-    private NodeMovement currentTargetedNode;
+    private NodePassive currentTargetedNode;
 
-    private NodeMovement[] closeOrbits = new NodeMovement[3];
+    private NodePassive[] closeOrbits = new NodePassive[3];
 
-    private Dictionary<NodeMovement, float> currentDistance = new();
+    private Dictionary<NodePassive, float> currentDistance = new();
 
     [SerializeField] private Transform talentInfoPanel;
     private bool isPurchasable = false;
@@ -53,30 +53,30 @@ public class TalentManager : SingletonComponent<TalentManager>
         {
             foreach(Transform orbit in talent.GetAllNodes())
             {
-                orbits.Add(orbit.GetComponent<NodeMovement>());
+                orbits.Add(orbit.GetComponent<NodePassive>());
             }
         }
+        orbits[0].PurchaseTalent();
     }
 
 
     private bool isPurchaseMode = false;
 
-    public void SetColor(NodePassive passive, NodeMovement movement)
+    public void SetColor(NodePassive passive)
     {
         if (passive.IsPurchased)
-            movement.SetColor(passivePurchased);
+            passive.SetNodeState(NodePurchaseState.IsSelectedPurchased);
         else
-            movement.SetColor(passiveUnpurchased);
+            passive.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
     }
 
-    public void SetTargetNode(NodeMovement targetNode)
+    public void SetTargetNode(NodePassive targetNode)
     {
         currentDistance.Clear();
-        NodePassive targetPassive = targetNode.GetComponent<NodePassive>();
-        bool isTargetPurchased = targetPassive.IsPurchased;
+        bool isTargetPurchased = targetNode.IsPurchased;
 
         if(currentTargetedNode != null)
-            SetColor(currentTargetedNode.GetComponent<NodePassive>(),currentTargetedNode);
+            SetColor(currentTargetedNode.GetComponent<NodePassive>());
 
         //DO ANYTHING THAT IS RELATED TO THE PREVIUS NODE HERE BEFORE THE NEXT SET OF THE NODE.
         
@@ -86,8 +86,8 @@ public class TalentManager : SingletonComponent<TalentManager>
             {
                 if (orbit == targetNode)
                 {
-                    infoPanel.SetActivePanel(targetPassive);
-                    targetNode.SetColor(selectedUnpurchased);
+                    infoPanel.SetActivePanel(targetNode);
+                    targetNode.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
                     return;
                 }
             }
@@ -95,15 +95,14 @@ public class TalentManager : SingletonComponent<TalentManager>
 
         if (targetNode == currentTargetedNode)
         {
-            Debug.Log("Hereee");
-            SetColor(targetPassive, targetNode);
+            SetColor(targetNode);
             foreach (var orbit in closeOrbits)
             {
                 NodePassive passive = orbit.GetComponent<NodePassive>();
-                SetColor(passive,orbit);
+                SetColor(passive);
             }
             currentTargetedNode = null;
-            closeOrbits = new NodeMovement[3];
+            closeOrbits = new NodePassive[3];
             return;
         }
 
@@ -111,31 +110,31 @@ public class TalentManager : SingletonComponent<TalentManager>
         if (isTargetPurchased)
         {
             currentTargetedNode = targetNode;
-            currentTargetedNode.SetColor(selectedPurchased);
+            currentTargetedNode.SetNodeState(NodePurchaseState.IsSelectedPurchased);
             TargetClosest(currentTargetedNode);
             isPurchaseMode = true;
-            infoPanel.SetActivePanel(targetPassive);
+            infoPanel.SetActivePanel(targetNode);
             foreach (var orbit in closeOrbits)
             {
-                orbit.SetColor(closePurchasable);
+                orbit.SetNodeState(NodePurchaseState.IsCloseTarget);
             }
         }
         else
         {
             currentTargetedNode = targetNode;
-            currentTargetedNode.SetColor(selectedUnpurchased);
+            currentTargetedNode.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
             TargetClosest(currentTargetedNode);
             isPurchaseMode = false;
-            infoPanel.SetActivePanel(targetPassive);
+            infoPanel.SetActivePanel(targetNode);
         }
 
     }
 
-    private void TargetClosest(NodeMovement targetNode)
+    private void TargetClosest(NodePassive targetNode)
     {
-        closeOrbits = new NodeMovement[3];
+        closeOrbits = new NodePassive[3];
         if (currentTargetedNode != null)
-            currentTargetedNode.SetColor(Color.blue);
+            currentTargetedNode.SetNodeState(NodePurchaseState.IsCloseTarget);
         currentTargetedNode = targetNode;
         foreach (var orbit in orbits)
         {
@@ -177,5 +176,6 @@ public class TalentManager : SingletonComponent<TalentManager>
         {
             tree.StartSummonNodes();
         }
+        
     }
 }

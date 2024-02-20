@@ -31,7 +31,7 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask))
         {
-            talentManager.SetTargetNode(hit.collider.GetComponentInParent<NodeMovement>());
+            talentManager.SetTargetNode(hit.collider.GetComponentInParent<NodePassive>());
         }
     }
 }

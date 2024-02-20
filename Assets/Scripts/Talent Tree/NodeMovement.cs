@@ -10,12 +10,7 @@ public class NodeMovement : MonoBehaviour
     public float slowSpeed;
     public int val;
 
-    private Renderer rend;
-
-    private void Start()
-    {
-        rend = GetComponentInChildren<Renderer>();
-    }
+    
 
     private void Update()
     {
@@ -25,12 +20,7 @@ public class NodeMovement : MonoBehaviour
         }
     }
 
-    public void SetColor(Color inputColor) 
-    {
-        if(rend == null)
-            rend = GetComponentInChildren<Renderer>();
-        rend.material.SetColor("_Base_Color", inputColor);
-    }
+    
 
     public void Move(int val)
     {
