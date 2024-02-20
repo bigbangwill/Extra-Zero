@@ -11,13 +11,26 @@ public class TalentInfoPanelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI talentDescription;
     [SerializeField] private TextMeshProUGUI talentCost;
     [SerializeField] private Button purchaseButton;
+    [SerializeField] private TextMeshProUGUI purchaseButtonText;
 
 
 
     
-    public void SetActivePanel(NodePassive nodePassvie)
+    public void SetActivePanel(NodePassive nodePassvie,bool canPurchase)
     {
         gameObject.SetActive(true);
+        uiImage.sprite = nodePassvie.GetTalentIcon();
+        talentDescription.text = nodePassvie.GetTalentDescription();
+        talentCost.text = nodePassvie.GetTalentCost().ToString();
+        purchaseButton.interactable = canPurchase;
+        if (!canPurchase)
+        {
+            purchaseButtonText.text = "CantPurchase";
+        }
+        else
+        {
+            purchaseButtonText.text = "Purchase?";
+        }
     }
 
     public void DeactivePanel()

@@ -9,7 +9,7 @@ public enum NodePurchaseState { IsPurchase, IsNotPurchased, IsSelectedPurchased,
 public class NodePassive : MonoBehaviour
 {
     private TalentLibrary talent;
-    public bool isPurchased = false;
+    private bool isPurchased = false;
     public bool IsPurchased { get => isPurchased; }
     private Renderer rend;
     private NodePurchaseState currentState;
@@ -31,7 +31,7 @@ public class NodePassive : MonoBehaviour
     {
         talent.TalentEffect();
         isPurchased = true;
-        TalentManager.Instance.SetColor(this);
+        SetNodeState(NodePurchaseState.IsPurchase);
     }
 
     public int GetTalentCost()
@@ -42,6 +42,11 @@ public class NodePassive : MonoBehaviour
     public string GetTalentDescription()
     {
         return talent.GetTalentDescription();
+    }
+
+    public Sprite GetTalentIcon()
+    {
+        return talent.GetTalentIcon();
     }
 
     public void SetNodeState(NodePurchaseState nodePurchase)

@@ -31,19 +31,10 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
             NodePassive passive = summonedNode.GetComponent<NodePassive>();
             NodeMovement movement = summonedNode.GetComponent<NodeMovement>();
             passive.SetTalent(talent);
-            //
-            //
-            //
-            //
-            //
-
-            //
-            //
-            //
-            //if (passive.IsPurchased)
-            //    passive.SetColor(TalentManager.Instance.passivePurchased);
-            //else
-            //    passive.SetColor(TalentManager.Instance.passiveUnpurchased);
+            if (passive.IsPurchased)
+                passive.SetNodeState(NodePurchaseState.IsNotPurchased);
+            else
+                passive.SetNodeState(NodePurchaseState.IsNotPurchased);
 
             nodeList.Add(summonedNode.transform);
         }

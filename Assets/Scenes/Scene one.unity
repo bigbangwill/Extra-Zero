@@ -3072,10 +3072,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d2c2732368b254598fae28ec74774e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiImage: {fileID: 0}
-  talentDescription: {fileID: 0}
-  talentCost: {fileID: 0}
-  purchaseButton: {fileID: 0}
+  uiImage: {fileID: 844175579}
+  talentDescription: {fileID: 296825912}
+  talentCost: {fileID: 624038614}
+  purchaseButton: {fileID: 517190836}
+  purchaseButtonText: {fileID: 725792702}
 --- !u!1 &203349948
 GameObject:
   m_ObjectHideFlags: 0
@@ -8041,7 +8042,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 517190837}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1409922898}
+        m_TargetAssemblyTypeName: TalentManager, Assembly-CSharp
+        m_MethodName: PurchaseButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &517190837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23629,7 +23642,7 @@ MonoBehaviour:
   infoPanel: {fileID: 202421884}
   talentInfoPanel: {fileID: 202421881}
   passivePurchased: {r: 0, g: 0.17951958, b: 0.6698113, a: 1}
-  passiveUnpurchased: {r: 0.6981132, g: 0, b: 0, a: 1}
+  passiveUnpurchased: {r: 1, g: 0, b: 0.79383564, a: 1}
   selectedPurchased: {r: 0.0047169924, g: 0.5860003, b: 1, a: 1}
   selectedUnpurchased: {r: 0.990566, g: 0, b: 0, a: 1}
   closePurchasable: {r: 0, g: 0.8396226, b: 0.11309181, a: 1}

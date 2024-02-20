@@ -33,6 +33,8 @@ public class TalentManager : SingletonComponent<TalentManager>
     [SerializeField] private Transform talentInfoPanel;
     private bool isPurchasable = false;
 
+    private NodePassive purchaseMainNode = null;
+
 
     [Header("Color Setting")]
     public Color passivePurchased;
@@ -62,47 +64,56 @@ public class TalentManager : SingletonComponent<TalentManager>
 
     private bool isPurchaseMode = false;
 
+
     public void SetColor(NodePassive passive)
     {
         if (passive.IsPurchased)
-            passive.SetNodeState(NodePurchaseState.IsSelectedPurchased);
+            passive.SetNodeState(NodePurchaseState.IsPurchase);
         else
-            passive.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
+            passive.SetNodeState(NodePurchaseState.IsNotPurchased);
     }
 
     public void SetTargetNode(NodePassive targetNode)
     {
         currentDistance.Clear();
+        
         bool isTargetPurchased = targetNode.IsPurchased;
-
-        if(currentTargetedNode != null)
-            SetColor(currentTargetedNode.GetComponent<NodePassive>());
+        
+        if (currentTargetedNode != null)
+            SetColor(currentTargetedNode);
 
         //DO ANYTHING THAT IS RELATED TO THE PREVIUS NODE HERE BEFORE THE NEXT SET OF THE NODE.
         
         if (isPurchaseMode)
         {
+            if (targetNode == purchaseMainNode)
+            {
+                isPurchaseMode = false;
+                SetColor(purchaseMainNode);
+                purchaseMainNode = null;
+                ResetNodesBackToDefault(targetNode);
+                return;
+            }
+            foreach (var orbit in closeOrbits)
+            {
+                orbit.SetNodeState(NodePurchaseState.IsCloseTarget);
+            }
             foreach (var orbit in closeOrbits)
             {
                 if (orbit == targetNode)
                 {
-                    infoPanel.SetActivePanel(targetNode);
+                    infoPanel.SetActivePanel(targetNode,!targetNode.IsPurchased);
                     targetNode.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
+                    currentTargetedNode = orbit;
                     return;
                 }
             }
         }
 
+        ResetCloseStates();
         if (targetNode == currentTargetedNode)
         {
-            SetColor(targetNode);
-            foreach (var orbit in closeOrbits)
-            {
-                NodePassive passive = orbit.GetComponent<NodePassive>();
-                SetColor(passive);
-            }
-            currentTargetedNode = null;
-            closeOrbits = new NodePassive[3];
+            ResetNodesBackToDefault(targetNode);
             return;
         }
 
@@ -113,9 +124,10 @@ public class TalentManager : SingletonComponent<TalentManager>
             currentTargetedNode.SetNodeState(NodePurchaseState.IsSelectedPurchased);
             TargetClosest(currentTargetedNode);
             isPurchaseMode = true;
-            infoPanel.SetActivePanel(targetNode);
+            purchaseMainNode = targetNode;
+            infoPanel.SetActivePanel(targetNode,false);
             foreach (var orbit in closeOrbits)
-            {
+            {                    
                 orbit.SetNodeState(NodePurchaseState.IsCloseTarget);
             }
         }
@@ -125,17 +137,44 @@ public class TalentManager : SingletonComponent<TalentManager>
             currentTargetedNode.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
             TargetClosest(currentTargetedNode);
             isPurchaseMode = false;
-            infoPanel.SetActivePanel(targetNode);
+            infoPanel.SetActivePanel(targetNode,false);
         }
 
+    }
+
+    public void PurchaseButtonClicked()
+    {
+        isPurchaseMode = false;
+        purchaseMainNode = null;
+        currentTargetedNode.PurchaseTalent();
+        currentTargetedNode = null;
+        ResetCloseStates();
+        closeOrbits = new NodePassive[3];
+        infoPanel.DeactivePanel();
+    }
+
+    private void ResetNodesBackToDefault(NodePassive targetNode)
+    {
+        SetColor(targetNode);
+        currentTargetedNode = null;
+        ResetCloseStates();
+        infoPanel.DeactivePanel();
+        closeOrbits = new NodePassive[3];
+    }
+
+
+    private void ResetCloseStates()
+    {
+        foreach (var orbit in closeOrbits)
+        {
+            if(orbit != null)
+                SetColor(orbit);
+        }
     }
 
     private void TargetClosest(NodePassive targetNode)
     {
         closeOrbits = new NodePassive[3];
-        if (currentTargetedNode != null)
-            currentTargetedNode.SetNodeState(NodePurchaseState.IsCloseTarget);
-        currentTargetedNode = targetNode;
         foreach (var orbit in orbits)
         {
             if (orbit == targetNode)
