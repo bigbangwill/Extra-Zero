@@ -11,6 +11,7 @@ public abstract class TalentLibrary
     protected Sprite talentIcon;
     protected int talentCost;
     protected string talentDescription;
+    protected string talentDescriptionQubit;
     protected bool isQubit;
 
     public bool IsQubit { get => isQubit; }
@@ -60,6 +61,11 @@ public abstract class TalentLibrary
         return talentCost;
     }
 
+    public string GetTalentDescriptionQubit()
+    {
+        return talentDescriptionQubit;
+    }
+
 }
 
 public class FirstTalent : TalentLibrary
@@ -69,6 +75,7 @@ public class FirstTalent : TalentLibrary
         specificName = "FirstTalent";
         talentCost = 10;
         talentDescription = "The first talent that is only for testing";
+        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
     }
 
@@ -93,6 +100,7 @@ public class SecondTalent : TalentLibrary
         specificName = "SecondTalent";
         talentCost = 10;
         talentDescription = "The SecondTalent that is only for testing";
+        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
     }
 
@@ -117,6 +125,7 @@ public class ThirdTalent : TalentLibrary
         specificName = "ThirdTalent";
         talentCost = 10;
         talentDescription = "The ThirdTalent that is only for testing";
+        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
     }
 
@@ -142,6 +151,7 @@ public class ForthTalent : TalentLibrary
         specificName = "ForthTalent";
         talentCost = 10;
         talentDescription = "The ForthTalent that is only for testing";
+        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
     }
 
@@ -166,6 +176,7 @@ public class FifthTalent : TalentLibrary
         specificName = "FifthTalent";
         talentCost = 10;
         talentDescription = "The FifthTalent that is only for testing";
+        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
     }
 
@@ -190,6 +201,7 @@ public class SixthTalent : TalentLibrary
         specificName = "SixthTalent";
         talentCost = 10;
         talentDescription = "The SixthTalent that is only for testing";
+        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
     }
 
@@ -214,6 +226,7 @@ public class SeventhTalent : TalentLibrary
         specificName = "SeventhTalent";
         talentCost = 10;
         talentDescription = "The SeventhTalent that is only for testing";
+        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
     }
 

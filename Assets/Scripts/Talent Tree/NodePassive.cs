@@ -53,6 +53,16 @@ public class NodePassive : MonoBehaviour
         return talent.GetTalentIcon();
     }
 
+    public bool IsQubit()
+    {
+        return talent.IsQubit;
+    }
+
+    public string GetTalentDescriptionQubit()
+    {
+        return talent.GetTalentDescriptionQubit();
+    }
+
     public void SetNodeState(NodePurchaseState nodePurchase)
     {
         switch (nodePurchase)

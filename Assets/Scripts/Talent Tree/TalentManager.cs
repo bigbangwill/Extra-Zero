@@ -23,17 +23,16 @@ public class TalentManager : SingletonComponent<TalentManager>
 
     private List<TalentLibrary> talentLibraries = new();
     private List<NodePassive> orbits = new();
-
     private NodePassive currentTargetedNode;
-
     private NodePassive[] closeOrbits = new NodePassive[3];
-
     private Dictionary<NodePassive, float> currentDistance = new();
 
     [SerializeField] private Transform talentInfoPanel;
-    private bool isPurchasable = false;
-
     private NodePassive purchaseMainNode = null;
+
+    [SerializeField] private TalentInfoPanelQubitUI menuTalentInfoPanel;
+
+    private GameState currentGameState;
 
 
     [Header("In-Game Color Setting")]
@@ -58,9 +57,10 @@ public class TalentManager : SingletonComponent<TalentManager>
     private void StateChanged()
     {
         GameState currentState = GameStateManager.Instance.GetGameState();
+        currentGameState = currentState;
         if (currentState == GameState.OnMenu)
         {
-
+            
         }
     }
 
@@ -81,7 +81,7 @@ public class TalentManager : SingletonComponent<TalentManager>
     private bool isPurchaseMode = false;
 
 
-    public void SetColor(NodePassive passive)
+    public void SetState(NodePassive passive)
     {
         if (passive.IsPurchased)
             passive.SetNodeState(NodePurchaseState.IsPurchased);
@@ -89,23 +89,54 @@ public class TalentManager : SingletonComponent<TalentManager>
             passive.SetNodeState(NodePurchaseState.IsNotPurchased);
     }
 
+    public void MenuSetState(NodePassive passive)
+    {
+        passive.SetNodeState(NodePurchaseState.IsMenuPassive);
+    }
+
     public void SetTargetNode(NodePassive targetNode)
     {
-        currentDistance.Clear();
-        
-        bool isTargetPurchased = targetNode.IsPurchased;
-        
-        if (currentTargetedNode != null)
-            SetColor(currentTargetedNode);
+        if (currentGameState == GameState.OnMenu)
+        {
+            MenuSetTargetNode(targetNode);
+        }
+        else if (currentGameState == GameState.InGame)
+        {
+            InGameSetTargetNode(targetNode);
+        }
+    }
 
-        //DO ANYTHING THAT IS RELATED TO THE PREVIUS NODE HERE BEFORE THE NEXT SET OF THE NODE.
-        
+    private void MenuSetTargetNode(NodePassive targetNode)
+    {
+        if(currentTargetedNode != null)
+            MenuSetState(currentTargetedNode);
+        if (currentTargetedNode == targetNode)
+        {
+            menuTalentInfoPanel.gameObject.SetActive(false);
+            currentTargetedNode = null;
+            return;
+        }
+
+        currentTargetedNode = targetNode;
+        targetNode.SetNodeState(NodePurchaseState.IsMenuSelected);
+        menuTalentInfoPanel.SetQubitInfoUI(targetNode);
+
+            
+    }
+
+    private void InGameSetTargetNode(NodePassive targetNode)
+    {
+        currentDistance.Clear();
+        bool isTargetPurchased = targetNode.IsPurchased;
+        if (currentTargetedNode != null)
+            SetState(currentTargetedNode);
+
         if (isPurchaseMode)
         {
             if (targetNode == purchaseMainNode)
             {
                 isPurchaseMode = false;
-                SetColor(purchaseMainNode);
+                SetState(purchaseMainNode);
                 purchaseMainNode = null;
                 ResetNodesBackToDefault(targetNode);
                 return;
@@ -118,22 +149,20 @@ public class TalentManager : SingletonComponent<TalentManager>
             {
                 if (orbit == targetNode)
                 {
-                    infoPanel.SetActivePanel(targetNode,!targetNode.IsPurchased);
+                    infoPanel.SetActivePanel(targetNode, !targetNode.IsPurchased);
                     targetNode.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
                     currentTargetedNode = orbit;
                     return;
                 }
             }
         }
-
         ResetCloseStates();
         if (targetNode == currentTargetedNode)
         {
             ResetNodesBackToDefault(targetNode);
+            talentInfoPanel.gameObject.SetActive(false);
             return;
         }
-
-
         if (isTargetPurchased)
         {
             currentTargetedNode = targetNode;
@@ -141,9 +170,9 @@ public class TalentManager : SingletonComponent<TalentManager>
             TargetClosest(currentTargetedNode);
             isPurchaseMode = true;
             purchaseMainNode = targetNode;
-            infoPanel.SetActivePanel(targetNode,false);
+            infoPanel.SetActivePanel(targetNode, false);
             foreach (var orbit in closeOrbits)
-            {                    
+            {
                 orbit.SetNodeState(NodePurchaseState.IsCloseTarget);
             }
         }
@@ -153,9 +182,8 @@ public class TalentManager : SingletonComponent<TalentManager>
             currentTargetedNode.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
             TargetClosest(currentTargetedNode);
             isPurchaseMode = false;
-            infoPanel.SetActivePanel(targetNode,false);
+            infoPanel.SetActivePanel(targetNode, false);
         }
-
     }
 
     public void PurchaseButtonClicked()
@@ -171,7 +199,7 @@ public class TalentManager : SingletonComponent<TalentManager>
 
     private void ResetNodesBackToDefault(NodePassive targetNode)
     {
-        SetColor(targetNode);
+        SetState(targetNode);
         currentTargetedNode = null;
         ResetCloseStates();
         infoPanel.DeactivePanel();
@@ -184,7 +212,7 @@ public class TalentManager : SingletonComponent<TalentManager>
         foreach (var orbit in closeOrbits)
         {
             if(orbit != null)
-                SetColor(orbit);
+                SetState(orbit);
         }
     }
 
