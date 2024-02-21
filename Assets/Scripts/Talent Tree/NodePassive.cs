@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public enum NodePurchaseState { IsPurchase, IsNotPurchased, IsSelectedPurchased, IsSelectedNotPurchased, IsCloseTarget}
+public enum NodePurchaseState { IsPurchased, IsNotPurchased, IsSelectedPurchased, IsSelectedNotPurchased, IsCloseTarget, IsMenuPassive, IsMenuSelected}
 
 public class NodePassive : MonoBehaviour
 {
@@ -20,7 +20,11 @@ public class NodePassive : MonoBehaviour
         rend = GetComponentInChildren<Renderer>();
     }
 
-
+    public void UpgradeQubit()
+    {
+        talent.UpgradeToQubit();
+        SetNodeState(currentState);
+    }
 
     public void SetTalent(TalentLibrary talent)
     {
@@ -31,7 +35,7 @@ public class NodePassive : MonoBehaviour
     {
         talent.TalentEffect();
         isPurchased = true;
-        SetNodeState(NodePurchaseState.IsPurchase);
+        SetNodeState(NodePurchaseState.IsPurchased);
     }
 
     public int GetTalentCost()
@@ -53,16 +57,20 @@ public class NodePassive : MonoBehaviour
     {
         switch (nodePurchase)
         {
-            case NodePurchaseState.IsPurchase:
-                SetColor(TalentManager.Instance.passivePurchased);break;
+            case NodePurchaseState.IsPurchased:
+                currentState = nodePurchase; SetColor(TalentManager.Instance.passivePurchased);break;
             case NodePurchaseState.IsNotPurchased:
-                SetColor(TalentManager.Instance.passiveUnpurchased);break;
+                currentState = nodePurchase; SetColor(TalentManager.Instance.passiveUnpurchased);break;
             case NodePurchaseState.IsSelectedPurchased:
-                SetColor(TalentManager.Instance.selectedPurchased);break;
+                currentState = nodePurchase; SetColor(TalentManager.Instance.selectedPurchased);break;
             case NodePurchaseState.IsSelectedNotPurchased:
-                SetColor(TalentManager.Instance.selectedUnpurchased);break;
+                currentState = nodePurchase; SetColor(TalentManager.Instance.selectedUnpurchased);break;
             case NodePurchaseState.IsCloseTarget:
-                SetColor(TalentManager.Instance.closePurchasable);break;
+                currentState = nodePurchase; SetColor(TalentManager.Instance.closePurchasable);break;
+            case NodePurchaseState.IsMenuPassive:
+                currentState = nodePurchase; SetColor(TalentManager.Instance.menuPassive);break;
+            case NodePurchaseState.IsMenuSelected:
+                currentState = nodePurchase; SetColor(TalentManager.Instance.menuSelected);break;
             default: Debug.LogWarning("Check here Color");break;
         }
     }
@@ -72,5 +80,13 @@ public class NodePassive : MonoBehaviour
         if (rend == null)
             rend = GetComponentInChildren<Renderer>();
         rend.material.SetColor("_Base_Color", inputColor);
+        if (talent.IsQubit)
+        {
+            rend.material.SetInt("_IsQubit", 1);
+        }
+        else
+        {
+            rend.material.SetInt("_IsQubit", 0);
+        }
     }
 }

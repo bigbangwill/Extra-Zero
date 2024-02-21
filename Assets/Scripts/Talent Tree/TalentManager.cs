@@ -36,18 +36,34 @@ public class TalentManager : SingletonComponent<TalentManager>
     private NodePassive purchaseMainNode = null;
 
 
-    [Header("Color Setting")]
+    [Header("In-Game Color Setting")]
     public Color passivePurchased;
     public Color passiveUnpurchased;
     public Color selectedPurchased;
     public Color selectedUnpurchased;
     public Color closePurchasable;
+    [Header("Menu Color Setting")]
+    public Color menuPassive;
+    public Color menuSelected;
 
     private void Start()
     {
         CreateNodes();
         GetAllOrbs();
+        GameStateManager.Instance.ChangeStateAddListener(StateChanged);
     }
+
+
+
+    private void StateChanged()
+    {
+        GameState currentState = GameStateManager.Instance.GetGameState();
+        if (currentState == GameState.OnMenu)
+        {
+
+        }
+    }
+
 
     private void GetAllOrbs()
     {
@@ -58,7 +74,7 @@ public class TalentManager : SingletonComponent<TalentManager>
                 orbits.Add(orbit.GetComponent<NodePassive>());
             }
         }
-        orbits[0].PurchaseTalent();
+        //orbits[0].PurchaseTalent();
     }
 
 
@@ -68,7 +84,7 @@ public class TalentManager : SingletonComponent<TalentManager>
     public void SetColor(NodePassive passive)
     {
         if (passive.IsPurchased)
-            passive.SetNodeState(NodePurchaseState.IsPurchase);
+            passive.SetNodeState(NodePurchaseState.IsPurchased);
         else
             passive.SetNodeState(NodePurchaseState.IsNotPurchased);
     }
@@ -215,6 +231,5 @@ public class TalentManager : SingletonComponent<TalentManager>
         {
             tree.StartSummonNodes();
         }
-        
     }
 }

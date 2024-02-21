@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Compilation;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -10,6 +11,9 @@ public abstract class TalentLibrary
     protected Sprite talentIcon;
     protected int talentCost;
     protected string talentDescription;
+    protected bool isQubit;
+
+    public bool IsQubit { get => isQubit; }
 
     public void LoadIcon()
     {
@@ -27,7 +31,20 @@ public abstract class TalentLibrary
             Debug.LogError("Failed to load the asset");
         }
     }
-    public abstract void TalentEffect();
+
+    public void TalentEffect()
+    {
+        if (!isQubit)
+            NormalTalentEffect();
+        else
+            QubitTalentEffect();
+    }
+
+    protected abstract void NormalTalentEffect();
+
+    protected abstract void QubitTalentEffect();
+
+    public abstract void UpgradeToQubit();
     public Sprite GetTalentIcon()
     {
         return talentIcon;
@@ -55,9 +72,18 @@ public class FirstTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void TalentEffect()
+    public override void UpgradeToQubit()
+    {
+        isQubit = true;
+    }
+
+    protected override void NormalTalentEffect()
     {
         Debug.Log("First effect impacted");
+    }
+    protected override void QubitTalentEffect()
+    {
+        Debug.Log(specificName + " QubitEffect");
     }
 }
 public class SecondTalent : TalentLibrary
@@ -70,9 +96,18 @@ public class SecondTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void TalentEffect()
+    public override void UpgradeToQubit()
+    {
+        isQubit = true;
+    }
+
+    protected override void NormalTalentEffect()
     {
         Debug.Log("SecondTalent impacted");
+    }
+    protected override void QubitTalentEffect()
+    {
+        Debug.Log(specificName + " QubitEffect");
     }
 }
 public class ThirdTalent : TalentLibrary
@@ -85,9 +120,19 @@ public class ThirdTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void TalentEffect()
+    public override void UpgradeToQubit()
+    {
+        isQubit = true;
+    }
+
+    protected override void NormalTalentEffect()
     {
         Debug.Log("ThirdTalent impacted");
+    }
+
+    protected override void QubitTalentEffect()
+    {
+        Debug.Log(specificName + " QubitEffect");
     }
 }
 public class ForthTalent : TalentLibrary
@@ -100,9 +145,18 @@ public class ForthTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void TalentEffect()
+    public override void UpgradeToQubit()
+    {
+        isQubit = true;
+    }
+
+    protected override void NormalTalentEffect()
     {
         Debug.Log("ForthTalent impacted");
+    }
+    protected override void QubitTalentEffect()
+    {
+        Debug.Log(specificName + " QubitEffect");
     }
 }
 public class FifthTalent : TalentLibrary
@@ -115,9 +169,18 @@ public class FifthTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void TalentEffect()
+    public override void UpgradeToQubit()
+    {
+        isQubit = true;
+    }
+
+    protected override void NormalTalentEffect()
     {
         Debug.Log("FifthTalent impacted");
+    }
+    protected override void QubitTalentEffect()
+    {
+        Debug.Log(specificName + " QubitEffect");
     }
 }
 public class SixthTalent : TalentLibrary
@@ -130,9 +193,18 @@ public class SixthTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void TalentEffect()
+    public override void UpgradeToQubit()
+    {
+        isQubit = true;
+    }
+
+    protected override void NormalTalentEffect()
     {
         Debug.Log("SixthTalent impacted");
+    }
+    protected override void QubitTalentEffect()
+    {
+        Debug.Log(specificName + " QubitEffect");
     }
 }
 public class SeventhTalent : TalentLibrary
@@ -145,8 +217,17 @@ public class SeventhTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void TalentEffect()
+    public override void UpgradeToQubit()
+    {
+        isQubit = true;
+    }
+
+    protected override void NormalTalentEffect()
     {
         Debug.Log("SeventhTalent impacted");
+    }
+    protected override void QubitTalentEffect()
+    {
+        Debug.Log(specificName + " QubitEffect");
     }
 }
