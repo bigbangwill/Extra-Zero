@@ -31,6 +31,7 @@ public class TalentManager : SingletonComponent<TalentManager>
     private NodePassive purchaseMainNode = null;
 
     [SerializeField] private TalentInfoPanelQubitUI menuTalentInfoPanel;
+    [SerializeField] private TalentOptionsUI optionsUI;
 
     private GameState currentGameState;
 
@@ -74,7 +75,6 @@ public class TalentManager : SingletonComponent<TalentManager>
                 orbits.Add(orbit.GetComponent<NodePassive>());
             }
         }
-        //orbits[0].PurchaseTalent();
     }
 
 
@@ -114,13 +114,14 @@ public class TalentManager : SingletonComponent<TalentManager>
         {
             menuTalentInfoPanel.gameObject.SetActive(false);
             currentTargetedNode = null;
+            optionsUI.SetDeative();
             return;
         }
 
         currentTargetedNode = targetNode;
         targetNode.SetNodeState(NodePurchaseState.IsMenuSelected);
         menuTalentInfoPanel.SetQubitInfoUI(targetNode);
-
+        optionsUI.SetActive(currentTargetedNode);
             
     }
 

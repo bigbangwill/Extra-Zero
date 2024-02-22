@@ -26,6 +26,12 @@ public class NodePassive : MonoBehaviour
         SetNodeState(currentState);
     }
 
+    public void DowngradeQubit()
+    {
+        talent.DowngradeFromQubit();
+        SetNodeState(currentState);
+    }
+
     public void SetTalent(TalentLibrary talent)
     {
         this.talent = talent;

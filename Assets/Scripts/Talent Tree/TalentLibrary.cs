@@ -46,6 +46,7 @@ public abstract class TalentLibrary
     protected abstract void QubitTalentEffect();
 
     public abstract void UpgradeToQubit();
+    public abstract void DowngradeFromQubit();
     public Sprite GetTalentIcon()
     {
         return talentIcon;
@@ -79,6 +80,11 @@ public class FirstTalent : TalentLibrary
         LoadIcon();
     }
 
+    public override void DowngradeFromQubit()
+    {
+        isQubit = false;
+    }
+
     public override void UpgradeToQubit()
     {
         isQubit = true;
@@ -92,6 +98,8 @@ public class FirstTalent : TalentLibrary
     {
         Debug.Log(specificName + " QubitEffect");
     }
+
+
 }
 public class SecondTalent : TalentLibrary
 {
@@ -102,6 +110,11 @@ public class SecondTalent : TalentLibrary
         talentDescription = "The SecondTalent that is only for testing";
         talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
+    }
+
+    public override void DowngradeFromQubit()
+    {
+        isQubit = false;
     }
 
     public override void UpgradeToQubit()
@@ -127,6 +140,11 @@ public class ThirdTalent : TalentLibrary
         talentDescription = "The ThirdTalent that is only for testing";
         talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
+    }
+
+    public override void DowngradeFromQubit()
+    {
+        isQubit = false;
     }
 
     public override void UpgradeToQubit()
@@ -155,6 +173,11 @@ public class ForthTalent : TalentLibrary
         LoadIcon();
     }
 
+    public override void DowngradeFromQubit()
+    {
+        isQubit = false;
+    }
+
     public override void UpgradeToQubit()
     {
         isQubit = true;
@@ -178,6 +201,12 @@ public class FifthTalent : TalentLibrary
         talentDescription = "The FifthTalent that is only for testing";
         talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
+    }
+
+
+    public override void DowngradeFromQubit()
+    {
+        isQubit = false;
     }
 
     public override void UpgradeToQubit()
@@ -205,6 +234,11 @@ public class SixthTalent : TalentLibrary
         LoadIcon();
     }
 
+    public override void DowngradeFromQubit()
+    {
+        isQubit = false;
+    }
+
     public override void UpgradeToQubit()
     {
         isQubit = true;
@@ -228,6 +262,11 @@ public class SeventhTalent : TalentLibrary
         talentDescription = "The SeventhTalent that is only for testing";
         talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
+    }
+
+    public override void DowngradeFromQubit()
+    {
+        isQubit = false;
     }
 
     public override void UpgradeToQubit()
