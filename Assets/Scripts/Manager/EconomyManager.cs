@@ -13,8 +13,8 @@ public class EconomyManager : SingletonComponent<EconomyManager>
     }
     #endregion
 
-    private int inGameCurrencyCurrentStack = 0;
-    private int inGameCurrencyMaxStack = 0;
+    private int inGameCurrencyCurrentStack = 5;
+    private int inGameCurrencyMaxStack = 10;
 
     public int InGameCurrencyCurrentStack 
     { 
@@ -37,8 +37,8 @@ public class EconomyManager : SingletonComponent<EconomyManager>
         }
     }
 
-    private int outGameCurrencyCurrentStack = 0;
-    private int outGameCurrencyMaxStack = 0;
+    private int outGameCurrencyCurrentStack = 5;
+    private int outGameCurrencyMaxStack = 10;
 
     public int OutGameCurrencyCurrentStack
     {
@@ -78,15 +78,4 @@ public class EconomyManager : SingletonComponent<EconomyManager>
     {
         ValuesChangedEvent?.Invoke();
     }
-
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(100, 100, 100, 100),"Add To Currency"))
-        {
-            InGameCurrencyMaxStack = 20;
-            InGameCurrencyCurrentStack++;
-        }
-    }
-
 }

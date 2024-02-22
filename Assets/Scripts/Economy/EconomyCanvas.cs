@@ -24,7 +24,8 @@ public class EconomyCanvas : MonoBehaviour
 
     private void OnDisable()
     {
-        EconomyManager.Instance.RemoveListener(RefreshUI);
+        if(EconomyManager.Instance != null) 
+            EconomyManager.Instance.RemoveListener(RefreshUI);
     }
 
     public void RefreshUI()

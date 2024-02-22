@@ -2,16 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
+using System.Linq;
+using UnityEngine.UI;
+using TMPro;
 
 public class MenuPurchaseScript : MonoBehaviour
 {
     [SerializeField] private Transform scrollViewContent;
     [SerializeField] private GameObject purchasePrefab;
 
-    private List<Action> purchasablesList = new();
+    [SerializeField] private Button purchaseButton;
+    [SerializeField] private TextMeshProUGUI descriptionText;
 
-    private Dictionary<GameObject, Action> purchasableDictionary = new();
-    private Action activeAction;
+    private List<PurchasableLibrary> purchasablesList = new();
+    private PurchasableScript activePurchasable;
+
+
 
     private void Start()
     {
@@ -21,37 +28,51 @@ public class MenuPurchaseScript : MonoBehaviour
 
     private void Init()
     {
-        purchasablesList.Add(PurchasedQubit);
-        purchasablesList.Add(PurchasedGate);
-        purchasablesList.Add(PurchasedEntangle);
+
+        List<Type> purchasables = Assembly.GetAssembly(typeof(PurchasableLibrary)).GetTypes().Where
+            (TheType => TheType.IsClass && !TheType.IsAbstract &&
+            TheType.IsSubclassOf(typeof(PurchasableLibrary))).ToList();
+        foreach (var purchasable in purchasables)
+        {
+            PurchasableLibrary targetPurchasable = (PurchasableLibrary)Activator.CreateInstance(purchasable);
+            purchasablesList.Add(targetPurchasable);
+        }
         for(int i = 0; i < purchasablesList.Count; i++)
         {
             GameObject purchasableGO = Instantiate(purchasePrefab, scrollViewContent);
-            purchasableGO.GetComponent<PurchasableScript>().SetupPurchasables(this);
-            purchasableDictionary.Add(purchasableGO, purchasablesList[i]);
+            purchasableGO.GetComponent<PurchasableScript>().SetupPurchasables(purchasablesList[i],this);
         }
     }
     
 
-    public void SetPurchasableActive(GameObject purchasableGO)
+    public void SetPurchasableActive(PurchasableScript purchasableScript)
     {
-        activeAction = purchasableDictionary[purchasableGO];
+        if(activePurchasable != null)
+        {
+            activePurchasable.SetActiveIndicator(false);
+        }
+        activePurchasable = purchasableScript;
+        activePurchasable.SetActiveIndicator(true);
+        SetButtonState();
+        descriptionText.text = purchasableScript.Purchasable.PurchasableDescription;
     }
 
-
-    public void PurchasedQubit()
+    public void PurchaseButtonClicked()
     {
-
+        Debug.Log("Clicked");
+        activePurchasable.Purchasable.purchasedMethod();
+        EconomyManager.Instance.OutGameCurrencyCurrentStack -= activePurchasable.Purchasable.Cost;
+        SetButtonState();
     }
-
-    public void PurchasedGate()
+    private void SetButtonState()
     {
-
+        if (activePurchasable.Purchasable.Cost <= EconomyManager.Instance.OutGameCurrencyCurrentStack)
+        {
+            purchaseButton.interactable = true;
+        }
+        else
+        {
+            purchaseButton.interactable = false;
+        }
     }
-
-    public void PurchasedEntangle()
-    {
-
-    }
-
 }

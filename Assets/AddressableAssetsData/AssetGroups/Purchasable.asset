@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Purchasable
+  m_EditorClassIdentifier: 
+  m_GroupName: Purchasable
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6ce1d775074106f40a1ba49316778390
+  m_SerializeEntries:
+  - m_GUID: ce027b6ab1d8e694b8ac80d3994b1d89
+    m_Address: Purchasable/Qubit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf5531d9baad8e94b8107705ec19297f
+    m_Address: Purchasable/Entangle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 445c06534a44bc24abe0fb188fa0b366
+    m_Address: Purchasable/Gate
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0b5fa1fd7f5eb594291c69462e45e1bb, type: 2}
+    - {fileID: 11400000, guid: 34fa76c541c9c6c44b64f2d506da8dad, type: 2}

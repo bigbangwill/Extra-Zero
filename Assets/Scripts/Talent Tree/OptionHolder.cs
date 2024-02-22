@@ -1,10 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class OptionHolder : MonoBehaviour
+public class OptionHolder : SingletonComponent<OptionHolder>
 {
+    #region Singleton
+    public static OptionHolder Instance
+    {
+        get { return (OptionHolder) _Instance; }
+        set { _Instance = value; }
+    }
+    #endregion
+
     private int qubitMaxCount;
     public int QubitMaxCount {  get { return qubitMaxCount; } }
     private int qubitCurrentCount = 0;
@@ -21,6 +30,10 @@ public class OptionHolder : MonoBehaviour
     public int EntangleCurrentCount {  get { return entangleCurrentCount; } }
 
 
+    public event Action ValuesChanged;
+
+
+
     private void Start()
     {
         SetQubitMax(2);
@@ -28,16 +41,33 @@ public class OptionHolder : MonoBehaviour
         SetEntangleMax(0);
     }
 
+    public void AddListener(Action action)
+    {
+        ValuesChanged += action;
+    }
+
+    public void RemoveListener(Action action)
+    {
+        ValuesChanged -= action;
+    }
+
 
 
     public void SetQubitMax(int value)
     {
         qubitMaxCount = value;
+        ValuesChanged?.Invoke();
     }
 
     public void SetQubitCurrent(int value)
     {
         qubitCurrentCount = value;
+        ValuesChanged?.Invoke();
+    }
+    public void AddOneQubitMax()
+    {
+        qubitMaxCount++;
+        ValuesChanged?.Invoke();
     }
 
     public bool CanAddQubit()
@@ -50,11 +80,19 @@ public class OptionHolder : MonoBehaviour
     public void SetGateMax(int value)
     {
         gateMaxCount = value;
+        ValuesChanged?.Invoke();
     }
     
     public void SetGateCurrent(int value)
     {
         gateCurrentCount = value;
+        ValuesChanged?.Invoke();
+    }
+
+    public void AddOneGateMax()
+    {
+        gateMaxCount++;
+        ValuesChanged?.Invoke();
     }
 
     public bool CanAddGate()
@@ -67,11 +105,19 @@ public class OptionHolder : MonoBehaviour
     public void SetEntangleMax(int value)
     {
         entangleMaxCount = value;
+        ValuesChanged?.Invoke();
     }
 
     public void SetEntangleCurrent(int value)
     {
         entangleCurrentCount = value;
+        ValuesChanged?.Invoke();
+    }
+
+    public void AddOneEntangleMax()
+    {
+        entangleMaxCount++;
+        ValuesChanged?.Invoke();
     }
 
     public bool CanAddEntangle()
