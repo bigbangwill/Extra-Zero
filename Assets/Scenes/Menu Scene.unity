@@ -1005,7 +1005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &500347351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3805,6 +3805,8 @@ MonoBehaviour:
   closePurchasable: {r: 0, g: 0.8396226, b: 0.11309181, a: 1}
   menuPassive: {r: 0.2735849, g: 0.099368095, b: 0.099368095, a: 0}
   menuSelected: {r: 0.5849056, g: 0.5655927, b: 0.5655927, a: 0}
+  MenuAvailable: {r: 0.085190535, g: 0.7735849, b: 0, a: 0}
+  menuGated: {r: 0.5093005, g: 0.51496243, b: 0.990566, a: 0}
 --- !u!4 &1409922899
 Transform:
   m_ObjectHideFlags: 0

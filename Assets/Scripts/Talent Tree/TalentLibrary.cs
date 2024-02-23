@@ -13,8 +13,13 @@ public abstract class TalentLibrary
     protected string talentDescription;
     protected string talentDescriptionQubit;
     protected bool isQubit;
+    protected bool isGated;
+
+    protected NodePassive gatedNode;
+    protected NodePassive entangledNode;
 
     public bool IsQubit { get => isQubit; }
+    public bool IsGated { get => isGated; }
 
     public void LoadIcon()
     {
@@ -45,8 +50,22 @@ public abstract class TalentLibrary
 
     protected abstract void QubitTalentEffect();
 
-    public abstract void UpgradeToQubit();
-    public abstract void DowngradeFromQubit();
+
+    public virtual void AddGateToQubit(NodePassive secondNode)
+    {
+        isGated = true;
+        gatedNode = secondNode;
+    }
+    public virtual void RemoveGateFromQubit()
+    {
+        isGated = false;
+        gatedNode = null;
+    }
+
+    public virtual NodePassive TargetGatedNode()
+    {
+        return gatedNode;
+    }
     public Sprite GetTalentIcon()
     {
         return talentIcon;
@@ -67,6 +86,16 @@ public abstract class TalentLibrary
         return talentDescriptionQubit;
     }
 
+    public virtual void DowngradeFromQubit()
+    {
+        isQubit = false;
+    }
+
+    public virtual void UpgradeToQubit()
+    {
+        isQubit = true;
+    }
+
 }
 
 public class FirstTalent : TalentLibrary
@@ -80,15 +109,7 @@ public class FirstTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void DowngradeFromQubit()
-    {
-        isQubit = false;
-    }
-
-    public override void UpgradeToQubit()
-    {
-        isQubit = true;
-    }
+    
 
     protected override void NormalTalentEffect()
     {
@@ -112,15 +133,6 @@ public class SecondTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void DowngradeFromQubit()
-    {
-        isQubit = false;
-    }
-
-    public override void UpgradeToQubit()
-    {
-        isQubit = true;
-    }
 
     protected override void NormalTalentEffect()
     {
@@ -142,15 +154,6 @@ public class ThirdTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void DowngradeFromQubit()
-    {
-        isQubit = false;
-    }
-
-    public override void UpgradeToQubit()
-    {
-        isQubit = true;
-    }
 
     protected override void NormalTalentEffect()
     {
@@ -171,16 +174,6 @@ public class ForthTalent : TalentLibrary
         talentDescription = "The ForthTalent that is only for testing";
         talentDescriptionQubit = talentDescription + "QUBIT VERSION";
         LoadIcon();
-    }
-
-    public override void DowngradeFromQubit()
-    {
-        isQubit = false;
-    }
-
-    public override void UpgradeToQubit()
-    {
-        isQubit = true;
     }
 
     protected override void NormalTalentEffect()
@@ -204,16 +197,6 @@ public class FifthTalent : TalentLibrary
     }
 
 
-    public override void DowngradeFromQubit()
-    {
-        isQubit = false;
-    }
-
-    public override void UpgradeToQubit()
-    {
-        isQubit = true;
-    }
-
     protected override void NormalTalentEffect()
     {
         Debug.Log("FifthTalent impacted");
@@ -234,15 +217,6 @@ public class SixthTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void DowngradeFromQubit()
-    {
-        isQubit = false;
-    }
-
-    public override void UpgradeToQubit()
-    {
-        isQubit = true;
-    }
 
     protected override void NormalTalentEffect()
     {
@@ -264,15 +238,6 @@ public class SeventhTalent : TalentLibrary
         LoadIcon();
     }
 
-    public override void DowngradeFromQubit()
-    {
-        isQubit = false;
-    }
-
-    public override void UpgradeToQubit()
-    {
-        isQubit = true;
-    }
 
     protected override void NormalTalentEffect()
     {

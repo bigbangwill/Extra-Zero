@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public enum NodePurchaseState { IsPurchased, IsNotPurchased, IsSelectedPurchased, IsSelectedNotPurchased, IsCloseTarget, IsMenuPassive, IsMenuSelected}
+public enum NodePurchaseState { IsPurchased, IsNotPurchased, IsSelectedPurchased, IsSelectedNotPurchased, IsCloseTarget, IsMenuPassive, IsMenuSelected, IsMenuAvailable, IsMenuGated}
 
 public class NodePassive : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class NodePassive : MonoBehaviour
     public bool IsPurchased { get => isPurchased; }
     private Renderer rend;
     private NodePurchaseState currentState;
+    public NodePurchaseState CurrentState { get => currentState;}
 
 
     private void Start()
@@ -23,13 +24,23 @@ public class NodePassive : MonoBehaviour
     public void UpgradeQubit()
     {
         talent.UpgradeToQubit();
-        SetNodeState(currentState);
+        //SetNodeState(currentState);
     }
 
     public void DowngradeQubit()
     {
         talent.DowngradeFromQubit();
-        SetNodeState(currentState);
+        //SetNodeState(currentState);
+    }
+
+    public void UpgradeGate(NodePassive targetNode)
+    {
+        talent.AddGateToQubit(targetNode);
+    }
+
+    public void DowngradeGate()
+    {
+        talent.RemoveGateFromQubit();
     }
 
     public void SetTalent(TalentLibrary talent)
@@ -64,6 +75,11 @@ public class NodePassive : MonoBehaviour
         return talent.IsQubit;
     }
 
+    public bool IsGated()
+    {
+        return talent.IsGated;
+    }
+
     public string GetTalentDescriptionQubit()
     {
         return talent.GetTalentDescriptionQubit();
@@ -86,7 +102,11 @@ public class NodePassive : MonoBehaviour
             case NodePurchaseState.IsMenuPassive:
                 currentState = nodePurchase; SetColor(TalentManager.Instance.menuPassive);break;
             case NodePurchaseState.IsMenuSelected:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.menuSelected);break;
+                currentState = nodePurchase; SetColor(TalentManager.Instance.menuSelected); break;
+            case NodePurchaseState.IsMenuAvailable:
+                currentState = nodePurchase; SetColor(TalentManager.Instance.MenuAvailable);break;
+            case NodePurchaseState.IsMenuGated:
+                currentState = nodePurchase; SetColor(TalentManager.Instance.menuGated);break;
             default: Debug.LogWarning("Check here Color");break;
         }
     }

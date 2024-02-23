@@ -45,6 +45,8 @@ public class TalentManager : SingletonComponent<TalentManager>
     [Header("Menu Color Setting")]
     public Color menuPassive;
     public Color menuSelected;
+    public Color MenuAvailable;
+    public Color menuGated;
 
     private void Start()
     {
@@ -106,10 +108,39 @@ public class TalentManager : SingletonComponent<TalentManager>
         }
     }
 
+    private bool isSecondGate = false;
+    private bool isSecondEntanle = false;
+    private NodePassive gateBaseNode;
+
+    public void SetGateStart()
+    {
+        isSecondEntanle = true;
+        gateBaseNode = currentTargetedNode;
+        foreach (var orbit in orbits)
+        {
+            if (orbit.IsQubit() && !orbit.IsGated() && orbit != gateBaseNode)
+            {
+                orbit.SetNodeState(NodePurchaseState.IsMenuAvailable);
+            }
+        }
+    }
+
     private void MenuSetTargetNode(NodePassive targetNode)
     {
         if(currentTargetedNode != null)
             MenuSetState(currentTargetedNode);
+        if (isSecondGate)
+        {
+            if (targetNode.CurrentState == NodePurchaseState.IsMenuSelected)
+            {
+                gateBaseNode.UpgradeGate(targetNode);
+                gateBaseNode.SetNodeState(NodePurchaseState.IsMenuGated);
+                targetNode.SetNodeState(NodePurchaseState.IsMenuGated);
+                isSecondGate = false;
+            }
+        }
+
+
         if (currentTargetedNode == targetNode)
         {
             menuTalentInfoPanel.gameObject.SetActive(false);

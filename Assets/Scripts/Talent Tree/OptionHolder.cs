@@ -37,7 +37,7 @@ public class OptionHolder : SingletonComponent<OptionHolder>
     private void Start()
     {
         SetQubitMax(2);
-        SetGateMax(0);
+        SetGateMax(2);
         SetEntangleMax(0);
     }
 

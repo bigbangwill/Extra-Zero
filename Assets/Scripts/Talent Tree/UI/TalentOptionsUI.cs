@@ -28,6 +28,11 @@ public class TalentOptionsUI : MonoBehaviour
         {
             qubitButton.interactable = true;
         }
+        if (passive.IsGated())
+        {
+            gateButton.interactable = false;
+        }
+
     }
 
     public void SetDeative()
@@ -53,7 +58,7 @@ public class TalentOptionsUI : MonoBehaviour
 
     public void GateButton()
     {
-
+        TalentManager.Instance.SetGateStart();
     }
 
     public void EntanglementButton()
