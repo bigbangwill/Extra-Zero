@@ -11,6 +11,7 @@ TagManager:
   - Alchemy Floating Object
   - Order Post
   - Talent Canvas
+  - Talent Camera
   layers:
   - Default
   - TransparentFX

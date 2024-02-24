@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
 
-    [SerializeField] private Camera talentCamera;
     [SerializeField] private LayerMask targetMask;
 
     [SerializeField] private Transform TalentTree;
@@ -16,8 +15,19 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     [SerializeField] private float fastdown;
 
 
+    public Camera talentCamera;
 
-    
+    private void Start()
+    {
+        GameStateManager.Instance.ChangeStateAddListener(SetCameraRefrence);
+    }
+
+    public void SetCameraRefrence()
+    {
+        Debug.Log("Hereee");
+        talentCamera = GameObject.FindGameObjectWithTag("Talent Camera").GetComponent<Camera>();
+    }
+
 
     public void OnDrag(PointerEventData eventData)
     {

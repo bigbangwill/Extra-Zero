@@ -72,11 +72,33 @@ public class TalentManager : SingletonComponent<TalentManager>
 
     private void StateChanged()
     {
+
         GameState currentState = GameStateManager.Instance.GetGameState();
         currentGameState = currentState;
         if (currentState == GameState.OnMenu)
         {
-            
+            foreach (var orbit in orbits)
+            {
+                if (orbit.IsGated())
+                {
+                    orbit.SetNodeState(NodePurchaseState.IsMenuGated);
+                }
+                else if (orbit.IsEntangled())
+                {
+                    orbit.SetNodeState(NodePurchaseState.IsMenuEntangled);
+                }
+                else
+                {
+                    orbit.SetNodeState(NodePurchaseState.IsMenuPassive);
+                }
+            }
+        }
+        else if (currentState == GameState.InGame)
+        {
+            foreach (var orbit in orbits)
+            {
+                orbit.SetNodeState(NodePurchaseState.IsNotPurchased);
+            }
         }
     }
 
