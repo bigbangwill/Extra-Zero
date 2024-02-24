@@ -6,6 +6,8 @@ using System;
 using System.Reflection;
 using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
+using TMPro;
+using UnityEngine.Rendering;
 
 public class TalentManager : SingletonComponent<TalentManager>
 {
@@ -24,7 +26,8 @@ public class TalentManager : SingletonComponent<TalentManager>
     private List<TalentLibrary> talentLibraries = new();
     private List<NodePassive> orbits = new();
     private NodePassive currentTargetedNode;
-    private NodePassive[] closeOrbits = new NodePassive[3];
+    //private NodePassive[] closeOrbits = new NodePassive[3];
+    private List<NodePassive> closeOrbits = new();
     private Dictionary<NodePassive, float> currentDistance = new();
 
     [SerializeField] private Transform talentInfoPanel;
@@ -311,8 +314,8 @@ public class TalentManager : SingletonComponent<TalentManager>
             currentTargetedNode.SetNodeState(NodePurchaseState.IsSelectedPurchased);
             if (currentTargetedNode.IsGated())
             {
-                closeOrbits = new NodePassive[1];
-                closeOrbits[0] = currentTargetedNode.GetNodeToGate();
+                closeOrbits.Clear();
+                closeOrbits.Add(currentTargetedNode.GetNodeToGate());
             }
             else
             {
@@ -332,8 +335,8 @@ public class TalentManager : SingletonComponent<TalentManager>
             currentTargetedNode.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
             if (currentTargetedNode.IsGated())
             {
-                closeOrbits = new NodePassive[1];
-                closeOrbits[0] = currentTargetedNode.GetNodeToGate();
+                closeOrbits.Clear();
+                closeOrbits.Add(currentTargetedNode.GetNodeToGate());
             }
             else
             {
@@ -373,7 +376,7 @@ public class TalentManager : SingletonComponent<TalentManager>
         currentTargetedNode.PurchaseTalent();
         currentTargetedNode = null;
         ResetCloseStates();
-        closeOrbits = new NodePassive[3];
+        closeOrbits.Clear();
         infoPanel.DeactivePanel();
     }
 
@@ -383,7 +386,7 @@ public class TalentManager : SingletonComponent<TalentManager>
         currentTargetedNode = null;
         ResetCloseStates();
         infoPanel.DeactivePanel();
-        closeOrbits = new NodePassive[3];
+        closeOrbits.Clear();
     }
 
 
@@ -398,7 +401,7 @@ public class TalentManager : SingletonComponent<TalentManager>
 
     private void TargetClosest(NodePassive targetNode)
     {
-        closeOrbits = new NodePassive[3];
+        closeOrbits.Clear();
         foreach (var orbit in orbits)
         {
             if (orbit == targetNode)
@@ -412,7 +415,12 @@ public class TalentManager : SingletonComponent<TalentManager>
         }
 
         var sortedDistances = currentDistance.OrderBy(x => x.Value);
-        closeOrbits = sortedDistances.Take(3).Select(pair => pair.Key).ToArray();
+        closeOrbits = sortedDistances.Take(3).Select(pair => pair.Key).ToList();
+        foreach (var orbit in closeOrbits.ToList())
+        {
+            if(orbit.IsPurchased)
+                closeOrbits.Remove(orbit);
+        }
     }
 
     public void CreateNodes()
