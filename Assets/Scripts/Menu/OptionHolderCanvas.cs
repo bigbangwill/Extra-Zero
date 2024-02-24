@@ -16,7 +16,13 @@ public class OptionHolderCanvas : MonoBehaviour
 
     private void OnDisable()
     {
-        OptionHolder.Instance.RemoveListener(InitUI);
+        if(OptionHolder.Instance != null)
+            OptionHolder.Instance.RemoveListener(InitUI);
+    }
+
+    private void Start()
+    {
+        InitUI();
     }
 
     public void InitUI()
@@ -24,7 +30,7 @@ public class OptionHolderCanvas : MonoBehaviour
         string qubitCurrent = OptionHolder.Instance.QubitCurrentCount.ToString();
         string qubitMax = OptionHolder.Instance.QubitMaxCount.ToString();
         string gateCurrent = OptionHolder.Instance.GateCurrentCount.ToString();
-        string gateMax = OptionHolder.Instance.GateCurrentCount.ToString();
+        string gateMax = OptionHolder.Instance.GateMaxCount.ToString();
         string entangleCurrent = OptionHolder.Instance.EntangleCurrentCount.ToString();
         string entangleMax = OptionHolder.Instance.EntangleMaxCount.ToString();
 

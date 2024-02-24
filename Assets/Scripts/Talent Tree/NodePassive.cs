@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public enum NodePurchaseState { IsPurchased, IsNotPurchased, IsSelectedPurchased, IsSelectedNotPurchased, IsCloseTarget, IsMenuPassive, IsMenuSelected, IsMenuAvailable, IsMenuGated}
+public enum NodePurchaseState { IsPurchased, IsNotPurchased, IsSelectedPurchased,
+    IsSelectedNotPurchased, IsCloseTarget, IsMenuPassive, IsMenuSelected,
+    IsMenuAvailable, IsMenuGated, IsMenuEntangled}
 
 public class NodePassive : MonoBehaviour
 {
@@ -15,6 +17,9 @@ public class NodePassive : MonoBehaviour
     private NodePurchaseState currentState;
     public NodePurchaseState CurrentState { get => currentState;}
 
+    private NodePassive gateToNode;
+    private NodePassive entangleToNode;
+
 
     private void Start()
     {
@@ -24,23 +29,73 @@ public class NodePassive : MonoBehaviour
     public void UpgradeQubit()
     {
         talent.UpgradeToQubit();
-        //SetNodeState(currentState);
+        SetNodeState(currentState);
     }
 
     public void DowngradeQubit()
     {
         talent.DowngradeFromQubit();
-        //SetNodeState(currentState);
+        SetNodeState(currentState);
     }
 
     public void UpgradeGate(NodePassive targetNode)
     {
         talent.AddGateToQubit(targetNode);
+        targetNode.ForceUpgradeGate(this);
+        gateToNode = targetNode;
     }
 
     public void DowngradeGate()
     {
         talent.RemoveGateFromQubit();
+        gateToNode.ForceDowngradeGate();
+        SetNodeState(NodePurchaseState.IsMenuPassive);
+        TalentManager.Instance.TryStopLine(this);
+        gateToNode = null;
+    }
+
+    public void ForceUpgradeGate(NodePassive targetNode)
+    {
+        talent.AddGateToQubit(targetNode);
+        gateToNode = targetNode;
+    }
+
+    public void ForceDowngradeGate()
+    {
+        talent.RemoveGateFromQubit();
+        SetNodeState(NodePurchaseState.IsMenuPassive);
+        TalentManager.Instance.TryStopLine(this);
+        gateToNode = null;
+    }
+
+    public void UpgradeEntangle(NodePassive targetNode)
+    {
+        talent.AddEntangleToQubit(targetNode);
+        targetNode.ForceUpgradeEntangle(this);
+        entangleToNode = targetNode;
+    }
+
+    public void DowngradeEntangle()
+    {
+        talent.RemoveEntangleToQubit();
+        entangleToNode.ForceDowngradeEntangle();
+        SetNodeState(NodePurchaseState.IsMenuPassive);
+        TalentManager.Instance.TryStopLine(this);
+        entangleToNode = null;
+    }
+
+    public void ForceUpgradeEntangle(NodePassive targetNode)
+    {
+        talent.AddEntangleToQubit(targetNode);
+        entangleToNode = targetNode;
+    }
+
+    public void ForceDowngradeEntangle()
+    {
+        talent.RemoveEntangleToQubit();
+        SetNodeState(NodePurchaseState.IsMenuPassive);
+        TalentManager.Instance.TryStopLine(this);
+        entangleToNode = null;
     }
 
     public void SetTalent(TalentLibrary talent)
@@ -80,6 +135,11 @@ public class NodePassive : MonoBehaviour
         return talent.IsGated;
     }
 
+    public bool IsEntangled()
+    {
+        return talent.IsEntangled;
+    }
+
     public string GetTalentDescriptionQubit()
     {
         return talent.GetTalentDescriptionQubit();
@@ -107,6 +167,8 @@ public class NodePassive : MonoBehaviour
                 currentState = nodePurchase; SetColor(TalentManager.Instance.MenuAvailable);break;
             case NodePurchaseState.IsMenuGated:
                 currentState = nodePurchase; SetColor(TalentManager.Instance.menuGated);break;
+            case NodePurchaseState.IsMenuEntangled:
+                currentState = nodePurchase; SetColor(TalentManager.Instance.menuEntangled);break;
             default: Debug.LogWarning("Check here Color");break;
         }
     }

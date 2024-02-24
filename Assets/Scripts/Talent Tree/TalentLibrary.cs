@@ -14,12 +14,14 @@ public abstract class TalentLibrary
     protected string talentDescriptionQubit;
     protected bool isQubit;
     protected bool isGated;
+    protected bool isEntangled;
 
     protected NodePassive gatedNode;
     protected NodePassive entangledNode;
 
     public bool IsQubit { get => isQubit; }
     public bool IsGated { get => isGated; }
+    public bool IsEntangled { get => isEntangled; }
 
     public void LoadIcon()
     {
@@ -56,10 +58,23 @@ public abstract class TalentLibrary
         isGated = true;
         gatedNode = secondNode;
     }
+
     public virtual void RemoveGateFromQubit()
     {
         isGated = false;
         gatedNode = null;
+    }
+
+    public virtual void AddEntangleToQubit(NodePassive secondNode)
+    {
+        isEntangled = true;
+        entangledNode = secondNode;
+    }
+
+    public virtual void RemoveEntangleToQubit()
+    {
+        isEntangled = false;
+        entangledNode = null;
     }
 
     public virtual NodePassive TargetGatedNode()

@@ -48,7 +48,7 @@ public class Qubit : PurchasableLibrary
 
     public override void purchasedMethod()
     {
-        OptionHolder.Instance.AddOneQubitMax();
+        OptionHolder.Instance.AddQubitMax(+1);
     }
 }
 public class Gate : PurchasableLibrary
@@ -64,7 +64,7 @@ public class Gate : PurchasableLibrary
 
     public override void purchasedMethod()
     {
-        OptionHolder.Instance.AddOneGateMax();
+        OptionHolder.Instance.AddGateMax(+1);
     }
 }
 public class Entangle : PurchasableLibrary
@@ -79,6 +79,6 @@ public class Entangle : PurchasableLibrary
 
     public override void purchasedMethod()
     {
-        OptionHolder.Instance.AddOneEntangleMax();
+        OptionHolder.Instance.AddEntangleMax(+1);
     }
 }

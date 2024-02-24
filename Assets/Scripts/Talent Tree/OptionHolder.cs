@@ -36,9 +36,9 @@ public class OptionHolder : SingletonComponent<OptionHolder>
 
     private void Start()
     {
-        SetQubitMax(2);
-        SetGateMax(2);
-        SetEntangleMax(0);
+        SetQubitMax(10);
+        SetGateMax(10);
+        SetEntangleMax(10);
     }
 
     public void AddListener(Action action)
@@ -64,9 +64,16 @@ public class OptionHolder : SingletonComponent<OptionHolder>
         qubitCurrentCount = value;
         ValuesChanged?.Invoke();
     }
-    public void AddOneQubitMax()
+
+    public void AddQubitCurrent(int value)
     {
-        qubitMaxCount++;
+        qubitCurrentCount += value;
+        ValuesChanged?.Invoke();
+    }
+
+    public void AddQubitMax(int value)
+    {
+        qubitMaxCount += value;
         ValuesChanged?.Invoke();
     }
 
@@ -88,10 +95,15 @@ public class OptionHolder : SingletonComponent<OptionHolder>
         gateCurrentCount = value;
         ValuesChanged?.Invoke();
     }
-
-    public void AddOneGateMax()
+    public void AddGateCurrent(int value)
     {
-        gateMaxCount++;
+        gateCurrentCount += value;
+        ValuesChanged?.Invoke();
+    }
+
+    public void AddGateMax(int value)
+    {
+        gateMaxCount += value;
         ValuesChanged?.Invoke();
     }
 
@@ -114,9 +126,15 @@ public class OptionHolder : SingletonComponent<OptionHolder>
         ValuesChanged?.Invoke();
     }
 
-    public void AddOneEntangleMax()
+    public void AddEntangleCurrent(int value)
     {
-        entangleMaxCount++;
+        entangleCurrentCount += value;
+        ValuesChanged?.Invoke();
+    }
+
+    public void AddEntangleMax(int value)
+    {
+        entangleMaxCount += value;
         ValuesChanged?.Invoke();
     }
 
@@ -126,6 +144,4 @@ public class OptionHolder : SingletonComponent<OptionHolder>
             return true;
         return false;
     }
-
-    
 }

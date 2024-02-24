@@ -35,6 +35,18 @@ public class TalentManager : SingletonComponent<TalentManager>
 
     private GameState currentGameState;
 
+    [Header("Line Renderer")]
+    [SerializeField] private GameObject linePrefab;
+    [SerializeField] private GameObject entangleLinePrefab;
+    [SerializeField] private Transform lineParent;
+
+
+    private bool isSecondGate = false;
+    private bool isSecondEntangle = false;
+    private NodePassive gateBaseNode;
+    private NodePassive entangleBaseNode;
+
+    private Dictionary<NodePassive, GameObject> LineDictionary = new();
 
     [Header("In-Game Color Setting")]
     public Color passivePurchased;
@@ -47,6 +59,7 @@ public class TalentManager : SingletonComponent<TalentManager>
     public Color menuSelected;
     public Color MenuAvailable;
     public Color menuGated;
+    public Color menuEntangled;
 
     private void Start()
     {
@@ -93,7 +106,10 @@ public class TalentManager : SingletonComponent<TalentManager>
 
     public void MenuSetState(NodePassive passive)
     {
-        passive.SetNodeState(NodePurchaseState.IsMenuPassive);
+        if(passive.IsGated())
+            passive.SetNodeState(NodePurchaseState.IsMenuGated);
+        else
+            passive.SetNodeState(NodePurchaseState.IsMenuPassive);
     }
 
     public void SetTargetNode(NodePassive targetNode)
@@ -108,14 +124,25 @@ public class TalentManager : SingletonComponent<TalentManager>
         }
     }
 
-    private bool isSecondGate = false;
-    private bool isSecondEntanle = false;
-    private NodePassive gateBaseNode;
+    
 
     public void SetGateStart()
     {
-        isSecondEntanle = true;
+        isSecondGate = true;
         gateBaseNode = currentTargetedNode;
+        foreach (var orbit in orbits)
+        {
+            if (orbit.IsQubit() && !orbit.IsGated() && orbit != gateBaseNode)
+            {
+                orbit.SetNodeState(NodePurchaseState.IsMenuAvailable);
+            }
+        }
+    }
+
+    public void SetEntangleStart()
+    {
+        isSecondEntangle = true;
+        entangleBaseNode = currentTargetedNode;
         foreach (var orbit in orbits)
         {
             if (orbit.IsQubit() && !orbit.IsGated() && orbit != gateBaseNode)
@@ -131,15 +158,75 @@ public class TalentManager : SingletonComponent<TalentManager>
             MenuSetState(currentTargetedNode);
         if (isSecondGate)
         {
-            if (targetNode.CurrentState == NodePurchaseState.IsMenuSelected)
+            if (targetNode.CurrentState == NodePurchaseState.IsMenuAvailable)
             {
                 gateBaseNode.UpgradeGate(targetNode);
                 gateBaseNode.SetNodeState(NodePurchaseState.IsMenuGated);
                 targetNode.SetNodeState(NodePurchaseState.IsMenuGated);
+                StartGateLine(gateBaseNode.transform.GetChild(0),targetNode.transform.GetChild(0));
+                OptionHolder.Instance.AddGateCurrent(+1);
                 isSecondGate = false;
+                gateBaseNode = null;
+
+                foreach (var orbit in orbits)
+                {
+                    if (orbit.CurrentState == NodePurchaseState.IsMenuAvailable)
+                    {
+                        orbit.SetNodeState(NodePurchaseState.IsMenuPassive);
+                    }
+                }
+                optionsUI.SetDeative();
+                return;
+            }
+            else
+            {
+                gateBaseNode = null;
+                isSecondGate = false;
+            }
+            foreach (var orbit in orbits)
+            {
+                if (orbit.CurrentState == NodePurchaseState.IsMenuAvailable)
+                {
+                    orbit.SetNodeState(NodePurchaseState.IsMenuPassive);
+                }
             }
         }
 
+        if (isSecondEntangle)
+        {
+            if (targetNode.CurrentState == NodePurchaseState.IsMenuAvailable)
+            {
+                entangleBaseNode.UpgradeEntangle(targetNode);
+                entangleBaseNode.SetNodeState(NodePurchaseState.IsMenuEntangled);
+                targetNode.SetNodeState(NodePurchaseState.IsMenuEntangled);
+                StartEntangleLine(entangleBaseNode.transform.GetChild(0), targetNode.transform.GetChild(0));
+                OptionHolder.Instance.AddEntangleCurrent(+1);
+                isSecondEntangle = false;
+                entangleBaseNode = null;
+
+                foreach (var orbit in orbits)
+                {
+                    if (orbit.CurrentState == NodePurchaseState.IsMenuAvailable)
+                    {
+                        orbit.SetNodeState(NodePurchaseState.IsMenuPassive);
+                    }
+                }
+                optionsUI.SetDeative();
+                return;
+            }
+            else
+            {
+                entangleBaseNode = null;
+                isSecondEntangle = false;
+            }
+            foreach (var orbit in orbits)
+            {
+                if (orbit.CurrentState == NodePurchaseState.IsMenuAvailable)
+                {
+                    orbit.SetNodeState(NodePurchaseState.IsMenuPassive);
+                }
+            }
+        }
 
         if (currentTargetedNode == targetNode)
         {
@@ -215,6 +302,28 @@ public class TalentManager : SingletonComponent<TalentManager>
             TargetClosest(currentTargetedNode);
             isPurchaseMode = false;
             infoPanel.SetActivePanel(targetNode, false);
+        }
+    }
+
+    private void StartGateLine(Transform start,Transform end)
+    {
+        GameObject target = Instantiate(linePrefab, lineParent);
+        target.GetComponent<GateLineRenderer>().Setup(start, end);
+        LineDictionary.Add(gateBaseNode, target);
+    }
+
+    private void StartEntangleLine(Transform start, Transform end)
+    {
+        GameObject target = Instantiate(entangleLinePrefab, lineParent);
+        target.GetComponent<GateLineRenderer>().Setup(start,end);
+        LineDictionary.Add(entangleBaseNode, target);
+    }
+
+    public void TryStopLine(NodePassive targetNode)
+    {
+        if (LineDictionary.ContainsKey(targetNode))
+        {
+            Destroy(LineDictionary[targetNode]);
         }
     }
 

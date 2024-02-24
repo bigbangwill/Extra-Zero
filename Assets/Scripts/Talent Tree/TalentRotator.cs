@@ -15,7 +15,6 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     [SerializeField] private Vector2 slowdown;
     [SerializeField] private float fastdown;
 
-    [SerializeField] private TalentManager talentManager;
 
 
     
@@ -27,11 +26,13 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log("Start");
         Ray ray = talentCamera.ScreenPointToRay(eventData.position);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask))
         {
-            talentManager.SetTargetNode(hit.collider.GetComponentInParent<NodePassive>());
+            Debug.Log("inside if");
+            TalentManager.Instance.SetTargetNode(hit.collider.GetComponentInParent<NodePassive>());
         }
     }
 }

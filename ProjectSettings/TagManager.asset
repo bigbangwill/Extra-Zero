@@ -10,6 +10,7 @@ TagManager:
   - PopUpSlot
   - Alchemy Floating Object
   - Order Post
+  - Talent Canvas
   layers:
   - Default
   - TransparentFX
