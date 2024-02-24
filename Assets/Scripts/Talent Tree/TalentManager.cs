@@ -65,6 +65,7 @@ public class TalentManager : SingletonComponent<TalentManager>
     {
         CreateNodes();
         GetAllOrbs();
+        orbits[0].PurchaseTalent();
         GameStateManager.Instance.ChangeStateAddListener(StateChanged);
     }
 
@@ -308,7 +309,15 @@ public class TalentManager : SingletonComponent<TalentManager>
         {
             currentTargetedNode = targetNode;
             currentTargetedNode.SetNodeState(NodePurchaseState.IsSelectedPurchased);
-            TargetClosest(currentTargetedNode);
+            if (currentTargetedNode.IsGated())
+            {
+                closeOrbits = new NodePassive[1];
+                closeOrbits[0] = currentTargetedNode.GetNodeToGate();
+            }
+            else
+            {
+                TargetClosest(currentTargetedNode);
+            }
             isPurchaseMode = true;
             purchaseMainNode = targetNode;
             infoPanel.SetActivePanel(targetNode, false);
@@ -321,7 +330,15 @@ public class TalentManager : SingletonComponent<TalentManager>
         {
             currentTargetedNode = targetNode;
             currentTargetedNode.SetNodeState(NodePurchaseState.IsSelectedNotPurchased);
-            TargetClosest(currentTargetedNode);
+            if (currentTargetedNode.IsGated())
+            {
+                closeOrbits = new NodePassive[1];
+                closeOrbits[0] = currentTargetedNode.GetNodeToGate();
+            }
+            else
+            {
+                TargetClosest(currentTargetedNode);
+            }
             isPurchaseMode = false;
             infoPanel.SetActivePanel(targetNode, false);
         }
