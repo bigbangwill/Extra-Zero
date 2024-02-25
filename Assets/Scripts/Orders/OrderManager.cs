@@ -45,8 +45,14 @@ public class OrderManager : SingletonComponent<OrderManager>
     //For later gameplay system :D nice naming btw
     private float timeElapsedBetweenNightAndDay;
 
+    private void Awake()
+    {
+        
+    }
+
     private void Start()
     {
+        _Instance = this;
         Init();
         StartNewWave(defaultWave);
     }

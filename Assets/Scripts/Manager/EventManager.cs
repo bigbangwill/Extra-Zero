@@ -61,12 +61,12 @@ public class EventManager : SingletonComponent<EventManager>
 
     public UnityEvent _PauseEvent;
     public UnityEvent _ResumeEvent;
-    public static event Action _RefreshInventoryEvent;
+    public event Action _RefreshInventoryEvent;
 
     // For the time system event handler
     private int secondElapsedEventCurrentListeners;
 
-    public static event Action _SecondElapsed;
+    public event Action _SecondElapsed;
 
     // For time system.
     private float seconds;
@@ -79,10 +79,10 @@ public class EventManager : SingletonComponent<EventManager>
     public int _Hours { get { return hour; } }
     public int _Days { get { return day; } }
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+    //private void Awake()
+    //{
+    //    Instance = this;
+    //}
 
     private void Start()
     {

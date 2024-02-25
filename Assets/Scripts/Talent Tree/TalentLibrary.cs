@@ -125,6 +125,7 @@ public class FirstTalent : TalentLibrary
     }
 
     
+    //REMEMBER : to set up the talents in a way that will be reseted back to normal after scene changes.
 
     protected override void NormalTalentEffect()
     {

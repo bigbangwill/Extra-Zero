@@ -41,14 +41,12 @@ public class NodePassive : MonoBehaviour
     public void UpgradeGate(NodePassive targetNode)
     {
         talent.AddGateToQubit(targetNode);
-        //targetNode.ForceUpgradeGate(this);
         gateToNode = targetNode;
     }
 
     public void DowngradeGate()
     {
         talent.RemoveGateFromQubit();
-        //gateToNode.ForceDowngradeGate();
         SetNodeState(NodePurchaseState.IsMenuPassive);
         TalentManager.Instance.TryStopLine(this);
         gateToNode = null;
@@ -112,6 +110,11 @@ public class NodePassive : MonoBehaviour
         }
         isPurchased = true;
         SetNodeState(NodePurchaseState.IsPurchased);
+    }
+
+    public void ResetToDefault()
+    {
+        isPurchased = false;
     }
 
 

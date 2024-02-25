@@ -16,6 +16,21 @@ public class EconomyManager : SingletonComponent<EconomyManager>
     private int inGameCurrencyCurrentStack = 5;
     private int inGameCurrencyMaxStack = 10;
 
+    private static EconomyManager instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+    }
+
     public int InGameCurrencyCurrentStack 
     { 
         get => inGameCurrencyCurrentStack;

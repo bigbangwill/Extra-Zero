@@ -35,8 +35,6 @@ public class ItemStash : MonoBehaviour, IStashable
 
     private void Awake()
     {
-
-        EventManager.Instance.RefreshUIAddListener(RefreshUI);
         inventoryArray = new ItemBehaviour[inventorySlotCount];
         itemSlotPrefabWidth = itemSlotPrefab.GetComponent<RectTransform>().rect.width;
         itemSlotPrefabHeight = itemSlotPrefab.GetComponent<RectTransform>().rect.height;
@@ -75,6 +73,17 @@ public class ItemStash : MonoBehaviour, IStashable
         HaveEmptySlot(new Herb.Sage(30), true);
         HaveEmptySlot(new Herb.Chamomile(30), true);
     }
+
+    private void OnEnable()
+    {
+        EventManager.Instance.RefreshUIAddListener(RefreshUI);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.RefreshUIRemoveListener(RefreshUI);
+    }
+
 
     public void RefreshUI()
     {

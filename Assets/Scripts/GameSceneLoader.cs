@@ -10,6 +10,4 @@ public class GameSceneLoader : MonoBehaviour
         GameObject talentCanvas = GameObject.FindGameObjectWithTag("Talent Canvas");
         talentCanvas.GetComponent<Canvas>().worldCamera = talentCamera;
     }
-
-
 }

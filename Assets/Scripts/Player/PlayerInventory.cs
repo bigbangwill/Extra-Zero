@@ -44,7 +44,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
 
     private void Awake()
     {
-        Instance = this;
+        
 
         inventoryArray = new ItemBehaviour[inventorySlotCount];
         itemSlotPrefabWidth = itemSlotPrefab.GetComponent<RectTransform>().rect.width;
@@ -60,9 +60,8 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         AddItemToInventory(new BluePrintItem.Hoe());
         AddItemToInventory(new BluePrintItem.Gun());
         AddItemToInventory(new BluePrintItem.Plant());
-        
-
     }
+
 
 
     public void TESTADDHAMMER()
@@ -73,6 +72,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
 
     private void Start()
     {
+        _Instance = this;
         AddISaveableToDictionary();
     }
 

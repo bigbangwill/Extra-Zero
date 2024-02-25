@@ -49,6 +49,8 @@ public class TalentManager : SingletonComponent<TalentManager>
     private NodePassive gateBaseNode;
     private NodePassive entangleBaseNode;
 
+    private bool nodesCreated = false;
+
     private Dictionary<NodePassive, GameObject> LineDictionary = new();
 
     [Header("In-Game Color Setting")]
@@ -64,11 +66,32 @@ public class TalentManager : SingletonComponent<TalentManager>
     public Color menuGated;
     public Color menuEntangled;
 
+    private static TalentManager instance = null;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+    }
+
+
     private void Start()
     {
-        CreateNodes();
-        GetAllOrbs();
-        orbits[0].PurchaseTalent();
+        Debug.Log("Here started again!!");
+        if (!nodesCreated)
+        {
+            CreateNodes();
+            GetAllOrbs();
+            orbits[0].PurchaseTalent();
+        }
         GameStateManager.Instance.ChangeStateAddListener(StateChanged);
     }
 
@@ -83,6 +106,7 @@ public class TalentManager : SingletonComponent<TalentManager>
         {
             foreach (var orbit in orbits)
             {
+                orbit.ResetToDefault();
                 if (orbit.IsGated())
                 {
                     orbit.SetNodeState(NodePurchaseState.IsMenuGated);
@@ -101,6 +125,7 @@ public class TalentManager : SingletonComponent<TalentManager>
         {
             foreach (var orbit in orbits)
             {
+
                 orbit.SetNodeState(NodePurchaseState.IsNotPurchased);
             }
         }
@@ -449,5 +474,6 @@ public class TalentManager : SingletonComponent<TalentManager>
         {
             tree.StartSummonNodes();
         }
+        nodesCreated = true;
     }
 }

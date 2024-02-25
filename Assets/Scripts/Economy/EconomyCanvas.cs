@@ -12,6 +12,21 @@ public class EconomyCanvas : MonoBehaviour
     [SerializeField] private Image outGameIcon;
     [SerializeField] private TextMeshProUGUI textOutGame;
 
+    private static EconomyCanvas instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+    }
+
     private void Start()
     {
         RefreshUI();

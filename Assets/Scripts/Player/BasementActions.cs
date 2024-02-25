@@ -44,14 +44,14 @@ public class BasementActions : MonoBehaviour
 
 
 
-    private void OnEnable()
-    {
-        BasementManager.Instance.InventoryEventAddListener(InventoryClicked);
-    }
+    //private void OnEnable()
+    //{
+    //    BasementManager.Instance.InventoryEventAddListener(InventoryClicked);
+    //}
 
-    private void OnDisable()
-    {
-        if(BasementManager.Instance != null)
-            BasementManager.Instance.InventoryEventRemoveListener(InventoryClicked);
-    }
+    //private void OnDisable()
+    //{
+    //    if(BasementManager.Instance != null)
+    //        BasementManager.Instance.InventoryEventRemoveListener(InventoryClicked);
+    //}
 }

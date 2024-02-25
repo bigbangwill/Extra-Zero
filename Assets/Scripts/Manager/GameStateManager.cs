@@ -21,7 +21,21 @@ public class GameStateManager : SingletonComponent<GameStateManager>
 
     private event Action ChangeState;
 
+    private static GameStateManager instance;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+    }
 
 
     public void ChangeStateAddListener(Action listener)

@@ -37,11 +37,11 @@ public class PlayerMovement : SingletonComponent<PlayerMovement>
     }
 
 
-    private void FixedUpdate()
-    {
-        Vector2 movementVector = MovementManager.Instance.MovementInput() * movementSpeed;
-        rb.velocity = movementVector * Time.fixedDeltaTime;
-    }
+    //private void FixedUpdate()
+    //{
+    //    Vector2 movementVector = MovementManager.Instance.MovementInput() * movementSpeed;
+    //    rb.velocity = movementVector * Time.fixedDeltaTime;
+    //}
 
 
     public void MovetoTarget(NavmeshReachableInformation info)

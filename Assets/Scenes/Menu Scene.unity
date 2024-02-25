@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 54166448}
   - component: {fileID: 54166447}
-  - component: {fileID: 54166449}
   m_Layer: 0
   m_Name: Game State Manager
   m_TagString: Untagged
@@ -165,18 +164,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &54166449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54166446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90c071b25d83954d80a87e92098445d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &89243272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4130,7 +4117,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1409922899}
   - component: {fileID: 1409922898}
-  - component: {fileID: 1409922900}
   m_Layer: 0
   m_Name: Talent Manager
   m_TagString: Untagged
@@ -4186,18 +4172,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1409922900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1409922897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90c071b25d83954d80a87e92098445d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1454672427
 GameObject:
   m_ObjectHideFlags: 0
@@ -5518,7 +5492,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1778064552}
   - component: {fileID: 1778064551}
-  - component: {fileID: 1778064553}
   m_Layer: 0
   m_Name: Economy Manager
   m_TagString: Untagged
@@ -5553,18 +5526,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1778064553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778064550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90c071b25d83954d80a87e92098445d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1829529495
 GameObject:
   m_ObjectHideFlags: 0
@@ -5713,7 +5674,6 @@ GameObject:
   - component: {fileID: 1839863422}
   - component: {fileID: 1839863421}
   - component: {fileID: 1839863420}
-  - component: {fileID: 1839863426}
   m_Layer: 5
   m_Name: Economy Canvas
   m_TagString: Untagged
@@ -5845,18 +5805,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1839863426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839863419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b90c071b25d83954d80a87e92098445d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1862982620
 GameObject:
   m_ObjectHideFlags: 0
@@ -5867,7 +5815,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1862982622}
   - component: {fileID: 1862982621}
-  - component: {fileID: 1862982623}
   m_Layer: 0
   m_Name: 'Current Scene State '
   m_TagString: Untagged
@@ -5903,19 +5850,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1862982623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862982620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c05e76e812c07644ac7f7d1516b2866, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talentCamera: {fileID: 940901986}
 --- !u!1 &1914792579
 GameObject:
   m_ObjectHideFlags: 0
