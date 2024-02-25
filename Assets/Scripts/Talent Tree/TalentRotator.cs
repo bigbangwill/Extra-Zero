@@ -31,7 +31,15 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        TalentTree.Rotate(new Vector3(eventData.delta.y, eventData.delta.x , 0) * slowdown,fastdown,Space.World);
+        //TalentTree.Rotate(new Vector3(eventData.delta.y, eventData.delta.x , 0) * slowdown,fastdown,Space.World);
+        float rotationX = eventData.delta.y * slowdown.x;
+        float rotationY = -eventData.delta.x * slowdown.y;
+
+        TalentTree.rotation = Quaternion.identity;
+        // Rotate the camera around the talent tree's position
+        talentCamera.transform.RotateAround(TalentTree.position, Vector3.up, rotationY);
+        talentCamera.transform.RotateAround(TalentTree.position, talentCamera.transform.right, rotationX);
+        TalentTree.rotation = Quaternion.identity;
     }
 
     public void OnPointerDown(PointerEventData eventData)

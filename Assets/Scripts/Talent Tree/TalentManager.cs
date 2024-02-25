@@ -132,8 +132,10 @@ public class TalentManager : SingletonComponent<TalentManager>
 
     public void MenuSetState(NodePassive passive)
     {
-        if(passive.IsGated())
+        if (passive.IsGated())
             passive.SetNodeState(NodePurchaseState.IsMenuGated);
+        else if (passive.IsEntangled())
+            passive.SetNodeState(NodePurchaseState.IsMenuEntangled);
         else
             passive.SetNodeState(NodePurchaseState.IsMenuPassive);
     }
@@ -188,7 +190,7 @@ public class TalentManager : SingletonComponent<TalentManager>
             {
                 gateBaseNode.UpgradeGate(targetNode);
                 gateBaseNode.SetNodeState(NodePurchaseState.IsMenuGated);
-                targetNode.SetNodeState(NodePurchaseState.IsMenuGated);
+                //targetNode.SetNodeState(NodePurchaseState.IsMenuGated);
                 StartGateLine(gateBaseNode.transform.GetChild(0),targetNode.transform.GetChild(0));
                 OptionHolder.Instance.AddGateCurrent(+1);
                 isSecondGate = false;
