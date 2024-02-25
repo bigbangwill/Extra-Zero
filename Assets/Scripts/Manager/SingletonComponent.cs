@@ -38,7 +38,8 @@ public class SingletonComponent <T> : MonoBehaviour where T : SingletonComponent
                 }
                 GameObject go = new(typeof(T).Name,typeof(T));
                 __Instance = go.GetComponent<T>();
-                
+                DontDestroyOnLoad(__Instance.gameObject);
+                Debug.Log("JKOHGK:JQBGPIWQJBNT:KPJQHBTG:KJQEBFPIUEJQHBFGK:JL");
             }
             return __Instance;
         }

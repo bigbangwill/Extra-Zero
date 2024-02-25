@@ -79,13 +79,13 @@ public class EventManager : SingletonComponent<EventManager>
     public int _Hours { get { return hour; } }
     public int _Days { get { return day; } }
 
-    //private void Awake()
-    //{
-    //    Instance = this;
-    //}
+    private void Awake()
+    {
+        Debug.Log(_Instance);
+    }
 
     private void Start()
-    {
+    {        
         _PauseEvent = new();
         _ResumeEvent = new();
     }

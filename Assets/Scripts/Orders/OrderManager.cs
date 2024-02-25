@@ -52,7 +52,7 @@ public class OrderManager : SingletonComponent<OrderManager>
 
     private void Start()
     {
-        _Instance = this;
+        Debug.Log(_Instance);
         Init();
         StartNewWave(defaultWave);
     }

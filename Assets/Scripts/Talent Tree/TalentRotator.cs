@@ -24,7 +24,6 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void SetCameraRefrence()
     {
-        Debug.Log("Hereee");
         talentCamera = GameObject.FindGameObjectWithTag("Talent Camera").GetComponent<Camera>();
     }
 

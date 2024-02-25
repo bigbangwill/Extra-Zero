@@ -15,6 +15,10 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     }
     #endregion
 
+    [SerializeField] private PlayerInventoryRefrence _playerInventoryRefrence;
+
+
+
     // Player inventory slot count
     [SerializeField] private int inventorySlotCount;
     // For the Item slot prefab in the UI
@@ -44,7 +48,13 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
 
     private void Awake()
     {
-        
+        if (_playerInventoryRefrence == null)
+        {
+            Debug.Log("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        _playerInventoryRefrence.val = this;
 
         inventoryArray = new ItemBehaviour[inventorySlotCount];
         itemSlotPrefabWidth = itemSlotPrefab.GetComponent<RectTransform>().rect.width;
@@ -69,10 +79,11 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         HaveEmptySlot(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform),true);
     }
 
+    
 
     private void Start()
     {
-        _Instance = this;
+        
         AddISaveableToDictionary();
     }
 
