@@ -32,9 +32,17 @@ public class ItemStash : MonoBehaviour, IStashable
     private int currentActiveItemSlotNum = int.MaxValue;
     [SerializeField] private Transform activeItemTranform;
 
+    private PlayerInventoryRefrence inventoryRefrence;
+    private EventManagerRefrence eventManagerRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+        eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+    }
 
     private void Awake()
     {
+        LoadSORefrence();
         inventoryArray = new ItemBehaviour[inventorySlotCount];
         itemSlotPrefabWidth = itemSlotPrefab.GetComponent<RectTransform>().rect.width;
         itemSlotPrefabHeight = itemSlotPrefab.GetComponent<RectTransform>().rect.height;
@@ -76,12 +84,12 @@ public class ItemStash : MonoBehaviour, IStashable
 
     private void OnEnable()
     {
-        EventManager.Instance.RefreshUIAddListener(RefreshUI);
+        eventManagerRefrence.val.RefreshUIAddListener(RefreshUI);
     }
 
     private void OnDisable()
     {
-        EventManager.Instance.RefreshUIRemoveListener(RefreshUI);
+        eventManagerRefrence.val.RefreshUIRemoveListener(RefreshUI);
     }
 
 
@@ -154,7 +162,7 @@ public class ItemStash : MonoBehaviour, IStashable
         else
         {
             Debug.Log("here");
-            if (!PlayerInventory.Instance.HaveEmptySlot(currentActiveItem, true))
+            if (!inventoryRefrence.val.HaveEmptySlot(currentActiveItem, true))
             {
                 Debug.Log("Dont have empty Slot");
             }
@@ -274,7 +282,7 @@ public class ItemStash : MonoBehaviour, IStashable
                 }
             }
         }
-        EventManager.Instance.RefreshInventory();
+        eventManagerRefrence.val.RefreshInventory();
     }
 
     /// <summary>

@@ -15,21 +15,35 @@ public class LevelStationsInteract : MonoBehaviour, IInteractable, IReacheable
 
     [SerializeField] private Transform reachingTransfrom;
 
+
+    private BasementManagerRefrence basementManagerRefrence;
+
+
+    private void LoadSORefrence()
+    {
+        basementManagerRefrence = (BasementManagerRefrence)FindSORefrence<BasementManager>.FindScriptableObject("Basement Manager Refrence");
+    }
+
+    private void Start()
+    {
+        LoadSORefrence();
+    }
+
     public void EnteredBox()
     {
-        BasementManager.Instance.SetInteractDelegate(Interact);
-        BasementManager.Instance.SetIntractCancelDelegate(ExitInteract);
+        basementManagerRefrence.val.SetInteractDelegate(Interact);
+        basementManagerRefrence.val.SetIntractCancelDelegate(ExitInteract);
     }
 
     public void ExitBox()
     {
-        BasementManager.Instance.RemoveInteractDelegate();
+        basementManagerRefrence.val.RemoveInteractDelegate();
         ExitInteract();
     }
 
     public void TriggerExit()
     {
-        BasementManager.Instance.RemoveInteractDelegate();
+        basementManagerRefrence.val.RemoveInteractDelegate();
 
         foreach (GameObject go in gameObjects)
         {

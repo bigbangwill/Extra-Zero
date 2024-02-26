@@ -10,14 +10,14 @@ public class ButtonTestInventory : MonoBehaviour
     public int count;
     public bool shouldRemove;
 
-    [SerializeField] private PlayerInventoryRefrence inventoryRefrenceSO;
+    
 
     PlayerInventory inventoryRefrence;
 
-    private void Start()
-    {
-        inventoryRefrence = inventoryRefrenceSO.val;
-    }
+    //private void Start()
+    //{
+    //    inventoryRefrence = inventoryRefrenceSO.val;
+    //}
 
 
     public void AddWalkingStick()

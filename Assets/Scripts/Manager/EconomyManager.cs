@@ -3,32 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EconomyManager : SingletonComponent<EconomyManager>
+public class EconomyManager : MonoBehaviour
 {
-    #region Singleton
-    public static EconomyManager Instance
-    {
-        get { return (EconomyManager)_Instance; }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton
+    //public static EconomyManager Instance
+    //{
+    //    get { return (EconomyManager)_Instance; }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     private int inGameCurrencyCurrentStack = 5;
     private int inGameCurrencyMaxStack = 10;
 
-    private static EconomyManager instance;
-    private void Awake()
+
+    private EconomyManagerRefrence refrence;
+
+    private void LoadSORefrence()
     {
-        if (instance == null)
+
+    }
+
+    private void SetRefrence()
+    {
+        refrence = (EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrecne");
+        if (refrence == null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
-            Destroy(this.gameObject);
+            Debug.LogWarning("Didnt find it");
             return;
         }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
+    private void Awake()
+    {
+        SetRefrence();
     }
 
     public int InGameCurrencyCurrentStack 

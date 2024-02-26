@@ -11,7 +11,11 @@ public class Order
 
     private OrderPost relatedPost;
     private float orderFulfillTimer;
-
+    private PlayerInventoryRefrence inventoryRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
 
     public Order(List<ItemBehaviour> orders,OrderPost post, float orderFulfillTimer)
     {
@@ -22,6 +26,7 @@ public class Order
         }
 
         this.orderFulfillTimer = orderFulfillTimer;
+        LoadSORefrence();
     }
 
     /// <summary>
@@ -79,7 +84,7 @@ public class Order
     {
         int inventoryStack = inventoryItem.CurrentStack();
         int orderStack = orderItem.CurrentStack();
-        PlayerInventory.Instance.RemoveFromSlotNumber(slotNumber, orderStack);
+        inventoryRefrence.val.RemoveFromSlotNumber(slotNumber, orderStack);
         if (inventoryStack >= orderStack)
         {
             ItemMatched(orderItem);

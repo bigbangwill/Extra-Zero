@@ -42,6 +42,14 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         }
     }
 
+
+    private EventManagerRefrence eventManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+    }
+
     private void Awake()
     {
         itemImage = GetComponent<Image>();
@@ -52,6 +60,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
 
     private void Start()
     {
+        LoadSORefrence();
         AddISaveableToDictionary();
     }
 
@@ -62,7 +71,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         CheckSavedTime();
         if (isCrafting)
         {
-            EventManager.Instance.SecondsElapsedAddListener(SecondElapsed);
+            eventManagerRefrence.val.SecondsElapsedAddListener(SecondElapsed);
         }
     }
 
@@ -184,13 +193,13 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
 
     private void OnDisable()
     {        
-        if (EventManager.Instance != null)
+        if (eventManagerRefrence.val != null)
         {
             if (isCrafting)
             {
-                savedTime = new GameTime().CurrentTime();
+                savedTime = new GameTime().CurrentTime(eventManagerRefrence.val);
                 isSaved = true;
-                EventManager.Instance.SecondsElapsedRemoveListener(SecondElapsed);
+                eventManagerRefrence.val.SecondsElapsedRemoveListener(SecondElapsed);
             }
         }
     }
@@ -202,7 +211,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     {
         if (isSaved)
         {
-            int differentSeconds = (int)new GameTime().RawTimeCurrentMinusSaved(savedTime);
+            int differentSeconds = (int)new GameTime().RawTimeCurrentMinusSaved(savedTime, eventManagerRefrence.val);
             for (int i = 0; i < differentSeconds; i++)
             {
                 SecondElapsed();
@@ -215,7 +224,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     // gets checked before and now it start crafting.
     private void StartCrafting()
     {
-        EventManager.Instance.SecondsElapsedAddListener(SecondElapsed);
+        eventManagerRefrence.val.SecondsElapsedAddListener(SecondElapsed);
         isCrafting = true;
         craftMaxTimer = currentBluePrint.CraftTimer();
         currentCraftTimer = craftMaxTimer;
@@ -240,7 +249,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     // the mothod to reset the printer back to normal state and call the export method.
     private void FinishedCrafting()
     {
-        EventManager.Instance.SecondsElapsedRemoveListener(SecondElapsed);
+        eventManagerRefrence.val.SecondsElapsedRemoveListener(SecondElapsed);
         iscrafting = false;
         isDone = true;
         foreach (var item in craftingItemArray)
@@ -257,7 +266,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         isCrafting = false;
         craftMaxTimer = 0;
         currentCraftTimer = 0;
-        EventManager.Instance.SecondsElapsedRemoveListener(SecondElapsed);
+        eventManagerRefrence.val.SecondsElapsedRemoveListener(SecondElapsed);
         foreach (var item in craftingItemArray)
         {
             item.RemoveItemFromPrinterSlot();
@@ -331,7 +340,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         isCrafting = saved.isCrafting;
         if (isCrafting)
         {
-            EventManager.Instance.SecondsElapsedAddListener(SecondElapsed);
+            eventManagerRefrence.val.SecondsElapsedAddListener(SecondElapsed);
         }
         currentBluePrint = itemFinderDictionary[saved.savedBluePrintName];
         itemImage.sprite = currentBluePrint.IconRefrence();

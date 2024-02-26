@@ -23,8 +23,18 @@ public class ScrollViewUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     //To block the very first OnEnable method that calls before the Start method.
     bool started = false;
 
+
+    private PlayerInventoryRefrence inventoryRefrence;
+    private EventManagerRefrence eventManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+        eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+    }
     private void Start()
     {
+        LoadSORefrence();
         started = true;
         OnEnable();
         
@@ -36,15 +46,15 @@ public class ScrollViewUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         if (started)
         {
             InitializeUI();
-            EventManager.Instance.RefreshUIAddListener(InitializeUI);
+            eventManagerRefrence.val.RefreshUIAddListener(InitializeUI);
             ScannerSlotManager.Instance.refreshUI = InitializeUI;
         }
     }
     private void OnDisable()
     {
-        if (EventManager.Instance != null)
+        if (eventManagerRefrence.val != null)
         {
-            EventManager.Instance.RefreshUIRemoveListener(InitializeUI);
+            eventManagerRefrence.val.RefreshUIRemoveListener(InitializeUI);
         }
     }
 
@@ -54,7 +64,7 @@ public class ScrollViewUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public void InitializeUI()
     {
         iBList = new();
-        iBList = PlayerInventory.Instance.SearchInventoryOfItemBehaviour<BluePrintItem>(ItemType.bluePrint);
+        iBList = inventoryRefrence.val.SearchInventoryOfItemBehaviour<BluePrintItem>(ItemType.bluePrint);
         foreach (Transform child in contentUIGO.transform)
         {
             Destroy(child.gameObject);

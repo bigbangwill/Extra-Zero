@@ -46,12 +46,12 @@ public class BasementActions : MonoBehaviour
 
     //private void OnEnable()
     //{
-    //    BasementManager.Instance.InventoryEventAddListener(InventoryClicked);
+    //    basementManagerRefrence.val.InventoryEventAddListener(InventoryClicked);
     //}
 
     //private void OnDisable()
     //{
-    //    if(BasementManager.Instance != null)
-    //        BasementManager.Instance.InventoryEventRemoveListener(InventoryClicked);
+    //    if(basementManagerRefrence.val != null)
+    //        basementManagerRefrence.val.InventoryEventRemoveListener(InventoryClicked);
     //}
 }

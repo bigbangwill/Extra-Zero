@@ -27,8 +27,17 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     private bool targeted = false;
     public bool Targeted { get => targeted; set => targeted = value; }
 
+
+    private PlayerInventoryRefrence inventoryRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
+
     private void Start()
     {
+        LoadSORefrence();
         healthImageSetter = GetComponent<OrderPostHealthImageSetter>();
         orderPostScript = GetComponent<OrderPost>();
         Init();
@@ -63,7 +72,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         foreach (ItemBehaviour item in recoverReceipeList[currentHealth].GetItems())
         {
             repairTargetItemsList.Add(item);
-            if (!PlayerInventory.Instance.HaveItemInInventory(item,false))
+            if (!inventoryRefrence.val.HaveItemInInventory(item,false))
             {
                 Debug.Log("need more of " + item.GetName() + item.CurrentStack());
                 return false;
@@ -73,7 +82,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         foreach (var item in repairTargetItemsList)
         {
             int savedStack = item.CurrentStack();
-            PlayerInventory.Instance.HaveItemInInventory(item,true);
+            inventoryRefrence.val.HaveItemInInventory(item,true);
             item.SetCurrentStack(savedStack);
         }
         if (currentHealth == 0)

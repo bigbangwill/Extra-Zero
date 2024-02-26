@@ -6,13 +6,13 @@ using UnityEngine.Events;
 
 public class CombatManager : SingletonComponent<CombatManager>
 {
-    #region Singleton Manager
-    public static CombatManager Instance
-    {
-        get { return ((CombatManager)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton Manager
+    //public static CombatManager Instance
+    //{
+    //    get { return ((CombatManager)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
     private PlayerInput _PlayerInput;
 
 

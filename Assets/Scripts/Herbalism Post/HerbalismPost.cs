@@ -19,6 +19,13 @@ public class HerbalismPost : MonoBehaviour
 
     private bool isStarted = false;
 
+
+    private PlayerInventoryRefrence inventoryRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
     private void OnEnable()
     {
         if (!isStarted)
@@ -28,6 +35,7 @@ public class HerbalismPost : MonoBehaviour
     }
     private void Start()
     {
+        LoadSORefrence();
         isStarted = true;
     }
 
@@ -106,14 +114,14 @@ public class HerbalismPost : MonoBehaviour
     /// </summary>
     public void DepostHerbsButton()
     {
-        List<Seed> newSeeds = PlayerInventory.Instance.SearchInventoryOfItemBehaviour<Seed>(ItemType.seed);
+        List<Seed> newSeeds = inventoryRefrence.val.SearchInventoryOfItemBehaviour<Seed>(ItemType.seed);
         foreach (var seed in newSeeds)
         {
             inventorySeeds.Add(seed);
         }
         foreach (var item in newSeeds)
         {
-            PlayerInventory.Instance.HaveItemInInventory(item, true);
+            inventoryRefrence.val.HaveItemInInventory(item, true);
         }
         InitializeUI();
     }

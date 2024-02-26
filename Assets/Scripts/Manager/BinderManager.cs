@@ -6,13 +6,13 @@ using UnityEngine.InputSystem.Samples.RebindUI;
 
 public class BinderManager : SingletonComponent<BinderManager>
 {
-    #region Sinleton
-    public static BinderManager Instance
-    {
-        get { return ((BinderManager)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Sinleton
+    //public static BinderManager Instance
+    //{
+    //    get { return ((BinderManager)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
     // For fast finding the required prefab for rebinding
     private Dictionary<string, GameObject> prefabFinder = new();
 
@@ -33,10 +33,22 @@ public class BinderManager : SingletonComponent<BinderManager>
     [SerializeField] private TextMeshProUGUI overlayText;
     [SerializeField] private GameObject BinderGameobject; // to setactive when the bind should happen.
 
+    private EventManagerRefrence eventManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+    }
+
     private void Awake()
     {
         InitDictionary();
         InitRebindCheckDic();
+    }
+
+    private void Start()
+    {
+        LoadSORefrence();
     }
 
     // To set all of the strings to the related prefab with the use of dictionary
@@ -79,7 +91,7 @@ public class BinderManager : SingletonComponent<BinderManager>
     // call the binder canvas
     private void RebindSetter(string rebindString)
     {
-        EventManager.Instance.Pause();
+        eventManagerRefrence.val.Pause();
         BinderGameobject.SetActive(true);
         GameObject rebindPrefab = prefabFinder[rebindString];
         GameObject rebinder = Instantiate(rebindPrefab);

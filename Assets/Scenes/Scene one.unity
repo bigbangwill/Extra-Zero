@@ -14200,7 +14200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &870465059
 Transform:
   m_ObjectHideFlags: 0
@@ -27011,7 +27011,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0406c1dce6fc05c438d6040337871b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInventoryRefrence: {fileID: 11400000, guid: bb0146cd734120943a7e3723aa3c44fc, type: 2}
   inventorySlotCount: 20
   itemSlotPrefab: {fileID: 834667053970455934, guid: 9ded4921c90398b4b8a3e66cce6175fc, type: 3}
   offsetHeight: 30

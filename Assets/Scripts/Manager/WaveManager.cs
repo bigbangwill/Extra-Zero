@@ -11,13 +11,13 @@ using Unity.VisualScripting;
 
 public class WaveManager : SingletonComponent<WaveManager>
 {
-    #region Singleton
-    public static WaveManager Instance
-    {
-        get { return (WaveManager)_Instance; }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton
+    //public static WaveManager Instance
+    //{
+    //    get { return (WaveManager)_Instance; }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     [SerializeField] private int totalWaveOptionCount;
     
@@ -45,6 +45,31 @@ public class WaveManager : SingletonComponent<WaveManager>
     #endregion
 
     private WaveDifficultySO selectedWave;
+
+
+    protected WaveManagerRefrence refrence;
+
+    private void LoadSORefrence()
+    {
+
+    }
+
+    private void SetRefrence()
+    {
+        refrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
+    private void Awake()
+    {
+        SetRefrence();
+    }
 
     private void Start()
     {
@@ -150,6 +175,14 @@ public class WaveManager : SingletonComponent<WaveManager>
         protected string description;
         protected string specificName;
 
+        protected PlayerInventoryRefrence inventoryRefrence;
+        protected WaveManagerRefrence waveManagerRefrence;
+        protected void LoadSORefrence()
+        {
+            inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+            waveManagerRefrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");
+        }
+
         protected void LoadIcon()
         {
             AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(iconAddress);
@@ -193,11 +226,12 @@ public class WaveManager : SingletonComponent<WaveManager>
                 description = "Increased Day Time";
                 SetIconAddress();
                 LoadIcon();
+                LoadSORefrence();
             }
 
             public override void ImpactEffect()
             {
-                Instance.timerOfOneWaveEffectsApplied += 2f;
+                waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 2f;
                 Debug.Log(GetEffectDescription() + "  2");
             }
         }
@@ -210,11 +244,12 @@ public class WaveManager : SingletonComponent<WaveManager>
                 description = "Increased Night Time";
                 SetIconAddress();
                 LoadIcon();
+                LoadSORefrence();
             }
 
             public override void ImpactEffect()
             {
-                Instance.timerOfAFullCycleEffectsApplied += 2f;
+                waveManagerRefrence.val.timerOfAFullCycleEffectsApplied += 2f;
                 Debug.Log(GetEffectDescription() + "  2");
             }
         }
@@ -227,11 +262,12 @@ public class WaveManager : SingletonComponent<WaveManager>
                 description = "Increased Summon Frequency";
                 SetIconAddress();
                 LoadIcon();
+                LoadSORefrence();
             }
 
             public override void ImpactEffect()
             {
-                Instance.orderFrequencyEffectsApplied -= 0.5f;
+                waveManagerRefrence.val.orderFrequencyEffectsApplied -= 0.5f;
                 Debug.Log(GetEffectDescription() + "  0.5f");
             }
         }
@@ -244,11 +280,12 @@ public class WaveManager : SingletonComponent<WaveManager>
                 description = "Increased Order Combination Count";
                 SetIconAddress();
                 LoadIcon();
+                LoadSORefrence();
             }
 
             public override void ImpactEffect()
             {
-                Instance.orderCombinationEffectsApplied += 1;
+                waveManagerRefrence.val.orderCombinationEffectsApplied += 1;
                 Debug.Log(GetEffectDescription() + "  1");
             }
         }
@@ -268,11 +305,12 @@ public class WaveManager : SingletonComponent<WaveManager>
                 description = "Gained Titanium";
                 SetIconAddress();
                 LoadIcon();
+                LoadSORefrence();
             }
 
             public override void ImpactEffect()
             {
-                PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
+                inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
                 Debug.Log(GetEffectDescription() + "  10");
             }
         }
@@ -285,11 +323,12 @@ public class WaveManager : SingletonComponent<WaveManager>
                 description = "Gained Plastic";
                 SetIconAddress();
                 LoadIcon();
+                LoadSORefrence();
             }
 
             public override void ImpactEffect()
             {
-                PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Plastic(10), true);
+                inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(10), true);
                 Debug.Log(GetEffectDescription() + "  10");
             }
         }
@@ -302,11 +341,12 @@ public class WaveManager : SingletonComponent<WaveManager>
                 description = "Gained Almuminum";
                 SetIconAddress();
                 LoadIcon();
+                LoadSORefrence();
             }
 
             public override void ImpactEffect()
             {
-                PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
+                inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
                 Debug.Log(GetEffectDescription() + "  10");
             }
         }
@@ -319,11 +359,12 @@ public class WaveManager : SingletonComponent<WaveManager>
                 description = "Gained Ceramic";
                 SetIconAddress();
                 LoadIcon();
+                LoadSORefrence();
             }
 
             public override void ImpactEffect()
             {
-                PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
+                inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
                 Debug.Log(GetEffectDescription() + "  10");
             }
         }

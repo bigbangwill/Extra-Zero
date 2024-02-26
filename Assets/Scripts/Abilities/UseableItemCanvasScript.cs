@@ -37,14 +37,20 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     [SerializeField] private Color repairColor;
     private Image overlayImage;
 
+    private PlayerInventoryRefrence inventoryRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
     private void Start()
     {
         overlayImage = GetComponent<Image>();
-
-        PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
-        PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
-        PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
-        PlayerInventory.Instance.HaveEmptySlot(new MaterialItem.Plastic(10), true);
+        LoadSORefrence();
+        inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
+        inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
+        inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
+        inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(10), true);
     }
 
     public void SetDelegate(Action action ,OverlayState state,Transform UIPanel,Transform parent, Button repairButton)
@@ -137,7 +143,7 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
             bool haveEveryMaterial = true;
             foreach (var item in currentRepairable.RepairMaterials())
             {
-                if (!PlayerInventory.Instance.HaveItemInInventory(item, false))
+                if (!inventoryRefrence.val.HaveItemInInventory(item, false))
                 {
                     haveEveryMaterial = false;
                     return;

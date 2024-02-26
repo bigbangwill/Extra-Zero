@@ -6,18 +6,36 @@ using UnityEngine.InputSystem;
 
 public class MovementManager : SingletonComponent<MovementManager>
 {
-    #region Singleton Manager
-    public static MovementManager Instance
-    {
-        get { return ((MovementManager)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton Manager
+    //public static MovementManager Instance
+    //{
+    //    get { return ((MovementManager)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     private PlayerInput _PlayerInput;
     private InputAction move;
 
-    
+    private MovementManagerRefrence refrence;
+
+    private void SetRefrence()
+    {
+        refrence = (MovementManagerRefrence)FindSORefrence<MovementManager>.FindScriptableObject("Movement Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.Log("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
+    private void Awake()
+    {
+        SetRefrence();
+    }
+
 
     private void Start()
     {

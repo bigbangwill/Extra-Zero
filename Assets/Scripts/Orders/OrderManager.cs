@@ -45,6 +45,12 @@ public class OrderManager : SingletonComponent<OrderManager>
     //For later gameplay system :D nice naming btw
     private float timeElapsedBetweenNightAndDay;
 
+    private PlayerInventoryRefrence inventoryRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
     private void Awake()
     {
         
@@ -52,6 +58,7 @@ public class OrderManager : SingletonComponent<OrderManager>
 
     private void Start()
     {
+        LoadSORefrence();
         Debug.Log(_Instance);
         Init();
         StartNewWave(defaultWave);
@@ -196,7 +203,7 @@ public class OrderManager : SingletonComponent<OrderManager>
     {
         if (GUI.Button(new Rect(10, 10, 150, 100), "Add Hammer"))
         {
-            PlayerInventory.Instance.HaveEmptySlot(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform),true);
+            inventoryRefrence.val.HaveEmptySlot(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform),true);
         }
     }
 

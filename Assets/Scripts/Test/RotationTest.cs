@@ -6,10 +6,24 @@ public class RotationTest : MonoBehaviour
 
     private float dif = 0;
 
+    private BasementManagerRefrence basementManagerRefrence;
+    private SlotReaderManagerRefrence slotReaderManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        basementManagerRefrence = (BasementManagerRefrence)FindSORefrence<BasementManager>.FindScriptableObject("Basement Manager Refrence");
+        slotReaderManagerRefrence = (SlotReaderManagerRefrence)FindSORefrence<SlotReaderManager>.FindScriptableObject("SlotReader Manager Refrence");
+    }
+
+    private void Start()
+    {
+        LoadSORefrence();
+    }
+
     // Update is called once per frame
     public void MouseIsPressed()
     {
-        mouse.position = BasementManager.Instance.MousePos();
+        mouse.position = basementManagerRefrence.val.MousePos();
         Vector3 upAxis = new Vector3(0, 0, -1);
 
         float oldRotation  = transform.eulerAngles.x;
@@ -23,7 +37,7 @@ public class RotationTest : MonoBehaviour
         dif += rotationDifferenceZ;
         if (dif >= 360)
         {
-            SlotReaderManager.Instance.SecondElapsed();
+            slotReaderManagerRefrence.val.SecondElapsed();
             dif = 0;
         }
 

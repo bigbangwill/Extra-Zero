@@ -13,6 +13,17 @@ public class WaveChosingUI : MonoBehaviour
 
 
 
+    private WaveManagerRefrence waveManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        waveManagerRefrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");
+    }
+
+    private void Start()
+    {
+        LoadSORefrence();
+    }
 
     public void CreateWaveOptionUI()
     {
@@ -20,16 +31,16 @@ public class WaveChosingUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        int waveOptionToSpawn = Instance.GetTotalWaveOptionCount();
+        int waveOptionToSpawn = waveManagerRefrence.val.GetTotalWaveOptionCount();
         for (int i = 0; i < waveOptionToSpawn; i++)
         {
             GameObject targetGO = Instantiate(waveOptionPrefab);
             targetGO.transform.SetParent(optionUIHolder);
             WaveOptionUI targetOptionUI = targetGO.GetComponent<WaveOptionUI>();
             targetOptionUI.SetWaveChosingUI(this);
-            HarderSideEffects targetHarder = Instance.GetRandomHarderEffect();
-            RewardSideEffects targetReward = Instance.GetRandomRewardEffect();
-            WaveDifficultySO waveDifficulty = Instance.GetRandomNextWave();
+            HarderSideEffects targetHarder = waveManagerRefrence.val.GetRandomHarderEffect();
+            RewardSideEffects targetReward = waveManagerRefrence.val.GetRandomRewardEffect();
+            WaveDifficultySO waveDifficulty = waveManagerRefrence.val.GetRandomNextWave();
             targetOptionUI.SetRelatedEffectsLists(targetHarder, targetReward);
             targetOptionUI.SetWaveDififculty(waveDifficulty);
             targetOptionUI.SetHarderIcon(targetHarder.IconRefrence());
@@ -69,11 +80,11 @@ public class WaveChosingUI : MonoBehaviour
         ClearWaveOptions();
         if(currentWaveOption == null)
         {
-            Instance.ExecuteRandomEffectsAndWave();
+            waveManagerRefrence.val.ExecuteRandomEffectsAndWave();
             return;
         }
         currentWaveOption.ExecuteImpact();
-        WaveDifficultySO tweakedWave = Instance.ApplyCurrentEffectsToTheWave(currentWaveOption.TargetWaveDifficulty);
+        WaveDifficultySO tweakedWave = waveManagerRefrence.val.ApplyCurrentEffectsToTheWave(currentWaveOption.TargetWaveDifficulty);
         OrderManager.Instance.StartNewWave(tweakedWave);
     }
 

@@ -23,8 +23,16 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     private bool shouldLoad = false;
 
+    private EventManagerRefrence eventManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+    }
+
     private void Start()
     {
+        LoadSORefrence();
         image = GetComponent<Image>();
         AddISaveableToDictionary();
         Init();
@@ -125,7 +133,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             image.sprite = null;
             state = saved.state;
             slotNumber = saved.slotNumber;
-            EventManager.Instance.RefreshInventory();
+            eventManagerRefrence.val.RefreshInventory();
             return;
         }
         string savedDataName = saved.holdingItemSpecificName;
@@ -147,7 +155,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             slotNumber = savedSlotNumber;
             shouldLoad = true;
         }
-        EventManager.Instance.RefreshInventory();
+        eventManagerRefrence.val.RefreshInventory();
 
     }
 

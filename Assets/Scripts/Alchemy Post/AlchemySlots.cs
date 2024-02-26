@@ -14,8 +14,18 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private Herb holdingHerb;
     private Image image;
 
+
+    private PlayerInventoryRefrence inventoryRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
+
     private void Start()
     {
+        LoadSORefrence();
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
         rectTransform = GetComponent<RectTransform>();
         image = GetComponent<Image>();
     }
@@ -95,9 +105,9 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         {
             int currentStack = holdingHerb.CurrentStack();
             holdingHerb.SetCurrentStack(5);
-            if (PlayerInventory.Instance.HaveItemInInventory(holdingHerb, false))
+            if (inventoryRefrence.val.HaveItemInInventory(holdingHerb, false))
             {
-                PlayerInventory.Instance.HaveItemInInventory(holdingHerb,true);
+                inventoryRefrence.val.HaveItemInInventory(holdingHerb,true);
                 holdingHerb.SetCurrentStack(currentStack);
                 holdingHerb = null;
                 image.sprite = null;

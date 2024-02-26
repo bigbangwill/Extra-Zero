@@ -13,6 +13,15 @@ public class EconomyCanvas : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textOutGame;
 
     private static EconomyCanvas instance;
+
+    private EconomyManagerRefrence economyManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        economyManagerRefrence = (EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence");
+    }
+
+
     private void Awake()
     {
         if (instance == null)
@@ -27,6 +36,7 @@ public class EconomyCanvas : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
         RefreshUI();
@@ -34,23 +44,24 @@ public class EconomyCanvas : MonoBehaviour
 
     private void OnEnable()
     {
-        EconomyManager.Instance.AddListener(RefreshUI);
+        LoadSORefrence();
+        economyManagerRefrence.val.AddListener(RefreshUI);
     }
 
     private void OnDisable()
     {
-        if(EconomyManager.Instance != null) 
-            EconomyManager.Instance.RemoveListener(RefreshUI);
+        if(economyManagerRefrence.val != null) 
+            economyManagerRefrence.val.RemoveListener(RefreshUI);
     }
 
     public void RefreshUI()
     {
-        string inGameCurrentStack = EconomyManager.Instance.InGameCurrencyCurrentStack.ToString();
-        string inGameMaxStack = EconomyManager.Instance.InGameCurrencyMaxStack.ToString();
+        string inGameCurrentStack = economyManagerRefrence.val.InGameCurrencyCurrentStack.ToString();
+        string inGameMaxStack = economyManagerRefrence.val.InGameCurrencyMaxStack.ToString();
         textInGame.text = inGameCurrentStack + " / " + inGameMaxStack;
 
-        string outGameCurrentStack = EconomyManager.Instance.OutGameCurrencyCurrentStack.ToString();
-        string outGameMaxStack = EconomyManager.Instance.OutGameCurrencyMaxStack.ToString();
+        string outGameCurrentStack = economyManagerRefrence.val.OutGameCurrencyCurrentStack.ToString();
+        string outGameMaxStack = economyManagerRefrence.val.OutGameCurrencyMaxStack.ToString();
 
         textOutGame.text = outGameCurrentStack + " / " + outGameMaxStack;
     }

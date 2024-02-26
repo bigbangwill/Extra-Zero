@@ -13,12 +13,23 @@ public class Test : MonoBehaviour, IPauseable
 
     private bool isPaused = false;
 
+    private MovementManagerRefrence movementManagerRefrece;
+
+    private EventManagerRefrence eventManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+        movementManagerRefrece = (MovementManagerRefrence)FindSORefrence<MovementManager>.FindScriptableObject("Movement Manager Refrence");
+    }
+
 
     private void Start()
     {
+        LoadSORefrence();
         // to set the rigidbody component
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log(BinderManager.Instance.CheckBinderIsSet("Safehouse Movement", true));
+        //Debug.Log(BinderManager.Instance.CheckBinderIsSet("Safehouse Movement", true));
     }
 
 
@@ -26,32 +37,32 @@ public class Test : MonoBehaviour, IPauseable
     {
         if(isPaused) return;
 
-        Vector2 desiredVelocity = MovementManager.Instance.MovementInput();
+        Vector2 desiredVelocity = movementManagerRefrece.val.MovementInput();
         rb.velocity = desiredVelocity;
     }
 
 
     public void OnEnable()
     {
-        EventManager.Instance._PauseEvent.AddListener(Pause);
-        EventManager.Instance._ResumeEvent.AddListener(Resume);
+        eventManagerRefrence.val._PauseEvent.AddListener(Pause);
+        eventManagerRefrence.val._ResumeEvent.AddListener(Resume);
     }
 
     public void OnDisable()
     {
-        if (EventManager.Instance != null)
+        if (eventManagerRefrence.val != null)
         {
-            EventManager.Instance._PauseEvent.RemoveListener(Pause);
-            EventManager.Instance._ResumeEvent.RemoveListener(Resume);
+            eventManagerRefrence.val._PauseEvent.RemoveListener(Pause);
+            eventManagerRefrence.val._ResumeEvent.RemoveListener(Resume);
         }
     }
 
     public void OnDestroy()
     {
-        if (EventManager.Instance != null)
+        if (eventManagerRefrence.val != null)
         {
-            EventManager.Instance._PauseEvent.RemoveListener(Pause);
-            EventManager.Instance._ResumeEvent.RemoveListener(Resume);
+            eventManagerRefrence.val._PauseEvent.RemoveListener(Pause);
+            eventManagerRefrence.val._ResumeEvent.RemoveListener(Resume);
         }
     }
 

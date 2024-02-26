@@ -4,15 +4,15 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveable
+public class SlotReaderManager : MonoBehaviour, ISaveable
 {
-    #region Singleton
-    public static SlotReaderManager Instance
-    {
-        get { return ((SlotReaderManager)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton
+    //public static SlotReaderManager Instance
+    //{
+    //    get { return ((SlotReaderManager)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     private List<ImportJob> jobsList = new();
 
@@ -22,14 +22,39 @@ public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveabl
     private GameTime savedTime;
     private bool isSaved = false;
 
+
+    private EventManagerRefrence eventManagerRefrence;
+
+    private SlotReaderManagerRefrence refrence;
+
+    
+
+    private void SetRefrence()
+    {
+        refrence = (SlotReaderManagerRefrence)FindSORefrence<SlotReaderManager>.FindScriptableObject("SlotReader Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
+    private void LoadSORefrence()
+    {
+        eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+    }
+
     private void Awake()
     {
-        Instance = this;
+        SetRefrence();
     }
 
 
     private void Start()
     {
+        LoadSORefrence();
         AddISaveableToDictionary();
     }
 
@@ -48,10 +73,10 @@ public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveabl
     }
     private void OnDisable()
     {
-        if (EventManager.Instance != null)
+        if (eventManagerRefrence.val != null)
         {
-            EventManager.Instance.SecondsElapsedRemoveListener(SecondElapsed);
-            savedTime = new GameTime().CurrentTime();
+            eventManagerRefrence.val.SecondsElapsedRemoveListener(SecondElapsed);
+            savedTime = new GameTime().CurrentTime(eventManagerRefrence.val);
             isSaved = true;
         }
     }
@@ -64,7 +89,7 @@ public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveabl
     {
         if (isSaved)
         {
-            float difTime = new GameTime().RawTimeCurrentMinusSaved(savedTime);
+            float difTime = new GameTime().RawTimeCurrentMinusSaved(savedTime, eventManagerRefrence.val);
             foreach(var job in jobsList.ToList()) 
             {
                 Debug.Log(difTime.ToString());
@@ -78,7 +103,7 @@ public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveabl
             {
                 if (!jobsList[i].shouldRemove)
                 {
-                    EventManager.Instance.SecondsElapsedAddListener(SecondElapsed);
+                    eventManagerRefrence.val.SecondsElapsedAddListener(SecondElapsed);
                 }
             }
         }
@@ -206,12 +231,12 @@ public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveabl
     {
         if (jobsList.Count == 0) 
         {
-            EventManager.Instance.SecondsElapsedAddListener(SecondElapsed);
+            eventManagerRefrence.val.SecondsElapsedAddListener(SecondElapsed);
             Debug.Log("New here");
         }
         ScannerSlotUI targetSlotUI = ScannerSlotManager.Instance.slots[slotNumber];
         int totalTime = targetSlotUI.holdingItem.ImportTimer();
-        ImportJob importJob = new(slotNumber, totalTime);
+        ImportJob importJob = new(slotNumber, totalTime,this);
         jobsList.Add(importJob);
         ScannerSlotManager.Instance.slots[slotNumber].state = ScannerSlotManager.slotState.passive;
     }
@@ -224,7 +249,7 @@ public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveabl
     {
         if (jobsList.Count == 1)
         {
-            EventManager.Instance.SecondsElapsedRemoveListener(SecondElapsed);
+            eventManagerRefrence.val.SecondsElapsedRemoveListener(SecondElapsed);
             Debug.Log("New job cancel");
         }
         foreach (var job in jobsList.ToList())
@@ -249,7 +274,7 @@ public class SlotReaderManager : SingletonComponent<SlotReaderManager>, ISaveabl
     {
         if (jobsList.Count == 1)
         {
-            EventManager.Instance.SecondsElapsedRemoveListener(SecondElapsed);
+            eventManagerRefrence.val.SecondsElapsedRemoveListener(SecondElapsed);
             Debug.Log("new job finished");
         }
         ScannerSlotUI targetSlotUI = ScannerSlotManager.Instance.slots[job.GetSlotNumber()];
@@ -315,20 +340,22 @@ public class ImportJob
     private int slotNumber;
     private int totalTime;
     private int timeLeft;
+    private SlotReaderManager manager;
     public bool shouldRemove = false;
 
-    public ImportJob(int _SlotNumber, int _Timer)
+    public ImportJob(int _SlotNumber, int _Timer,SlotReaderManager manager)
     {
         slotNumber = _SlotNumber;
         totalTime = _Timer;
         timeLeft = totalTime;
+        this.manager = manager;
     }
     
     public void Tick()
     {
         if (timeLeft <= 0)
         {
-            SlotReaderManager.Instance.NewJobFinished(this);
+            manager.NewJobFinished(this);
             shouldRemove = true;
             timeLeft = 0;
             return;
@@ -341,7 +368,7 @@ public class ImportJob
         timeLeft -= (int)timeJumpValue;
         if (timeLeft <= 0)
         {
-            SlotReaderManager.Instance.NewJobFinished(this);
+            manager.NewJobFinished(this);
             shouldRemove = true;
             timeLeft = 0;
             return;

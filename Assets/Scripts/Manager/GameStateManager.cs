@@ -9,7 +9,7 @@ public class GameStateManager : SingletonComponent<GameStateManager>
 {
 
     #region Singleton
-    public static GameStateManager Instance 
+    public static GameStateManager Instance
     {
         get { return (GameStateManager)_Instance; }
         set { _Instance = value; }
@@ -22,6 +22,8 @@ public class GameStateManager : SingletonComponent<GameStateManager>
     private event Action ChangeState;
 
     private static GameStateManager instance;
+
+
 
     private void Awake()
     {

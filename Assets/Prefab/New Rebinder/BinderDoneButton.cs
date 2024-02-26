@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BinderDoneButton : MonoBehaviour
 {
+
+
     public void DoneClicked()
     {
         transform.parent.gameObject.SetActive(false);
-        EventManager.Instance.Resume();
+        Debug.LogError("DIDNT IMPLEMENT THE SCRIPTABLE OBJECT REFRECNE");
+        //eventManagerRefrence.val.Resume();
     }
-    
-    
 }

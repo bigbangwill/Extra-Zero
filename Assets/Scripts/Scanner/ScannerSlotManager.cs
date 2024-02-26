@@ -26,9 +26,20 @@ public class ScannerSlotManager : SingletonComponent<ScannerSlotManager>
     //will get called from outerScope
     public ScannerHologramUI currentHologram = null;
 
+    private PlayerInventoryRefrence inventoryRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        LoadSORefrence();
     }
 
     /// <summary>
@@ -57,7 +68,7 @@ public class ScannerSlotManager : SingletonComponent<ScannerSlotManager>
     /// <param name="slotUI"></param>
     public void AddedToSlot(BluePrintItem item,ScannerSlotUI slotUI)
     {
-        if (PlayerInventory.Instance.HaveItemInInventory(item, true))
+        if (inventoryRefrence.val.HaveItemInInventory(item, true))
         {
             slotUI.state = slotState.canRemove;
             refreshUI();
@@ -78,7 +89,7 @@ public class ScannerSlotManager : SingletonComponent<ScannerSlotManager>
     public void RemovedFromSlot(BluePrintItem item, ScannerSlotUI slotUI, bool isDone)
     {
         if(!isDone)
-            PlayerInventory.Instance.AddItemToInventory(item);
+            inventoryRefrence.val.AddItemToInventory(item);
         refreshUI();
         slotUI.SetDeactive();
         currentActiveSlot = null;

@@ -17,30 +17,30 @@ public struct GameTime
         day = _Day;
     }
 
-    public GameTime CurrentTime()
+    public GameTime CurrentTime(EventManager manager)
     {
-        float second = EventManager.Instance._Seconds;
-        int minute = EventManager.Instance._Minutes;
-        int hour = EventManager.Instance._Hours;
-        int day = EventManager.Instance._Days;
+        float second = manager._Seconds;
+        int minute = manager._Minutes;
+        int hour = manager._Hours;
+        int day = manager._Days;
         return new GameTime(minute,hour,day);
     }
 
-    public GameTime CurrentTimeMinusSavedTime(GameTime savedTime)
+    public GameTime CurrentTimeMinusSavedTime(GameTime savedTime,EventManager manager)
     {
         int difMinutes, difHours, difDays;
-        difDays = CurrentTime().day - savedTime.day;
-        difHours = CurrentTime().hour - savedTime.hour;
-        difMinutes = CurrentTime().minute - savedTime.minute;
+        difDays = CurrentTime(manager).day - savedTime.day;
+        difHours = CurrentTime(manager).hour - savedTime.hour;
+        difMinutes = CurrentTime(manager).minute - savedTime.minute;
         return new GameTime(difMinutes, difHours, difDays);
     }
 
-    public float RawTimeCurrentMinusSaved(GameTime savedTime)
+    public float RawTimeCurrentMinusSaved(GameTime savedTime, EventManager manager)
     {
         int difMinutes, difHours, difDays;
-        difDays = CurrentTime().day - savedTime.day;
-        difHours = CurrentTime().hour - savedTime.hour;
-        difMinutes = CurrentTime().minute - savedTime.minute;
+        difDays = CurrentTime(manager).day - savedTime.day;
+        difHours = CurrentTime(manager).hour - savedTime.hour;
+        difMinutes = CurrentTime(manager).minute - savedTime.minute;
         Debug.Log(difMinutes + " min " + difHours + " hour " + difDays + " day");
 
         difHours += difDays * 24;
@@ -49,15 +49,19 @@ public struct GameTime
     }
 }
 
-public class EventManager : SingletonComponent<EventManager>
+public class EventManager : MonoBehaviour
 {
-    #region Singleton
-    public static EventManager Instance
-    {
-        get { return ((EventManager)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton
+    //public static EventManager Instance
+    //{
+    //    get { return ((EventManager)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
+
+
+
+
 
     public UnityEvent _PauseEvent;
     public UnityEvent _ResumeEvent;
@@ -79,9 +83,29 @@ public class EventManager : SingletonComponent<EventManager>
     public int _Hours { get { return hour; } }
     public int _Days { get { return day; } }
 
+
+    private EventManagerRefrence refrence;
+
+    private void LoadSORefrence()
+    {
+
+    }
+
+    private void SetRefrence()
+    {
+        refrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
     private void Awake()
     {
-        Debug.Log(_Instance);
+        SetRefrence();
     }
 
     private void Start()

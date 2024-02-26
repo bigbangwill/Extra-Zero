@@ -8,13 +8,13 @@ using UnityEngine.Rendering;
 
 public class BasementManager : SingletonComponent<BasementManager>
 {
-    #region Singleton Manager
-    public static BasementManager Instance
-    {
-        get { return ((BasementManager)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton Manager
+    //public static BasementManager Instance
+    //{
+    //    get { return ((BasementManager)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     private UnityEvent InventoryEvent = new();
     public delegate void Intract();
@@ -23,9 +23,33 @@ public class BasementManager : SingletonComponent<BasementManager>
 
     private PlayerInput playerInput;
 
+    private BasementManagerRefrence refrence;
+    private PlayerInventoryRefrence inventoryRefrence;
+
+    private void SetRefrence()
+    {
+        refrence = (BasementManagerRefrence)FindSORefrence<BasementManager>.FindScriptableObject("Basement Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Check ASAP");
+            return;
+        }
+        refrence.val = this;
+    }
+    private void LoadSORefrence()
+    {
+        
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
+    private void Awake()
+    {
+        SetRefrence();
+    }
 
     private void Start()
     {
+        LoadSORefrence();
         playerInput = GetComponent<PlayerInput>();
     }
 
@@ -90,23 +114,23 @@ public class BasementManager : SingletonComponent<BasementManager>
 
     private void OnFirstSlot()
     {
-        PlayerInventory.Instance.SetActiveItem(0);
+        inventoryRefrence.val.SetActiveItem(0);
     }
     private void OnSecondSlot()
     {
-        PlayerInventory.Instance.SetActiveItem(1);
+        inventoryRefrence.val.SetActiveItem(1);
     }
     private void OnThirdSlot()
     {
-        PlayerInventory.Instance.SetActiveItem(2);
+        inventoryRefrence.val.SetActiveItem(2);
     }
     private void OnForthSlot()
     {
-        PlayerInventory.Instance.SetActiveItem(3);
+        inventoryRefrence.val.SetActiveItem(3);
     }
     private void OnFifthSlot()
     {
-        PlayerInventory.Instance.SetActiveItem(4);
+        inventoryRefrence.val.SetActiveItem(4);
     }
 
 

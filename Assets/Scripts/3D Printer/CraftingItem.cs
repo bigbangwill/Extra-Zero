@@ -18,13 +18,25 @@ public class CraftingItem : MonoBehaviour
     private ItemBehaviour holdingItem;
 
     private craftingItemState state;
-    
+
+
+
+    #region Refrences
+    private PlayerInventoryRefrence inventoryRefrence;
+    #endregion
+
+
+    private void Start()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
 
     public void RemoveItemFromPrinterSlot()
     {
-        if (PlayerInventory.Instance.HaveEmptySlot(holdingItem,false))
+        if (inventoryRefrence.val.HaveEmptySlot(holdingItem,false))
         {
-            PlayerInventory.Instance.HaveEmptySlot(holdingItem, true);
+            inventoryRefrence.val.HaveEmptySlot(holdingItem, true);
             state = craftingItemState.CanFill;
             SetIndicator(holdingItem);
         }
@@ -59,7 +71,7 @@ public class CraftingItem : MonoBehaviour
         }
 
         materialImage.sprite = sentMaterial.IconRefrence();
-        if (PlayerInventory.Instance.HaveItemInInventory(sentMaterial, false))
+        if (inventoryRefrence.val.HaveItemInInventory(sentMaterial, false))
         {
             greenIndicator.SetActive(true);
             holdingItem = sentMaterial;
@@ -82,7 +94,7 @@ public class CraftingItem : MonoBehaviour
         }
 
 
-        if (state == craftingItemState.CanFill && PlayerInventory.Instance.HaveItemInInventory(holdingItem, true))
+        if (state == craftingItemState.CanFill && inventoryRefrence.val.HaveItemInInventory(holdingItem, true))
         {
             state = craftingItemState.Filled;
             greenIndicator.SetActive(false);

@@ -21,22 +21,31 @@ public class AlchemyPost : MonoBehaviour
     private List<Herb> sendingHerbs;
 
     private bool minigameIsPlaying = false;
-    
+
+
+    private PlayerInventoryRefrence inventoryRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
 
     private void Start()
     {
+        
         PotionLibrary.Initialize();
-        PlayerInventory.Instance.HaveEmptySlot(new Herb.Chamomile(50), true);
-        PlayerInventory.Instance.HaveEmptySlot(new Herb.Lavender(50), true);
-        PlayerInventory.Instance.HaveEmptySlot(new Herb.Sage(50), true);
-        PlayerInventory.Instance.HaveEmptySlot(new Herb.Chamomile(50), true);
-        PlayerInventory.Instance.HaveEmptySlot(new Herb.Lavender(50), true);
-        PlayerInventory.Instance.HaveEmptySlot(new Herb.Sage(50), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
         SetLists();
     }
 
     private void OnEnable()
     {
+        LoadSORefrence();
         //if(minigameIsPlaying)
         //{
         //    miniGame.gameObject.SetActive(true);
@@ -62,7 +71,7 @@ public class AlchemyPost : MonoBehaviour
         inventoryHerbs = new();
         herbNames = new();
         sendingHerbs = new();
-        List<Herb> herbs = PlayerInventory.Instance.SearchInventoryOfItemBehaviour<Herb>(ItemType.herb);
+        List<Herb> herbs = inventoryRefrence.val.SearchInventoryOfItemBehaviour<Herb>(ItemType.herb);
         foreach (Herb herb in herbs)
         {
             Type type = herb.GetType();

@@ -19,9 +19,18 @@ public class MenuPurchaseScript : MonoBehaviour
     private PurchasableScript activePurchasable;
 
 
+    private EconomyManagerRefrence economyManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        economyManagerRefrence = (EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence");
+    }
+
+
 
     private void Start()
     {
+        LoadSORefrence();
         Init();
     }
 
@@ -61,12 +70,12 @@ public class MenuPurchaseScript : MonoBehaviour
     {
         Debug.Log("Clicked");
         activePurchasable.Purchasable.purchasedMethod();
-        EconomyManager.Instance.OutGameCurrencyCurrentStack -= activePurchasable.Purchasable.Cost;
+        economyManagerRefrence.val.OutGameCurrencyCurrentStack -= activePurchasable.Purchasable.Cost;
         SetButtonState();
     }
     private void SetButtonState()
     {
-        if (activePurchasable.Purchasable.Cost <= EconomyManager.Instance.OutGameCurrencyCurrentStack)
+        if (activePurchasable.Purchasable.Cost <= economyManagerRefrence.val.OutGameCurrencyCurrentStack)
         {
             purchaseButton.interactable = true;
         }

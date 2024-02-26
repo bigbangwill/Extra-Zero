@@ -4,19 +4,8 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 
-public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,IStashable
+public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
 {
-
-    #region Sinleton
-    public static PlayerInventory Instance
-    {
-        get { return ((PlayerInventory)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
-
-    [SerializeField] private PlayerInventoryRefrence _playerInventoryRefrence;
-
 
 
     // Player inventory slot count
@@ -46,15 +35,31 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     private int currentActiveItemSlotNum = int.MaxValue;
     [SerializeField] private Transform activeItemTranform;
 
-    private void Awake()
+
+    private PlayerInventoryRefrence refrence;
+    private EventManagerRefrence eventManagerRefrence;
+
+    private void LoadSORefrence()
     {
-        if (_playerInventoryRefrence == null)
+        eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+    }
+
+    private void SetRefrence()
+    {
+        refrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+        if (refrence == null)
         {
-            Debug.Log("Didnt find it");
+            Debug.LogWarning("Didnt find it");
             return;
         }
         Debug.Log("We did find it");
-        _playerInventoryRefrence.val = this;
+        refrence.val = this;
+    }
+
+
+    private void Awake()
+    {
+        SetRefrence();
 
         inventoryArray = new ItemBehaviour[inventorySlotCount];
         itemSlotPrefabWidth = itemSlotPrefab.GetComponent<RectTransform>().rect.width;
@@ -65,13 +70,8 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
         }
         InitUI();
 
-        AddItemToInventory(new MaterialItem.Plastic(3));
-        AddItemToInventory(new BluePrintItem.WalkingStick());
-        AddItemToInventory(new BluePrintItem.Hoe());
-        AddItemToInventory(new BluePrintItem.Gun());
-        AddItemToInventory(new BluePrintItem.Plant());
+        
     }
-
 
 
     public void TESTADDHAMMER()
@@ -83,8 +83,13 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
 
     private void Start()
     {
-        
+        LoadSORefrence();
         AddISaveableToDictionary();
+        AddItemToInventory(new MaterialItem.Plastic(3));
+        AddItemToInventory(new BluePrintItem.WalkingStick());
+        AddItemToInventory(new BluePrintItem.Hoe());
+        AddItemToInventory(new BluePrintItem.Gun());
+        AddItemToInventory(new BluePrintItem.Plant());
     }
 
     /// <summary>
@@ -95,7 +100,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
     public void CallUIRefreshEvent()
     {
         //InitUI();
-        EventManager.Instance.RefreshInventory();
+        eventManagerRefrence.val.RefreshInventory();
     }
 
     /// <summary>
@@ -447,7 +452,7 @@ public class PlayerInventory : SingletonComponent<PlayerInventory> ,ISaveable ,I
                 }
             }
         }
-        EventManager.Instance.RefreshInventory();
+        eventManagerRefrence.val.RefreshInventory();
     }
 
     /// <summary>

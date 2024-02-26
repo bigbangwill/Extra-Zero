@@ -24,6 +24,17 @@ public class AlchemyRewardPanel : MonoBehaviour
 
     private PotionItem targetPotionItem;
 
+    private PlayerInventoryRefrence inventoryRefrence;
+    private void LoadSORefrence()
+    {
+        inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
+    private void Start()
+    {
+        LoadSORefrence();
+    }
+
     public void EnableReward(List<PotionEffect> rewardEffects,bool isCrit, PotionItem prePotion)
     {
         if (rewardEffects == null)
@@ -94,9 +105,9 @@ public class AlchemyRewardPanel : MonoBehaviour
         }
         targetPotionItem.SetNextEffect(targetedEffect);
 
-        if (PlayerInventory.Instance.HaveEmptySlot(targetPotionItem, false))
+        if (inventoryRefrence.val.HaveEmptySlot(targetPotionItem, false))
         {
-            PlayerInventory.Instance.HaveEmptySlot(targetPotionItem, true);
+            inventoryRefrence.val.HaveEmptySlot(targetPotionItem, true);
             ResetBackToStart();
             Debug.Log("Sent");
         }
@@ -107,9 +118,9 @@ public class AlchemyRewardPanel : MonoBehaviour
 
         if (critStatus.activeSelf)
         {
-            if (PlayerInventory.Instance.HaveEmptySlot(targetPotionItem, false))
+            if (inventoryRefrence.val.HaveEmptySlot(targetPotionItem, false))
             {
-                PlayerInventory.Instance.HaveEmptySlot(targetPotionItem, true);
+                inventoryRefrence.val.HaveEmptySlot(targetPotionItem, true);
                 ResetBackToStart();
                 Debug.Log("Sent");
             }

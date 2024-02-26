@@ -6,28 +6,36 @@ public class PauseableBehaviour : MonoBehaviour
 {
     protected bool isPaused = false;
 
+    private EventManagerRefrence eventManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+    }
+
 
     public void OnEnable()
     {
-        EventManager.Instance._PauseEvent.AddListener(Pause);
-        EventManager.Instance._ResumeEvent.AddListener(Resume);
+        LoadSORefrence();
+        eventManagerRefrence.val._PauseEvent.AddListener(Pause);
+        eventManagerRefrence.val._ResumeEvent.AddListener(Resume);
     }
 
     public void OnDisable()
     {
-        if (EventManager.Instance != null)
+        if (eventManagerRefrence.val != null)
         {
-            EventManager.Instance._PauseEvent.RemoveListener(Pause);
-            EventManager.Instance._ResumeEvent.RemoveListener(Resume);
+            eventManagerRefrence.val._PauseEvent.RemoveListener(Pause);
+            eventManagerRefrence.val._ResumeEvent.RemoveListener(Resume);
         }
     }
 
     public void OnDestroy()
     {
-        if (EventManager.Instance != null)
+        if (eventManagerRefrence.val != null)
         {
-            EventManager.Instance._PauseEvent.RemoveListener(Pause);
-            EventManager.Instance._ResumeEvent.RemoveListener(Resume);
+            eventManagerRefrence.val._PauseEvent.RemoveListener(Pause);
+            eventManagerRefrence.val._ResumeEvent.RemoveListener(Resume);
         }
     }
 
