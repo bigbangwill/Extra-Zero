@@ -20,9 +20,18 @@ public class NodePassive : MonoBehaviour
     private NodePassive gateToNode;
     private NodePassive entangleToNode;
 
+    private TalentManagerRefrence talentManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        talentManagerRefrence = (TalentManagerRefrence)FindSORefrence<TalentManager>.FindScriptableObject("Talent Manager Refrence");
+
+    }
+
 
     private void Start()
     {
+        LoadSORefrence();
         rend = GetComponentInChildren<Renderer>();
     }
 
@@ -48,7 +57,7 @@ public class NodePassive : MonoBehaviour
     {
         talent.RemoveGateFromQubit();
         SetNodeState(NodePurchaseState.IsMenuPassive);
-        TalentManager.Instance.TryStopLine(this);
+        talentManagerRefrence.val.TryStopLine(this);
         gateToNode = null;
     }
 
@@ -62,7 +71,7 @@ public class NodePassive : MonoBehaviour
     {
         talent.RemoveGateFromQubit();
         SetNodeState(NodePurchaseState.IsMenuPassive);
-        TalentManager.Instance.TryStopLine(this);
+        talentManagerRefrence.val.TryStopLine(this);
         gateToNode = null;
     }
 
@@ -78,7 +87,7 @@ public class NodePassive : MonoBehaviour
         talent.RemoveEntangleToQubit();
         entangleToNode.ForceDowngradeEntangle();
         SetNodeState(NodePurchaseState.IsMenuPassive);
-        TalentManager.Instance.TryStopLine(this);
+        talentManagerRefrence.val.TryStopLine(this);
         entangleToNode = null;
     }
 
@@ -92,7 +101,7 @@ public class NodePassive : MonoBehaviour
     {
         talent.RemoveEntangleToQubit();
         SetNodeState(NodePurchaseState.IsMenuPassive);
-        TalentManager.Instance.TryStopLine(this);
+        talentManagerRefrence.val.TryStopLine(this);
         entangleToNode = null;
     }
 
@@ -170,25 +179,25 @@ public class NodePassive : MonoBehaviour
         switch (nodePurchase)
         {
             case NodePurchaseState.IsPurchased:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.passivePurchased);break;
+                currentState = nodePurchase; SetColor(talentManagerRefrence.val.passivePurchased);break;
             case NodePurchaseState.IsNotPurchased:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.passiveUnpurchased);break;
+                currentState = nodePurchase; SetColor(talentManagerRefrence.val.passiveUnpurchased);break;
             case NodePurchaseState.IsSelectedPurchased:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.selectedPurchased);break;
+                currentState = nodePurchase; SetColor(talentManagerRefrence.val.selectedPurchased);break;
             case NodePurchaseState.IsSelectedNotPurchased:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.selectedUnpurchased);break;
+                currentState = nodePurchase; SetColor(talentManagerRefrence.val.selectedUnpurchased);break;
             case NodePurchaseState.IsCloseTarget:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.closePurchasable);break;
+                currentState = nodePurchase; SetColor(talentManagerRefrence.val.closePurchasable);break;
             case NodePurchaseState.IsMenuPassive:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.menuPassive);break;
+                currentState = nodePurchase; SetColor(talentManagerRefrence.val.menuPassive);break;
             case NodePurchaseState.IsMenuSelected:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.menuSelected); break;
+                currentState = nodePurchase; SetColor(talentManagerRefrence.val.menuSelected); break;
             case NodePurchaseState.IsMenuAvailable:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.MenuAvailable);break;
+                currentState = nodePurchase; SetColor(  talentManagerRefrence.val.MenuAvailable);break;
             case NodePurchaseState.IsMenuGated:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.menuGated);break;
+                currentState = nodePurchase; SetColor(talentManagerRefrence.val.menuGated);break;
             case NodePurchaseState.IsMenuEntangled:
-                currentState = nodePurchase; SetColor(TalentManager.Instance.menuEntangled);break;
+                currentState = nodePurchase; SetColor(talentManagerRefrence.val.menuEntangled);break;
             default: Debug.LogWarning("Check here Color");break;
         }
     }

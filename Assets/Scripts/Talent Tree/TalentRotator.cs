@@ -17,8 +17,17 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public Camera talentCamera;
 
+    private TalentManagerRefrence talentManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        talentManagerRefrence = (TalentManagerRefrence)FindSORefrence<TalentManager>.FindScriptableObject("Talent Manager Refrence");
+
+    }
+
     private void Start()
     {
+        LoadSORefrence();
         GameStateManager.Instance.ChangeStateAddListener(SetCameraRefrence);
     }
 
@@ -49,7 +58,7 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask))
         {
             Debug.Log("inside if");
-            TalentManager.Instance.SetTargetNode(hit.collider.GetComponentInParent<NodePassive>());
+            talentManagerRefrence.val.SetTargetNode(hit.collider.GetComponentInParent<NodePassive>());
         }
     }
 }

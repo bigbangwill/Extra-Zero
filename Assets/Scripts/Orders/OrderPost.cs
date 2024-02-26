@@ -33,9 +33,18 @@ public class OrderPost : MonoBehaviour
     private float currentTimer = 0;
     private OrderPostHealth postHealthScript;
 
+    private OrderManagerRefrence orderManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Player Inventory Refrence");
+    }
+
+
 
     private void Start()
     {
+        LoadSORefrence();
         postHealthScript = GetComponent<OrderPostHealth>();
     }
 
@@ -159,7 +168,7 @@ public class OrderPost : MonoBehaviour
         isReady = false;
         currentTimer = 0;
         WalkingOrder targetWalkingOrder = walkingOrdersList[0];
-        OrderManager.Instance.FinishedWalkingOrder(targetWalkingOrder);
+        orderManagerRefrence.val.FinishedWalkingOrder(targetWalkingOrder);
         walkingOrdersList.RemoveAt(0);
         targetWalkingOrder.WalkToDeath(WalkingOrderDeathSpot.position);
         if(walkingOrdersList.Count > 0 )

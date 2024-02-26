@@ -1,18 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class OptionHolder : SingletonComponent<OptionHolder>
 {
-    #region Singleton
-    public static OptionHolder Instance
-    {
-        get { return (OptionHolder) _Instance; }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton
+    //public static OptionHolder Instance
+    //{
+    //    get { return (OptionHolder) _Instance; }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     private int qubitMaxCount;
     public int QubitMaxCount {  get { return qubitMaxCount; } }
@@ -34,8 +35,24 @@ public class OptionHolder : SingletonComponent<OptionHolder>
 
     private static OptionHolder instance;
 
+    private OptionHolderRefrence refrence;
+
+
+    private void SetRefrence()
+    {
+        refrence = (OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Option Holder Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
     private void Awake()
     {
+        SetRefrence();
         if(instance == null)
         {
             instance = this;

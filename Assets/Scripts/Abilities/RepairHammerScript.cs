@@ -13,15 +13,23 @@ public class RepairHammerScript : MonoBehaviour
     public Transform iconParent;
     public Button repairButton;
 
+    private UsableCanvasManagerRefrence usableRefrence;
+
+    private void LoadSORefrence()
+    {
+        usableRefrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
+    }
+
 
     private void OnEnable()
     {
-        UseableItemCanvasScript.Instance.SetDelegate(RepairHammerUsed,OverlayState.RepairMode,transform,iconParent,repairButton);
+        LoadSORefrence();
+        usableRefrence.val.SetDelegate(RepairHammerUsed,OverlayState.RepairMode,transform,iconParent,repairButton);
     }
 
     private void OnDisable()
     {
-        UseableItemCanvasScript.Instance.RemoveDelegate(RepairHammerUsed);
+        usableRefrence.val.RemoveDelegate(RepairHammerUsed);
     }
 
     public void RepairHammerUsed()

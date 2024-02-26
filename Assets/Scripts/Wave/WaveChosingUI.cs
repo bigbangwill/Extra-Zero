@@ -15,10 +15,16 @@ public class WaveChosingUI : MonoBehaviour
 
     private WaveManagerRefrence waveManagerRefrence;
 
+    private OrderManagerRefrence orderManagerRefrence;
+
     private void LoadSORefrence()
     {
+        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Player Inventory Refrence");
         waveManagerRefrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");
+        
     }
+
+    
 
     private void Start()
     {
@@ -85,7 +91,7 @@ public class WaveChosingUI : MonoBehaviour
         }
         currentWaveOption.ExecuteImpact();
         WaveDifficultySO tweakedWave = waveManagerRefrence.val.ApplyCurrentEffectsToTheWave(currentWaveOption.TargetWaveDifficulty);
-        OrderManager.Instance.StartNewWave(tweakedWave);
+        orderManagerRefrence.val.StartNewWave(tweakedWave);
     }
 
     // to clear the UI from the waveOptions.

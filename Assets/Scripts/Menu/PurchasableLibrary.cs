@@ -16,7 +16,12 @@ public abstract class PurchasableLibrary
     public Sprite Icon { get => icon; }
     public string PurchasableDescription { get => purchasableDescription; }
 
+    protected OptionHolderRefrence optionHolderRefrence;
 
+    private void LoadSORefrence()
+    {
+        optionHolderRefrence = (OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Option Holder Refrence");
+    }
     public abstract void purchasedMethod();
 
     protected void LoadIcon()
@@ -33,6 +38,7 @@ public abstract class PurchasableLibrary
         {
             Debug.LogError("Failed to load the asset");
         }
+        LoadSORefrence();
     }
 }
 
@@ -48,7 +54,7 @@ public class Qubit : PurchasableLibrary
 
     public override void purchasedMethod()
     {
-        OptionHolder.Instance.AddQubitMax(+1);
+        optionHolderRefrence.val.AddQubitMax(+1);
     }
 }
 public class Gate : PurchasableLibrary
@@ -64,7 +70,7 @@ public class Gate : PurchasableLibrary
 
     public override void purchasedMethod()
     {
-        OptionHolder.Instance.AddGateMax(+1);
+        optionHolderRefrence.val.AddGateMax(+1);
     }
 }
 public class Entangle : PurchasableLibrary
@@ -79,6 +85,6 @@ public class Entangle : PurchasableLibrary
 
     public override void purchasedMethod()
     {
-        OptionHolder.Instance.AddEntangleMax(+1);
+        optionHolderRefrence.val.AddEntangleMax(+1);
     }
 }

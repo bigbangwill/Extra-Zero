@@ -6,15 +6,15 @@ using System.Reflection;
 using System.Linq;
 using Unity.VisualScripting;
 
-public class OrderManager : SingletonComponent<OrderManager>
+public class OrderManager : MonoBehaviour
 {
-    #region Sinleton
-    public static OrderManager Instance
-    {
-        get { return ((OrderManager)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Sinleton
+    //public static OrderManager Instance
+    //{
+    //    get { return ((OrderManager)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
 
     [SerializeField] private List<OrderPost> postList = new();
@@ -45,21 +45,38 @@ public class OrderManager : SingletonComponent<OrderManager>
     //For later gameplay system :D nice naming btw
     private float timeElapsedBetweenNightAndDay;
 
+    private OrderManagerRefrence refrence;
+
     private PlayerInventoryRefrence inventoryRefrence;
+    private UsableCanvasManagerRefrence usableRefrence;
+
+    private void SetRefrence()
+    {
+        refrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("OrderManager Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
     private void LoadSORefrence()
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+        usableRefrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
     }
+    
 
     private void Awake()
     {
-        
+        SetRefrence();
     }
 
     private void Start()
     {
         LoadSORefrence();
-        Debug.Log(_Instance);
         Init();
         StartNewWave(defaultWave);
     }
@@ -203,7 +220,7 @@ public class OrderManager : SingletonComponent<OrderManager>
     {
         if (GUI.Button(new Rect(10, 10, 150, 100), "Add Hammer"))
         {
-            inventoryRefrence.val.HaveEmptySlot(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform),true);
+            inventoryRefrence.val.HaveEmptySlot(new CraftedItem.RepairHammer(usableRefrence.val.transform),true);
         }
     }
 

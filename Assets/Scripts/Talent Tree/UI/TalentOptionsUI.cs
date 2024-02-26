@@ -14,7 +14,18 @@ public class TalentOptionsUI : MonoBehaviour
 
     [SerializeField] private OptionHolder optionHolder;
 
+    private TalentManagerRefrence talentManagerRefrence;
 
+    private void LoadSORefrence()
+    {
+        talentManagerRefrence = (TalentManagerRefrence)FindSORefrence<TalentManager>.FindScriptableObject("Talent Manager Refrence");
+
+    }
+
+    private void Start()
+    {
+        LoadSORefrence();
+    }
 
     public void SetActive(NodePassive passive)
     {
@@ -74,7 +85,7 @@ public class TalentOptionsUI : MonoBehaviour
         }
         else
         {
-            TalentManager.Instance.SetGateStart();
+            talentManagerRefrence.val.SetGateStart();
         }
         SetActive(currentPassive);
 
@@ -89,7 +100,7 @@ public class TalentOptionsUI : MonoBehaviour
         }
         else
         {
-            TalentManager.Instance.SetEntangleStart();
+            talentManagerRefrence.val.SetEntangleStart();
         }
         SetActive(currentPassive);
     }

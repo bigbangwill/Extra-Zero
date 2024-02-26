@@ -28,13 +28,27 @@ public class WaveDifficultySO : ScriptableObject
     [SerializeField] private Sprite waveIcon;
     [SerializeField] private string waveDescription;
 
+    private OrderManagerRefrence orderManagerRefrence;
+
+    private bool refrenceIsSet = false;
+
+    private void LoadSORefrence()
+    {
+        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Player Inventory Refrence");
+        refrenceIsSet = true;
+    }
+
+    
+
     public int GetOrderCombination()
     {
+        if (!refrenceIsSet)
+            LoadSORefrence();
         int minValue = orderCombination - combinationRandomness;
         int maxValue = orderCombination + combinationRandomness;
         int value = Random.Range(minValue, maxValue);
-        if (value > OrderManager.Instance.GetMaxOrderCombination())
-            value = OrderManager.Instance.GetMaxOrderCombination();
+        if (value > orderManagerRefrence.val.GetMaxOrderCombination())
+            value = orderManagerRefrence.val.GetMaxOrderCombination();
         return value;
     }
 

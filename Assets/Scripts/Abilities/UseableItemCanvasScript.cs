@@ -8,15 +8,15 @@ using UnityEngine.UI;
 
 public enum OverlayState { RepairMode}
 
-public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScript>, IPointerDownHandler
+public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
 {
-    #region Sinleton
-    public static UseableItemCanvasScript Instance
-    {
-        get { return ((UseableItemCanvasScript)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Sinleton
+    //public static UseableItemCanvasScript Instance
+    //{
+    //    get { return ((UseableItemCanvasScript)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     [SerializeField] private List<OrderPostHealth> repairables = new();
     [SerializeField] private GameObject repairIconPrefab;
@@ -38,15 +38,36 @@ public class UseableItemCanvasScript : SingletonComponent<UseableItemCanvasScrip
     private Image overlayImage;
 
     private PlayerInventoryRefrence inventoryRefrence;
+    private UsableCanvasManagerRefrence refrence;
+
+
+    private void SetRefrence()
+    {
+        refrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Event Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
+
     private void LoadSORefrence()
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
     }
 
+    private void Awake()
+    {
+        SetRefrence();
+    }
+
     private void Start()
     {
-        overlayImage = GetComponent<Image>();
         LoadSORefrence();
+        overlayImage = GetComponent<Image>();
         inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
         inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
         inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);

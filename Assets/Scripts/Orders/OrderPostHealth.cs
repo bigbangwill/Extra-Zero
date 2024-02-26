@@ -29,10 +29,15 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
 
     private PlayerInventoryRefrence inventoryRefrence;
+    private UsableCanvasManagerRefrence usableRefrence;
+
+
     private void LoadSORefrence()
     {
+        usableRefrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
     }
+    
 
 
     private void Start()
@@ -107,10 +112,10 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         SetHealthImage();
         if (targeted)
         {
-            UseableItemCanvasScript.Instance.CallRepair();
+            usableRefrence.val.CallRepair();
         }
-        Debug.Log(UseableItemCanvasScript.Instance.IsOnRepairMode + "    bool cheker");
-        if (UseableItemCanvasScript.Instance.IsOnRepairMode)
+        Debug.Log(usableRefrence.val.IsOnRepairMode + "    bool cheker");
+        if (usableRefrence.val.IsOnRepairMode)
         {
             TurnUIUXOn();
         }

@@ -38,11 +38,16 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
 
     private PlayerInventoryRefrence refrence;
     private EventManagerRefrence eventManagerRefrence;
+    private UsableCanvasManagerRefrence usableRefrence;
 
     private void LoadSORefrence()
     {
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+        usableRefrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
     }
+
+
+    
 
     private void SetRefrence()
     {
@@ -76,7 +81,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
 
     public void TESTADDHAMMER()
     {
-        HaveEmptySlot(new CraftedItem.RepairHammer(UseableItemCanvasScript.Instance.transform),true);
+        HaveEmptySlot(new CraftedItem.RepairHammer(usableRefrence.val.transform),true);
     }
 
     

@@ -9,16 +9,16 @@ using Unity.VisualScripting;
 using TMPro;
 using UnityEngine.Rendering;
 
-public class TalentManager : SingletonComponent<TalentManager>
+public class TalentManager : MonoBehaviour
 {
 
-    #region Singleton
-    public static TalentManager Instance
-    {
-        get { return (TalentManager)_Instance; }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton
+    //public static TalentManager Instance
+    //{
+    //    get { return (TalentManager)_Instance; }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     [SerializeField] private List<TalentTreeOrbitalMovement> talentTrees = new();
     [SerializeField] private TalentInfoPanelUI infoPanel;
@@ -68,8 +68,32 @@ public class TalentManager : SingletonComponent<TalentManager>
 
     private static TalentManager instance = null;
 
+    private TalentManagerRefrence refrence;
+
+    private OptionHolderRefrence optionHolderRefrence;
+
+    private void LoadSORefrence()
+    {
+        optionHolderRefrence = (OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Order Manager Refrence");
+    }
+
+
+    private void SetRefrence()
+    {
+        refrence = (TalentManagerRefrence)FindSORefrence<TalentManager>.FindScriptableObject("Talent Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
+
     private void Awake()
     {
+        SetRefrence();
         if (instance == null)
         {
             instance = this;
@@ -80,11 +104,13 @@ public class TalentManager : SingletonComponent<TalentManager>
             Destroy(this.gameObject);
             return;
         }
+
     }
 
 
     private void Start()
     {
+        LoadSORefrence();
         Debug.Log("Here started again!!");
         if (!nodesCreated)
         {
@@ -217,7 +243,7 @@ public class TalentManager : SingletonComponent<TalentManager>
                 gateBaseNode.SetNodeState(NodePurchaseState.IsMenuGated);
                 //targetNode.SetNodeState(NodePurchaseState.IsMenuGated);
                 StartGateLine(gateBaseNode.transform.GetChild(0),targetNode.transform.GetChild(0));
-                OptionHolder.Instance.AddGateCurrent(+1);
+                optionHolderRefrence.val.AddGateCurrent(+1);
                 isSecondGate = false;
                 gateBaseNode = null;
 
@@ -253,7 +279,7 @@ public class TalentManager : SingletonComponent<TalentManager>
                 entangleBaseNode.SetNodeState(NodePurchaseState.IsMenuEntangled);
                 targetNode.SetNodeState(NodePurchaseState.IsMenuEntangled);
                 StartEntangleLine(entangleBaseNode.transform.GetChild(0), targetNode.transform.GetChild(0));
-                OptionHolder.Instance.AddEntangleCurrent(+1);
+                optionHolderRefrence.val.AddEntangleCurrent(+1);
                 isSecondEntangle = false;
                 entangleBaseNode = null;
 

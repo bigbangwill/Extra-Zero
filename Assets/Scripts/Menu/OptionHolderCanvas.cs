@@ -9,15 +9,23 @@ public class OptionHolderCanvas : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textGate;
     [SerializeField] private TextMeshProUGUI textEntangle;
 
+    private OptionHolderRefrence optionHolderRefrence;
+
+    private void LoadSORefrence()
+    {
+        optionHolderRefrence = (OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Option Holder Refrence");
+    }
+
     private void OnEnable()
     {
-        OptionHolder.Instance.AddListener(InitUI);
+        LoadSORefrence();
+        optionHolderRefrence.val.AddListener(InitUI);
     }
 
     private void OnDisable()
     {
-        if(OptionHolder.Instance != null)
-            OptionHolder.Instance.RemoveListener(InitUI);
+        if(optionHolderRefrence.val != null)
+            optionHolderRefrence.val.RemoveListener(InitUI);
     }
 
     private void Start()
@@ -27,12 +35,12 @@ public class OptionHolderCanvas : MonoBehaviour
 
     public void InitUI()
     {
-        string qubitCurrent = OptionHolder.Instance.QubitCurrentCount.ToString();
-        string qubitMax = OptionHolder.Instance.QubitMaxCount.ToString();
-        string gateCurrent = OptionHolder.Instance.GateCurrentCount.ToString();
-        string gateMax = OptionHolder.Instance.GateMaxCount.ToString();
-        string entangleCurrent = OptionHolder.Instance.EntangleCurrentCount.ToString();
-        string entangleMax = OptionHolder.Instance.EntangleMaxCount.ToString();
+        string qubitCurrent = optionHolderRefrence.val.QubitCurrentCount.ToString();
+        string qubitMax = optionHolderRefrence.val.QubitMaxCount.ToString();
+        string gateCurrent = optionHolderRefrence.val.GateCurrentCount.ToString();
+        string gateMax = optionHolderRefrence.val.GateMaxCount.ToString();
+        string entangleCurrent = optionHolderRefrence.val.EntangleCurrentCount.ToString();
+        string entangleMax = optionHolderRefrence.val.EntangleMaxCount.ToString();
 
         textQubit.text = qubitCurrent + " / " + qubitMax;
         textGate.text = gateCurrent + " / " + gateMax;

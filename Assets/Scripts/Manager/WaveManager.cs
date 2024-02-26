@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Linq;
 using Unity.VisualScripting;
 
-public class WaveManager : SingletonComponent<WaveManager>
+public class WaveManager : MonoBehaviour
 {
     //#region Singleton
     //public static WaveManager Instance
@@ -48,10 +48,11 @@ public class WaveManager : SingletonComponent<WaveManager>
 
 
     protected WaveManagerRefrence refrence;
+    private OrderManagerRefrence orderManagerRefrence;
 
     private void LoadSORefrence()
     {
-
+        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
     }
 
     private void SetRefrence()
@@ -73,6 +74,7 @@ public class WaveManager : SingletonComponent<WaveManager>
 
     private void Start()
     {
+        LoadSORefrence();
         Init();
     }
 
@@ -128,7 +130,7 @@ public class WaveManager : SingletonComponent<WaveManager>
         WaveDifficultySO targetWave = waveDifficultyList[UnityEngine.Random.Range(0, waveDifficultyList.Count)];
         GetRandomHarderEffect().ImpactEffect();
         GetRandomRewardEffect().ImpactEffect();
-        OrderManager.Instance.StartNewWave(ApplyCurrentEffectsToTheWave(targetWave));
+        orderManagerRefrence.val.StartNewWave(ApplyCurrentEffectsToTheWave(targetWave));
     }
 
     /// <summary>
