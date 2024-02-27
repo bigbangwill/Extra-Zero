@@ -24,10 +24,14 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private bool shouldLoad = false;
 
     private EventManagerRefrence eventManagerRefrence;
+    private ScannerSlotManagerRefrence scannerSlotManagerRefrence;
+    private SaveClassManagerRefrence saveClassManagerRefrence;
 
     private void LoadSORefrence()
     {
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+        scannerSlotManagerRefrence = (ScannerSlotManagerRefrence)FindSORefrence<ScannerSlotManager>.FindScriptableObject("Scanner Slot Manager Refrence");
+        saveClassManagerRefrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence");
     }
 
     private void Start()
@@ -40,7 +44,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     private void Init()
     {
-        ScannerSlotManager.Instance.AddScannerSlotToList(this, slotNumber);
+        scannerSlotManagerRefrence.val.AddScannerSlotToList(this, slotNumber);
     }
 
     /// <summary>
@@ -58,7 +62,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// <param name="item"></param>
     public void AddToSlot(BluePrintItem item)
     {
-        ScannerSlotManager.Instance.AddedToSlot(item,this);
+        scannerSlotManagerRefrence.val.AddedToSlot(item,this);
         holdingItem = item;
         image.sprite = item.IconRefrence();
     }
@@ -69,7 +73,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// <param name="item"></param>
     public void RemoveFromSlot(BluePrintItem item,bool isDone)
     {
-        ScannerSlotManager.Instance.RemovedFromSlot(item,this,isDone);
+        scannerSlotManagerRefrence.val.RemovedFromSlot(item,this,isDone);
         image.sprite = null;
         holdingItem = null;
     }
@@ -84,9 +88,9 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void OnPointerUp(PointerEventData eventData)
     {
         if (state == ScannerSlotManager.slotState.canAdd 
-            && ScannerSlotManager.Instance.currentHologram != null)
+            && scannerSlotManagerRefrence.val.currentHologram != null)
         {
-            AddToSlot(ScannerSlotManager.Instance.currentHologram.cacheItem);
+            AddToSlot(scannerSlotManagerRefrence.val.currentHologram.cacheItem);
         }
 
         else if (state == ScannerSlotManager.slotState.canRemove
@@ -103,7 +107,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void AddISaveableToDictionary()
     {
         int currentOrder = 0 + slotNumber;
-        SaveClassManager.Instance.AddISaveableToDictionary(slotNumber + "ScannerSlotUI", this,currentOrder);
+        saveClassManagerRefrence.val.AddISaveableToDictionary(slotNumber + "ScannerSlotUI", this,currentOrder);
     }
 
     public object Save()

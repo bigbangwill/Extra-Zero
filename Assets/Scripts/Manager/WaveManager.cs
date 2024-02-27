@@ -63,7 +63,7 @@ public class WaveManager : MonoBehaviour
             Debug.LogWarning("Didnt find it");
             return;
         }
-        Debug.Log("We did find it");
+        Debug.Log("We did find it WAVE MANAGER",gameObject);
         refrence.val = this;
     }
 

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public static class FindSORefrence<T> where T : class
 {
-    private static PlayerInventoryRefrence playerInventoryRefrence;
-
     private static Dictionary<string, BaseReference<T>> foundSO  = new();
 
     public static BaseReference<T> FindScriptableObject(string value)

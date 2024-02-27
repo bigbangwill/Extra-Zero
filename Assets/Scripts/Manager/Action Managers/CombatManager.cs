@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-public class CombatManager : SingletonComponent<CombatManager>
+public class CombatManager : MonoBehaviour
 {
     //#region Singleton Manager
     //public static CombatManager Instance

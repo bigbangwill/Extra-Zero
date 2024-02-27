@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScannerSlotManager : SingletonComponent<ScannerSlotManager>
+public class ScannerSlotManager : MonoBehaviour
 {
 
-    #region Sinleton
-    public static ScannerSlotManager Instance
-    {
-        get { return ((ScannerSlotManager)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Sinleton
+    //public static ScannerSlotManager Instance
+    //{
+    //    get { return ((ScannerSlotManager)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     public delegate void RefreshScannerUI();
     public RefreshScannerUI refreshUI;
@@ -26,7 +26,21 @@ public class ScannerSlotManager : SingletonComponent<ScannerSlotManager>
     //will get called from outerScope
     public ScannerHologramUI currentHologram = null;
 
+    private ScannerSlotManagerRefrence refrence;
     private PlayerInventoryRefrence inventoryRefrence;
+
+    private void SetRefrence()
+    {
+        refrence = (ScannerSlotManagerRefrence)FindSORefrence<ScannerSlotManager>.FindScriptableObject("Scanner Slot Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
     private void LoadSORefrence()
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
@@ -34,7 +48,7 @@ public class ScannerSlotManager : SingletonComponent<ScannerSlotManager>
 
     private void Awake()
     {
-        Instance = this;
+        SetRefrence();
     }
 
     private void Start()

@@ -33,10 +33,18 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     #endregion
 
+    private PlayerMovementRefrence playerMovementRefrence;
+
+    private void LoadSORefrence()
+    {
+        playerMovementRefrence = (PlayerMovementRefrence)FindSORefrence<PlayerMovement>.FindScriptableObject("Player Movement Refrence");
+    }
+
 
 
     private void Start()
     {
+        LoadSORefrence();
         imageComponent = GetComponent<Image>();
         stackText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         isStarted = true;
@@ -182,7 +190,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 //go.GetComponent<OrderPost>().InsertingItem(itemSlot, slotNumber);
                 currentPost = go.GetComponent<OrderPost>();
                 NavmeshReachableInformation navInfo = new(currentPost.GetReachingTransfrom().position, ReachedInserting);
-                PlayerMovement.Instance.MovetoTarget(navInfo);
+                playerMovementRefrence.val.MovetoTarget(navInfo);
                 return true;
             }
         }

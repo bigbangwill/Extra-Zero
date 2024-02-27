@@ -52,7 +52,7 @@ public class OrderManager : MonoBehaviour
 
     private void SetRefrence()
     {
-        refrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("OrderManager Manager Refrence");
+        refrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
         if (refrence == null)
         {
             Debug.LogWarning("Didnt find it");

@@ -5,38 +5,54 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum GameState { OnMenu,InGame}
-public class GameStateManager : SingletonComponent<GameStateManager>
+public class GameStateManager : MonoBehaviour
 {
 
-    #region Singleton
-    public static GameStateManager Instance
-    {
-        get { return (GameStateManager)_Instance; }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton
+    //public static GameStateManager Instance
+    //{
+    //    get { return (GameStateManager)_Instance; }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     private GameState currentGameState;
 
 
     private event Action ChangeState;
 
-    private static GameStateManager instance;
+    //private static GameStateManager instance;
 
+
+    private GameStateManagerRefrence refrence;
+
+
+    private void SetRefrence()
+    {
+        refrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
 
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
+        SetRefrence();
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else if (instance != this)
+        //{
+        //    Destroy(this.gameObject);
+        //    return;
+        //}
     }
 
 
@@ -64,6 +80,7 @@ public class GameStateManager : SingletonComponent<GameStateManager>
 
     public GameState GetGameState()
     {
+        Debug.Log("We Returned it" + currentGameState);
         return currentGameState;
     }
 

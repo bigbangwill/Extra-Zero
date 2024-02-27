@@ -31,8 +31,14 @@ public class NodePassive : MonoBehaviour
 
     private void Start()
     {
+
         LoadSORefrence();
         rend = GetComponentInChildren<Renderer>();
+    }
+
+    public void SetTalentManagerRefrence(TalentManagerRefrence refrence)
+    {
+        talentManagerRefrence = refrence;
     }
 
     public void UpgradeQubit()
@@ -176,6 +182,7 @@ public class NodePassive : MonoBehaviour
 
     public void SetNodeState(NodePurchaseState nodePurchase)
     {
+        //LoadSORefrence();
         switch (nodePurchase)
         {
             case NodePurchaseState.IsPurchased:

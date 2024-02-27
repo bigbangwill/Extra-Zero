@@ -12,6 +12,20 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
 
     private List<TalentLibrary> givenTalents = new List<TalentLibrary>();
 
+    private GameStateManagerRefrence gameStateManagerRefrence;
+    private TalentManagerRefrence talentManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
+        talentManagerRefrence = (TalentManagerRefrence)FindSORefrence<TalentManager>.FindScriptableObject("Talent Manager Refrence");
+    }
+
+    private void Start()
+    {
+        LoadSORefrence();
+    }
+
     public List<Transform> GetAllNodes()
     {
         return nodeList;
@@ -31,7 +45,8 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
             NodePassive passive = summonedNode.GetComponent<NodePassive>();
             NodeMovement movement = summonedNode.GetComponent<NodeMovement>();
             passive.SetTalent(talent);
-            GameState currentstate = GameStateManager.Instance.GetGameState();
+            passive.SetTalentManagerRefrence(talentManagerRefrence);
+            GameState currentstate = gameStateManagerRefrence.val.GetGameState();
             if (currentstate == GameState.InGame)
             {
                 if (passive.IsPurchased)

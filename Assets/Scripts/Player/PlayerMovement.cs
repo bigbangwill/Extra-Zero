@@ -5,16 +5,16 @@ using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerMovement : SingletonComponent<PlayerMovement>
+public class PlayerMovement : MonoBehaviour
 {
 
-    #region Sinleton
-    public static PlayerMovement Instance
-    {
-        get { return ((PlayerMovement) _Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Sinleton
+    //public static PlayerMovement Instance
+    //{
+    //    get { return ((PlayerMovement) _Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
 
     [SerializeField] private float movementSpeed;
@@ -26,6 +26,25 @@ public class PlayerMovement : SingletonComponent<PlayerMovement>
     private NavMeshPath path;
 
     private NavmeshReachableInformation currentNavInfo;
+
+    private PlayerMovementRefrence refrence;
+
+    private void SetRefrence()
+    {
+        refrence = (PlayerMovementRefrence)FindSORefrence<PlayerMovement>.FindScriptableObject("Player Movement Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
+    private void Awake()
+    {
+        SetRefrence();
+    }
 
     private void Start()
     {

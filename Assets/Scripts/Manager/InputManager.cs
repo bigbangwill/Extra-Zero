@@ -7,15 +7,15 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEditor.Rendering;
 using System.Linq;
 
-public class InputManager : SingletonComponent<InputManager>
+public class InputManager : MonoBehaviour
 {
-    #region Singleton Manager
-    public static InputManager Instance
-    {
-        get { return ((InputManager)_Instance); }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton Manager
+    //public static InputManager Instance
+    //{
+    //    get { return ((InputManager)_Instance); }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     [SerializeField] private PlayerInput _PlayerInput;
     private InputAction move;

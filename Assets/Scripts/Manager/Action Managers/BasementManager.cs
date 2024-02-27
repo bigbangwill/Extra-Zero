@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
-public class BasementManager : SingletonComponent<BasementManager>
+public class BasementManager : MonoBehaviour
 {
     //#region Singleton Manager
     //public static BasementManager Instance

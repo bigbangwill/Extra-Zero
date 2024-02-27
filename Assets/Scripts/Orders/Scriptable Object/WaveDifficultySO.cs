@@ -34,7 +34,7 @@ public class WaveDifficultySO : ScriptableObject
 
     private void LoadSORefrence()
     {
-        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Player Inventory Refrence");
+        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
         refrenceIsSet = true;
     }
 

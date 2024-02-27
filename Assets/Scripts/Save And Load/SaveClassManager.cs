@@ -8,15 +8,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
-public class SaveClassManager : SingletonComponent<SaveClassManager>
+public class SaveClassManager : MonoBehaviour
 {
-    #region Singleton
-    public static SaveClassManager Instance
-    {
-        get { return (SaveClassManager)_Instance; }
-        set { _Instance = value; }
-    }
-    #endregion
+    //#region Singleton
+    //public static SaveClassManager Instance
+    //{
+    //    get { return (SaveClassManager)_Instance; }
+    //    set { _Instance = value; }
+    //}
+    //#endregion
 
     List<ISaveable> saveables = new List<ISaveable>();
 
@@ -29,9 +29,26 @@ public class SaveClassManager : SingletonComponent<SaveClassManager>
 
     private string saveFilePath;
 
+
+
+    private SaveClassManagerRefrence refrence;
+
+    private void SetRefrence()
+    {
+        refrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        Debug.Log("We did find it");
+        refrence.val = this;
+    }
+
+
     private void Awake()
     {
-        Instance = this;
+        SetRefrence();
         saveFilePath = Application.persistentDataPath + "/savedData.dat";
     }
 

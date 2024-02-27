@@ -9,6 +9,8 @@ public class OptionHolderCanvas : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textGate;
     [SerializeField] private TextMeshProUGUI textEntangle;
 
+    private bool isInitialized = false;
+
     private OptionHolderRefrence optionHolderRefrence;
 
     private void LoadSORefrence()
@@ -18,8 +20,11 @@ public class OptionHolderCanvas : MonoBehaviour
 
     private void OnEnable()
     {
-        LoadSORefrence();
-        optionHolderRefrence.val.AddListener(InitUI);
+        if(isInitialized)
+        {
+            LoadSORefrence();
+            optionHolderRefrence.val.AddListener(InitUI);
+        }
     }
 
     private void OnDisable()
@@ -30,6 +35,9 @@ public class OptionHolderCanvas : MonoBehaviour
 
     private void Start()
     {
+        isInitialized = true;
+        OnEnable();
+
         InitUI();
     }
 

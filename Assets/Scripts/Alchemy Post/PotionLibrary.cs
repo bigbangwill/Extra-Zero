@@ -13,6 +13,7 @@ public static class PotionLibrary
 
     public static void Initialize()
     {
+        potionEffectDictionary.Clear();
         AddCombination(new Herb.Sage(), new Herb.Sage(), new Herb.Sage(), new PotionEffect.FirstEffect());
         AddCombination(new Herb.Lavender(), new Herb.Lavender(), new Herb.Lavender(), new PotionEffect.SecondEffect());
         AddCombination(new Herb.Chamomile(), new Herb.Chamomile(), new Herb.Chamomile(), new PotionEffect.ThirdEffect());

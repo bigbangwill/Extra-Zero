@@ -6,8 +6,18 @@ public class CurrentGameStateSetter : MonoBehaviour
 {
 
     public GameState gameState;
+
+    private GameStateManagerRefrence gameStateManagerRefrence;
+
+    private void LoadSORefrence()
+    {
+        gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
+    }
+
     private void Start()
     {
-        GameStateManager.Instance.SetGameState(gameState);
+        LoadSORefrence();
+        Debug.Log("here");
+        gameStateManagerRefrence.val.SetGameState(gameState);
     }
 }

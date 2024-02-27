@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class OptionHolder : SingletonComponent<OptionHolder>
+public class OptionHolder : MonoBehaviour
 {
     //#region Singleton
     //public static OptionHolder Instance

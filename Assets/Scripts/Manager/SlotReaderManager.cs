@@ -27,7 +27,10 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
 
     private SlotReaderManagerRefrence refrence;
 
-    
+    private ScannerSlotManagerRefrence scannerSlotManagerRefrence;
+    private SaveClassManagerRefrence saveClassManagerRefrence;
+
+
 
     private void SetRefrence()
     {
@@ -44,6 +47,8 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
     private void LoadSORefrence()
     {
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+        scannerSlotManagerRefrence = (ScannerSlotManagerRefrence)FindSORefrence<ScannerSlotManager>.FindScriptableObject("Scanner Slot Manager Refrence");
+        saveClassManagerRefrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence");
     }
 
     private void Awake()
@@ -112,7 +117,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
 
     private void InitializationUI()
     {
-        List<ScannerSlotUI> slots = ScannerSlotManager.Instance.slots;
+        List<ScannerSlotUI> slots = scannerSlotManagerRefrence.val.slots;
 
         for (int i = 0; i < slots.Count; i++)
         {
@@ -205,7 +210,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
     /// <param name="i"></param>
     public void ButtonHit(int i)
     {
-        ScannerSlotUI targetSlotUI = ScannerSlotManager.Instance.slots[i - 1];
+        ScannerSlotUI targetSlotUI = scannerSlotManagerRefrence.val.slots[i - 1];
         bool beenAddedBefore = importHolder.IfBluePrintAllreadyImported(targetSlotUI.holdingItem);
 
         if (beenAddedBefore)
@@ -234,11 +239,11 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
             eventManagerRefrence.val.SecondsElapsedAddListener(SecondElapsed);
             Debug.Log("New here");
         }
-        ScannerSlotUI targetSlotUI = ScannerSlotManager.Instance.slots[slotNumber];
+        ScannerSlotUI targetSlotUI = scannerSlotManagerRefrence.val.slots[slotNumber];
         int totalTime = targetSlotUI.holdingItem.ImportTimer();
         ImportJob importJob = new(slotNumber, totalTime,this);
         jobsList.Add(importJob);
-        ScannerSlotManager.Instance.slots[slotNumber].state = ScannerSlotManager.slotState.passive;
+        scannerSlotManagerRefrence.val.slots[slotNumber].state = ScannerSlotManager.slotState.passive;
     }
 
     /// <summary>
@@ -256,7 +261,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
         {
             if (job.GetSlotNumber() == slotNumber)
             {
-                ScannerSlotManager.Instance.slots[slotNumber].state = ScannerSlotManager.slotState.canRemove;
+                scannerSlotManagerRefrence.val.slots[slotNumber].state = ScannerSlotManager.slotState.canRemove;
                 job.shouldRemove = true;
                 return;
             }
@@ -277,7 +282,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
             eventManagerRefrence.val.SecondsElapsedRemoveListener(SecondElapsed);
             Debug.Log("new job finished");
         }
-        ScannerSlotUI targetSlotUI = ScannerSlotManager.Instance.slots[job.GetSlotNumber()];
+        ScannerSlotUI targetSlotUI = scannerSlotManagerRefrence.val.slots[job.GetSlotNumber()];
         targetSlotUI.state = ScannerSlotManager.slotState.isDone;
         job.shouldRemove = true;
         BluePrintItem doneBluePrint = targetSlotUI.holdingItem;
@@ -307,7 +312,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
 
     public void AddISaveableToDictionary()
     {
-        SaveClassManager.Instance.AddISaveableToDictionary("SlotReader", this, 4);
+        saveClassManagerRefrence.val.AddISaveableToDictionary("SlotReader", this, 4);
     }
 
     public object Save()

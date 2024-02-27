@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94b8dd7fc6c6c048b6937748173d113, type: 3}
-  m_Name: Economy Manager Refrecne
+  m_Script: {fileID: 11500000, guid: d133d8c46b8f1744aa0ff8678e8788c1, type: 3}
+  m_Name: Player Movement Refrence
   m_EditorClassIdentifier: 
   _initial: {fileID: 0}

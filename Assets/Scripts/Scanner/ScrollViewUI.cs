@@ -26,11 +26,13 @@ public class ScrollViewUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     private PlayerInventoryRefrence inventoryRefrence;
     private EventManagerRefrence eventManagerRefrence;
+    private ScannerSlotManagerRefrence scannerSlotManagerRefrence;
 
     private void LoadSORefrence()
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+        scannerSlotManagerRefrence = (ScannerSlotManagerRefrence)FindSORefrence<ScannerSlotManager>.FindScriptableObject("Scanner Slot Manager Refrence");
     }
     private void Start()
     {
@@ -47,7 +49,7 @@ public class ScrollViewUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
             InitializeUI();
             eventManagerRefrence.val.RefreshUIAddListener(InitializeUI);
-            ScannerSlotManager.Instance.refreshUI = InitializeUI;
+            scannerSlotManagerRefrence.val.refreshUI = InitializeUI;
         }
     }
     private void OnDisable()
@@ -108,11 +110,11 @@ public class ScrollViewUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
             currentActiveHologramUI.IsDeactive();
             currentActiveHologramUI = null;
-            ScannerSlotManager.Instance.currentHologram = null;
+            scannerSlotManagerRefrence.val.currentHologram = null;
             return;
         }
         currentActiveHologramUI = hologramUI;
-        ScannerSlotManager.Instance.currentHologram = currentActiveHologramUI;
+        scannerSlotManagerRefrence.val.currentHologram = currentActiveHologramUI;
     }
 
 }

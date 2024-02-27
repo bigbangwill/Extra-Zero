@@ -19,9 +19,9 @@ public class WaveChosingUI : MonoBehaviour
 
     private void LoadSORefrence()
     {
-        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Player Inventory Refrence");
+        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
         waveManagerRefrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");
-        
+        Debug.Log("WAVE MANAGER REFRENCE", waveManagerRefrence.val.gameObject);
     }
 
     
@@ -37,6 +37,8 @@ public class WaveChosingUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        if (waveManagerRefrence == null)
+            LoadSORefrence();
         int waveOptionToSpawn = waveManagerRefrence.val.GetTotalWaveOptionCount();
         for (int i = 0; i < waveOptionToSpawn; i++)
         {

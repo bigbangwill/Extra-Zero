@@ -26,7 +26,7 @@ public class EconomyManager : MonoBehaviour
 
     private void SetRefrence()
     {
-        refrence = (EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrecne");
+        refrence = (EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence");
         if (refrence == null)
         {
             Debug.LogWarning("Didnt find it");

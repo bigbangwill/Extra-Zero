@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class MovementManager : SingletonComponent<MovementManager>
+public class MovementManager : MonoBehaviour
 {
     //#region Singleton Manager
     //public static MovementManager Instance

@@ -18,17 +18,19 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     public Camera talentCamera;
 
     private TalentManagerRefrence talentManagerRefrence;
+    private GameStateManagerRefrence gameStateManagerRefrence;
+
 
     private void LoadSORefrence()
     {
         talentManagerRefrence = (TalentManagerRefrence)FindSORefrence<TalentManager>.FindScriptableObject("Talent Manager Refrence");
-
+        gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
     }
 
     private void Start()
     {
         LoadSORefrence();
-        GameStateManager.Instance.ChangeStateAddListener(SetCameraRefrence);
+        gameStateManagerRefrence.val.ChangeStateAddListener(SetCameraRefrence);
     }
 
     public void SetCameraRefrence()

@@ -16,6 +16,8 @@ public class EconomyCanvas : MonoBehaviour
 
     private EconomyManagerRefrence economyManagerRefrence;
 
+    private bool isInitialized = false;
+
     private void LoadSORefrence()
     {
         economyManagerRefrence = (EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence");
@@ -37,15 +39,20 @@ public class EconomyCanvas : MonoBehaviour
     }
 
 
-    private void Start()
-    {
-        RefreshUI();
-    }
 
     private void OnEnable()
     {
-        LoadSORefrence();
-        economyManagerRefrence.val.AddListener(RefreshUI);
+        if(isInitialized)
+        {
+            LoadSORefrence();
+            economyManagerRefrence.val.AddListener(RefreshUI);
+        }
+    }
+    private void Start()
+    {
+        isInitialized = true;
+        OnEnable();
+        RefreshUI();
     }
 
     private void OnDisable()

@@ -39,11 +39,13 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
     private PlayerInventoryRefrence refrence;
     private EventManagerRefrence eventManagerRefrence;
     private UsableCanvasManagerRefrence usableRefrence;
+    private SaveClassManagerRefrence saveClassManagerRefrence;
 
     private void LoadSORefrence()
     {
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
         usableRefrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
+        saveClassManagerRefrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence");
     }
 
 
@@ -536,7 +538,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
 
     public void AddISaveableToDictionary()
     {
-        SaveClassManager.Instance.AddISaveableToDictionary(GetName(), this,0);
+        saveClassManagerRefrence.val.AddISaveableToDictionary(GetName(), this,0);
     }
 
     public object Save()

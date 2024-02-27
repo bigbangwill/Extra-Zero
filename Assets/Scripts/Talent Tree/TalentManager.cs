@@ -71,10 +71,12 @@ public class TalentManager : MonoBehaviour
     private TalentManagerRefrence refrence;
 
     private OptionHolderRefrence optionHolderRefrence;
+    private GameStateManagerRefrence gameStateManagerRefrence;
 
     private void LoadSORefrence()
     {
-        optionHolderRefrence = (OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Order Manager Refrence");
+        gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
+        optionHolderRefrence = (OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Option Holder Refrence");
     }
 
 
@@ -94,16 +96,17 @@ public class TalentManager : MonoBehaviour
     private void Awake()
     {
         SetRefrence();
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
+        DontDestroyOnLoad(gameObject);
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else if (instance != this)
+        //{
+        //    Destroy(this.gameObject);
+        //    return;
+        //}
 
     }
 
@@ -111,14 +114,13 @@ public class TalentManager : MonoBehaviour
     private void Start()
     {
         LoadSORefrence();
-        Debug.Log("Here started again!!");
         if (!nodesCreated)
         {
             CreateNodes();
             GetAllOrbs();
-            orbits[0].PurchaseTalent();
+            
         }
-        GameStateManager.Instance.ChangeStateAddListener(StateChanged);
+        gameStateManagerRefrence.val.ChangeStateAddListener(StateChanged);
     }
 
 
@@ -126,7 +128,7 @@ public class TalentManager : MonoBehaviour
     private void StateChanged()
     {
 
-        GameState currentState = GameStateManager.Instance.GetGameState();
+        GameState currentState = gameStateManagerRefrence.val.GetGameState();
         currentGameState = currentState;
         if (currentState == GameState.OnMenu)
         {
@@ -151,9 +153,9 @@ public class TalentManager : MonoBehaviour
         {
             foreach (var orbit in orbits)
             {
-
                 orbit.SetNodeState(NodePurchaseState.IsNotPurchased);
             }
+            orbits[0].PurchaseTalent();
         }
     }
 

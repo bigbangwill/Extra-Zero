@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 using UnityEngine;
 
 public class ButtonTestInventory : MonoBehaviour
@@ -14,10 +15,19 @@ public class ButtonTestInventory : MonoBehaviour
 
     PlayerInventory inventoryRefrence;
 
-    //private void Start()
-    //{
-    //    inventoryRefrence = inventoryRefrenceSO.val;
-    //}
+
+    private SaveClassManagerRefrence saveClassManagerRefrence;
+
+
+    private void LoadSORefrence()
+    {
+        saveClassManagerRefrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence");
+    }
+
+    private void Start()
+    {
+        LoadSORefrence();
+    }
 
 
     public void AddWalkingStick()
@@ -130,13 +140,13 @@ public class ButtonTestInventory : MonoBehaviour
 
     public void Save()
     {
-        SaveClassManager.Instance.SaveCurrentState();
+        saveClassManagerRefrence.val.SaveCurrentState();
         Debug.Log("Save called");
     }
 
     public void Load()
     {
-        SaveClassManager.Instance.LoadSavedGame();
+        saveClassManagerRefrence.val.LoadSavedGame();
         Debug.Log("Load Called");
     }
     

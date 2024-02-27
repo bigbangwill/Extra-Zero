@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem.Samples.RebindUI;
 
-public class BinderManager : SingletonComponent<BinderManager>
+public class BinderManager : MonoBehaviour
 {
     //#region Sinleton
     //public static BinderManager Instance

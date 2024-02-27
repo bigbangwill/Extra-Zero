@@ -39,11 +39,12 @@ public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
 
     private PlayerInventoryRefrence inventoryRefrence;
     private UsableCanvasManagerRefrence refrence;
+    private PlayerMovementRefrence playerMovementRefrence;
 
 
     private void SetRefrence()
     {
-        refrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Event Manager Refrence");
+        refrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
         if (refrence == null)
         {
             Debug.LogWarning("Didnt find it");
@@ -57,6 +58,7 @@ public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
     private void LoadSORefrence()
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+        playerMovementRefrence = (PlayerMovementRefrence)FindSORefrence<PlayerMovement>.FindScriptableObject("Player Movement Refrence");
     }
 
     private void Awake()
@@ -197,7 +199,7 @@ public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
                 {
                     NavmeshReachableInformation navInfo = new(repairable.GetReachingTransfrom().position,
                         CallRepair);
-                    PlayerMovement.Instance.MovetoTarget(navInfo);
+                    playerMovementRefrence.val.MovetoTarget(navInfo);
                 }
                 return true;
             }

@@ -44,10 +44,12 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
 
 
     private EventManagerRefrence eventManagerRefrence;
+    private SaveClassManagerRefrence saveClassManagerRefrence;
 
     private void LoadSORefrence()
     {
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
+        saveClassManagerRefrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence");
     }
 
     private void Awake()
@@ -297,7 +299,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
 
     public void AddISaveableToDictionary()
     {
-        SaveClassManager.Instance.AddISaveableToDictionary(GetName(), this, 4);
+        saveClassManagerRefrence.val.AddISaveableToDictionary(GetName(), this, 4);
     }
 
     public object Save()
