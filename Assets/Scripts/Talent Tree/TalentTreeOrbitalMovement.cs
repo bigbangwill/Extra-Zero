@@ -45,6 +45,7 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
             NodePassive passive = summonedNode.GetComponent<NodePassive>();
             NodeMovement movement = summonedNode.GetComponent<NodeMovement>();
             passive.SetTalent(talent);
+            talent.SetTalentManagerRefrence(talentManagerRefrence.val);
             passive.SetTalentManagerRefrence(talentManagerRefrence);
             GameState currentstate = gameStateManagerRefrence.val.GetGameState();
             if (currentstate == GameState.InGame)
