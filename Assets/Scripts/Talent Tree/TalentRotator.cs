@@ -16,12 +16,12 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     [SerializeField] private float fastdown;
 
 
-    public Camera talentCamera;
+    [SerializeField] private Camera talentCamera;
+    [SerializeField] private GameObject closeButton;
 
     private TalentRotatorRefrence refrence;
     private TalentManagerRefrence talentManagerRefrence;
     private GameStateManagerRefrence gameStateManagerRefrence;
-
 
     private static TalentRotator instance;
 
@@ -66,13 +66,26 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     public void SetCameraRefrence()
     {
         talentCamera = GameObject.FindGameObjectWithTag("Talent Camera").GetComponent<Camera>();
+        Debug.Log("Got CHanged");
     }
 
     public void SetCameraAndSelfDisabled()
     {
         talentCamera.gameObject.SetActive(false);
+        closeButton.SetActive(false);
         enabled = false;
-        Debug.Log("Got Disableed");
+        if (gameStateManagerRefrence.val.GetGameState() == GameState.InGame)
+        {
+            FindSORefrence<RaycastMovement>.FindScriptableObject
+                ("Raycast Movement Refrence").val.transform.parent.gameObject.SetActive(true);
+        }
+    }
+
+    public void SetCameraAndSelfEnabled()
+    {
+        talentCamera.gameObject.SetActive(true);
+        closeButton.SetActive(true);
+        enabled = true;
     }
 
 
@@ -91,12 +104,10 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Start");
         Ray ray = talentCamera.ScreenPointToRay(eventData.position);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetMask))
         {
-            Debug.Log("inside if");
             talentManagerRefrence.val.SetTargetNode(hit.collider.GetComponentInParent<NodePassive>());
         }
     }

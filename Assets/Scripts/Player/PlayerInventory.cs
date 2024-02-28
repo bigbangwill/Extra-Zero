@@ -59,7 +59,6 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
             Debug.LogWarning("Didnt find it");
             return;
         }
-        Debug.Log("We did find it");
         refrence.val = this;
     }
 

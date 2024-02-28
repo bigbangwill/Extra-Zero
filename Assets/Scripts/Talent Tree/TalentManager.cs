@@ -485,7 +485,7 @@ public class TalentManager : MonoBehaviour
         {
             TalentLibrary talent = (TalentLibrary)Activator.CreateInstance(effect);
             talentLibraries.Add(talent);
-            talent.TalentEffect();
+            //talent.TalentEffect();
         }
 
         int counter = 0;

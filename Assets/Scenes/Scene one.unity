@@ -4505,8 +4505,8 @@ GameObject:
   - component: {fileID: 294918454}
   - component: {fileID: 294918453}
   - component: {fileID: 294918452}
-  - component: {fileID: 294918451}
   - component: {fileID: 294918450}
+  - component: {fileID: 294918455}
   m_Layer: 0
   m_Name: Quantum Station
   m_TagString: Untagged
@@ -4530,23 +4530,6 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!114 &294918451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294918449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e7a4d205a6a8844c9412c5fc558718f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  miniGame: {fileID: 0}
-  gameObjects: []
-  lastActive: {fileID: 0}
-  reachingTransfrom: {fileID: 1836618095}
 --- !u!61 &294918452
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4661,6 +4644,23 @@ Transform:
   - {fileID: 1836618095}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &294918455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294918449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efcf23ea9db677489270243e941e067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  miniGame: {fileID: 0}
+  gameObjects: []
+  reachingTransfrom: {fileID: 1836618095}
+  navmeshMovement: {fileID: 1837320451}
 --- !u!1 &298618483
 GameObject:
   m_ObjectHideFlags: 0
@@ -10192,7 +10192,6 @@ MonoBehaviour:
   miniGame: {fileID: 0}
   gameObjects:
   - {fileID: 1577746352}
-  lastActive: {fileID: 0}
   reachingTransfrom: {fileID: 1569882141}
 --- !u!212 &655377396
 SpriteRenderer:
@@ -10587,7 +10586,6 @@ MonoBehaviour:
   canvas: {fileID: 684001153}
   miniGame: {fileID: 0}
   gameObjects: []
-  lastActive: {fileID: 0}
   reachingTransfrom: {fileID: 698253564}
 --- !u!114 &663876924
 MonoBehaviour:
@@ -18029,7 +18027,6 @@ MonoBehaviour:
   miniGame: {fileID: 0}
   gameObjects:
   - {fileID: 1663456286}
-  lastActive: {fileID: 0}
   reachingTransfrom: {fileID: 408214476}
 --- !u!212 &1144618612
 SpriteRenderer:
@@ -20054,7 +20051,6 @@ MonoBehaviour:
   gameObjects:
   - {fileID: 602984174}
   - {fileID: 180686776}
-  lastActive: {fileID: 0}
   reachingTransfrom: {fileID: 417674694}
 --- !u!212 &1240163771
 SpriteRenderer:
@@ -20202,7 +20198,6 @@ MonoBehaviour:
   canvas: {fileID: 0}
   miniGame: {fileID: 0}
   gameObjects: []
-  lastActive: {fileID: 0}
   reachingTransfrom: {fileID: 0}
 --- !u!1 &1243009942
 GameObject:
@@ -29445,7 +29440,6 @@ MonoBehaviour:
   miniGame: {fileID: 0}
   gameObjects:
   - {fileID: 2081286142}
-  lastActive: {fileID: 0}
   reachingTransfrom: {fileID: 244429431}
 --- !u!212 &1817244825
 SpriteRenderer:
@@ -30080,7 +30074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1837320452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34953,7 +34947,6 @@ MonoBehaviour:
   miniGame: {fileID: 0}
   gameObjects:
   - {fileID: 614424905}
-  lastActive: {fileID: 0}
   reachingTransfrom: {fileID: 1079320946}
 --- !u!212 &2114224197
 SpriteRenderer:

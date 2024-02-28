@@ -12,7 +12,7 @@ public class LevelStationsInteract : MonoBehaviour, IInteractable, IReacheable
 
     [SerializeField] private List<GameObject> gameObjects = new List<GameObject>();
 
-    [SerializeField] private GameObject lastActive;
+    protected GameObject lastActive;
 
     [SerializeField] protected Transform reachingTransfrom;
 
@@ -85,7 +85,7 @@ public class LevelStationsInteract : MonoBehaviour, IInteractable, IReacheable
         }
     }
 
-    public NavmeshReachableInformation ReachAction()
+    public virtual NavmeshReachableInformation ReachAction()
     {
         NavmeshReachableInformation value = new(reachingTransfrom.position, Interact);
         return value;

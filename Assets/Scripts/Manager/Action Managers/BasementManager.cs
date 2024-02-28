@@ -8,14 +8,6 @@ using UnityEngine.Rendering;
 
 public class BasementManager : MonoBehaviour
 {
-    //#region Singleton Manager
-    //public static BasementManager Instance
-    //{
-    //    get { return ((BasementManager)_Instance); }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
-
     private UnityEvent InventoryEvent = new();
     public delegate void Intract();
     private Intract intractVoid;

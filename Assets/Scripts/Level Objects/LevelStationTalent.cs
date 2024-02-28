@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LevelStationTalent : LevelStationsInteract
+public class LevelStationTalent : LevelStationsInteract, IReacheable
 {
 
-
     private TalentRotator talentRotator;
+    [SerializeField] private GameObject navmeshMovement;
 
     private void LoadSORefrence()
     {
         basementManagerRefrence = (BasementManagerRefrence)FindSORefrence<BasementManager>.FindScriptableObject("Basement Manager Refrence");
-        talentRotator = ((TalentRotatorRefrence)FindSORefrence<TalentRotator>.FindScriptableObject("Basement Manager Refrence")).val;
+        talentRotator = ((TalentRotatorRefrence)FindSORefrence<TalentRotator>.FindScriptableObject("Talent Rotator Refrence")).val;
     }
 
     void Start()
@@ -20,17 +20,17 @@ public class LevelStationTalent : LevelStationsInteract
         LoadSORefrence();
     }
 
-    //public override void Interact()
-    //{
-    //    Debug.Log("Here");
-    //    if (lastActive != null)
-    //    {
-    //        lastActive.SetActive(true);
-    //        return;
-    //    }
-    //    canvas.SetActive(true);
-    //}
+    public override void Interact()
+    {
+        talentRotator.SetCameraAndSelfEnabled();
+        navmeshMovement.SetActive(false);
+    }
 
-    
+    public override NavmeshReachableInformation ReachAction()
+    {
+        NavmeshReachableInformation value = new(reachingTransfrom.position, Interact);
+        return value;
+    }
+
 
 }

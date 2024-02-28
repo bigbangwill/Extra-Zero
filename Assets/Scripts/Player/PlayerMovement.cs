@@ -7,16 +7,6 @@ using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    //#region Sinleton
-    //public static PlayerMovement Instance
-    //{
-    //    get { return ((PlayerMovement) _Instance); }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
-
-
     [SerializeField] private float movementSpeed;
 
     private Rigidbody2D rb;
@@ -37,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogWarning("Didnt find it");
             return;
         }
-        Debug.Log("We did find it");
         refrence.val = this;
     }
 
@@ -54,14 +43,6 @@ public class PlayerMovement : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
-
-
-    //private void FixedUpdate()
-    //{
-    //    Vector2 movementVector = MovementManager.Instance.MovementInput() * movementSpeed;
-    //    rb.velocity = movementVector * Time.fixedDeltaTime;
-    //}
-
 
     public void MovetoTarget(NavmeshReachableInformation info)
     {

@@ -27,7 +27,6 @@ public class MovementManager : MonoBehaviour
             Debug.Log("Didnt find it");
             return;
         }
-        Debug.Log("We did find it");
         refrence.val = this;
     }
 
