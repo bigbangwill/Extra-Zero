@@ -5,19 +5,13 @@ using UnityEngine;
 
 public class EconomyManager : MonoBehaviour
 {
-    //#region Singleton
-    //public static EconomyManager Instance
-    //{
-    //    get { return (EconomyManager)_Instance; }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
 
     private int inGameCurrencyCurrentStack = 5;
     private int inGameCurrencyMaxStack = 10;
 
 
     private EconomyManagerRefrence refrence;
+    private static EconomyManager instance;
 
     private void LoadSORefrence()
     {
@@ -38,6 +32,15 @@ public class EconomyManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         SetRefrence();
     }
 
@@ -86,7 +89,7 @@ public class EconomyManager : MonoBehaviour
         }
     }
 
-    private event Action ValuesChangedEvent;
+    private static event Action ValuesChangedEvent;
 
 
     public void AddListener(Action listener)

@@ -12,14 +12,6 @@ using UnityEngine.Rendering;
 public class TalentManager : MonoBehaviour
 {
 
-    //#region Singleton
-    //public static TalentManager Instance
-    //{
-    //    get { return (TalentManager)_Instance; }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
-
     [SerializeField] private List<TalentTreeOrbitalMovement> talentTrees = new();
     [SerializeField] private TalentInfoPanelUI infoPanel;
 
@@ -93,22 +85,21 @@ public class TalentManager : MonoBehaviour
     }
 
 
+
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         SetRefrence();
-        DontDestroyOnLoad(gameObject);
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else if (instance != this)
-        //{
-        //    Destroy(this.gameObject);
-        //    return;
-        //}
-
     }
+
 
 
     private void Start()

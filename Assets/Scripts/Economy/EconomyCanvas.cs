@@ -12,9 +12,9 @@ public class EconomyCanvas : MonoBehaviour
     [SerializeField] private Image outGameIcon;
     [SerializeField] private TextMeshProUGUI textOutGame;
 
-    private static EconomyCanvas instance;
 
     private EconomyManagerRefrence economyManagerRefrence;
+    private static EconomyCanvas instance;
 
     private bool isInitialized = false;
 
@@ -31,11 +31,11 @@ public class EconomyCanvas : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else if (instance != this)
+        else
         {
-            Destroy(this.gameObject);
-            return;
+            Destroy(gameObject);
         }
+
     }
 
 

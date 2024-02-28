@@ -20,11 +20,26 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     private TalentManagerRefrence talentManagerRefrence;
     private GameStateManagerRefrence gameStateManagerRefrence;
 
+    private static TalentRotator instance;
+
 
     private void LoadSORefrence()
     {
         talentManagerRefrence = (TalentManagerRefrence)FindSORefrence<TalentManager>.FindScriptableObject("Talent Manager Refrence");
         gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
+    }
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(transform.parent.gameObject);
+        }
+        else
+        {
+            Destroy(transform.parent.gameObject);
+        }
     }
 
     private void Start()

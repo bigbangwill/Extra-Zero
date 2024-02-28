@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,23 +9,14 @@ public enum GameState { OnMenu,InGame}
 public class GameStateManager : MonoBehaviour
 {
 
-    //#region Singleton
-    //public static GameStateManager Instance
-    //{
-    //    get { return (GameStateManager)_Instance; }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
-
     private GameState currentGameState;
 
 
-    private event Action ChangeState;
-
-    //private static GameStateManager instance;
+    private static event Action ChangeState;
 
 
     private GameStateManagerRefrence refrence;
+    private static GameStateManager instance = null;
 
 
     private void SetRefrence()
@@ -35,24 +27,22 @@ public class GameStateManager : MonoBehaviour
             Debug.LogWarning("Didnt find it");
             return;
         }
-        Debug.Log("We did find it");
         refrence.val = this;
     }
 
 
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         SetRefrence();
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else if (instance != this)
-        //{
-        //    Destroy(this.gameObject);
-        //    return;
-        //}
     }
 
 
@@ -68,7 +58,13 @@ public class GameStateManager : MonoBehaviour
 
     private void ChangeStateInvoke()
     {
-        ChangeState?.Invoke();
+        if (ChangeState != null)
+        {            
+            ChangeState.Invoke();
+            Debug.LogWarning("Casted the invoke");
+        }
+        else
+            Debug.LogWarning("IS EMPTY");
     }
 
 
@@ -80,7 +76,6 @@ public class GameStateManager : MonoBehaviour
 
     public GameState GetGameState()
     {
-        Debug.Log("We Returned it" + currentGameState);
         return currentGameState;
     }
 
