@@ -17,7 +17,6 @@ public class CurrentGameStateSetter : MonoBehaviour
     private void Start()
     {
         LoadSORefrence();
-        Debug.Log("here");
         gameStateManagerRefrence.val.SetGameState(gameState);
     }
 }

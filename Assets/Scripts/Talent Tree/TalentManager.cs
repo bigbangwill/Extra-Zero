@@ -18,7 +18,6 @@ public class TalentManager : MonoBehaviour
     private List<TalentLibrary> talentLibraries = new();
     private List<NodePassive> orbits = new();
     private NodePassive currentTargetedNode;
-    //private NodePassive[] closeOrbits = new NodePassive[3];
     private List<NodePassive> closeOrbits = new();
     private Dictionary<NodePassive, float> currentDistance = new();
 
@@ -88,7 +87,6 @@ public class TalentManager : MonoBehaviour
             Debug.LogWarning("Didnt find it");
             return;
         }
-        Debug.Log("We did find it");
         refrence.val = this;
     }
 

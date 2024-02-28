@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameSceneLoader : MonoBehaviour
 {
-    [SerializeField] private Camera talentCamera;
+    [SerializeField] private Camera talentCamera;   
     private void Start()
     {
         GameObject talentCanvas = GameObject.FindGameObjectWithTag("Talent Canvas");

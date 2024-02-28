@@ -46,7 +46,6 @@ public class OptionHolder : MonoBehaviour
             Debug.LogWarning("Didnt find it");
             return;
         }
-        Debug.Log("We did find it");
         refrence.val = this;
     }
 

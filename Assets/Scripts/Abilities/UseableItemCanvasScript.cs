@@ -50,7 +50,6 @@ public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
             Debug.LogWarning("Didnt find it");
             return;
         }
-        Debug.Log("We did find it");
         refrence.val = this;
     }
 

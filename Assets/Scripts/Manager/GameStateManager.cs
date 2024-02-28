@@ -49,6 +49,7 @@ public class GameStateManager : MonoBehaviour
     public void ChangeStateAddListener(Action listener)
     {
         ChangeState += listener;
+        listener();
     }
 
     public void ChangeStateRemoveListener(Action listener)
@@ -61,7 +62,6 @@ public class GameStateManager : MonoBehaviour
         if (ChangeState != null)
         {            
             ChangeState.Invoke();
-            Debug.LogWarning("Casted the invoke");
         }
         else
             Debug.LogWarning("IS EMPTY");

@@ -26,7 +26,6 @@ public class EconomyManager : MonoBehaviour
             Debug.LogWarning("Didnt find it");
             return;
         }
-        Debug.Log("We did find it");
         refrence.val = this;
     }
 

@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
@@ -17,10 +18,23 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public Camera talentCamera;
 
+    private TalentRotatorRefrence refrence;
     private TalentManagerRefrence talentManagerRefrence;
     private GameStateManagerRefrence gameStateManagerRefrence;
 
+
     private static TalentRotator instance;
+
+    private void SetRefrence()
+    {
+        refrence = (TalentRotatorRefrence)FindSORefrence<TalentRotator>.FindScriptableObject("Talent Rotator Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        refrence.val = this;
+    }
 
 
     private void LoadSORefrence()
@@ -40,6 +54,7 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
         {
             Destroy(transform.parent.gameObject);
         }
+        SetRefrence();
     }
 
     private void Start()
@@ -51,6 +66,13 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     public void SetCameraRefrence()
     {
         talentCamera = GameObject.FindGameObjectWithTag("Talent Camera").GetComponent<Camera>();
+    }
+
+    public void SetCameraAndSelfDisabled()
+    {
+        talentCamera.gameObject.SetActive(false);
+        enabled = false;
+        Debug.Log("Got Disableed");
     }
 
 

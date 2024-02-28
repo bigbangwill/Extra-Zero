@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class LevelStationsInteract : MonoBehaviour, IInteractable, IReacheable
@@ -13,10 +14,10 @@ public class LevelStationsInteract : MonoBehaviour, IInteractable, IReacheable
 
     [SerializeField] private GameObject lastActive;
 
-    [SerializeField] private Transform reachingTransfrom;
+    [SerializeField] protected Transform reachingTransfrom;
 
 
-    private BasementManagerRefrence basementManagerRefrence;
+    protected BasementManagerRefrence basementManagerRefrence;
 
 
     private void LoadSORefrence()
@@ -56,7 +57,7 @@ public class LevelStationsInteract : MonoBehaviour, IInteractable, IReacheable
         }
     }
 
-    public void Interact()
+    public virtual void Interact()
     {
         Debug.Log("Here");
         if (lastActive != null)
