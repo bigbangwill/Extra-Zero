@@ -19,6 +19,8 @@ public abstract class TalentLibrary
     protected NodePassive gatedNode;
     protected NodePassive entangledNode;
 
+    protected TalentManager talentManager;
+
     public bool IsQubit { get => isQubit; }
     public bool IsGated { get => isGated; }
     public bool IsEntangled { get => isEntangled; }
@@ -52,6 +54,10 @@ public abstract class TalentLibrary
 
     protected abstract void QubitTalentEffect();
 
+    public void SetTalentManagerRefrence(TalentManager talentManager)
+    {
+        this.talentManager = talentManager;
+    }
 
     public virtual void AddGateToQubit(NodePassive secondNode)
     {

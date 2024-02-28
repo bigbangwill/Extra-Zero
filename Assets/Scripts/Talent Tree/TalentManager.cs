@@ -65,12 +65,20 @@ public class TalentManager : MonoBehaviour
     private OptionHolderRefrence optionHolderRefrence;
     private GameStateManagerRefrence gameStateManagerRefrence;
 
+
+    private ScannerSlotManagerRefrence scannerSlotManagerRefrence;
+    
+
     private void LoadSORefrence()
     {
         gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
         optionHolderRefrence = (OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Option Holder Refrence");
     }
 
+    private void LoadInGameSORefrence()
+    {
+
+    }
 
     private void SetRefrence()
     {
@@ -142,6 +150,7 @@ public class TalentManager : MonoBehaviour
         }
         else if (currentState == GameState.InGame)
         {
+            LoadInGameSORefrence();
             foreach (var orbit in orbits)
             {
                 orbit.SetNodeState(NodePurchaseState.IsNotPurchased);
