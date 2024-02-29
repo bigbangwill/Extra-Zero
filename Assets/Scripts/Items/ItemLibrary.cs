@@ -422,11 +422,14 @@ public abstract class MaterialItem : ItemBehaviour
 {
     private int itemLevel;
     protected string farmIconAddress;
+    protected int maxThreshold;
+    protected int currentThreshold;
     private Sprite farmIcon;
 
 
     protected void LoadFarmIcon()
     {
+        Debug.Log(farmIconAddress);
         AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(farmIconAddress);
         handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
 
@@ -450,7 +453,7 @@ public abstract class MaterialItem : ItemBehaviour
         specificAddress = "Materials/" + specificName + "[Sprite]";
         is_Stackable = true;
         itemName = "Materials";
-        farmIconAddress = "Materials/FarmIcons/" + specificName + "[Sprite]";
+        farmIconAddress = "Farm Icons/" + specificName + "[Sprite]";
         SetItemLevel();
         GetItemLevel();
         LoadIcon();
@@ -496,12 +499,21 @@ public abstract class MaterialItem : ItemBehaviour
         return farmIcon;
     }
 
+    public int GetMaxThreshold()
+    {
+        return maxThreshold;
+    }
+
+    
+
     public class Plastic : MaterialItem
     {
         public Plastic()
         {
             maxStack = 10;
             specificName = "Plastic";
+            maxThreshold = 3;
+            
             Load();
         }
 
@@ -515,6 +527,8 @@ public abstract class MaterialItem : ItemBehaviour
             }
             specificName = "Plastic";
             currentStack = count;
+            maxThreshold = 3;
+            
             Load();
         }
 
@@ -530,6 +544,8 @@ public abstract class MaterialItem : ItemBehaviour
         {
             maxStack = 10;
             specificName = "Ceramic";
+            maxThreshold = 4;
+            
             Load();
         }
         public Ceramic(int count)
@@ -542,6 +558,8 @@ public abstract class MaterialItem : ItemBehaviour
             }
             specificName = "Ceramic";
             currentStack = count;
+            maxThreshold = 4;
+            
             Load();
         }
 
@@ -557,6 +575,8 @@ public abstract class MaterialItem : ItemBehaviour
         {
             maxStack = 10;
             specificName = "Titanium";
+            maxThreshold = 6;
+            
             Load();
         }
 
@@ -570,6 +590,8 @@ public abstract class MaterialItem : ItemBehaviour
             }
             specificName = "Titanium";
             currentStack = count;
+            maxThreshold = 6;
+            
             Load();
         }
         public override void SetItemLevel()
@@ -585,6 +607,8 @@ public abstract class MaterialItem : ItemBehaviour
         {
             maxStack = 10;
             specificName = "Aluminum";
+            maxThreshold = 7;
+            
             Load();
         }
 
@@ -598,6 +622,8 @@ public abstract class MaterialItem : ItemBehaviour
             }
             specificName = "Aluminum";
             currentStack = count;
+            maxThreshold = 3;
+            currentThreshold = 7;
             Load();
         }
         public override void SetItemLevel()
@@ -612,6 +638,8 @@ public abstract class MaterialItem : ItemBehaviour
         {
             maxStack = 10;
             specificName = "Stainless Steel";
+            maxThreshold = 8;
+            
             Load();
         }
 
@@ -625,6 +653,8 @@ public abstract class MaterialItem : ItemBehaviour
             }
             specificName = "Stainless Steel";
             currentStack = count;
+            maxThreshold = 8;
+            
             Load();
         }
         public override void SetItemLevel()

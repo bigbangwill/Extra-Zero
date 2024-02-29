@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Farm Icons
+  m_EditorClassIdentifier: 
+  m_GroupName: Farm Icons
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ac162b82b7475114d8920258b2e5029a
+  m_SerializeEntries:
+  - m_GUID: 32b2e9470bcd486468031fe0b45a7374
+    m_Address: Farm Icons/Plastic
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f4232cba2e27da48a7dc27701907f26
+    m_Address: Farm Icons/Titanium
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 344d98a328370174694a2fa3e44c7146
+    m_Address: Farm Icons/Ceramic
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec104ca1460d5d84dad50e49db284e0a
+    m_Address: Farm Icons/Stainless Steel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db4d819cefcda9241ad6aa28b4c1c55e
+    m_Address: Farm Icons/Aluminum
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9464f139a30ebb441a8cb0216146afa9, type: 2}
+    - {fileID: 11400000, guid: dc58a3e756d0c6d43affc9c1d92ffb3e, type: 2}
