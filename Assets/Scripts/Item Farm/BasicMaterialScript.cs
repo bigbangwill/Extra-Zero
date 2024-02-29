@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class BasicMaterialScript : MonoBehaviour, IPointerUpHandler,IPointerDownHandler
+public class BasicMaterialScript : MonoBehaviour, IPointerUpHandler,IPointerDownHandler,IPointerClickHandler
 {
 
     [SerializeField] private TextMeshProUGUI currentTreshText;
@@ -31,8 +31,7 @@ public class BasicMaterialScript : MonoBehaviour, IPointerUpHandler,IPointerDown
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("Here");
-        Pickaxed();
+        
     }
 
     private void Pickaxed()
@@ -61,6 +60,12 @@ public class BasicMaterialScript : MonoBehaviour, IPointerUpHandler,IPointerDown
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
         Debug.Log("Here");
+        Pickaxed();
     }
 }
