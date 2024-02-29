@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -419,6 +421,25 @@ public abstract class CraftedItem : ItemBehaviour
 public abstract class MaterialItem : ItemBehaviour
 {
     private int itemLevel;
+    protected string farmIconAddress;
+    private Sprite farmIcon;
+
+
+    protected void LoadFarmIcon()
+    {
+        AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(farmIconAddress);
+        handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
+
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            farmIcon = handle.Result;
+            Addressables.Release(handle);
+        }
+        else
+        {
+            Debug.LogError("Failed to load the asset");
+        }
+    }
 
     // Gets called from the child class to set every related infomation and load icon
     public override void Load()
@@ -429,9 +450,11 @@ public abstract class MaterialItem : ItemBehaviour
         specificAddress = "Materials/" + specificName + "[Sprite]";
         is_Stackable = true;
         itemName = "Materials";
+        farmIconAddress = "Materials/FarmIcons/" + specificName + "[Sprite]";
         SetItemLevel();
         GetItemLevel();
         LoadIcon();
+        LoadFarmIcon();        
     }
 
     public override bool Equals(object obj)
@@ -466,6 +489,11 @@ public abstract class MaterialItem : ItemBehaviour
     public override void Use()
     {
         Debug.LogWarning("You shouldnt see this but you are trying to use a Material");
+    }
+
+    public Sprite GetFarmIcon()
+    {
+        return farmIcon;
     }
 
     public class Plastic : MaterialItem
