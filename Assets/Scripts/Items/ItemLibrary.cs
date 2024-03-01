@@ -10,7 +10,7 @@ public delegate void UseDelegate();
 
 public enum ItemType {potion,bluePrint,material,questItem,empty,seed,herb,craftedItem};
 
-public abstract class ItemBehaviour : IComparable<ItemBehaviour>
+public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
 {
     // All of these items will be given the value in their child classes.
 
@@ -150,6 +150,11 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>
     public virtual void OnCreate()
     {
         Debug.Log("Cant Be Created");
+    }
+
+    public object Clone()
+    {
+        return MemberwiseClone();
     }
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
 {
@@ -91,11 +92,11 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
     {
         LoadSORefrence();
         AddISaveableToDictionary();
-        AddItemToInventory(new MaterialItem.Plastic(3));
-        AddItemToInventory(new BluePrintItem.WalkingStick());
-        AddItemToInventory(new BluePrintItem.Hoe());
-        AddItemToInventory(new BluePrintItem.Gun());
-        AddItemToInventory(new BluePrintItem.Plant());
+        //AddItemToInventory(new MaterialItem.Plastic(3));
+        //AddItemToInventory(new BluePrintItem.WalkingStick());
+        //AddItemToInventory(new BluePrintItem.Hoe());
+        //AddItemToInventory(new BluePrintItem.Gun());
+        //AddItemToInventory(new BluePrintItem.Plant());
     }
 
     /// <summary>
@@ -280,9 +281,11 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
                     {
                         int sub = sum - inventoryArray[i].MaxStack();
                         inventoryArray[i].SetCurrentStack(inventoryArray[i].MaxStack());
-                        item.SetCurrentStack(sub);
+                        ItemBehaviour cloneItem = (ItemBehaviour)item.Clone();
+                        cloneItem.SetCurrentStack(sub);
+                        //item.SetCurrentStack(sub);
                         itemSlotUIList[i].Reset();
-                        AddNonStackableItemToInventory(item);
+                        AddNonStackableItemToInventory(cloneItem);
                         return;
                     }
                 }
@@ -393,7 +396,8 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
     /// <returns></returns>
     public bool HaveEmptySlot(ItemBehaviour item, bool shouldAdd)
     {
-        if (!item.IsStackable())
+        ItemBehaviour broughtItem = (ItemBehaviour)item.Clone();
+        if (!broughtItem.IsStackable())
         {
             foreach (var itemsInArray in inventoryArray)
             {
@@ -401,7 +405,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
                 {
                     if (shouldAdd)
                     {
-                        AddItemToInventory(item);
+                        AddItemToInventory(broughtItem);
                     }
                     return true;
                 }
@@ -412,20 +416,20 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         {
             foreach (var itemsInArray in inventoryArray)
             {
-                if (itemsInArray.Equals(item))
+                if (itemsInArray.Equals(broughtItem))
                 {
-                    int sum = itemsInArray.CurrentStack() + item.CurrentStack();
-                    if (sum <= item.MaxStack())
+                    int sum = itemsInArray.CurrentStack() + broughtItem.CurrentStack();
+                    if (sum <= broughtItem.MaxStack())
                     {
                         if (shouldAdd)
-                            AddItemToInventory(item);
+                            AddItemToInventory(broughtItem);
                         return true;
                     }
                 }
                 else if (itemsInArray.Equals(new EmptyItem()))
                 {
                     if (shouldAdd)
-                        AddItemToInventory(item);
+                        AddItemToInventory(broughtItem);
                     return true;
                 }
             }
@@ -433,7 +437,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         Debug.Log("No empty slot");
         if (shouldAdd)
         {
-            MaxCurrentStacks(item);
+            MaxCurrentStacks(broughtItem);
         }
         return false;
     }
