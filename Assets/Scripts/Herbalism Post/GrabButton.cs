@@ -36,8 +36,11 @@ public class GrabButton : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginD
                 HerbalismSpot spot = result.gameObject.GetComponent<HerbalismSpot>();
                 if (!spot.IsGrowing())
                 {
-                    if(post.CanGetNextSeed())
-                        spot.PlaceNewSeed(post.GetNextSeed());
+                    if (post.CanGetNextSeed())
+                    {
+                        Seed cloned = (Seed)post.GetNextSeed().Clone();
+                        spot.PlaceNewSeed(cloned);
+                    }
                 }
             }
         }

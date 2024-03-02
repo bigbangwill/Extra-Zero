@@ -37,13 +37,15 @@ public class HerbalismPost : MonoBehaviour
     {
         LoadSORefrence();
         isStarted = true;
+        inventoryRefrence.val.HaveEmptySlot(new Seed.Lavender(20), true);
+        inventoryRefrence.val.HaveEmptySlot(new Seed.Sage(20), true);
+        inventoryRefrence.val.HaveEmptySlot(new Seed.Chamomile(20), true);
     }
 
    
     // To handle the first enable to set the needed refrences.
     private IEnumerator StashActive()
     {
-        Debug.Log("called");
         herbalismStashGO.gameObject.SetActive(true);
         yield return null;
         herbalismStashGO.gameObject.SetActive(false);
@@ -74,7 +76,6 @@ public class HerbalismPost : MonoBehaviour
             int currentStack = targetSeed.CurrentStack() - 1;
             targetSeed.SetCurrentStack(currentStack);
             queueIcons[0].SetText(currentStack.ToString());
-            Debug.Log(currentStack.ToString());
             return targetSeed;
         }
         else
@@ -99,9 +100,10 @@ public class HerbalismPost : MonoBehaviour
         {
             Debug.Log("Was a zero harvest");
         }
-        if (stash.HaveEmptySlot(harvested, false))
+        else if (stash.HaveEmptySlot(harvested, false))
         {
             stash.HaveEmptySlot(harvested, true);
+            Debug.Log("Added to inventory" + harvested.CurrentStack());
         }
         else
         {

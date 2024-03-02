@@ -434,7 +434,6 @@ public abstract class MaterialItem : ItemBehaviour
 
     protected void LoadFarmIcon()
     {
-        Debug.Log(farmIconAddress);
         AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(farmIconAddress);
         handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
 
@@ -702,6 +701,11 @@ public abstract class Seed : ItemBehaviour
     public void SetHarvestAmount(int amount)
     {
         harvestAmount = amount;
+    }
+
+    public int GetHarvestAmount()
+    {
+        return harvestAmount;
     }
 
     public override bool Equals(object obj)

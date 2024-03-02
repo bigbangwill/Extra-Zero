@@ -75,8 +75,6 @@ public class PlayerMovement : MonoBehaviour
                 StopCoroutine(currentPendingCoroutine);
             }
             agent.SetDestination(target);
-            Debug.Log(transform.position + " Transfoom pos");
-            Debug.Log(target + " Target");
             currentPendingCoroutine = StartCoroutine(Moveto(target));
         }
         else
@@ -93,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         {
             agent.SetDestination(pos);
             yield return new WaitUntil(() => Vector2.Distance(transform.position, pos) <= agent.stoppingDistance);
+            Debug.Log("Inside Coroutine");
             Reached();
         }
     }

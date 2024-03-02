@@ -86,32 +86,68 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
     // Gets called from the OnPointerDown method to start the harvest method.
     private void Harvest()
     {
-        float harvestTimer = maxTimer / currentTimer;
 
-        if (harvestTimer > zeroHarvest)
+        float timerValue = maxTimer / 10;
+        float zeroValue = 1 * timerValue;
+        float soonValue = 4 * timerValue;
+        float perfectValue = 2 * timerValue;
+        float decayedValue = 3 * timerValue;
+
+        if (currentTimer >= decayedValue)
         {
-            currentGrowingSeed.SetHarvestAmount(0);
+            int harvestValue = currentGrowingSeed.GetHarvestAmount() / 3;
+            currentGrowingSeed.SetHarvestAmount(harvestValue);
             post.SeedHarvested(currentGrowingSeed);
-            Debug.Log("Zero");
+            Debug.Log("Decayed");
         }
-        else if (harvestTimer > soonHarvest && harvestTimer <= zeroHarvest)
+        else if (currentTimer >= perfectValue)
         {
-            currentGrowingSeed.SetHarvestAmount(1);
-            post.SeedHarvested(currentGrowingSeed);
-            Debug.Log("Soon");
-        }
-        else if (harvestTimer > perfectHarvest && harvestTimer <= soonHarvest)
-        {
-            currentGrowingSeed.SetHarvestAmount(3);
+            int harvestValue = currentGrowingSeed.GetHarvestAmount();
+            currentGrowingSeed.SetHarvestAmount(harvestValue);
             post.SeedHarvested(currentGrowingSeed);
             Debug.Log("Perfect");
         }
-        else if (harvestTimer > lateHarvest && harvestTimer <= perfectHarvest)
+        else if (currentTimer >= soonValue)
         {
-            currentGrowingSeed.SetHarvestAmount(1);
+            int harvestValue = currentGrowingSeed.GetHarvestAmount() / 2;
+            currentGrowingSeed.SetHarvestAmount(harvestValue);
             post.SeedHarvested(currentGrowingSeed);
-            Debug.Log("Late");
+            Debug.Log("Soon");
         }
+        else if (currentTimer >= zeroValue)
+        {
+            int harvestValue = currentGrowingSeed.GetHarvestAmount() / 3;
+            currentGrowingSeed.SetHarvestAmount(harvestValue);
+            post.SeedHarvested(currentGrowingSeed);
+            Debug.Log("Zero");
+        }
+
+
+        //float harvestTimer = maxTimer / currentTimer;
+        //if (harvestTimer > zeroHarvest)
+        //{
+        //    currentGrowingSeed.SetHarvestAmount(0);
+        //    post.SeedHarvested(currentGrowingSeed);
+        //    Debug.Log("Zero");
+        //}
+        //else if (harvestTimer > soonHarvest && harvestTimer <= zeroHarvest)
+        //{
+        //    currentGrowingSeed.SetHarvestAmount(1);
+        //    post.SeedHarvested(currentGrowingSeed);
+        //    Debug.Log("Soon");
+        //}
+        //else if (harvestTimer > perfectHarvest && harvestTimer <= soonHarvest)
+        //{
+        //    currentGrowingSeed.SetHarvestAmount(3);
+        //    post.SeedHarvested(currentGrowingSeed);
+        //    Debug.Log("Perfect");
+        //}
+        //else if (harvestTimer > lateHarvest && harvestTimer <= perfectHarvest)
+        //{
+        //    currentGrowingSeed.SetHarvestAmount(1);
+        //    post.SeedHarvested(currentGrowingSeed);
+        //    Debug.Log("Late");
+        //}
         ResetMethod();
     }
 

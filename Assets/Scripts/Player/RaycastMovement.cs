@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -28,6 +29,7 @@ public class RaycastMovement : MonoBehaviour, IPointerDownHandler
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(eventData.position);
         RaycastHit2D[] raycastHits = Physics2D.RaycastAll(targetPos, Vector2.zero);
+        
         Debug.Log(raycastHits.Length);
         foreach (RaycastHit2D hit in raycastHits)
         {
@@ -36,10 +38,12 @@ public class RaycastMovement : MonoBehaviour, IPointerDownHandler
             {
                 NavmeshReachableInformation navInfo = reacheable.ReachAction();
                 playerMovementScript.MovetoTarget(navInfo);
+                Debug.Log("We are in");
                 return;
             }
         }
 
         playerMovementScript.MovetoTarget(targetPos);
     }
+
 }
