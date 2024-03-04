@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
@@ -20,7 +21,18 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     private List<Action<Seed>> queuedActions = new();
 
-    //private List<Func<Seed>> queuedFunctions = new();
+
+
+    // for herb holding stats
+    private int maxStack = 10;
+    private int currentStack;
+    private float refilTimer = 5;
+    private float currentRefilTimer;
+
+    [SerializeField] private Image cooldownFillImage;
+    [SerializeField] private TextMeshProUGUI currentHoldingStack;
+
+
 
     private void Start()
     {
@@ -33,31 +45,82 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
             default: Debug.LogWarning("CHECK HERE ASAP"); break;
         }
         seedIcon.sprite = holdingSeed.IconRefrence();
-
     }
 
 
+    private void OnEnable()
+    {
+        currentRefilTimer = 0;
+        currentStack = 0;
+        UpdateText();
+    }
+
+
+    private void Update()
+    {
+        if (currentStack < maxStack)
+        {
+            currentRefilTimer += Time.deltaTime;
+            cooldownFillImage.fillAmount = currentRefilTimer / refilTimer;
+            if (currentRefilTimer >= refilTimer)
+            {
+                TimerMet();
+                currentRefilTimer = 0;
+            }
+        }
+    }
+
+    private void TimerMet()
+    {
+        if (currentStack < maxStack)
+        {
+            currentStack++;
+            UpdateText();
+        }
+    }
+
+    private void UpdateText()
+    {
+        currentHoldingStack.text = currentStack + " / " + maxStack;
+    }
+
+    private bool canDrag = false;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        dragObject.SetActive(true);
         queuedActions.Clear();
+        if (currentStack > 0)
+        {
+            dragObject.SetActive(true);
+            currentStack--;
+            UpdateText();
+            canDrag = true;
+        }
+        else
+        {
+            canDrag = false;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        dragObject.transform.position = eventData.position;
+        if(canDrag)
+            dragObject.transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Seed cloneSeed = (Seed)holdingSeed.Clone();
-        dragObject.SetActive(false);
-        foreach (var action in queuedActions)
+        if (canDrag)
         {
-            action(cloneSeed);
+            Seed cloneSeed = (Seed)holdingSeed.Clone();
+            dragObject.SetActive(false);
+            foreach (var action in queuedActions)
+            {
+                action(cloneSeed);
+            }
+            RaycastForHerb(eventData,cloneSeed);
+            canDrag = false;
         }
-
-        RaycastForHerb(eventData,cloneSeed);
     }
 
     private void RaycastForHerb(PointerEventData eventData,Seed readySeed)
