@@ -12,6 +12,7 @@ TagManager:
   - Order Post
   - Talent Canvas
   - Talent Camera
+  - Farm Pouch
   layers:
   - Default
   - TransparentFX

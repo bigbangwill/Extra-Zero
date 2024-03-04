@@ -121,33 +121,6 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
             post.SeedHarvested(currentGrowingSeed);
             Debug.Log("Zero");
         }
-
-
-        //float harvestTimer = maxTimer / currentTimer;
-        //if (harvestTimer > zeroHarvest)
-        //{
-        //    currentGrowingSeed.SetHarvestAmount(0);
-        //    post.SeedHarvested(currentGrowingSeed);
-        //    Debug.Log("Zero");
-        //}
-        //else if (harvestTimer > soonHarvest && harvestTimer <= zeroHarvest)
-        //{
-        //    currentGrowingSeed.SetHarvestAmount(1);
-        //    post.SeedHarvested(currentGrowingSeed);
-        //    Debug.Log("Soon");
-        //}
-        //else if (harvestTimer > perfectHarvest && harvestTimer <= soonHarvest)
-        //{
-        //    currentGrowingSeed.SetHarvestAmount(3);
-        //    post.SeedHarvested(currentGrowingSeed);
-        //    Debug.Log("Perfect");
-        //}
-        //else if (harvestTimer > lateHarvest && harvestTimer <= perfectHarvest)
-        //{
-        //    currentGrowingSeed.SetHarvestAmount(1);
-        //    post.SeedHarvested(currentGrowingSeed);
-        //    Debug.Log("Late");
-        //}
         ResetMethod();
     }
 
