@@ -44,10 +44,10 @@ public class AlchemyLineMiniGame : MonoBehaviour
                 currentLineLenght = 0;
             }
 
-            if (mouse.leftButton.isPressed && !needsReset)
+            if (Touchscreen.current.primaryTouch.press.isPressed && !needsReset)
             {
-                Vector3 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                currentPos.z  = 0;
+                Vector3 currentPos = Camera.main.ScreenToWorldPoint(Touchscreen.current.primaryTouch.position.ReadValue());
+                currentPos.z = 0;
                 if (Vector3.Distance(currentPos, startPos) >= minDistance)
                 {
                     if (startPos == transform.position)
@@ -75,7 +75,7 @@ public class AlchemyLineMiniGame : MonoBehaviour
                 }
             }
 
-            if (mouse.leftButton.wasReleasedThisFrame)
+            if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
             {
                 if (lr.positionCount <= lineSafeCount)
                 {
@@ -93,7 +93,7 @@ public class AlchemyLineMiniGame : MonoBehaviour
                 BakeMesh();
             }
         }
-        
+
     }
 
 
@@ -107,7 +107,7 @@ public class AlchemyLineMiniGame : MonoBehaviour
         {
             array2[i].x = vecArray[i].x - transform.position.x;
             array2[i].y = vecArray[i].y - transform.position.y;
-            
+
         }
 
         PolygonCollider2D polyCollider = GetComponent<PolygonCollider2D>();
@@ -156,3 +156,4 @@ public class AlchemyLineMiniGame : MonoBehaviour
 
 
 }
+

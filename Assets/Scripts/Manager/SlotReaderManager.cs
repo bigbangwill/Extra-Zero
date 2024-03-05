@@ -31,6 +31,8 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
     private SaveClassManagerRefrence saveClassManagerRefrence;
 
 
+    private bool isStarted = false;
+
 
     private void SetRefrence()
     {
@@ -61,12 +63,16 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
     {
         LoadSORefrence();
         AddISaveableToDictionary();
+        isStarted = true;
+        if(gameObject.activeSelf)
+            InitializationUI();
     }
 
     private void OnEnable()
     {
         SavedTimeChecker();
-        InitializationUI();
+        if(isStarted)
+            InitializationUI();
     }
 
     private void Update()

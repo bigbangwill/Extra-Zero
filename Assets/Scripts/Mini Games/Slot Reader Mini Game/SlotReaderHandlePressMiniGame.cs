@@ -21,7 +21,7 @@ public class SlotReaderHandlePressMiniGame : MonoBehaviour, IDragHandler, IPoint
 
     public void OnDrag(PointerEventData eventData)
     {
-        miniGame.MouseIsPressed();
+        miniGame.MouseIsPressed(eventData);
         transform.rotation = startRot;
     }
 

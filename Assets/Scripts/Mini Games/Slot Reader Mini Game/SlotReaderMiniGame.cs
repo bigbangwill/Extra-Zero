@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SlotReaderMiniGame : MonoBehaviour
 {
@@ -23,9 +24,9 @@ public class SlotReaderMiniGame : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void MouseIsPressed()
+    public void MouseIsPressed(PointerEventData eventData)
     {
-        mouse.position = basementManagerRefrence.val.MousePos();
+        mouse.position = eventData.position;
         Vector3 upAxis = new(0, 0, -1);
 
         float oldRotation = transform.eulerAngles.x;
