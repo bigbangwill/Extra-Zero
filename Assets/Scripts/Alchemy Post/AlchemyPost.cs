@@ -113,6 +113,16 @@ public class AlchemyPost : MonoBehaviour
 
         PotionEffect emptyEffect = new PotionEffect.EmptyEffect();
         bool allIsEmpty = true;
+        if (sortedPotionEfect[0].isBase == false)
+        {
+            Debug.Log("No Base Effect Selected");
+            return;
+        }
+        else if (sortedPotionEfect[1].isBase || sortedPotionEfect[2].isBase)
+        {
+            Debug.Log("More than one base effect is selected");
+            return;
+        }
         foreach (var item in sortedPotionEfect)
         {
             if (!item.Equals(emptyEffect))
@@ -136,7 +146,6 @@ public class AlchemyPost : MonoBehaviour
         transform.parent.gameObject.SetActive(false);
 
         PotionCreated();
-
     }
 
 

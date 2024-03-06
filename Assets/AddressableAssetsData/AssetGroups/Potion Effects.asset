@@ -62,6 +62,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c927aab45d6e284b97e4ac293c1e626
+    m_Address: Potion Effect/Synthetic Oil
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1720a5136899b64db5c841d86c97071
+    m_Address: Potion Effect/Mineral Oil
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
   m_SchemaSet:

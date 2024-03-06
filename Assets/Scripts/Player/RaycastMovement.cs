@@ -13,6 +13,8 @@ public class RaycastMovement : MonoBehaviour, IPointerDownHandler
 
     private RaycastMovementRefrence refrence;
 
+    private bool canMove = true;
+
     private void Awake()
     {
         refrence = (RaycastMovementRefrence)FindSORefrence<RaycastMovement>.FindScriptableObject("Raycast Movement Refrence");
@@ -27,23 +29,32 @@ public class RaycastMovement : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Vector2 targetPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        RaycastHit2D[] raycastHits = Physics2D.RaycastAll(targetPos, Vector2.zero);
+        if (canMove)
+        {            
+            Vector2 targetPos = Camera.main.ScreenToWorldPoint(eventData.position);
+            RaycastHit2D[] raycastHits = Physics2D.RaycastAll(targetPos, Vector2.zero);
         
-        Debug.Log(raycastHits.Length);
-        foreach (RaycastHit2D hit in raycastHits)
-        {
-            Debug.Log(hit.collider.name);
-            if (hit.collider.TryGetComponent<IReacheable>(out var reacheable))
+            Debug.Log(raycastHits.Length);
+            foreach (RaycastHit2D hit in raycastHits)
             {
-                NavmeshReachableInformation navInfo = reacheable.ReachAction();
-                playerMovementScript.MovetoTarget(navInfo);
-                Debug.Log("We are in");
-                return;
+                Debug.Log(hit.collider.name);
+                if (hit.collider.TryGetComponent<IReacheable>(out var reacheable))
+                {
+                    NavmeshReachableInformation navInfo = reacheable.ReachAction();
+                    playerMovementScript.MovetoTarget(navInfo);
+                    Debug.Log("We are in");
+                    return;
+                }
             }
-        }
 
-        playerMovementScript.MovetoTarget(targetPos);
+            playerMovementScript.MovetoTarget(targetPos);
+        }
+    }
+
+
+    public void ShouldMove(bool shouldMove)
+    {
+        canMove = shouldMove;
     }
 
 }

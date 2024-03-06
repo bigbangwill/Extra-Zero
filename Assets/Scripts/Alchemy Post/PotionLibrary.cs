@@ -18,6 +18,8 @@ public static class PotionLibrary
         AddCombination(new Herb.Lavender(), new Herb.Lavender(), new Herb.Lavender(), new PotionEffect.SecondEffect());
         AddCombination(new Herb.Chamomile(), new Herb.Chamomile(), new Herb.Chamomile(), new PotionEffect.ThirdEffect());
         AddCombination(new Herb.Sage(), new Herb.Chamomile(), new Herb.Lavender(), new PotionEffect.ForthEffect());
+        AddCombination(new Herb.Sage(),new Herb.Sage(),new Herb.Lavender(),new PotionEffect.MineralOilEffect());
+        AddCombination(new Herb.Lavender(),new Herb.Lavender(),new Herb.Chamomile(),new PotionEffect.SyntheticOilEffect());
     }
 
     // to add the related combination herbs and potion effect to the dictionary.
@@ -79,7 +81,7 @@ public class PotionCombination
 /// <summary>
 /// A class for each of the effects that are in gonna be in the game.
 /// </summary>
-public class PotionEffect
+public abstract class PotionEffect
 {
     public enum SideEffect { Necrotic, Regenerative, Natural};
     public SideEffect sideEffect;
@@ -87,6 +89,7 @@ public class PotionEffect
     public string specificAddress;
     public PotionEffectDelegate effect;
     public Sprite sprite;
+    public bool isBase;
 
     protected int potionPriority;
 
@@ -118,6 +121,8 @@ public class PotionEffect
         return name;
     }
 
+    public abstract void EffectVoid();
+
     protected void LoadIcon()
     {
         specificAddress = "Potion Effect/" + name;
@@ -144,14 +149,54 @@ public class PotionEffect
             name = "Empty";
             potionPriority = int.MaxValue;
             sideEffect = SideEffect.Natural;
+            isBase = false;
             LoadIcon();
         }
-        public void EffectVoid()
+        public override void EffectVoid()
         {
             Debug.Log("Empty");
         }
 
     }
+
+
+
+    public class MineralOilEffect : PotionEffect
+    {
+        public MineralOilEffect()
+        {
+            effect = EffectVoid;
+            name = "Mineral Oil";
+            sideEffect = SideEffect.Natural;
+            potionPriority = 0;
+            isBase = true;
+            LoadIcon();
+        }
+
+        public override void EffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+    }
+
+    public class SyntheticOilEffect : PotionEffect
+    {
+        public SyntheticOilEffect()
+        {
+            effect = EffectVoid;
+            name = "Synthetic Oil";
+            sideEffect = SideEffect.Natural;
+            potionPriority = 0;
+            isBase = true;
+            LoadIcon();
+        }
+
+        public override void EffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+    }
+
 
     public class FirstEffect : PotionEffect
     {
@@ -160,11 +205,12 @@ public class PotionEffect
             effect = EffectVoid;
             name = "Speed";
             sideEffect = SideEffect.Regenerative;
-            potionPriority = 0;
+            potionPriority = 1;
+            isBase = false;
             LoadIcon();
         }
 
-        public void EffectVoid()
+        public override void EffectVoid()
         {
             Debug.Log("First Effect");
         }
@@ -177,10 +223,11 @@ public class PotionEffect
             effect = EffectVoid;
             name = "Health";
             sideEffect = SideEffect.Regenerative;
-            potionPriority = 1;
+            potionPriority = 2;
+            isBase = false;
             LoadIcon();
         }
-        public void EffectVoid()
+        public override void EffectVoid()
         {
             Debug.Log("Second Effect");
         }
@@ -193,9 +240,10 @@ public class PotionEffect
             name = "Mana";
             sideEffect = SideEffect.Regenerative;
             potionPriority = 3;
+            isBase = false;
             LoadIcon();
         }
-        public void EffectVoid()
+        public override void EffectVoid()
         {
             Debug.Log("Third Effect");
         }
@@ -209,9 +257,10 @@ public class PotionEffect
             name = "Random";
             potionPriority = 4;
             sideEffect = SideEffect.Necrotic;
+            isBase = false;
             LoadIcon();
         }
-        public void EffectVoid()
+        public override void EffectVoid()
         {
             Debug.Log("forth Effect");
         }
@@ -225,9 +274,10 @@ public class PotionEffect
             name = "FifthEffect";
             potionPriority = 5;
             sideEffect = SideEffect.Necrotic;
+            isBase = false;
             LoadIcon();
         }
-        public void EffectVoid()
+        public override void EffectVoid()
         {
             Debug.Log("FifthEffect");
         }
@@ -242,9 +292,10 @@ public class PotionEffect
             name = "SixthEffect";
             potionPriority = 6;
             sideEffect = SideEffect.Necrotic;
+            isBase = false;
             LoadIcon();
         }
-        public void EffectVoid()
+        public override void EffectVoid()
         {
             Debug.Log("SixthEffect");
         }
@@ -259,9 +310,10 @@ public class PotionEffect
             name = "SeventhEffect";
             potionPriority = 7;
             sideEffect = SideEffect.Necrotic;
+            isBase = false;
             LoadIcon();
         }
-        public void EffectVoid()
+        public override void EffectVoid()
         {
             Debug.Log("SeventhEffect");
         }

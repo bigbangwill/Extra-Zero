@@ -63,6 +63,14 @@ public class AlchemyMiniGame : MonoBehaviour
     [SerializeField] private AlchemyPost post;
     #endregion
 
+
+    private RaycastMovement raycastMovement;
+
+    private void LoadSoRefrence()
+    {
+        raycastMovement = ((RaycastMovementRefrence)FindSORefrence<RaycastMovement>.FindScriptableObject("Raycast Movement Refrence")).val;
+    }
+
     private void Awake()
     {
         alchemyLineScript = GetComponent<AlchemyLineMiniGame>();
@@ -83,6 +91,11 @@ public class AlchemyMiniGame : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        LoadSoRefrence();
+    }
+
     private void Update()
     {
         if (gameObject.activeSelf)
@@ -91,6 +104,18 @@ public class AlchemyMiniGame : MonoBehaviour
             transform.position = pos;
         }
         
+    }
+
+    private void OnEnable()
+    {
+        raycastMovement = ((RaycastMovementRefrence)FindSORefrence<RaycastMovement>.FindScriptableObject("Raycast Movement Refrence")).val;
+        raycastMovement.ShouldMove(false);
+    }
+
+    private void OnDisable()
+    {
+        raycastMovement = ((RaycastMovementRefrence)FindSORefrence<RaycastMovement>.FindScriptableObject("Raycast Movement Refrence")).val;
+        raycastMovement.ShouldMove(true);
     }
 
     private void ActiveRewardPanel()
