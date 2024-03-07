@@ -1019,6 +1019,7 @@ public class PotionItem : ItemBehaviour
         }
         else
             Debug.LogWarning("Check here ASAP");
+        Debug.Log(specificName);
     }
 
     public override void Load()
