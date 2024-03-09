@@ -119,14 +119,14 @@ public abstract class TalentLibrary
 
 }
 
-public class FirstTalent : TalentLibrary
+public class ScannerSlotUnlock : TalentLibrary
 {
-    public FirstTalent()
+    public ScannerSlotUnlock()
     {
-        specificName = "FirstTalent";
+        specificName = "ScannerSlotUnlock";
         talentCost = 10;
-        talentDescription = "The first talent that is only for testing";
-        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
+        talentDescription = "This talent unlocks one extra slot in the Scanner Machine";
+        talentDescriptionQubit = "The Qubit version will unlock another slot";
         LoadIcon();
     }
 
@@ -135,11 +135,11 @@ public class FirstTalent : TalentLibrary
 
     protected override void NormalTalentEffect()
     {
-        Debug.Log("First effect impacted");
+        ((ScannerSlotManagerRefrence)FindSORefrence<ScannerSlotManager>.FindScriptableObject("Scanner Slot Manager Refrence")).val.UpgradeOrbit(false);
     }
     protected override void QubitTalentEffect()
     {
-        Debug.Log(specificName + " QubitEffect");
+        ((ScannerSlotManagerRefrence)FindSORefrence<ScannerSlotManager>.FindScriptableObject("Scanner Slot Manager Refrence")).val.UpgradeOrbit(true);
     }
 
 

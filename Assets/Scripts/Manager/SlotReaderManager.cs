@@ -6,13 +6,6 @@ using UnityEngine;
 
 public class SlotReaderManager : MonoBehaviour, ISaveable
 {
-    //#region Singleton
-    //public static SlotReaderManager Instance
-    //{
-    //    get { return ((SlotReaderManager)_Instance); }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
 
     private List<ImportJob> jobsList = new();
 
@@ -127,7 +120,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
 
         for (int i = 0; i < slots.Count; i++)
         {
-            if (slots[i].state == ScannerSlotManager.slotState.canAdd)
+            if (slots[i].state == ScannerSlotManager.SlotState.canAdd)
             {
                 SlotReader target = slotReaderList[i];
                 target.SetInteractiveButton(false);
@@ -136,7 +129,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
                 target.SetTimerText("Slot is Empty");
                 target.SetNameText("Empty");
             }
-            else if (slots[i].state == ScannerSlotManager.slotState.canRemove)
+            else if (slots[i].state == ScannerSlotManager.SlotState.canRemove)
             {
                 SlotReader target = slotReaderList[i];
                 target.SetInteractiveButton(true);
@@ -145,7 +138,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
                 target.SetTimerText(" 0 : 0");
                 target.SetNameText(slots[i].holdingItem.GetName());
             }
-            else if (slots[i].state == ScannerSlotManager.slotState.passive)
+            else if (slots[i].state == ScannerSlotManager.SlotState.passive)
             {
                 string n = " ";
                 foreach (var job in jobsList)
@@ -161,7 +154,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
                 target.SetImageSprite(slots[i].holdingItem.IconRefrence());
                 target.SetNameText(slots[i].holdingItem.GetName());
             }
-            else if (slots[i].state == ScannerSlotManager.slotState.isDone)
+            else if (slots[i].state == ScannerSlotManager.SlotState.isDone)
             {
                 SlotReader target = slotReaderList[i];
                 target.SetInteractiveButton(false);
@@ -223,11 +216,11 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
         {
             Debug.Log("Already added to the list");
         }
-        else if (targetSlotUI.state == ScannerSlotManager.slotState.canRemove)
+        else if (targetSlotUI.state == ScannerSlotManager.SlotState.canRemove)
         {
             NewJobStart(i - 1);
         }
-        else if (targetSlotUI.state == ScannerSlotManager.slotState.passive)
+        else if (targetSlotUI.state == ScannerSlotManager.SlotState.passive)
         {
             NewJobCancel(i - 1);
         }
@@ -249,7 +242,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
         int totalTime = targetSlotUI.holdingItem.ImportTimer();
         ImportJob importJob = new(slotNumber, totalTime,this);
         jobsList.Add(importJob);
-        scannerSlotManagerRefrence.val.slots[slotNumber].state = ScannerSlotManager.slotState.passive;
+        scannerSlotManagerRefrence.val.slots[slotNumber].state = ScannerSlotManager.SlotState.passive;
     }
 
     /// <summary>
@@ -267,7 +260,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
         {
             if (job.GetSlotNumber() == slotNumber)
             {
-                scannerSlotManagerRefrence.val.slots[slotNumber].state = ScannerSlotManager.slotState.canRemove;
+                scannerSlotManagerRefrence.val.slots[slotNumber].state = ScannerSlotManager.SlotState.canRemove;
                 job.shouldRemove = true;
                 return;
             }
@@ -289,7 +282,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
             Debug.Log("new job finished");
         }
         ScannerSlotUI targetSlotUI = scannerSlotManagerRefrence.val.slots[job.GetSlotNumber()];
-        targetSlotUI.state = ScannerSlotManager.slotState.isDone;
+        targetSlotUI.state = ScannerSlotManager.SlotState.isDone;
         job.shouldRemove = true;
         BluePrintItem doneBluePrint = targetSlotUI.holdingItem;
         InitializationUI();

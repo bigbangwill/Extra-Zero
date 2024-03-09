@@ -51,17 +51,6 @@ public struct GameTime
 
 public class EventManager : MonoBehaviour
 {
-    //#region Singleton
-    //public static EventManager Instance
-    //{
-    //    get { return ((EventManager)_Instance); }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
-
-
-
-
 
     public UnityEvent _PauseEvent;
     public UnityEvent _ResumeEvent;

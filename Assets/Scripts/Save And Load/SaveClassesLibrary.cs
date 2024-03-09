@@ -34,10 +34,10 @@ public class SaveClassesLibrary
     public class ScannerSlotUI : SaveClassesLibrary
     {
         public string holdingItemSpecificName;
-        public ScannerSlotManager.slotState state;
+        public ScannerSlotManager.SlotState state;
         public int slotNumber;
 
-        public ScannerSlotUI(string specificName, ScannerSlotManager.slotState currentState, int currentSlotNumber)
+        public ScannerSlotUI(string specificName, ScannerSlotManager.SlotState currentState, int currentSlotNumber)
         {
             holdingItemSpecificName = specificName;
             state = currentState;

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b3a1ea857eaaa504ba0c87dd4ce810a2
+guid: 810ba6395bfd6f54ab5ae29618a4cf82
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5382235947267438032
-    second: _0af22cfe-7908-40e0-9e25-cc4f6c512439_0
+      213: -1755495642652261236
+    second: Necrotic_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -118,26 +118,38 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite
+      name: Necrotic
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        x: 35
+        y: 10
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0d5b636e31b81ba40800000000000000
-      internalID: 5382235947267438032
+      spriteID: 4641ad16bb0e361468900570cd15a1b0
+      internalID: -114809859
       vertices: []
       indices: 
       edges: []
@@ -145,7 +157,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a7e255acf7621dd46aee8ba0a068bcc8
+    spriteID: a1f1c2b35f82e70408cfa5b08284d8fa
     internalID: 0
     vertices: []
     indices: 
@@ -153,7 +165,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite: 5382235947267438032
+      Necrotic: -114809859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

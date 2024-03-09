@@ -33,7 +33,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b3a1ea857eaaa504ba0c87dd4ce810a2
-    m_Address: Talent Icon/FirstTalent
+    m_Address: Talent Icon/ScannerSlotUnlock
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

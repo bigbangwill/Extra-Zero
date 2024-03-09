@@ -12,7 +12,22 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 {
 
 
-    public ScannerSlotManager.slotState state;
+    [SerializeField] private ScannerSlotManager.SlotState _state;
+
+    public ScannerSlotManager.SlotState state
+    {
+        get { return _state; }
+        set 
+        {
+            _state = value;
+            SetCurrentImage();
+        }
+
+    }
+
+
+
+
 
     public int slotNumber;
     public BluePrintItem holdingItem;
@@ -27,6 +42,13 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private ScannerSlotManagerRefrence scannerSlotManagerRefrence;
     private SaveClassManagerRefrence saveClassManagerRefrence;
 
+    [SerializeField] private Color spriteCanAdd;
+    [SerializeField] private Color spriteCanRemove;
+    [SerializeField] private Color spritePassive;
+    [SerializeField] private Color spriteIsLocked;
+    [SerializeField] private Color spriteIsDone;
+    [SerializeField] private Image overlay;
+
     private void LoadSORefrence()
     {
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
@@ -39,12 +61,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         LoadSORefrence();
         image = GetComponent<Image>();
         AddISaveableToDictionary();
-        Init();
-    }
-
-    private void Init()
-    {
-        scannerSlotManagerRefrence.val.AddScannerSlotToList(this, slotNumber);
+        SetCurrentImage();
     }
 
     /// <summary>
@@ -79,6 +96,19 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     }
 
 
+    private void SetCurrentImage()
+    {
+        switch (_state)
+        {
+            case ScannerSlotManager.SlotState.canAdd: overlay.color = spriteCanAdd; break;
+            case ScannerSlotManager.SlotState.canRemove: overlay.color = spriteCanRemove; break;
+            case ScannerSlotManager.SlotState.isDone: overlay.color = spriteIsDone; break;
+            case ScannerSlotManager.SlotState.isLocked: overlay.color = spriteIsLocked; break;
+            case ScannerSlotManager.SlotState.passive: overlay.color = spritePassive; break;
+            default: break;
+        }
+    }
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -87,17 +117,16 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (state == ScannerSlotManager.slotState.canAdd 
+        if (state == ScannerSlotManager.SlotState.canAdd 
             && scannerSlotManagerRefrence.val.currentHologram != null)
         {
             AddToSlot(scannerSlotManagerRefrence.val.currentHologram.cacheItem);
         }
-
-        else if (state == ScannerSlotManager.slotState.canRemove
-            || state == ScannerSlotManager.slotState.isDone)
+        else if (state == ScannerSlotManager.SlotState.canRemove
+            || state == ScannerSlotManager.SlotState.isDone)
         {
             Debug.Log(holdingItem.IsStackable());
-            if (state == ScannerSlotManager.slotState.isDone)
+            if (state == ScannerSlotManager.SlotState.isDone)
                 RemoveFromSlot(holdingItem, true);
             else
                 RemoveFromSlot(holdingItem, false);
@@ -141,7 +170,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             return;
         }
         string savedDataName = saved.holdingItemSpecificName;
-        ScannerSlotManager.slotState savedState = saved.state;
+        ScannerSlotManager.SlotState savedState = saved.state;
         int savedSlotNumber = saved.slotNumber;
 
 
@@ -177,4 +206,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         return slotNumber + "ScannerSlotUI";
     }
+    
+
+    
 }

@@ -4,19 +4,11 @@ using UnityEngine;
 public class ScannerSlotManager : MonoBehaviour
 {
 
-    //#region Sinleton
-    //public static ScannerSlotManager Instance
-    //{
-    //    get { return ((ScannerSlotManager)_Instance); }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
-
     public delegate void RefreshScannerUI();
     public RefreshScannerUI refreshUI;
     
 
-    public enum slotState { canAdd, canRemove,passive,isDone }
+    public enum SlotState { canAdd, canRemove,passive,isDone,isLocked }
 
     public List<ScannerSlotUI> slots = new();
 
@@ -83,7 +75,7 @@ public class ScannerSlotManager : MonoBehaviour
     {
         if (inventoryRefrence.val.HaveItemInInventory(item, true))
         {
-            slotUI.state = slotState.canRemove;
+            slotUI.state = SlotState.canRemove;
             refreshUI();
             slotUI.SetDeactive();
             currentActiveSlot = null;
@@ -106,26 +98,13 @@ public class ScannerSlotManager : MonoBehaviour
         refreshUI();
         slotUI.SetDeactive();
         currentActiveSlot = null;
-        slotUI.state = slotState.canAdd;
+        slotUI.state = SlotState.canAdd;
     }
 
-    /// <summary>
-    /// To add the ScannerSlotUI script in the list in the OnEnable method.
-    /// The incoming slot number should be minus one based on the current slotnumber in unity editor
-    /// </summary>
-    /// <param name="slotUI"></param>
-    public void AddScannerSlotToList(ScannerSlotUI slotUI, int slotNumber)
+    public void UpgradeOrbit(bool isQubit)
     {
-        if (slots.Count < slotNumber)
-        {
-            int leftToAdd = slotNumber - slots.Count;
-            for(int i = 0; i < leftToAdd; i++)
-            {
-                slots.Add(null);
-            }
-        }
-        slots[slotNumber - 1] = slotUI;
-        slotUI.state = slotState.canAdd;
+        slots[1].state = SlotState.canAdd;
+        if(isQubit)
+            slots[2].state = SlotState.canAdd;
     }
-    
 }
