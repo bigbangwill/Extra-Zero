@@ -33,8 +33,6 @@ public class RaycastMovement : MonoBehaviour, IPointerDownHandler
         {            
             Vector2 targetPos = Camera.main.ScreenToWorldPoint(eventData.position);
             RaycastHit2D[] raycastHits = Physics2D.RaycastAll(targetPos, Vector2.zero);
-        
-            Debug.Log(raycastHits.Length);
             foreach (RaycastHit2D hit in raycastHits)
             {
                 Debug.Log(hit.collider.name);

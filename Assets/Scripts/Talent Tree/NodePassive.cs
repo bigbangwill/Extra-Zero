@@ -57,6 +57,12 @@ public class NodePassive : MonoBehaviour
     {
         talent.AddGateToQubit(targetNode);
         gateToNode = targetNode;
+        if (talentManagerRefrence == null)
+            LoadSORefrence();
+        Debug.Log("self", transform);
+        Debug.Log("Target", targetNode.transform);
+        talentManagerRefrence.val.StartGateLine(transform.GetChild(0), targetNode.transform.GetChild(0));
+
     }
 
     public void DowngradeGate()
@@ -85,7 +91,9 @@ public class NodePassive : MonoBehaviour
     {
         talent.AddEntangleToQubit(targetNode);
         targetNode.ForceUpgradeEntangle(this);
+        talentManagerRefrence.val.StartEntangleLine(transform.GetChild(0),targetNode.transform.GetChild(0));
         entangleToNode = targetNode;
+
     }
 
     public void DowngradeEntangle()
@@ -114,6 +122,22 @@ public class NodePassive : MonoBehaviour
     public void SetTalent(TalentLibrary talent)
     {
         this.talent = talent;
+    }
+
+    public void ApplyTalentState()
+    {
+        if (talent.IsQubit)
+        {
+            UpgradeQubit();
+        }
+        if (talent.IsEntangled)
+        {
+            UpgradeEntangle(talent.TargetEntangledNode());
+        }
+        if (talent.IsGated)
+        {
+            UpgradeGate(talent.TargetGatedNode());
+        }
     }
 
     public void PurchaseTalent()
@@ -182,7 +206,7 @@ public class NodePassive : MonoBehaviour
 
     public void SetNodeState(NodePurchaseState nodePurchase)
     {
-        //LoadSORefrence();
+        LoadSORefrence();
         switch (nodePurchase)
         {
             case NodePurchaseState.IsPurchased:

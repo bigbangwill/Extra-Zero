@@ -12,7 +12,7 @@ public class GameStateManager : MonoBehaviour
     private GameState currentGameState;
 
 
-    private static event Action ChangeState;
+    private event Action ChangeState;
 
 
     private GameStateManagerRefrence refrence;

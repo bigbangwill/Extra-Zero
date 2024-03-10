@@ -17,6 +17,7 @@ public class EconomyCanvas : MonoBehaviour
     private static EconomyCanvas instance;
 
     private bool isInitialized = false;
+    private bool isDestroying = false;
 
     private void LoadSORefrence()
     {
@@ -33,6 +34,7 @@ public class EconomyCanvas : MonoBehaviour
         }
         else
         {
+            isDestroying = true;
             Destroy(gameObject);
         }
 
@@ -57,8 +59,11 @@ public class EconomyCanvas : MonoBehaviour
 
     private void OnDisable()
     {
-        if(economyManagerRefrence.val != null) 
-            economyManagerRefrence.val.RemoveListener(RefreshUI);
+        if (!isDestroying)
+        {
+            if(economyManagerRefrence.val != null) 
+                economyManagerRefrence.val.RemoveListener(RefreshUI);
+        }
     }
 
     public void RefreshUI()

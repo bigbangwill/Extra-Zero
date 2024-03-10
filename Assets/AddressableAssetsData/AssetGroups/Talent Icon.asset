@@ -43,7 +43,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 160723b09fea58948bd7a0b96884d56b
-    m_Address: Talent Icon/SecondTalent
+    m_Address: Talent Icon/SlotReaderMiniGameUpgrade
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

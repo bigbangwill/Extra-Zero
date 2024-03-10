@@ -7,10 +7,23 @@ public class SlotReaderMiniGame : MonoBehaviour
 {
     [SerializeField] private Transform mouse;
 
+    private float maxDif = 1440;
     private float dif = 0;
 
     private BasementManagerRefrence basementManagerRefrence;
     private SlotReaderManagerRefrence slotReaderManagerRefrence;
+
+    private SlotReaderMiniGameRefrence refrence;
+
+    private void SetSORefrence()
+    {
+        refrence = (SlotReaderMiniGameRefrence)FindSORefrence<SlotReaderMiniGame>.FindScriptableObject("Slot Reader Mini Game Refrence");
+        if(refrence == null )
+        {
+            Debug.LogWarning("Couldnt Find it");
+        }
+        refrence.val = this;
+    }
 
     private void LoadSORefrence()
     {
@@ -18,9 +31,24 @@ public class SlotReaderMiniGame : MonoBehaviour
         slotReaderManagerRefrence = (SlotReaderManagerRefrence)FindSORefrence<SlotReaderManager>.FindScriptableObject("SlotReader Manager Refrence");
     }
 
+    private void Awake()
+    {
+        SetSORefrence();
+    }
+
     private void Start()
     {
         LoadSORefrence();
+    }
+
+    public void UpGradeOrbit(bool isQubit)
+    {
+        if (!isQubit)
+            maxDif = 720;
+        else
+            maxDif = 360;
+
+        Debug.Log("Is it Qubit???" + isQubit);
     }
 
     // Update is called once per frame
@@ -38,7 +66,7 @@ public class SlotReaderMiniGame : MonoBehaviour
         if (rotationDifferenceZ > 180 || rotationDifferenceZ < -180)
             return;
         dif += rotationDifferenceZ;
-        if (dif >= 360)
+        if (dif >= maxDif)
         {
             slotReaderManagerRefrence.val.SecondElapsed();
             dif = 0;

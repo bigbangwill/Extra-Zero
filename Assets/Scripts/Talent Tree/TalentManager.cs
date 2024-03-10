@@ -27,7 +27,7 @@ public class TalentManager : MonoBehaviour
     [SerializeField] private TalentInfoPanelQubitUI menuTalentInfoPanel;
     [SerializeField] private TalentOptionsUI optionsUI;
 
-    private GameState currentGameState;
+    [SerializeField] private GameState currentGameState;
 
     [Header("Line Renderer")]
     [SerializeField] private GameObject linePrefab;
@@ -57,7 +57,7 @@ public class TalentManager : MonoBehaviour
     public Color menuGated;
     public Color menuEntangled;
 
-    private static TalentManager instance = null;
+    //private static TalentManager instance = null;
 
     private TalentManagerRefrence refrence;
 
@@ -72,11 +72,6 @@ public class TalentManager : MonoBehaviour
     {
         gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
         optionHolderRefrence = (OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Option Holder Refrence");
-    }
-
-    private void LoadInGameSORefrence()
-    {
-
     }
 
     private void SetRefrence()
@@ -94,15 +89,15 @@ public class TalentManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
         SetRefrence();
     }
 
@@ -113,11 +108,16 @@ public class TalentManager : MonoBehaviour
         LoadSORefrence();
         if (!nodesCreated)
         {
+            if (!CreatedTalents.IsCreated)
+            {
+                CreateTalents();
+            }
             CreateNodes();
             GetAllOrbs();
             
         }
-        gameStateManagerRefrence.val.ChangeStateAddListener(StateChanged);
+        //gameStateManagerRefrence.val.ChangeStateAddListener(StateChanged);
+        StateChanged();
     }
 
 
@@ -125,9 +125,9 @@ public class TalentManager : MonoBehaviour
     private void StateChanged()
     {
 
-        GameState currentState = gameStateManagerRefrence.val.GetGameState();
-        currentGameState = currentState;
-        if (currentState == GameState.OnMenu)
+        //GameState currentState = gameStateManagerRefrence.val.GetGameState();
+        //currentGameState = currentState;
+        if (currentGameState == GameState.OnMenu)
         {
             foreach (var orbit in orbits)
             {
@@ -146,14 +146,13 @@ public class TalentManager : MonoBehaviour
                 }
             }
         }
-        else if (currentState == GameState.InGame)
+        else if (currentGameState == GameState.InGame)
         {
-            LoadInGameSORefrence();
             foreach (var orbit in orbits)
             {
                 orbit.SetNodeState(NodePurchaseState.IsNotPurchased);
             }
-            orbits[0].PurchaseTalent();
+            //orbits[0].PurchaseTalent();
         }
     }
 
@@ -242,7 +241,7 @@ public class TalentManager : MonoBehaviour
                 gateBaseNode.UpgradeGate(targetNode);
                 gateBaseNode.SetNodeState(NodePurchaseState.IsMenuGated);
                 //targetNode.SetNodeState(NodePurchaseState.IsMenuGated);
-                StartGateLine(gateBaseNode.transform.GetChild(0),targetNode.transform.GetChild(0));
+                //StartGateLine(gateBaseNode.transform.GetChild(0),targetNode.transform.GetChild(0));
                 optionHolderRefrence.val.AddGateCurrent(+1);
                 isSecondGate = false;
                 gateBaseNode = null;
@@ -278,7 +277,7 @@ public class TalentManager : MonoBehaviour
                 entangleBaseNode.UpgradeEntangle(targetNode);
                 entangleBaseNode.SetNodeState(NodePurchaseState.IsMenuEntangled);
                 targetNode.SetNodeState(NodePurchaseState.IsMenuEntangled);
-                StartEntangleLine(entangleBaseNode.transform.GetChild(0), targetNode.transform.GetChild(0));
+                //StartEntangleLine(entangleBaseNode.transform.GetChild(0), targetNode.transform.GetChild(0));
                 optionHolderRefrence.val.AddEntangleCurrent(+1);
                 isSecondEntangle = false;
                 entangleBaseNode = null;
@@ -400,14 +399,14 @@ public class TalentManager : MonoBehaviour
         }
     }
 
-    private void StartGateLine(Transform start,Transform end)
+    public void StartGateLine(Transform start,Transform end)
     {
         GameObject target = Instantiate(linePrefab, lineParent);
         target.GetComponent<GateLineRenderer>().Setup(start, end);
         LineDictionary.Add(gateBaseNode, target);
     }
 
-    private void StartEntangleLine(Transform start, Transform end)
+    public void StartEntangleLine(Transform start, Transform end)
     {
         GameObject target = Instantiate(entangleLinePrefab, lineParent);
         target.GetComponent<GateLineRenderer>().Setup(start,end);
@@ -476,20 +475,26 @@ public class TalentManager : MonoBehaviour
         }
     }
 
-    public void CreateNodes()
+    private void CreateTalents()
     {
         List<Type> talentEffects = Assembly.GetAssembly(typeof(TalentLibrary)).GetTypes().Where
             (TheType => TheType.IsClass && !TheType.IsAbstract &&
             TheType.IsSubclassOf(typeof(TalentLibrary))).ToList();
+        List<TalentLibrary> createdTalents = new();
         foreach (var effect in talentEffects)
         {
             TalentLibrary talent = (TalentLibrary)Activator.CreateInstance(effect);
-            talentLibraries.Add(talent);
+            createdTalents.Add(talent);
             //talent.TalentEffect();
         }
+        CreatedTalents.CreateTalents(createdTalents);
 
+    }
+
+    public void CreateNodes()
+    {
         int counter = 0;
-        foreach(TalentLibrary talent in talentLibraries)
+        foreach(TalentLibrary talent in CreatedTalents.GetTalents())
         {
             talentTrees[counter].AddToTalentList(talent);
             counter++;
@@ -500,6 +505,17 @@ public class TalentManager : MonoBehaviour
         {
             tree.StartSummonNodes();
         }
+        foreach (var tree in talentTrees)
+        {
+            tree.SetPassiveStats();
+        }
         nodesCreated = true;
     }
+
+    public void PurchaseRandomQubit()
+    {
+        int target = UnityEngine.Random.Range(0, orbits.Count);
+        orbits[target].PurchaseTalent();
+    }
+
 }

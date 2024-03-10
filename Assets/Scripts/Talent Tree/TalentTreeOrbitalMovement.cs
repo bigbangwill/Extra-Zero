@@ -14,6 +14,7 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
 
     private GameStateManagerRefrence gameStateManagerRefrence;
     private TalentManagerRefrence talentManagerRefrence;
+    private List<NodePassive> passives = new();
 
     private void LoadSORefrence()
     {
@@ -37,12 +38,15 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
         givenTalents.Add(talent);
     }
 
+    
     public void StartSummonNodes()
     {
+        passives.Clear();
         foreach(var talent in givenTalents)
         {
             GameObject summonedNode = Instantiate(nodePrefab,transform);
             NodePassive passive = summonedNode.GetComponent<NodePassive>();
+            passives.Add(passive);
             NodeMovement movement = summonedNode.GetComponent<NodeMovement>();
             passive.SetTalent(talent);
             talent.SetTalentManagerRefrence(talentManagerRefrence.val);
@@ -62,8 +66,18 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
             nodeList.Add(summonedNode.transform);
         }
         
+        
         StartRotating();
     }
+
+    public void SetPassiveStats()
+    {
+        foreach (var passive in passives)
+        {
+            passive.ApplyTalentState();
+        }
+    }
+
 
     public void StartRotating()
     {

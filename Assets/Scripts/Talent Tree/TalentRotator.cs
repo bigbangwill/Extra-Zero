@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -14,7 +15,7 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     [SerializeField] private Transform TalentTree;
     [SerializeField] private Vector2 slowdown;
     [SerializeField] private float fastdown;
-
+    [SerializeField] GameState gameState;
 
     [SerializeField] private Camera talentCamera;
     [SerializeField] private GameObject closeButton;
@@ -23,7 +24,9 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     private TalentManagerRefrence talentManagerRefrence;
     private GameStateManagerRefrence gameStateManagerRefrence;
 
-    private static TalentRotator instance;
+    //private static TalentRotator instance;
+    private bool isUnlocked = false;
+    [SerializeField] private GameObject unlockPanelGO;
 
     private void SetRefrence()
     {
@@ -45,22 +48,40 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     private void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(transform.parent.gameObject);
-        }
-        else
-        {
-            Destroy(transform.parent.gameObject);
-        }
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(transform.parent.gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(transform.parent.gameObject);
+        //}
         SetRefrence();
     }
 
     private void Start()
     {
         LoadSORefrence();
-        gameStateManagerRefrence.val.ChangeStateAddListener(SetCameraRefrence);
+        gameStateManagerRefrence.val.ChangeStateAddListener(OnChangeScene);
+    }
+
+    private void OnDisable()
+    {
+        if (gameStateManagerRefrence != null)
+        {
+            gameStateManagerRefrence.val.ChangeStateRemoveListener(OnChangeScene);
+        }
+    }
+
+    private void OnChangeScene()
+    {
+        //SetCameraRefrence();
+        if (gameStateManagerRefrence.val.GetGameState() == GameState.InGame)
+        {
+            isUnlocked = false;
+            unlockPanelGO.SetActive(true);
+        }
     }
 
     public void SetCameraRefrence()
@@ -71,6 +92,9 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void SetCameraAndSelfDisabled()
     {
+        //if (talentCamera == null)
+        //    SetCameraRefrence();
+
         talentCamera.gameObject.SetActive(false);
         closeButton.SetActive(false);
         enabled = false;
@@ -81,8 +105,12 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
         }
     }
 
+    
+
     public void SetCameraAndSelfEnabled()
     {
+        if (!isUnlocked && gameState != GameState.OnMenu)
+            unlockPanelGO.SetActive(true);
         talentCamera.gameObject.SetActive(true);
         closeButton.SetActive(true);
         enabled = true;
@@ -111,4 +139,12 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
             talentManagerRefrence.val.SetTargetNode(hit.collider.GetComponentInParent<NodePassive>());
         }
     }
+
+    public void RandomPurchaseClicked()
+    {
+        isUnlocked = true;
+        unlockPanelGO.SetActive(false);
+        talentManagerRefrence.val.PurchaseRandomQubit();
+    }
+
 }

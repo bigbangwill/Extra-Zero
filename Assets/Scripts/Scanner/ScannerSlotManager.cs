@@ -29,6 +29,7 @@ public class ScannerSlotManager : MonoBehaviour
             Debug.LogWarning("Didnt find it");
             return;
         }
+        Debug.Log("We are here!");
         refrence.val = this;
     }
 

@@ -6,6 +6,8 @@ using UnityEngine;
 public class TESTREMOVELATER : MonoBehaviour
 {
 
-    public BaseReference<PlayerInventory> Player;
-    
+    public void OnDestroy()
+    {
+        Debug.Log("Do it?");
+    }
 }

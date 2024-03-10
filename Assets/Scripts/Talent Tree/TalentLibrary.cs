@@ -87,6 +87,11 @@ public abstract class TalentLibrary
     {
         return gatedNode;
     }
+
+    public virtual NodePassive TargetEntangledNode()
+    {
+        return entangledNode;
+    }
     public Sprite GetTalentIcon()
     {
         return talentIcon;
@@ -144,14 +149,14 @@ public class ScannerSlotUnlock : TalentLibrary
 
 
 }
-public class SecondTalent : TalentLibrary
+public class SlotReaderMiniGameUpgrade : TalentLibrary
 {
-    public SecondTalent()
+    public SlotReaderMiniGameUpgrade()
     {
-        specificName = "SecondTalent";
+        specificName = "SlotReaderMiniGameUpgrade";
         talentCost = 10;
-        talentDescription = "The SecondTalent that is only for testing";
-        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
+        talentDescription = "This talent will make the roller in the scanner slot to performe better";
+        talentDescriptionQubit = "The qubit version will be work ALOT better :)";
         LoadIcon();
     }
 
