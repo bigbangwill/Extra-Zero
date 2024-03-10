@@ -57,25 +57,10 @@ public class NodePassive : MonoBehaviour
     {
         talent.AddGateToQubit(targetNode);
         gateToNode = targetNode.GetRelatedNodePassive();
-        Debug.LogWarning("HERERRE");
-        if(gateToNode == null)
-        {
-            Debug.LogWarning("Here");
-        }
-        if (targetNode == null)
-        {
-            Debug.LogWarning("Here");
-        }
-        if (targetNode.GetRelatedNodePassive() == null)
-        {
-            Debug.LogWarning("Here");
-        }
-
-        if (talentManagerRefrence == null)
-            LoadSORefrence();
-        Debug.Log("self", transform.GetChild(0));
-        Debug.Log("Target", targetNode.GetRelatedNodePassive().transform.GetChild(0));
-        talentManagerRefrence.val.StartGateLine(transform.GetChild(0), targetNode.GetRelatedNodePassive().transform.GetChild(0));
+        talentManagerRefrence.val.StartGateLine(
+            transform.GetChild(0), 
+            targetNode.GetRelatedNodePassive().transform.GetChild(0),
+            talent);
 
     }
 
@@ -83,7 +68,7 @@ public class NodePassive : MonoBehaviour
     {
         talent.RemoveGateFromQubit();
         SetNodeState(NodePurchaseState.IsMenuPassive);
-        talentManagerRefrence.val.TryStopLine(this);
+        talentManagerRefrence.val.TryStopLine(talent);
         gateToNode = null;
     }
 
@@ -97,7 +82,7 @@ public class NodePassive : MonoBehaviour
     {
         talent.RemoveGateFromQubit();
         SetNodeState(NodePurchaseState.IsMenuPassive);
-        talentManagerRefrence.val.TryStopLine(this);
+        talentManagerRefrence.val.TryStopLine(talent);
         gateToNode = null;
     }
 
@@ -105,7 +90,10 @@ public class NodePassive : MonoBehaviour
     {
         talent.AddEntangleToQubit(targetNode);
         targetNode.GetRelatedNodePassive().ForceUpgradeEntangle(talent);
-        talentManagerRefrence.val.StartEntangleLine(transform.GetChild(0), targetNode.GetRelatedNodePassive().transform.GetChild(0));
+        talentManagerRefrence.val.StartEntangleLine(
+            transform.GetChild(0),
+            targetNode.GetRelatedNodePassive().transform.GetChild(0),
+            talent);
         entangleToNode = targetNode.GetRelatedNodePassive();
 
     }
@@ -115,7 +103,7 @@ public class NodePassive : MonoBehaviour
         talent.RemoveEntangleToQubit();
         entangleToNode.ForceDowngradeEntangle();
         SetNodeState(NodePurchaseState.IsMenuPassive);
-        talentManagerRefrence.val.TryStopLine(this);
+        talentManagerRefrence.val.TryStopLine(talent);
         entangleToNode = null;
     }
 
@@ -129,7 +117,7 @@ public class NodePassive : MonoBehaviour
     {
         talent.RemoveEntangleToQubit();
         SetNodeState(NodePurchaseState.IsMenuPassive);
-        talentManagerRefrence.val.TryStopLine(this);
+        talentManagerRefrence.val.TryStopLine(talent);
         entangleToNode = null;
     }
 
@@ -147,20 +135,11 @@ public class NodePassive : MonoBehaviour
         }
         if (talent.IsEntangled)
         {
-            UpgradeEntangle(entangleToNode.talent);
+            UpgradeEntangle(talent.TargetEntangledNode().talent);
         }
         if (talent.IsGated)
         {
-            if (gateToNode == null)
-            {
-                Debug.LogWarning("Gate to node is null");
-
-            }
-            if (gateToNode.talent == null)
-            {
-                Debug.LogWarning("Gate talent is null");
-            }
-            UpgradeGate(gateToNode.talent);
+            UpgradeGate(talent.TargetGatedNode().talent);
         }
     }
 

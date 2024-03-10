@@ -149,7 +149,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
                 SlotReader target = slotReaderList[i];
                 target.SetTimerText(n);
                 target.SetInteractiveButton(true);
-                target.SetButtonText("Cancle");
+                target.SetButtonText("Cancel");
                 target.SetImageSprite(slots[i].holdingItem.IconRefrence());
                 target.SetNameText(slots[i].holdingItem.GetName());
             }

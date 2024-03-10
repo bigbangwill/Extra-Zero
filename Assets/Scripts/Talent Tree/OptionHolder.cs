@@ -7,13 +7,6 @@ using UnityEngine;
 
 public class OptionHolder : MonoBehaviour
 {
-    //#region Singleton
-    //public static OptionHolder Instance
-    //{
-    //    get { return (OptionHolder) _Instance; }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
 
     private int qubitMaxCount;
     public int QubitMaxCount {  get { return qubitMaxCount; } }
@@ -33,8 +26,6 @@ public class OptionHolder : MonoBehaviour
 
     public event Action ValuesChanged;
 
-    private static OptionHolder instance;
-
     private OptionHolderRefrence refrence;
 
 
@@ -52,16 +43,6 @@ public class OptionHolder : MonoBehaviour
     private void Awake()
     {
         SetRefrence();
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
     }
 
     private void Start()

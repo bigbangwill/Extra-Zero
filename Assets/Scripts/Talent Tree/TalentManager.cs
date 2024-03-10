@@ -42,7 +42,7 @@ public class TalentManager : MonoBehaviour
 
     private bool nodesCreated = false;
 
-    private Dictionary<NodePassive, GameObject> LineDictionary = new();
+    private Dictionary<string, GameObject> LineDictionary = new();
 
     [Header("In-Game Color Setting")]
     public Color passivePurchased;
@@ -89,15 +89,6 @@ public class TalentManager : MonoBehaviour
 
     private void Awake()
     {
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
         SetRefrence();
     }
 
@@ -399,25 +390,32 @@ public class TalentManager : MonoBehaviour
         }
     }
 
-    public void StartGateLine(Transform start,Transform end)
+    public void StartGateLine(Transform start,Transform end,TalentLibrary gateBaseNode)
     {
         GameObject target = Instantiate(linePrefab, lineParent);
         target.GetComponent<GateLineRenderer>().Setup(start, end);
-        LineDictionary.Add(gateBaseNode, target);
+        
+        LineDictionary.Add(gateBaseNode.GetSpecificName(), target);
+        Debug.Log(gateBaseNode.GetSpecificName());
     }
 
-    public void StartEntangleLine(Transform start, Transform end)
+    public void StartEntangleLine(Transform start, Transform end,TalentLibrary entangleBaseNode)
     {
         GameObject target = Instantiate(entangleLinePrefab, lineParent);
         target.GetComponent<GateLineRenderer>().Setup(start,end);
-        LineDictionary.Add(entangleBaseNode, target);
+        LineDictionary.Add(entangleBaseNode.GetSpecificName(), target);
     }
 
-    public void TryStopLine(NodePassive targetNode)
+    public void TryStopLine(TalentLibrary targetNode)
     {
-        if (LineDictionary.ContainsKey(targetNode))
+        if (LineDictionary.ContainsKey(targetNode.GetSpecificName()))
         {
-            Destroy(LineDictionary[targetNode]);
+            Destroy(LineDictionary[targetNode.GetSpecificName()]);
+            LineDictionary.Remove(targetNode.GetSpecificName());
+        }
+        else
+        {
+            Debug.Log("Couldnt find it" + targetNode);
         }
     }
 
