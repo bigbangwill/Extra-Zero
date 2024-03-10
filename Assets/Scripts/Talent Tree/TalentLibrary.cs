@@ -15,6 +15,7 @@ public abstract class TalentLibrary
     protected bool isQubit;
     protected bool isGated;
     protected bool isEntangled;
+    protected NodePassive connectedNode;
 
     protected NodePassive gatedNode;
     protected NodePassive entangledNode;
@@ -59,10 +60,21 @@ public abstract class TalentLibrary
         this.talentManager = talentManager;
     }
 
-    public virtual void AddGateToQubit(NodePassive secondNode)
+    public NodePassive GetRelatedNodePassive()
+    {
+        return connectedNode;
+    }
+
+    public void SetConnectedNode(NodePassive target)
+    {
+        connectedNode = target;
+    }
+
+
+    public virtual void AddGateToQubit(TalentLibrary secondNode)
     {
         isGated = true;
-        gatedNode = secondNode;
+        gatedNode = secondNode.connectedNode;
     }
 
     public virtual void RemoveGateFromQubit()
@@ -71,10 +83,10 @@ public abstract class TalentLibrary
         gatedNode = null;
     }
 
-    public virtual void AddEntangleToQubit(NodePassive secondNode)
+    public virtual void AddEntangleToQubit(TalentLibrary secondNode)
     {
         isEntangled = true;
-        entangledNode = secondNode;
+        entangledNode = secondNode.connectedNode;
     }
 
     public virtual void RemoveEntangleToQubit()
@@ -120,6 +132,11 @@ public abstract class TalentLibrary
     public virtual void UpgradeToQubit()
     {
         isQubit = true;
+    }
+
+    public string GetSpecificName()
+    {
+        return specificName;
     }
 
 }

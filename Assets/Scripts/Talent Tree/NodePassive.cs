@@ -10,7 +10,7 @@ public enum NodePurchaseState { IsPurchased, IsNotPurchased, IsSelectedPurchased
 
 public class NodePassive : MonoBehaviour
 {
-    private TalentLibrary talent;
+    public TalentLibrary talent;
     private bool isPurchased = false;
     public bool IsPurchased { get => isPurchased; }
     private Renderer rend;
@@ -53,15 +53,29 @@ public class NodePassive : MonoBehaviour
         SetNodeState(currentState);
     }
 
-    public void UpgradeGate(NodePassive targetNode)
+    public void UpgradeGate(TalentLibrary targetNode)
     {
         talent.AddGateToQubit(targetNode);
-        gateToNode = targetNode;
+        gateToNode = targetNode.GetRelatedNodePassive();
+        Debug.LogWarning("HERERRE");
+        if(gateToNode == null)
+        {
+            Debug.LogWarning("Here");
+        }
+        if (targetNode == null)
+        {
+            Debug.LogWarning("Here");
+        }
+        if (targetNode.GetRelatedNodePassive() == null)
+        {
+            Debug.LogWarning("Here");
+        }
+
         if (talentManagerRefrence == null)
             LoadSORefrence();
-        Debug.Log("self", transform);
-        Debug.Log("Target", targetNode.transform);
-        talentManagerRefrence.val.StartGateLine(transform.GetChild(0), targetNode.transform.GetChild(0));
+        Debug.Log("self", transform.GetChild(0));
+        Debug.Log("Target", targetNode.GetRelatedNodePassive().transform.GetChild(0));
+        talentManagerRefrence.val.StartGateLine(transform.GetChild(0), targetNode.GetRelatedNodePassive().transform.GetChild(0));
 
     }
 
@@ -73,10 +87,10 @@ public class NodePassive : MonoBehaviour
         gateToNode = null;
     }
 
-    public void ForceUpgradeGate(NodePassive targetNode)
+    public void ForceUpgradeGate(TalentLibrary targetNode)
     {
         talent.AddGateToQubit(targetNode);
-        gateToNode = targetNode;
+        gateToNode = targetNode.GetRelatedNodePassive();
     }
 
     public void ForceDowngradeGate()
@@ -87,12 +101,12 @@ public class NodePassive : MonoBehaviour
         gateToNode = null;
     }
 
-    public void UpgradeEntangle(NodePassive targetNode)
+    public void UpgradeEntangle(TalentLibrary targetNode)
     {
         talent.AddEntangleToQubit(targetNode);
-        targetNode.ForceUpgradeEntangle(this);
-        talentManagerRefrence.val.StartEntangleLine(transform.GetChild(0),targetNode.transform.GetChild(0));
-        entangleToNode = targetNode;
+        targetNode.GetRelatedNodePassive().ForceUpgradeEntangle(talent);
+        talentManagerRefrence.val.StartEntangleLine(transform.GetChild(0), targetNode.GetRelatedNodePassive().transform.GetChild(0));
+        entangleToNode = targetNode.GetRelatedNodePassive();
 
     }
 
@@ -105,10 +119,10 @@ public class NodePassive : MonoBehaviour
         entangleToNode = null;
     }
 
-    public void ForceUpgradeEntangle(NodePassive targetNode)
+    public void ForceUpgradeEntangle(TalentLibrary targetNode)
     {
         talent.AddEntangleToQubit(targetNode);
-        entangleToNode = targetNode;
+        entangleToNode = targetNode.GetRelatedNodePassive();
     }
 
     public void ForceDowngradeEntangle()
@@ -122,6 +136,7 @@ public class NodePassive : MonoBehaviour
     public void SetTalent(TalentLibrary talent)
     {
         this.talent = talent;
+        //talent.SetConnectedNode(this);
     }
 
     public void ApplyTalentState()
@@ -132,11 +147,20 @@ public class NodePassive : MonoBehaviour
         }
         if (talent.IsEntangled)
         {
-            UpgradeEntangle(talent.TargetEntangledNode());
+            UpgradeEntangle(entangleToNode.talent);
         }
         if (talent.IsGated)
         {
-            UpgradeGate(talent.TargetGatedNode());
+            if (gateToNode == null)
+            {
+                Debug.LogWarning("Gate to node is null");
+
+            }
+            if (gateToNode.talent == null)
+            {
+                Debug.LogWarning("Gate talent is null");
+            }
+            UpgradeGate(gateToNode.talent);
         }
     }
 

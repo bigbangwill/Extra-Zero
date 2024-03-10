@@ -46,6 +46,7 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
         {
             GameObject summonedNode = Instantiate(nodePrefab,transform);
             NodePassive passive = summonedNode.GetComponent<NodePassive>();
+            CreatedTalents.SetNodeToTalent(talent, passive);
             passives.Add(passive);
             NodeMovement movement = summonedNode.GetComponent<NodeMovement>();
             passive.SetTalent(talent);

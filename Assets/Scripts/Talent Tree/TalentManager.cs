@@ -137,7 +137,7 @@ public class TalentManager : MonoBehaviour
                     orbit.SetNodeState(NodePurchaseState.IsMenuGated);
                 }
                 else if (orbit.IsEntangled())
-                {
+                {   
                     orbit.SetNodeState(NodePurchaseState.IsMenuEntangled);
                 }
                 else
@@ -238,7 +238,7 @@ public class TalentManager : MonoBehaviour
         {
             if (targetNode.CurrentState == NodePurchaseState.IsMenuAvailable)
             {
-                gateBaseNode.UpgradeGate(targetNode);
+                gateBaseNode.UpgradeGate(targetNode.talent);
                 gateBaseNode.SetNodeState(NodePurchaseState.IsMenuGated);
                 //targetNode.SetNodeState(NodePurchaseState.IsMenuGated);
                 //StartGateLine(gateBaseNode.transform.GetChild(0),targetNode.transform.GetChild(0));
@@ -274,7 +274,7 @@ public class TalentManager : MonoBehaviour
         {
             if (targetNode.CurrentState == NodePurchaseState.IsMenuAvailable)
             {
-                entangleBaseNode.UpgradeEntangle(targetNode);
+                entangleBaseNode.UpgradeEntangle(targetNode.talent);
                 entangleBaseNode.SetNodeState(NodePurchaseState.IsMenuEntangled);
                 targetNode.SetNodeState(NodePurchaseState.IsMenuEntangled);
                 //StartEntangleLine(entangleBaseNode.transform.GetChild(0), targetNode.transform.GetChild(0));

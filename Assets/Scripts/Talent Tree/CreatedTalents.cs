@@ -22,6 +22,22 @@ public static class CreatedTalents
             Debug.LogError("Check here asap");
         return talentsList;
     }
+
+
+    public static void SetNodeToTalent(TalentLibrary talent, NodePassive node)
+    {
+        if (talentsList.Contains(talent))
+        {
+            foreach(var item in talentsList)
+            {
+                if (item.GetSpecificName() == talent.GetSpecificName())
+                {
+                    item.SetConnectedNode(node);
+                    return;
+                }
+            }
+        }
+    }
     
     
 }
