@@ -17,13 +17,34 @@ public class HerbalismPost : MonoBehaviour
     [SerializeField] private GameObject herbalismStashGO;
 
 
+    [SerializeField] private List<HerbalismSpot> herbalismSpots = new();
+
+
     private bool isStarted = false;
 
-
+    private HerbalismPostRefrence refrence;
     private PlayerInventoryRefrence inventoryRefrence;
+
+    private void SetRefrence()
+    {
+        refrence = (HerbalismPostRefrence)FindSORefrence<HerbalismPost>.FindScriptableObject("Herbalism Post Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        refrence.val = this;
+    }
+
+
     private void LoadSORefrence()
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
+    private void Awake()
+    {
+        SetRefrence();
     }
 
     private void OnEnable()
@@ -40,6 +61,42 @@ public class HerbalismPost : MonoBehaviour
         inventoryRefrence.val.HaveEmptySlot(new Seed.Lavender(20), true);
         inventoryRefrence.val.HaveEmptySlot(new Seed.Sage(20), true);
         inventoryRefrence.val.HaveEmptySlot(new Seed.Chamomile(20), true);
+    }
+
+
+    public void UpgradeOrbitUnlockSlots(bool isQubit)
+    {
+        int counter = 0;
+        foreach (var spot in herbalismSpots)
+        {
+            if (spot.IsLocked)
+            {
+                counter++;
+                spot.SetUnlocked();
+                if (counter > 3)
+                    break;
+            }
+        }
+        if (isQubit)
+        {
+            foreach (var spot in herbalismSpots)
+            {
+                if (spot.IsLocked)
+                {
+                    counter++;
+                    spot.SetUnlocked();
+                }
+            }
+        }
+    }
+    
+
+    public void UpgradeOrbitMaxGrowTimer(bool isQubit)
+    {
+        foreach(var herbalismSpot in herbalismSpots)
+        {
+            herbalismSpot.UpgradeOrbit(isQubit);
+        }
     }
 
    

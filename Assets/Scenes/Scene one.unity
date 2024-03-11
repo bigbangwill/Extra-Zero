@@ -8870,9 +8870,12 @@ MonoBehaviour:
   perfectHarvest: 1.5
   lateHarvest: 1
   image: {fileID: 482654874}
+  defaultImage: {fileID: 0}
+  lockedImage: {fileID: 0}
   colorStart: {r: 0.004911661, g: 1, b: 0, a: 1}
   colorEnd: {r: 0.4528302, g: 0.14154413, b: 0.05339978, a: 1}
   post: {fileID: 1663456291}
+  isLocked: 1
 --- !u!1 &483532942
 GameObject:
   m_ObjectHideFlags: 0
@@ -12219,9 +12222,12 @@ MonoBehaviour:
   perfectHarvest: 1.5
   lateHarvest: 1
   image: {fileID: 641821098}
+  defaultImage: {fileID: 0}
+  lockedImage: {fileID: 0}
   colorStart: {r: 0.004911661, g: 1, b: 0, a: 1}
   colorEnd: {r: 0.4528302, g: 0.14154413, b: 0.05339978, a: 1}
   post: {fileID: 1663456291}
+  isLocked: 1
 --- !u!1 &655377394
 GameObject:
   m_ObjectHideFlags: 0
@@ -17942,8 +17948,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1309815030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.32910097}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18273,9 +18279,12 @@ MonoBehaviour:
   perfectHarvest: 1.5
   lateHarvest: 1
   image: {fileID: 940721700}
+  defaultImage: {fileID: 0}
+  lockedImage: {fileID: 0}
   colorStart: {r: 0.004911661, g: 1, b: 0, a: 1}
   colorEnd: {r: 0.4528302, g: 0.14154413, b: 0.05339978, a: 1}
   post: {fileID: 1663456291}
+  isLocked: 1
 --- !u!224 &944468565 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4182647712482639609, guid: 9ded4921c90398b4b8a3e66cce6175fc, type: 3}
@@ -21488,9 +21497,9 @@ RectTransform:
   m_Father: {fileID: 516470097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: -17}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1148358869
 MonoBehaviour:
@@ -23215,9 +23224,12 @@ MonoBehaviour:
   perfectHarvest: 1.5
   lateHarvest: 1
   image: {fileID: 1218194498}
+  defaultImage: {fileID: 0}
+  lockedImage: {fileID: 0}
   colorStart: {r: 0.004911661, g: 1, b: 0, a: 1}
   colorEnd: {r: 0.4528302, g: 0.14154413, b: 0.05339978, a: 1}
   post: {fileID: 1663456291}
+  isLocked: 1
 --- !u!1 &1220526738
 GameObject:
   m_ObjectHideFlags: 0
@@ -25023,9 +25035,12 @@ MonoBehaviour:
   perfectHarvest: 1.5
   lateHarvest: 1
   image: {fileID: 1313722873}
+  defaultImage: {fileID: 0}
+  lockedImage: {fileID: 0}
   colorStart: {r: 0.004911661, g: 1, b: 0, a: 1}
   colorEnd: {r: 0.4528302, g: 0.14154413, b: 0.05339978, a: 1}
   post: {fileID: 1663456291}
+  isLocked: 1
 --- !u!1 &1318334551
 GameObject:
   m_ObjectHideFlags: 0
@@ -26973,9 +26988,9 @@ RectTransform:
   m_Father: {fileID: 516470097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: -17}
+  m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1442380939
 MonoBehaviour:
@@ -27748,9 +27763,9 @@ RectTransform:
   m_Father: {fileID: 516470097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 20}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1472221486
 MonoBehaviour:
@@ -28717,9 +28732,12 @@ MonoBehaviour:
   perfectHarvest: 1.5
   lateHarvest: 1
   image: {fileID: 1508497122}
+  defaultImage: {fileID: 0}
+  lockedImage: {fileID: 0}
   colorStart: {r: 0.004911661, g: 1, b: 0, a: 1}
   colorEnd: {r: 0.4528302, g: 0.14154413, b: 0.05339978, a: 1}
   post: {fileID: 1663456291}
+  isLocked: 1
 --- !u!1 &1509386605
 GameObject:
   m_ObjectHideFlags: 0
@@ -30590,9 +30608,12 @@ MonoBehaviour:
   perfectHarvest: 1.5
   lateHarvest: 1
   image: {fileID: 1581355846}
+  defaultImage: {fileID: 0}
+  lockedImage: {fileID: 0}
   colorStart: {r: 0.004911661, g: 1, b: 0, a: 1}
   colorEnd: {r: 0.4528302, g: 0.14154413, b: 0.05339978, a: 1}
   post: {fileID: 1663456291}
+  isLocked: 1
 --- !u!1 &1582034645
 GameObject:
   m_ObjectHideFlags: 0
@@ -30626,7 +30647,7 @@ RectTransform:
   m_Father: {fileID: 134892865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -31456,7 +31477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1663456287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31560,6 +31581,7 @@ MonoBehaviour:
   startingPointOffset: 50
   stash: {fileID: 763230898}
   herbalismStashGO: {fileID: 1756667511}
+  herbalismSpots: []
 --- !u!1 &1666226297
 GameObject:
   m_ObjectHideFlags: 0
@@ -37283,9 +37305,12 @@ MonoBehaviour:
   perfectHarvest: 1.5
   lateHarvest: 1
   image: {fileID: 1959325178}
+  defaultImage: {fileID: 0}
+  lockedImage: {fileID: 0}
   colorStart: {r: 0.004911661, g: 1, b: 0, a: 1}
   colorEnd: {r: 0.4528302, g: 0.14154413, b: 0.05339978, a: 1}
   post: {fileID: 1663456291}
+  isLocked: 1
 --- !u!1 &1961094126
 GameObject:
   m_ObjectHideFlags: 0
@@ -38207,9 +38232,12 @@ MonoBehaviour:
   perfectHarvest: 1.5
   lateHarvest: 1
   image: {fileID: 2006339548}
+  defaultImage: {fileID: 0}
+  lockedImage: {fileID: 0}
   colorStart: {r: 0.004911661, g: 1, b: 0, a: 1}
   colorEnd: {r: 0.4528302, g: 0.14154413, b: 0.05339978, a: 1}
   post: {fileID: 1663456291}
+  isLocked: 1
 --- !u!1 &2007558094
 GameObject:
   m_ObjectHideFlags: 0

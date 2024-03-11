@@ -180,33 +180,33 @@ public class SlotReaderMiniGameUpgrade : TalentLibrary
 
     protected override void NormalTalentEffect()
     {
-        Debug.Log("SecondTalent impacted");
+        ((SlotReaderMiniGameRefrence)FindSORefrence<SlotReaderMiniGame>.FindScriptableObject("Slot Reader Mini Game Refrence")).val.UpgradeOrbit(false);
     }
     protected override void QubitTalentEffect()
     {
-        Debug.Log(specificName + " QubitEffect");
+        ((SlotReaderMiniGameRefrence)FindSORefrence<SlotReaderMiniGame>.FindScriptableObject("Slot Reader Mini Game Refrence")).val.UpgradeOrbit(true);
     }
 }
-public class ThirdTalent : TalentLibrary
+public class HerbalismSpotsUpgrade : TalentLibrary
 {
-    public ThirdTalent()
+    public HerbalismSpotsUpgrade()
     {
-        specificName = "ThirdTalent";
+        specificName = "HerbalismSpotsUpgrade";
         talentCost = 10;
-        talentDescription = "The ThirdTalent that is only for testing";
-        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
+        talentDescription = "This talent will make the herbs growing speed slower";
+        talentDescriptionQubit = talentDescription + "will slow them down significantly";
         LoadIcon();
     }
 
 
     protected override void NormalTalentEffect()
     {
-        Debug.Log("ThirdTalent impacted");
+        ((HerbalismPostRefrence)FindSORefrence<HerbalismPost>.FindScriptableObject("Herbalism Post Refrence")).val.UpgradeOrbitMaxGrowTimer(false);
     }
 
     protected override void QubitTalentEffect()
     {
-        Debug.Log(specificName + " QubitEffect");
+        ((HerbalismPostRefrence)FindSORefrence<HerbalismPost>.FindScriptableObject("Herbalism Post Refrence")).val.UpgradeOrbitMaxGrowTimer(true);
     }
 }
 public class ForthTalent : TalentLibrary

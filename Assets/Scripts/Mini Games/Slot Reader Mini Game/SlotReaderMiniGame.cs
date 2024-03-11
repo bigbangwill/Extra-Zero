@@ -41,7 +41,7 @@ public class SlotReaderMiniGame : MonoBehaviour
         LoadSORefrence();
     }
 
-    public void UpGradeOrbit(bool isQubit)
+    public void UpgradeOrbit(bool isQubit)
     {
         if (!isQubit)
             maxDif = 720;

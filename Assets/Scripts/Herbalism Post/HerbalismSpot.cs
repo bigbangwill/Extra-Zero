@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.iOS;
 using UnityEngine.UI;
 
 public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
 {
-
     [SerializeField] private float zeroHarvest;
     [SerializeField] private float soonHarvest;
     [SerializeField] private float perfectHarvest;
     [SerializeField] private float lateHarvest;
 
     [SerializeField] private Image image;
+    [SerializeField] private Sprite defaultImage;
+    [SerializeField] private Sprite lockedImage;
     [SerializeField] private Color colorStart;
     [SerializeField] private Color colorEnd;
 
@@ -30,9 +32,16 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
 
     [SerializeField] private HerbalismPost post;
 
+    [SerializeField] private bool isLocked = true;
+
+    private float maxTimerHarvestUpgradeModifier = 0;
+
+    public bool IsLocked { get { return isLocked; } }
+
     private void Start()
     {
         startingColor = image.color;
+        SetState();
     }
 
     private void Update()
@@ -40,6 +49,28 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
         if (isGrowing)
             Grow();
     }
+
+
+    private void SetState()
+    {
+        if (isLocked)
+            SetLocked();
+        else
+            SetUnlocked();
+    }
+
+    public void SetLocked()
+    {
+        isLocked = true;
+        image.sprite = lockedImage;
+    }
+
+    public void SetUnlocked()
+    {
+        isLocked = false;
+        image.sprite = defaultImage;
+    }
+
 
     /// <summary>
     /// Used to check on raycast if it's not growing any seed inside to call the PlaceNewSeed.
@@ -57,7 +88,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
     public void PlaceNewSeed(Seed seed)
     {
         currentGrowingSeed = seed;
-        maxTimer = seed.GetMaxHarvestTimer();
+        maxTimer = seed.GetMaxHarvestTimer() + maxTimerHarvestUpgradeModifier;
         currentTimer = 0;
         isGrowing = true;
         duration = seed.GetMaxHarvestTimer();
@@ -149,5 +180,17 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
         isGrowing = false;
         currentGrowingSeed = null;
         image.color = startingColor;
+    }
+
+    public void UpgradeOrbit(bool isQubit)
+    {
+        if (!isQubit)
+        {
+            maxTimerHarvestUpgradeModifier = 1;
+        }
+        else
+        {
+            maxTimerHarvestUpgradeModifier = 2;
+        }
     }
 }
