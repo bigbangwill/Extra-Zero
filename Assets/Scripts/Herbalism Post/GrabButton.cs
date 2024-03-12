@@ -34,7 +34,7 @@ public class GrabButton : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginD
             if (result.gameObject.CompareTag("Herbalism Spot"))
             {
                 HerbalismSpot spot = result.gameObject.GetComponent<HerbalismSpot>();
-                if (!spot.IsGrowing())
+                if (!spot.IsGrowing() && !spot.IsLocked)
                 {
                     if (post.CanGetNextSeed())
                     {

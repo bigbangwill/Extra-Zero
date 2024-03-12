@@ -194,7 +194,7 @@ public class HerbalismSpotsUpgrade : TalentLibrary
         specificName = "HerbalismSpotsUpgrade";
         talentCost = 10;
         talentDescription = "This talent will make the herbs growing speed slower";
-        talentDescriptionQubit = talentDescription + "will slow them down significantly";
+        talentDescriptionQubit = "will slow them down significantly";
         LoadIcon();
     }
 
@@ -209,24 +209,24 @@ public class HerbalismSpotsUpgrade : TalentLibrary
         ((HerbalismPostRefrence)FindSORefrence<HerbalismPost>.FindScriptableObject("Herbalism Post Refrence")).val.UpgradeOrbitMaxGrowTimer(true);
     }
 }
-public class ForthTalent : TalentLibrary
+public class LessHerbForAlchemyCreating : TalentLibrary
 {
-    public ForthTalent()
+    public LessHerbForAlchemyCreating()
     {
-        specificName = "ForthTalent";
+        specificName = "LessHerbForAlchemyCreating";
         talentCost = 10;
-        talentDescription = "The ForthTalent that is only for testing";
-        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
+        talentDescription = "This talent will make the alchemy post to require one less herb for the potion creating procces";
+        talentDescriptionQubit = "you will need 2 less instead";
         LoadIcon();
     }
 
     protected override void NormalTalentEffect()
     {
-        Debug.Log("ForthTalent impacted");
+        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeOrbitLessHerb(false);
     }
     protected override void QubitTalentEffect()
     {
-        Debug.Log(specificName + " QubitEffect");
+        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeOrbitLessHerb(true);
     }
 }
 public class FifthTalent : TalentLibrary

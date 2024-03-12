@@ -23,10 +23,31 @@ public class AlchemyPost : MonoBehaviour
     private bool minigameIsPlaying = false;
 
 
+    [SerializeField] private int potionCreationHerbCount = 5;
+
+
+    private AlchemyPostRefrence refrence;
     private PlayerInventoryRefrence inventoryRefrence;
+
+    private void SetRefrence()
+    {
+        refrence = (AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Achemy Post Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+        }
+        refrence.val = this;
+    }
+
+
     private void LoadSORefrence()
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+    }
+
+    private void Awake()
+    {
+        SetRefrence();
     }
 
 
@@ -90,7 +111,7 @@ public class AlchemyPost : MonoBehaviour
         sendingHerbs.Clear();
         foreach (var herb in inventoryHerbs)
         {
-            if (herb.CurrentStack() >= 5)
+            if (herb.CurrentStack() >= potionCreationHerbCount)
             {
                 if (!herbNames.Contains(herb.GetName()))
                 {
@@ -99,6 +120,14 @@ public class AlchemyPost : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void UpgradeOrbitLessHerb(bool isQubit)
+    {
+        if (!isQubit)
+            potionCreationHerbCount = 4;
+        else
+            potionCreationHerbCount = 3;
     }
 
     /// <summary>

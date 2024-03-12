@@ -47,8 +47,6 @@ public class SlotReaderMiniGame : MonoBehaviour
             maxDif = 720;
         else
             maxDif = 360;
-
-        Debug.Log("Is it Qubit???" + isQubit);
     }
 
     // Update is called once per frame

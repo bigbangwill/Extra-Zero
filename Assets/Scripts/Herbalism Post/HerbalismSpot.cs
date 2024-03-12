@@ -120,9 +120,10 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
 
         float timerValue = maxTimer / 10;
         float zeroValue = 1 * timerValue;
-        float soonValue = 4 * timerValue;
-        float perfectValue = 2 * timerValue;
-        float decayedValue = 3 * timerValue;
+        float soonValue = 4 * timerValue + zeroValue;
+        float perfectValue = 2 * timerValue + soonValue;
+        float decayedValue = 3 * timerValue + perfectValue;
+
 
         if (currentTimer >= decayedValue)
         {
