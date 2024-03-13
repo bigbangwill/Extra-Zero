@@ -31,7 +31,7 @@ public class AlchemyPost : MonoBehaviour
 
     private void SetRefrence()
     {
-        refrence = (AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Achemy Post Refrence");
+        refrence = (AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence");
         if (refrence == null)
         {
             Debug.LogWarning("Didnt find it");
@@ -55,12 +55,12 @@ public class AlchemyPost : MonoBehaviour
     {
         
         PotionLibrary.Initialize();
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(15), true);
         inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
         inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
+        //inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
+        //inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
+        //inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
         SetLists();
     }
 

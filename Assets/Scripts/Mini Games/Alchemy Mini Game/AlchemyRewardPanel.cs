@@ -90,20 +90,24 @@ public class AlchemyRewardPanel : MonoBehaviour
         if (potionEffect1 == null && potionEffect2 == null && potionEffect3 == null)
         {
             Debug.Log("Nothing is there to choose");
-            ResetBackToStart();
-            return;
+            //ResetBackToStart();
         }
 
 
         PotionEffect targetedEffect;
         switch (rewardNumber) 
         {
-            case 1: targetedEffect = potionEffect1; break;
-            case 2: targetedEffect = potionEffect2; break;
-            case 3: targetedEffect = potionEffect3; break;
+            case 1:  targetedEffect = potionEffect1; break;
+            case 2:  targetedEffect = potionEffect2; break;
+            case 3:  targetedEffect = potionEffect3; break;
             default: targetedEffect = potionEffect1;Debug.LogWarning("Check here asap"); break;
         }
-        targetPotionItem.SetNextEffect(targetedEffect);
+
+        if (targetedEffect != null)
+        {
+            Debug.LogWarning("HEREEE");
+            targetPotionItem.SetNextEffect(targetedEffect);
+        }
 
         if (inventoryRefrence.val.HaveEmptySlot(targetPotionItem, false))
         {

@@ -233,7 +233,6 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 2f;
-                Debug.Log(GetEffectDescription() + "  2");
             }
         }
 
@@ -251,7 +250,6 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 waveManagerRefrence.val.timerOfAFullCycleEffectsApplied += 2f;
-                Debug.Log(GetEffectDescription() + "  2");
             }
         }
 
@@ -269,7 +267,6 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 waveManagerRefrence.val.orderFrequencyEffectsApplied -= 0.5f;
-                Debug.Log(GetEffectDescription() + "  0.5f");
             }
         }
 
@@ -287,7 +284,6 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 waveManagerRefrence.val.orderCombinationEffectsApplied += 1;
-                Debug.Log(GetEffectDescription() + "  1");
             }
         }
     }
@@ -312,7 +308,6 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
-                Debug.Log(GetEffectDescription() + "  10");
             }
         }
 
@@ -330,7 +325,6 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(10), true);
-                Debug.Log(GetEffectDescription() + "  10");
             }
         }
 
@@ -348,7 +342,6 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
-                Debug.Log(GetEffectDescription() + "  10");
             }
         }
 
@@ -366,7 +359,6 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
-                Debug.Log(GetEffectDescription() + "  10");
             }
         }
     }
