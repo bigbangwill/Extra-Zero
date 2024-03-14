@@ -14,6 +14,7 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private Herb holdingHerb;
     private Image image;
 
+    private int herbCost;
 
     private PlayerInventoryRefrence inventoryRefrence;
     private void LoadSORefrence()
@@ -56,9 +57,9 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     //if there is a new herb selected to add and remove the related values.
                     if (herb != null)
                     {
-                        holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() + 5);
+                        holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() + herbCost);
                         holdingHerb = herb;
-                        holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() - 5);
+                        holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() - herbCost);
                         image.sprite = holdingHerb.IconRefrence();
                         effectSlots.SetHerbForEffect(holdingHerb, slotCount);
                         break;
@@ -66,7 +67,7 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     //if there is no new herb selected just to add the value.
                     else
                     {
-                        holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() + 5);
+                        holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() + herbCost);
                         holdingHerb = null;
                         image.sprite = null;
                         effectSlots.SetHerbForEffect(holdingHerb, slotCount);
@@ -78,7 +79,7 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
                     if(herb != null)
                     {
                         holdingHerb = herb;
-                        holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() - 5);
+                        holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() - herbCost);
                         image.sprite = holdingHerb.IconRefrence();
                         effectSlots.SetHerbForEffect(holdingHerb, slotCount);
                         break;
@@ -93,7 +94,7 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         if (holdingHerb != null)
         {
-            holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() + 5);
+            holdingHerb.SetCurrentStack(holdingHerb.CurrentStack() + herbCost);
             holdingHerb = null;
             image.sprite = null;
         }
@@ -104,7 +105,7 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (holdingHerb != null)
         {
             int currentStack = holdingHerb.CurrentStack();
-            holdingHerb.SetCurrentStack(5);
+            holdingHerb.SetCurrentStack(herbCost);
             if (inventoryRefrence.val.HaveItemInInventory(holdingHerb, false))
             {
                 inventoryRefrence.val.HaveItemInInventory(holdingHerb,true);
@@ -114,14 +115,19 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             }
             else
             {
-                Debug.Log("Player doesnt have the required Item");
+                Debug.LogWarning("Player doesnt have the required Item");
             }
         }
     }
 
+    public void SetHerbCount(int count)
+    {
+        herbCost = count;
+    }
+
     private void OnDisable()
     {
-        Reset();
+        //Reset();
     }
 
 }

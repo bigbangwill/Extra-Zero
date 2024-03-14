@@ -106,7 +106,6 @@ public class WaveManager : MonoBehaviour
     public HarderSideEffects GetRandomHarderEffect()
     {
         int random = UnityEngine.Random.Range(0, hardEffectList.Count);
-        Debug.Log(random + " RANDOM HARDER");
         return hardEffectList[random];
     }
 
@@ -117,7 +116,6 @@ public class WaveManager : MonoBehaviour
     public RewardSideEffects GetRandomRewardEffect()
     {
         int random = UnityEngine.Random.Range(0, rewardEffectList.Count);
-        Debug.Log(random + " RANDOM Reward");
         return rewardEffectList[random];
     }
 

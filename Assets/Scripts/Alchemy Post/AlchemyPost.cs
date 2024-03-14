@@ -15,9 +15,10 @@ public class AlchemyPost : MonoBehaviour
     [SerializeField] private EffectSlots secondSlot;
     [SerializeField] private EffectSlots thirdSlot;
 
+    [SerializeField] private List<AlchemySlots> slotsList;
 
     private List<Herb> inventoryHerbs;
-    [SerializeField] private List<string> herbNames;
+    private List<string> herbNames;
     private List<Herb> sendingHerbs;
 
     private bool minigameIsPlaying = false;
@@ -56,11 +57,11 @@ public class AlchemyPost : MonoBehaviour
         
         PotionLibrary.Initialize();
         inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(15), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(15), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(15), true);
+        inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
         inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
         inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
-        //inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
-        //inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
-        //inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
         SetLists();
     }
 
@@ -128,6 +129,11 @@ public class AlchemyPost : MonoBehaviour
             potionCreationHerbCount = 4;
         else
             potionCreationHerbCount = 3;
+
+        foreach (var slot in slotsList)
+        {
+            slot.SetHerbCount(potionCreationHerbCount);
+        }
     }
 
     /// <summary>
@@ -200,20 +206,20 @@ public class AlchemyPost : MonoBehaviour
     private void PotionCreated()
     {
         SetSendingList();
-        if (!firstSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
-        {
-            firstSlot.CreatedThePotion();
-        }
+        firstSlot.CreatedThePotion();
+        secondSlot.CreatedThePotion();
+        thirdSlot.CreatedThePotion();
 
-        if (!secondSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
-        {
-            secondSlot.CreatedThePotion();
-        }
 
-        if (!thirdSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
-        {
-            thirdSlot.CreatedThePotion();
-        }
+        //if (!firstSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
+        //{
+        //}
+        //if (!secondSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
+        //{
+        //}
+        //if (!thirdSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
+        //{
+        //}
     }
 
 

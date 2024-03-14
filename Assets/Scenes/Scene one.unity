@@ -28845,7 +28845,16 @@ MonoBehaviour:
   firstSlot: {fileID: 677243738}
   secondSlot: {fileID: 293085739}
   thirdSlot: {fileID: 1939072469}
-  herbNames: []
+  slotsList:
+  - {fileID: 2019854187}
+  - {fileID: 1243009946}
+  - {fileID: 568209749}
+  - {fileID: 2108288306}
+  - {fileID: 1070243117}
+  - {fileID: 2007558098}
+  - {fileID: 1712621244}
+  - {fileID: 761052880}
+  - {fileID: 169989074}
   potionCreationHerbCount: 5
 --- !u!1 &1506086314
 GameObject:

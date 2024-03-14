@@ -954,6 +954,11 @@ public class PotionItem : ItemBehaviour
     public PotionEffect thirdEffect;
     public PotionEffect fourthEffect;
 
+    public string GetSpecificName()
+    {
+        return specificName;
+    }
+
 
     public PotionItem(PotionEffect first)
     {

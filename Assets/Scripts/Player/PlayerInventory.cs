@@ -93,10 +93,10 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         LoadSORefrence();
         AddISaveableToDictionary();
         //AddItemToInventory(new MaterialItem.Plastic(3));
-        AddItemToInventory(new BluePrintItem.WalkingStick());
-        AddItemToInventory(new BluePrintItem.Hoe());
-        AddItemToInventory(new BluePrintItem.Gun());
-        AddItemToInventory(new BluePrintItem.Plant());
+        //AddItemToInventory(new BluePrintItem.WalkingStick());
+        //AddItemToInventory(new BluePrintItem.Hoe());
+        //AddItemToInventory(new BluePrintItem.Gun());
+        //AddItemToInventory(new BluePrintItem.Plant());
     }
 
     /// <summary>
@@ -409,7 +409,6 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
                     }
                     return true;
                 }
-
             }
         }
         else

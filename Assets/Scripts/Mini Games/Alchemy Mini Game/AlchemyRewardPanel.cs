@@ -44,11 +44,13 @@ public class AlchemyRewardPanel : MonoBehaviour
             potionEffectText3.text = "No Effect Click To move on!";
 
             Debug.Log("List is null");
+            targetPotionItem = prePotion;
+            SetPotionEffects(rewardEffects);
+            critStatus.SetActive(isCrit);
             return;
         }
+
         critStatus.SetActive(isCrit);
-
-
         targetPotionItem = prePotion;
         SetPotionEffects(rewardEffects);
         icon1.sprite = potionEffect1.sprite;
@@ -72,7 +74,7 @@ public class AlchemyRewardPanel : MonoBehaviour
         PotionEffect[] finalArray = new PotionEffect[3];
         for(int i = 0; i < 3; i++)
         {
-            int random = Random.Range(0, potionEffects.Count - 1);
+            int random = Random.Range(0, potionEffects.Count);
             finalArray[i] = (potionEffects[random]);
             potionEffects.Remove(potionEffects[random]);
         }
@@ -113,7 +115,7 @@ public class AlchemyRewardPanel : MonoBehaviour
         {
             inventoryRefrence.val.HaveEmptySlot(targetPotionItem, true);
             ResetBackToStart();
-            Debug.Log("Sent");
+            Debug.Log(targetPotionItem.GetSpecificName());
         }
         else
         {

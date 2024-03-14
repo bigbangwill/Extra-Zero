@@ -17,8 +17,8 @@ public class AlchemyLineMiniGame : MonoBehaviour
     private float lineMaxLenght;
     private float currentLineLenght = 0;
 
-    private bool canDraw = false;
-    private bool needsReset = false;
+    [SerializeField] private bool canDraw = false;
+    [SerializeField] private bool needsReset = false;
 
     private AlchemyMiniGame alchemyMiniGameScript;
 
@@ -37,33 +37,39 @@ public class AlchemyLineMiniGame : MonoBehaviour
         {
             float textDistance = Vector3.Distance(lr.GetPosition(lr.positionCount - 1), lr.GetPosition(0));
             lineLenghtText.text = (currentLineLenght + textDistance).ToString();
-            if (mouse.leftButton.wasPressedThisFrame)
+            if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
             {
                 lr.positionCount = 1;
                 startPos = transform.position;
                 currentLineLenght = 0;
+                Debug.Log("2");
             }
 
             if (Touchscreen.current.primaryTouch.press.isPressed && !needsReset)
             {
+                Debug.Log("3");
                 Vector3 currentPos = Camera.main.ScreenToWorldPoint(Touchscreen.current.primaryTouch.position.ReadValue());
                 currentPos.z = 0;
                 if (Vector3.Distance(currentPos, startPos) >= minDistance)
                 {
+                    Debug.Log("4");
                     if (startPos == transform.position)
                     {
                         lr.SetPosition(0, currentPos);
+                        Debug.Log("5");
                     }
                     else
                     {
                         lr.positionCount++;
                         lr.SetPosition(lr.positionCount - 1, currentPos);
+                        Debug.Log("6");
                     }
                     float distance = Vector3.Distance(startPos, currentPos);
                     if (lr.positionCount == 1)
                         distance = 0;
                     currentLineLenght += distance;
                     startPos = currentPos;
+                    Debug.Log("7");
                 }
                 if (currentLineLenght + textDistance > 10)
                 {
@@ -72,6 +78,8 @@ public class AlchemyLineMiniGame : MonoBehaviour
                     lr.SetPosition(lr.positionCount - 1, lr.GetPosition(0));
                     float distance = Vector3.Distance(lr.GetPosition(lr.positionCount - 2), lr.GetPosition(lr.positionCount - 1));
                     currentLineLenght += distance;
+                    //BakeMesh();
+                    Debug.Log("8");
                 }
             }
 
@@ -82,14 +90,15 @@ public class AlchemyLineMiniGame : MonoBehaviour
                     lr.positionCount = 1;
                     startPos = transform.position;
                     currentLineLenght = 0;
-                    Debug.Log("Reseted");
-                    return;
+                    Debug.Log("9");
+                    //return;
                 }
+                needsReset = false;
                 lr.positionCount++;
                 lr.SetPosition(lr.positionCount - 1, lr.GetPosition(0));
                 float distance = Vector3.Distance(lr.GetPosition(lr.positionCount - 2), lr.GetPosition(lr.positionCount - 1));
                 currentLineLenght += distance;
-                needsReset = false;
+                Debug.Log("10");
                 BakeMesh();
             }
         }
