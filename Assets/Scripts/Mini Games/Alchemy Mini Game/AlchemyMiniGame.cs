@@ -66,6 +66,8 @@ public class AlchemyMiniGame : MonoBehaviour
 
     private RaycastMovement raycastMovement;
 
+    private int critPassiveUpgrade;
+
     private void LoadSoRefrence()
     {
         raycastMovement = ((RaycastMovementRefrence)FindSORefrence<RaycastMovement>.FindScriptableObject("Raycast Movement Refrence")).val;
@@ -103,8 +105,14 @@ public class AlchemyMiniGame : MonoBehaviour
             Vector2 pos = Camera.main.transform.position;
             transform.position = pos;
         }
-        
     }
+
+
+    public void SetCritPassiveAmount(int amount)
+    {
+        critPassiveUpgrade = amount;
+    }
+
 
     private void OnEnable()
     {
@@ -121,7 +129,7 @@ public class AlchemyMiniGame : MonoBehaviour
     private void ActiveRewardPanel()
     {
         rewardPanel.SetActive(true);
-        int crit = UnityEngine.Random.Range(0, critMaxChance + 1);
+        int crit = UnityEngine.Random.Range(0, critMaxChance + 1) - critPassiveUpgrade;
         List<PotionEffect> targetEffects = new();
         bool isCrit;
         if (crit <= critChanceCurrentValue)

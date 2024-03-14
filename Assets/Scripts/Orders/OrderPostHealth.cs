@@ -143,6 +143,23 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         }
     }
 
+    public void RepairAmountMinusAmount(int amount)
+    {
+        foreach (var item in recoverReceipeList)
+        {
+            foreach (var mat in item.GetItems())
+            {
+                mat.SetCurrentStack(mat.CurrentStack() - amount);
+            }
+        }
+    }
+
+
+    public void SetUnlockedHealth(int amount)
+    {
+        healthUnlocked = amount;
+    }
+
     public void TurnUIUXOn()
     {
         if (NeedsRepair())

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EffectSlots : MonoBehaviour
 {
     [SerializeField] private int slot;
-    [SerializeField] public Image image;
+    [SerializeField] private Image image;
     [SerializeField] private Sprite lockedImage;
     [SerializeField] private Sprite unlockedImage;
 
@@ -19,17 +19,6 @@ public class EffectSlots : MonoBehaviour
 
     private void Start()
     {
-        //image = GetComponent<Image>();
-        if (isLocked)
-        {
-            image.sprite = lockedImage;
-            Debug.LogWarning("HERE",image);
-        }
-        else
-        {
-            image.sprite = unlockedImage;
-            Debug.LogWarning("NOT HERE", image);
-        }
         SetSlotState(isLocked);
     }
 
@@ -51,7 +40,7 @@ public class EffectSlots : MonoBehaviour
     public void UpgradeOrbit()
     {
         isLocked = false;
-        SetSlotState(true);
+        SetSlotState(isLocked);
     }
 
 

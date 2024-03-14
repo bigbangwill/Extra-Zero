@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -92,7 +93,11 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
     {
         LoadSORefrence();
         AddISaveableToDictionary();
-        //AddItemToInventory(new MaterialItem.Plastic(3));
+        AddItemToInventory(new MaterialItem.Plastic(10));
+        AddItemToInventory(new MaterialItem.AluminumAlloy(10));
+        AddItemToInventory(new MaterialItem.Ceramic(10));
+        AddItemToInventory(new MaterialItem.StainlessSteel(10));
+        AddItemToInventory(new MaterialItem.TitaniumAlloy(10));
         //AddItemToInventory(new BluePrintItem.WalkingStick());
         //AddItemToInventory(new BluePrintItem.Hoe());
         //AddItemToInventory(new BluePrintItem.Gun());

@@ -54,14 +54,13 @@ public class AlchemyPost : MonoBehaviour
 
     private void Start()
     {
-        
         PotionLibrary.Initialize();
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(15), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(15), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(15), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
+        //inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(15), true);
+        //inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(15), true);
+        //inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(15), true);
+        //inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
+        //inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
+        //inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
         SetLists();
     }
 
@@ -122,6 +121,29 @@ public class AlchemyPost : MonoBehaviour
             }
         }
     }
+
+
+    public void UpgradeQubitCritPassive(bool isQubit)
+    {
+        if (!isQubit)
+        {
+            miniGame.SetCritPassiveAmount(5);
+        }
+        else
+        {
+            miniGame.SetCritPassiveAmount(10);
+        }
+    }
+
+
+    public void UpgradeQubitUnlockSlot(bool isQubit)
+    {
+        secondSlot.UpgradeOrbit();
+        if (isQubit)
+            thirdSlot.UpgradeOrbit();
+
+    }
+
 
     public void UpgradeOrbitLessHerb(bool isQubit)
     {

@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 786b50a41cb8bbc4a91de96e005a5bdc
   m_SerializeEntries:
   - m_GUID: af52af06b66f96544ae64f46e9f50ac7
-    m_Address: Talent Icon/SeventhTalent
+    m_Address: Talent Icon/MoreOrderPostHealth
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 454673eb7d7b5044da11342481ec1f7f
-    m_Address: Talent Icon/SixthTalent
+    m_Address: Talent Icon/MorePassiveCritChance
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -48,7 +48,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9393d0fda0db9914ea453c48fade8882
-    m_Address: Talent Icon/FifthTalent
+    m_Address: Talent Icon/MoreAlchemySlots
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bee05cc6f0929a4794a3aa96ad4c83b
+    m_Address: Talent Icon/LessOrderMaterialRepair
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -29,6 +29,7 @@ public abstract class TalentLibrary
     public void LoadIcon()
     {
         string address = "Talent Icon/" + specificName + "[Sprite]";
+
         AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(address);
         handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
 
@@ -229,66 +230,88 @@ public class LessHerbForAlchemyCreating : TalentLibrary
         ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeOrbitLessHerb(true);
     }
 }
-public class FifthTalent : TalentLibrary
+public class MoreAlchemySlots : TalentLibrary
 {
-    public FifthTalent()
+    public MoreAlchemySlots()
     {
-        specificName = "FifthTalent";
+        specificName = "MoreAlchemySlots";
         talentCost = 10;
-        talentDescription = "The FifthTalent that is only for testing";
-        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
+        talentDescription = "This talent will unlock another slot in alchemy";
+        talentDescriptionQubit = talentDescription + "Unlocks one more";
         LoadIcon();
     }
 
 
     protected override void NormalTalentEffect()
     {
-        Debug.Log("FifthTalent impacted");
+        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeQubitUnlockSlot(false);
     }
     protected override void QubitTalentEffect()
     {
-        Debug.Log(specificName + " QubitEffect");
+        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeQubitUnlockSlot(true);
     }
 }
-public class SixthTalent : TalentLibrary
+public class MorePassiveCritChance : TalentLibrary
 {
-    public SixthTalent()
+    public MorePassiveCritChance()
     {
-        specificName = "SixthTalent";
+        specificName = "MorePassiveCritChance";
         talentCost = 10;
-        talentDescription = "The SixthTalent that is only for testing";
-        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
+        talentDescription = "This talent will increase the crit chance to create double potions";
+        talentDescriptionQubit = talentDescription + "Adds a little bit more!";
         LoadIcon();
     }
 
 
     protected override void NormalTalentEffect()
     {
-        Debug.Log("SixthTalent impacted");
+        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeQubitCritPassive(false);
     }
     protected override void QubitTalentEffect()
     {
-        Debug.Log(specificName + " QubitEffect");
+        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeQubitCritPassive(true);
     }
 }
-public class SeventhTalent : TalentLibrary
+public class MoreOrderPostHealth : TalentLibrary
 {
-    public SeventhTalent()
+    public MoreOrderPostHealth()
     {
-        specificName = "SeventhTalent";
+        specificName = "MoreOrderPostHealth";
         talentCost = 10;
-        talentDescription = "The SeventhTalent that is only for testing";
-        talentDescriptionQubit = talentDescription + "QUBIT VERSION";
+        talentDescription = "This talent will increase the max health of order posts";
+        talentDescriptionQubit = talentDescription + "Increase it one more!";
         LoadIcon();
     }
 
 
     protected override void NormalTalentEffect()
     {
-        Debug.Log("SeventhTalent impacted");
+        ((OrderPostsUpgradeManagerRefrence)FindSORefrence<OrderPostsUpgradeManager>.FindScriptableObject("Order Posts Upgrade Manager Refrence")).val.UpgradeOrbitIncreaseHealth(false);
     }
     protected override void QubitTalentEffect()
     {
-        Debug.Log(specificName + " QubitEffect");
+        ((OrderPostsUpgradeManagerRefrence)FindSORefrence<OrderPostsUpgradeManager>.FindScriptableObject("Order Posts Upgrade Manager Refrence")).val.UpgradeOrbitIncreaseHealth(true);
+    }
+}
+
+public class LessOrderMaterialRepair : TalentLibrary
+{
+    public LessOrderMaterialRepair()
+    {
+        specificName = "LessOrderMaterialRepair";
+        talentCost = 10;
+        talentDescription = "Need one less material to repair the order posts.";
+        talentDescriptionQubit = talentDescription + "One less!";
+        LoadIcon();
+    }
+
+    protected override void NormalTalentEffect()
+    {
+        ((OrderPostsUpgradeManagerRefrence)FindSORefrence<OrderPostsUpgradeManager>.FindScriptableObject("Order Posts Upgrade Manager Refrence")).val.UpgradeOrbitLessMaterialForRepair(false);
+    }
+
+    protected override void QubitTalentEffect()
+    {
+        ((OrderPostsUpgradeManagerRefrence)FindSORefrence<OrderPostsUpgradeManager>.FindScriptableObject("Order Posts Upgrade Manager Refrence")).val.UpgradeOrbitLessMaterialForRepair(true);
     }
 }
