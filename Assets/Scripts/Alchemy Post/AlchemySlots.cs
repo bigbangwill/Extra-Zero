@@ -14,6 +14,10 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private Herb holdingHerb;
     private Image image;
 
+    private bool isLocked;
+    [SerializeField] private Sprite lockedImage;
+    [SerializeField] private Sprite unlockedImage = null;
+
     private int herbCost;
 
     private PlayerInventoryRefrence inventoryRefrence;
@@ -32,13 +36,32 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     }
 
 
+    public void SetLocked()
+    {
+        isLocked = true;
+        if (image == null)
+            image = GetComponent<Image>();
+        image.sprite = lockedImage;
+    }
+
+    public void SetUnlocked()
+    {
+        isLocked = false;
+        if (image == null)
+            image = GetComponent<Image>();
+        image.sprite = unlockedImage;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        alchemyPost.SlotsOnPointerDown();
+        if(!isLocked)
+            alchemyPost.SlotsOnPointerDown();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (isLocked)
+            return;
         PointerEventData pointerEventData = new(EventSystem.current);
         pointerEventData.position = Input.mousePosition;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.iOS;
 
 public class AlchemyRewardPanel : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class AlchemyRewardPanel : MonoBehaviour
 
     [SerializeField] private GameObject critStatus;
     [SerializeField] private AlchemyMiniGame alchemyMiniGameScript;
+
+
+    private bool currentRewardisCrit = false;
 
     private PotionEffect potionEffect1;
     private PotionEffect potionEffect2;
@@ -47,10 +51,12 @@ public class AlchemyRewardPanel : MonoBehaviour
             targetPotionItem = prePotion;
             SetPotionEffects(rewardEffects);
             critStatus.SetActive(isCrit);
+            currentRewardisCrit = isCrit;
             return;
         }
 
         critStatus.SetActive(isCrit);
+        currentRewardisCrit = isCrit;
         targetPotionItem = prePotion;
         SetPotionEffects(rewardEffects);
         icon1.sprite = potionEffect1.sprite;
@@ -110,20 +116,19 @@ public class AlchemyRewardPanel : MonoBehaviour
             Debug.LogWarning("HEREEE");
             targetPotionItem.SetNextEffect(targetedEffect);
         }
-
-        if (inventoryRefrence.val.HaveEmptySlot(targetPotionItem, false))
-        {
-            inventoryRefrence.val.HaveEmptySlot(targetPotionItem, true);
-            ResetBackToStart();
+        if (inventoryRefrence.val.HaveEmptySlot(targetPotionItem, true))
+        {            
             Debug.Log(targetPotionItem.GetSpecificName());
         }
         else
         {
-            Debug.Log("No empty slot");
+            Debug.LogWarning("No empty slot");
         }
+        ResetBackToStart();
 
-        if (critStatus.activeSelf)
+        if (currentRewardisCrit)
         {
+            Debug.LogWarning("We are in crit Chance");
             if (inventoryRefrence.val.HaveEmptySlot(targetPotionItem, false))
             {
                 inventoryRefrence.val.HaveEmptySlot(targetPotionItem, true);

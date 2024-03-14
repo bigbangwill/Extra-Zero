@@ -6,11 +6,54 @@ using UnityEngine.UI;
 public class EffectSlots : MonoBehaviour
 {
     [SerializeField] private int slot;
-    [SerializeField] private Image image;
+    [SerializeField] public Image image;
+    [SerializeField] private Sprite lockedImage;
+    [SerializeField] private Sprite unlockedImage;
+
     [SerializeField] List<AlchemySlots> slots;
 
     private Herb[] herbArray = new Herb[3];
     private PotionEffect currentEffect;
+
+    [SerializeField] private bool isLocked;
+
+    private void Start()
+    {
+        //image = GetComponent<Image>();
+        if (isLocked)
+        {
+            image.sprite = lockedImage;
+            Debug.LogWarning("HERE",image);
+        }
+        else
+        {
+            image.sprite = unlockedImage;
+            Debug.LogWarning("NOT HERE", image);
+        }
+        SetSlotState(isLocked);
+    }
+
+    private void SetSlotState(bool isLocked)
+    {
+        foreach(var slot in slots)
+        {
+            if (isLocked)
+            {
+                slot.SetLocked();
+            }
+            else
+            {
+                slot.SetUnlocked();
+            }
+        }
+    }
+
+    public void UpgradeOrbit()
+    {
+        isLocked = false;
+        SetSlotState(true);
+    }
+
 
     /// <summary>
     /// Will get called from the AlchemySlots Script to set the selected herb by the player in the
