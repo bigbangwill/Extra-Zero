@@ -315,3 +315,48 @@ public class LessOrderMaterialRepair : TalentLibrary
         ((OrderPostsUpgradeManagerRefrence)FindSORefrence<OrderPostsUpgradeManager>.FindScriptableObject("Order Posts Upgrade Manager Refrence")).val.UpgradeOrbitLessMaterialForRepair(true);
     }
 }
+
+
+public class LessEffectiveBadSide : TalentLibrary
+{
+    public LessEffectiveBadSide()
+    {
+        specificName = "LessEffectiveBadSide";
+        talentCost = 10;
+        talentDescription = "Bad talents are abit less effective.";
+        talentDescriptionQubit = talentDescription + "Abit more less";
+        LoadIcon();
+    }
+
+    protected override void NormalTalentEffect()
+    {
+        ((WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence")).val.UpgradeOrbitHarderLessEffective(false);
+    }
+
+    protected override void QubitTalentEffect()
+    {
+        ((WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence")).val.UpgradeOrbitHarderLessEffective(true);
+    }
+}
+
+public class MoreRewardWave : TalentLibrary
+{
+    public MoreRewardWave()
+    {
+        specificName = "MoreRewardWave";
+        talentCost = 10;
+        talentDescription = "More wave reward.";
+        talentDescriptionQubit = talentDescription + "Abit more";
+        LoadIcon();
+    }
+
+    protected override void NormalTalentEffect()
+    {
+        ((WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence")).val.UpgradeOrbitMoreReward(false);
+    }
+
+    protected override void QubitTalentEffect()
+    {
+        ((WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence")).val.UpgradeOrbitMoreReward(true);
+    }
+}

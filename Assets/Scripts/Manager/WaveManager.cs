@@ -77,6 +77,23 @@ public class WaveManager : MonoBehaviour
         Init();
     }
 
+    public void UpgradeOrbitHarderLessEffective(bool isQubit)
+    {
+        foreach (var wave in hardEffectList)
+        {
+            wave.SetWaveState(isQubit);
+        }
+    }
+
+    public void UpgradeOrbitMoreReward(bool isQubit)
+    {
+        foreach (var wave in rewardEffectList)
+        {
+            wave.SetWaveState(isQubit);
+        }
+    }
+
+
     // To create every existed effects and add them to related list
     private void Init()
     {
@@ -169,10 +186,16 @@ public class WaveManager : MonoBehaviour
 
     public abstract class PermanentWaveEffectLibrary
     {
+
+        protected enum UpgradeEnum { isPassive, isNotQubit, isQubit}
+
+        protected UpgradeEnum currentUpgradeState = UpgradeEnum.isPassive;
+
         protected Sprite iconEffect;
         protected string iconAddress;
         protected string description;
         protected string specificName;
+
 
         protected PlayerInventoryRefrence inventoryRefrence;
         protected WaveManagerRefrence waveManagerRefrence;
@@ -208,7 +231,33 @@ public class WaveManager : MonoBehaviour
             return description;
         }
 
+        public void SetWaveState(bool isQubit)
+        {
+            if (!isQubit)
+            {
+                currentUpgradeState = UpgradeEnum.isNotQubit;
+            }
+            else
+            {
+                currentUpgradeState = UpgradeEnum.isQubit;
+            }
+        }
+
         public abstract void ImpactEffect();
+
+        public void UpgradeOrbit(bool isQubit)
+        {
+            if (!isQubit)
+            {
+                currentUpgradeState = UpgradeEnum.isNotQubit;
+            }
+            else
+            {
+                currentUpgradeState = UpgradeEnum.isQubit;
+            }
+        }
+
+
     }
     public abstract class HarderSideEffects : PermanentWaveEffectLibrary
     {
@@ -230,7 +279,12 @@ public class WaveManager : MonoBehaviour
 
             public override void ImpactEffect()
             {
-                waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 2f;
+                if (currentUpgradeState == UpgradeEnum.isPassive)
+                    waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 2f;
+                else if (currentUpgradeState == UpgradeEnum.isNotQubit)
+                    waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 1.9f;
+                else if (currentUpgradeState == UpgradeEnum.isQubit)
+                    waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 1.8f;
             }
         }
 
@@ -246,8 +300,13 @@ public class WaveManager : MonoBehaviour
             }
 
             public override void ImpactEffect()
-            {
-                waveManagerRefrence.val.timerOfAFullCycleEffectsApplied += 2f;
+            {                
+                if (currentUpgradeState == UpgradeEnum.isPassive)
+                    waveManagerRefrence.val.timerOfAFullCycleEffectsApplied += 2f;
+                else if (currentUpgradeState == UpgradeEnum.isNotQubit)
+                    waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 1.9f;
+                else if (currentUpgradeState == UpgradeEnum.isQubit)
+                    waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 1.8f;
             }
         }
 
@@ -264,10 +323,19 @@ public class WaveManager : MonoBehaviour
 
             public override void ImpactEffect()
             {
-                waveManagerRefrence.val.orderFrequencyEffectsApplied -= 0.5f;
+                if (currentUpgradeState == UpgradeEnum.isPassive)
+                    waveManagerRefrence.val.orderFrequencyEffectsApplied -= 0.5f;
+                else if (currentUpgradeState == UpgradeEnum.isNotQubit)
+                    waveManagerRefrence.val.orderFrequencyEffectsApplied -= 0.4f;
+                else if (currentUpgradeState == UpgradeEnum.isQubit)
+                    waveManagerRefrence.val.orderFrequencyEffectsApplied -= 0.3f;
+
             }
         }
 
+        /// <summary>
+        /// FIND A FIX FOR THIS PART
+        /// </summary>
         public class IncreaseOrderCombinationCount : HarderSideEffects
         {
             public IncreaseOrderCombinationCount()
@@ -279,9 +347,15 @@ public class WaveManager : MonoBehaviour
                 LoadSORefrence();
             }
 
+
             public override void ImpactEffect()
             {
-                waveManagerRefrence.val.orderCombinationEffectsApplied += 1;
+                if (currentUpgradeState == UpgradeEnum.isPassive)
+                    waveManagerRefrence.val.orderCombinationEffectsApplied += 1;
+                else if (currentUpgradeState == UpgradeEnum.isNotQubit)
+                    waveManagerRefrence.val.orderCombinationEffectsApplied += 1;
+                else if (currentUpgradeState == UpgradeEnum.isQubit)
+                    waveManagerRefrence.val.orderCombinationEffectsApplied += 1;
             }
         }
     }
@@ -305,7 +379,16 @@ public class WaveManager : MonoBehaviour
 
             public override void ImpactEffect()
             {
-                inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
+                
+                
+
+                if (currentUpgradeState == UpgradeEnum.isPassive)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(3), true);
+                else if (currentUpgradeState == UpgradeEnum.isNotQubit)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(5), true);
+                else if (currentUpgradeState == UpgradeEnum.isQubit)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
+
             }
         }
 
@@ -322,7 +405,15 @@ public class WaveManager : MonoBehaviour
 
             public override void ImpactEffect()
             {
-                inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(10), true);
+
+
+                if (currentUpgradeState == UpgradeEnum.isPassive)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(3), true);
+                else if (currentUpgradeState == UpgradeEnum.isNotQubit)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(5), true);
+                else if (currentUpgradeState == UpgradeEnum.isQubit)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(10), true);
+
             }
         }
 
@@ -339,7 +430,13 @@ public class WaveManager : MonoBehaviour
 
             public override void ImpactEffect()
             {
-                inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
+
+                if (currentUpgradeState == UpgradeEnum.isPassive)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(3), true);
+                else if (currentUpgradeState == UpgradeEnum.isNotQubit)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(5), true);
+                else if (currentUpgradeState == UpgradeEnum.isQubit)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
             }
         }
 
@@ -356,7 +453,14 @@ public class WaveManager : MonoBehaviour
 
             public override void ImpactEffect()
             {
-                inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
+                
+                if (currentUpgradeState == UpgradeEnum.isPassive)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(3), true);
+                else if (currentUpgradeState == UpgradeEnum.isNotQubit)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(5), true);
+                else if (currentUpgradeState == UpgradeEnum.isQubit)
+                    inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
+
             }
         }
     }
