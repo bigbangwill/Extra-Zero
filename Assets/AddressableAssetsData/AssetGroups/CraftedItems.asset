@@ -22,6 +22,106 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ace3458b02eddce49808c2cffd60df23
+    m_Address: CraftedItem/Water Purifier
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0768f6a24e46764439bc715ba70108f7
+    m_Address: CraftedItem/Energy Cell
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64b413ce04c9e9d4a90fd5f195859d01
+    m_Address: CraftedItem/Survival Kit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9560cd270a301e489cc170da81cb1a1
+    m_Address: CraftedItem/Environmental Regulator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 66661c94e8029224589bd5dc87ef13d9
+    m_Address: CraftedItem/Radiation Detectors
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c976ac9c027aa04bbec47aa25b9dd09
+    m_Address: CraftedItem/Haptic Interface
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41bdc9c49a715f5459dc9bd9fe898534
+    m_Address: CraftedItem/Quantum Processor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 059b21b3c396b0041a1e25be94b7a90f
+    m_Address: CraftedItem/Memory Core
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c41ff8c692365348b6ce5585e412b6f
+    m_Address: CraftedItem/Circuit Frame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd10d1516d2b4cf4c98e9ae8dc2f1937
+    m_Address: CraftedItem/Repair Drone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8cc4f613538e244b82e181d01b20925
+    m_Address: CraftedItem/Power Conduit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0eae72ce30af3364692611749e7918b6
+    m_Address: CraftedItem/Signal Booster
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b78482d0f1a8bb8408ee639800da21de
+    m_Address: CraftedItem/AI Core
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a66c86cde4ab29d4591235a51a65c98c
+    m_Address: CraftedItem/Insulation Foam
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4cab8391a31d0043827010acb3f3d03
+    m_Address: CraftedItem/Heat Shield
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 046e6e69e6d0f9948bd289a19b71f715
+    m_Address: CraftedItem/Communication Relay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb05823b6340d0f4780fe6c613616998
+    m_Address: CraftedItem/Data Pad
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97a37863d50b7d448ac2567a32e79088
+    m_Address: CraftedItem/Solar Charger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2488d41749516fd48b6fa59f2d68c663
+    m_Address: CraftedItem/Biometric Scanner
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8800b7bac2346a44e841c1a9a52b7b84
+    m_Address: CraftedItem/Thermal Blanket
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
   m_SchemaSet:
