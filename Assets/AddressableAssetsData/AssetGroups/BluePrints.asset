@@ -42,6 +42,106 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9543de975d8e1642be805ca487a346c
+    m_Address: BluePrints/Power Conduit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04681e3700702044ea466cc68a02d14e
+    m_Address: BluePrints/Solar Charger
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87d9f7789db150f449ea8da67127db1b
+    m_Address: BluePrints/Circuit Frame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24f42147fdb047646ac268a82a820a03
+    m_Address: BluePrints/Repair Drone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e43320031bc56e49b26a4b1431caaf0
+    m_Address: BluePrints/Energy Cell
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12fec743742f868459783259072e71ad
+    m_Address: BluePrints/Survival Kit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d61fa0dc8862b749853f2d6a849cee4
+    m_Address: BluePrints/Heat Shield
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 472af49d749c8f04fb4d9593a489f46d
+    m_Address: BluePrints/Biometric Scanner
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93101eda14ec28e48845bee609bb7211
+    m_Address: BluePrints/Memory Core
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97f8c89d14e83e34486f4a738a9de4c9
+    m_Address: BluePrints/Environmental Regulator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8924aa893c68b6d43b01cf54276ed2a4
+    m_Address: BluePrints/Water Purifier
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ace9925300c6b04b8d097bacda71ea1
+    m_Address: BluePrints/Radiation Detector
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd40e2ea9e0bbe64aaf16dc52394e44a
+    m_Address: BluePrints/AI Core
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c897b69bf95c94489ed0ac62b8c9cab
+    m_Address: BluePrints/Communication Relay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4231bd0289d3bd9448e4d7427e29e16b
+    m_Address: BluePrints/Thermal Blanket
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63737510083bf9e4a8af20a629c61014
+    m_Address: BluePrints/Quantum Processor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8e9de43ac1c8a5468e2deefe3c58cb5
+    m_Address: BluePrints/Haptic Interface
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3091675a20a5ed34490ad87317b513c4
+    m_Address: BluePrints/Data Pad
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09a0b380edac4c84db3f1d249b45e79e
+    m_Address: BluePrints/Signal Booster
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c45b24c847078094c9eab544d124c764
+    m_Address: BluePrints/Insulation Foam
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
   m_SchemaSet:
