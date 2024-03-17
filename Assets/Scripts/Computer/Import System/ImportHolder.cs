@@ -154,7 +154,7 @@ public class ImportHolder : MonoBehaviour
                     startingPointWidth + distance * i, startingPointHeight - (onePrefabHeight * j));
                 ImportedUI importedUI = go.GetComponent<ImportedUI>();
                 BluePrintItem targetBluePrint = importedBluePrintList[currentInstantiated - 1];
-                List<ItemBehaviour> materialNeeded = targetBluePrint.materialsList;
+                List<MaterialItem> materialNeeded = targetBluePrint.materialsList;
                 importedUI.SetActiveMethod(new Action<int,GameObject>(SetActiveImport));
                 importedUI.SetNumber(currentInstantiated - 1);
 

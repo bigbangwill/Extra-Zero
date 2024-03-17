@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Reflection;
+using System.Linq;
 
 public delegate void PotionEffectDelegate();
 
@@ -14,21 +16,23 @@ public static class PotionLibrary
     public static void Initialize()
     {
         potionEffectDictionary.Clear();
-        AddCombination(new Herb.Sage(), new Herb.Sage(), new Herb.Sage(), new PotionEffect.FirstEffect());
-        AddCombination(new Herb.Lavender(), new Herb.Lavender(), new Herb.Lavender(), new PotionEffect.SecondEffect());
-        AddCombination(new Herb.Chamomile(), new Herb.Chamomile(), new Herb.Chamomile(), new PotionEffect.ThirdEffect());
-        AddCombination(new Herb.Sage(), new Herb.Chamomile(), new Herb.Lavender(), new PotionEffect.ForthEffect());
-        AddCombination(new Herb.Sage(),new Herb.Sage(),new Herb.Lavender(),new PotionEffect.MineralOilEffect());
-        AddCombination(new Herb.Lavender(),new Herb.Lavender(),new Herb.Chamomile(),new PotionEffect.SyntheticOilEffect());
+        List<Type> potionEffects = Assembly.GetAssembly(typeof(PotionEffect))
+        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(PotionEffect))).ToList();
+
+        foreach (var effect in potionEffects)
+        {
+            PotionEffect target = (PotionEffect)Activator.CreateInstance(effect);
+            target.AddRecepieToCombination();
+        }
     }
 
     // to add the related combination herbs and potion effect to the dictionary.
-    private static void AddCombination(Herb first,Herb second,Herb third, PotionEffect potionEffectDelegate)
+    public static void AddCombination(List<Herb> herbs, PotionEffect potionEffectDelegate)
     {
         Herb[] herbsArray = new Herb[3];
-        herbsArray[0] = first;
-        herbsArray[1] = second;
-        herbsArray[2] = third;
+        herbsArray[0] = herbs[0];
+        herbsArray[1] = herbs[1];
+        herbsArray[2] = herbs[2];
         Array.Sort(herbsArray);
         PotionCombination combination = new(herbsArray[0], herbsArray[1], herbsArray[2]);
         potionEffectDictionary.Add(combination, potionEffectDelegate);
@@ -90,6 +94,7 @@ public abstract class PotionEffect
     public PotionEffectDelegate effect;
     public Sprite sprite;
     public bool isBase;
+    private List<Herb> receipeList = new();
 
     protected int potionPriority;
 
@@ -123,6 +128,11 @@ public abstract class PotionEffect
 
     public abstract void EffectVoid();
 
+    public abstract void AddRecepieToCombination();
+
+    public abstract void AddHerbToReceipeList();
+
+
     protected void LoadIcon()
     {
         specificAddress = "Potion Effect/" + name;
@@ -152,6 +162,17 @@ public abstract class PotionEffect
             isBase = false;
             LoadIcon();
         }
+
+        public override void AddHerbToReceipeList()
+        {
+            Debug.LogWarning("CHECK HERE ASAP");
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            Debug.Log("Empty");
+        }
+
         public override void EffectVoid()
         {
             Debug.Log("Empty");
@@ -170,7 +191,20 @@ public abstract class PotionEffect
             sideEffect = SideEffect.Natural;
             potionPriority = 0;
             isBase = true;
+            AddHerbToReceipeList();
             LoadIcon();
+        }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Sage());
+            receipeList.Add(new Herb.Sage());
+            receipeList.Add(new Herb.Lavender());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
         }
 
         public override void EffectVoid()
@@ -188,7 +222,20 @@ public abstract class PotionEffect
             sideEffect = SideEffect.Natural;
             potionPriority = 0;
             isBase = true;
+            AddHerbToReceipeList();
             LoadIcon();
+        }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Lavender());
+            receipeList.Add(new Herb.Lavender());
+            receipeList.Add(new Herb.Chamomile());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
         }
 
         public override void EffectVoid()
@@ -207,7 +254,20 @@ public abstract class PotionEffect
             sideEffect = SideEffect.Regenerative;
             potionPriority = 1;
             isBase = false;
+            AddHerbToReceipeList();
             LoadIcon();
+        }
+
+        public override void AddHerbToReceipeList()
+        {            
+            receipeList.Add(new Herb.Sage());
+            receipeList.Add(new Herb.Sage());
+            receipeList.Add(new Herb.Sage());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
         }
 
         public override void EffectVoid()
@@ -227,6 +287,19 @@ public abstract class PotionEffect
             isBase = false;
             LoadIcon();
         }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Lavender());
+            receipeList.Add(new Herb.Lavender());
+            receipeList.Add(new Herb.Lavender());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
         public override void EffectVoid()
         {
             Debug.Log("Second Effect");
@@ -241,8 +314,22 @@ public abstract class PotionEffect
             sideEffect = SideEffect.Regenerative;
             potionPriority = 3;
             isBase = false;
+            AddHerbToReceipeList();
             LoadIcon();
         }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Chamomile());
+            receipeList.Add(new Herb.Chamomile());
+            receipeList.Add(new Herb.Chamomile());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
         public override void EffectVoid()
         {
             Debug.Log("Third Effect");
@@ -260,6 +347,19 @@ public abstract class PotionEffect
             isBase = false;
             LoadIcon();
         }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Sage());
+            receipeList.Add(new Herb.Chamomile());
+            receipeList.Add(new Herb.Lavender());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
         public override void EffectVoid()
         {
             Debug.Log("forth Effect");
@@ -276,7 +376,21 @@ public abstract class PotionEffect
             sideEffect = SideEffect.Necrotic;
             isBase = false;
             LoadIcon();
+            AddHerbToReceipeList();
         }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Patchouli());
+            receipeList.Add(new Herb.Patchouli());
+            receipeList.Add(new Herb.Patchouli());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
         public override void EffectVoid()
         {
             Debug.Log("FifthEffect");
@@ -295,6 +409,19 @@ public abstract class PotionEffect
             isBase = false;
             LoadIcon();
         }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Hellebore());
+            receipeList.Add(new Herb.Hellebore());
+            receipeList.Add(new Herb.Hellebore());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
         public override void EffectVoid()
         {
             Debug.Log("SixthEffect");
@@ -313,9 +440,53 @@ public abstract class PotionEffect
             isBase = false;
             LoadIcon();
         }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Lavender());
+            receipeList.Add(new Herb.Sage());
+            receipeList.Add(new Herb.Patchouli());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
         public override void EffectVoid()
         {
             Debug.Log("SeventhEffect");
         }
     }
 }
+
+
+
+
+//Chamomile + Chamomile + Lavender
+//Chamomile + Chamomile + Sage
+//Chamomile + Chamomile + Patchouli
+//Chamomile + Chamomile + Hellebore
+//Chamomile + Lavender + Sage
+//Chamomile + Lavender + Patchouli
+//Chamomile + Lavender + Hellebore
+//Chamomile + Sage + Sage
+//Chamomile + Sage + Patchouli
+//Chamomile + Sage + Hellebore
+//Chamomile + Patchouli + Patchouli
+//Chamomile + Patchouli + Hellebore
+//Chamomile + Hellebore + Hellebore
+//Lavender + Lavender + Sage
+//Lavender + Lavender + Patchouli
+//Lavender + Lavender + Hellebore
+//Lavender + Sage + Hellebore
+//Lavender + Patchouli + Patchouli
+//Lavender + Patchouli + Hellebore
+//Lavender + Hellebore + Hellebore
+//Sage + Sage + Patchouli
+//Sage + Sage + Hellebore
+//Sage + Patchouli + Patchouli
+//Sage + Patchouli + Hellebore
+//Sage + Hellebore + Hellebore
+//Patchouli + Patchouli + Hellebore
+//Patchouli + Hellebore + Hellebore

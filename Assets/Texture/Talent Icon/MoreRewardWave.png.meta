@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 66661c94e8029224589bd5dc87ef13d9
+guid: 5dcca3cff8d8540428c94f7e0b8c99f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3039758353963000421
-    second: Radiation Detectors_0
+      213: -2749827626570408204
+    second: More RewardWave_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -83,18 +83,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -107,7 +95,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -136,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9d5205e1eb90d5d0800000000000000
-      internalID: -3039758353963000421
+      spriteID: 4fe17b4c756a6d9d0800000000000000
+      internalID: -2749827626570408204
       vertices: []
       indices: 
       edges: []
@@ -145,7 +133,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b55bf982540bf054e877771824227191
+    spriteID: 19793d3b8856fc443bb56cfae1809f4d
     internalID: 0
     vertices: []
     indices: 
@@ -153,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite: -3039758353963000421
+      Sprite: -2749827626570408204
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

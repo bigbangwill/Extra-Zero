@@ -43,7 +43,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 66661c94e8029224589bd5dc87ef13d9
-    m_Address: CraftedItem/Radiation Detectors
+    m_Address: CraftedItem/Radiation Detector
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
