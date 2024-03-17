@@ -30,41 +30,41 @@ public class ButtonTestInventory : MonoBehaviour
     }
 
 
-    public void AddWalkingStick()
-    {
-        ItemBehaviour item = new BluePrintItem.WalkingStick();
-        if (!shouldRemove)
-            Debug.Log(inventoryRefrence.HaveEmptySlot(item, true));
-        else
-            Debug.Log(inventoryRefrence.HaveItemInInventory(item, true));
-    }
+    //public void AddWalkingStick()
+    //{
+    //    ItemBehaviour item = new BluePrintItem.WalkingStick();
+    //    if (!shouldRemove)
+    //        Debug.Log(inventoryRefrence.HaveEmptySlot(item, true));
+    //    else
+    //        Debug.Log(inventoryRefrence.HaveItemInInventory(item, true));
+    //}
 
-    public void AddHoe()
-    {
-        ItemBehaviour item = new BluePrintItem.Hoe();
-        if (!shouldRemove)
-            Debug.Log(inventoryRefrence.HaveEmptySlot(item, true));
-        else
-            Debug.Log(inventoryRefrence.HaveItemInInventory(item, true));
-    }
+    //public void AddHoe()
+    //{
+    //    ItemBehaviour item = new BluePrintItem.Hoe();
+    //    if (!shouldRemove)
+    //        Debug.Log(inventoryRefrence.HaveEmptySlot(item, true));
+    //    else
+    //        Debug.Log(inventoryRefrence.HaveItemInInventory(item, true));
+    //}
 
-    public void AddGun()
-    {
-        ItemBehaviour item = new BluePrintItem.Gun();
-        if (!shouldRemove)
-            Debug.Log(inventoryRefrence.HaveEmptySlot(item, true));
-        else
-            Debug.Log(inventoryRefrence.HaveItemInInventory(item, true));
-    }
+    //public void AddGun()
+    //{
+    //    ItemBehaviour item = new BluePrintItem.Gun();
+    //    if (!shouldRemove)
+    //        Debug.Log(inventoryRefrence.HaveEmptySlot(item, true));
+    //    else
+    //        Debug.Log(inventoryRefrence.HaveItemInInventory(item, true));
+    //}
 
-    public void AddPlant()
-    {
-        ItemBehaviour item = new BluePrintItem.Plant();
-        if (!shouldRemove)
-            Debug.Log(inventoryRefrence.HaveEmptySlot(item, true));
-        else
-            Debug.Log(inventoryRefrence.HaveItemInInventory(item, true));
-    }
+    //public void AddPlant()
+    //{
+    //    ItemBehaviour item = new BluePrintItem.Plant();
+    //    if (!shouldRemove)
+    //        Debug.Log(inventoryRefrence.HaveEmptySlot(item, true));
+    //    else
+    //        Debug.Log(inventoryRefrence.HaveItemInInventory(item, true));
+    //}
 
     public void AddPlastic()
     {

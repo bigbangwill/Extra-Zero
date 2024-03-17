@@ -6,15 +6,26 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Reflection;
 using System.Linq;
+using Unity.VisualScripting;
 
 public delegate void PotionEffectDelegate();
 
 public static class PotionLibrary
 {
+    private static bool isInited = false;
+
     private static Dictionary<PotionCombination, PotionEffect> potionEffectDictionary = new();
+
+    public readonly static List<PotionEffect> firstTierBasePotion = new();
+    public readonly static List<PotionEffect> secondTierBasePotion = new();
+    public readonly static List<PotionEffect> thirdTierBasePotion = new();
+    public readonly static List<PotionEffect> forthTierBasePotion = new();
+
 
     public static void Initialize()
     {
+        if (isInited)
+            return;
         potionEffectDictionary.Clear();
         List<Type> potionEffects = Assembly.GetAssembly(typeof(PotionEffect))
         .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(PotionEffect))).ToList();
@@ -23,7 +34,27 @@ public static class PotionLibrary
         {
             PotionEffect target = (PotionEffect)Activator.CreateInstance(effect);
             target.AddRecepieToCombination();
+            if (target.isBase)
+            {
+                int highestTier = 0;
+                foreach (Herb herb in target.HerbReceipe())
+                {
+                    if (herb.GetHerbTier() > highestTier)
+                    {
+                        highestTier = herb.GetHerbTier();
+                    }
+                }
+                switch (highestTier) 
+                {
+                    case 1: firstTierBasePotion.Add(target); break;
+                    case 2: secondTierBasePotion.Add(target); break;
+                    case 3: thirdTierBasePotion.Add(target); break;
+                    case 4: forthTierBasePotion.Add(target); break;
+                    default: Debug.LogWarning("CHECK HERE ASAP"); break;
+                }
+            }
         }
+        isInited = true;
     }
 
     // to add the related combination herbs and potion effect to the dictionary.
@@ -124,6 +155,11 @@ public abstract class PotionEffect
     public string GetEffectName()
     {
         return name;
+    }
+
+    public IEnumerable HerbReceipe()
+    {
+        return receipeList;
     }
 
     public abstract void EffectVoid();
@@ -285,6 +321,7 @@ public abstract class PotionEffect
             sideEffect = SideEffect.Regenerative;
             potionPriority = 2;
             isBase = false;
+            AddHerbToReceipeList();
             LoadIcon();
         }
 
@@ -345,6 +382,7 @@ public abstract class PotionEffect
             potionPriority = 4;
             sideEffect = SideEffect.Necrotic;
             isBase = false;
+            AddHerbToReceipeList();
             LoadIcon();
         }
 
@@ -375,8 +413,8 @@ public abstract class PotionEffect
             potionPriority = 5;
             sideEffect = SideEffect.Necrotic;
             isBase = false;
-            LoadIcon();
             AddHerbToReceipeList();
+            LoadIcon();
         }
 
         public override void AddHerbToReceipeList()
@@ -407,6 +445,7 @@ public abstract class PotionEffect
             potionPriority = 6;
             sideEffect = SideEffect.Necrotic;
             isBase = false;
+            AddHerbToReceipeList();
             LoadIcon();
         }
 
@@ -438,6 +477,7 @@ public abstract class PotionEffect
             potionPriority = 7;
             sideEffect = SideEffect.Necrotic;
             isBase = false;
+            AddHerbToReceipeList();
             LoadIcon();
         }
 

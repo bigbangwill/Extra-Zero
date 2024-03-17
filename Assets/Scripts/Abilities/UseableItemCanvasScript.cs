@@ -26,7 +26,7 @@ public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
     private IRepairable currentRepairable;
 
     private OverlayState currentState;
-    public event Action UsedItemEvent;
+    //public event Action UsedItemEvent;
 
     private Button currentRelatedButton;
     private bool isOnRepairMode = false;
@@ -78,7 +78,7 @@ public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
     public void SetDelegate(Action action ,OverlayState state,Transform UIPanel,Transform parent, Button repairButton)
     {
         currentState = state;
-        UsedItemEvent += action;
+        //UsedItemEvent += action;
         overlayImage.enabled = true;
         repairInstantiateParent = parent;
         repairInfoPanel = UIPanel;
@@ -94,7 +94,7 @@ public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
     public void RemoveDelegate(Action action)
     {
         overlayImage.enabled = false;
-        UsedItemEvent -= action;
+        //UsedItemEvent -= action;
         isOnRepairMode = false;
 
         switch (currentState)

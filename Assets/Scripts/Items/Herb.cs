@@ -3,11 +3,13 @@ using UnityEngine;
 
 public abstract class Herb : ItemBehaviour
 {
+    private int herbTier;
+
     public override void Load()
     {
         is_Usable = false;
         useDelegate = Use;
-        itemType = ItemType.herb            ;
+        itemType = ItemType.herb;
         specificAddress = "Herbs/" + specificName + "[Sprite]";
         is_Stackable = true;
         itemName = "Herbs";
@@ -18,6 +20,12 @@ public abstract class Herb : ItemBehaviour
     {
         Debug.LogWarning("You shouldnt see this but you are trying to use a Material");
     }
+
+    public int GetHerbTier()
+    {
+        return herbTier;
+    }
+
 
     public override bool Equals(object obj)
     {
@@ -41,12 +49,14 @@ public abstract class Herb : ItemBehaviour
             specificAddress);
     }
 
+
     public class Chamomile : Herb
     {
         public Chamomile()
         {
             maxStack = 50;
             specificName = "Chamomile";
+            herbTier = 1;
             Load();
         }
 
@@ -60,6 +70,7 @@ public abstract class Herb : ItemBehaviour
             }
             specificName = "Chamomile";
             currentStack = count;
+            herbTier = 1;
             Load();
         }
     }
@@ -70,6 +81,7 @@ public abstract class Herb : ItemBehaviour
         {
             maxStack = 50;
             specificName = "Lavender";
+            herbTier = 1;
             Load();
         }
 
@@ -83,6 +95,7 @@ public abstract class Herb : ItemBehaviour
             }
             specificName = "Lavender";
             currentStack = count;
+            herbTier = 1;
             Load();
         }
 
@@ -94,6 +107,7 @@ public abstract class Herb : ItemBehaviour
         {
             maxStack = 50;
             specificName = "Sage";
+            herbTier = 2;
             Load();
         }
 
@@ -107,6 +121,7 @@ public abstract class Herb : ItemBehaviour
             }
             specificName = "Sage";
             currentStack = count;
+            herbTier = 2;
             Load();
         }
     }
@@ -117,6 +132,7 @@ public abstract class Herb : ItemBehaviour
         {
             maxStack = 50;
             specificName = "Patchouli";
+            herbTier = 3;
             Load();
         }
 
@@ -130,6 +146,7 @@ public abstract class Herb : ItemBehaviour
             }
             specificName = "Patchouli";
             currentStack = count;
+            herbTier = 3;
             Load();
         }
     }
@@ -140,6 +157,7 @@ public abstract class Herb : ItemBehaviour
         {
             maxStack = 50;
             specificName = "Hellebore";
+            herbTier = 4;
             Load();
         }
         public Hellebore(int count)
@@ -152,6 +170,7 @@ public abstract class Herb : ItemBehaviour
             }
             specificName = "Hellebore";
             currentStack = count;
+            herbTier = 4;
             Load();
         }    
     }

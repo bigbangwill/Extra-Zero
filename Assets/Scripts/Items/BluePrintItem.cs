@@ -62,78 +62,78 @@ public abstract class BluePrintItem : ItemBehaviour
         Debug.LogWarning("You shouldnt see this but you are trying to use a blueprint");
     }
 
-    public class WalkingStick : BluePrintItem
-    {
-        public WalkingStick()
-        {
-            specificName = "WalkingStick";
-            importTimer = 3;
-            craftTimer = 20;
-            materialsList.Add(new MaterialItem.StainlessSteel(3));
-            materialsList.Add(new MaterialItem.Plastic(1));
-            Load();
-        }
-        public override CraftedItem CraftedItemReference()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //public class WalkingStick : BluePrintItem
+    //{
+    //    public WalkingStick()
+    //    {
+    //        specificName = "WalkingStick";
+    //        importTimer = 3;
+    //        craftTimer = 20;
+    //        materialsList.Add(new MaterialItem.StainlessSteel(3));
+    //        materialsList.Add(new MaterialItem.Plastic(1));
+    //        Load();
+    //    }
+    //    public override CraftedItem CraftedItemReference()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 
-    public class Hoe : BluePrintItem
-    {
-        public Hoe()
-        {
-            specificName = "Hoe";
-            importTimer = 10;
-            craftTimer = 10;
-            materialsList.Add(new MaterialItem.StainlessSteel(3));
-            materialsList.Add(new MaterialItem.AluminumAlloy(1));
-            materialsList.Add(new MaterialItem.TitaniumAlloy(1));
-            Load();
-        }
+    //public class Hoe : BluePrintItem
+    //{
+    //    public Hoe()
+    //    {
+    //        specificName = "Hoe";
+    //        importTimer = 10;
+    //        craftTimer = 10;
+    //        materialsList.Add(new MaterialItem.StainlessSteel(3));
+    //        materialsList.Add(new MaterialItem.AluminumAlloy(1));
+    //        materialsList.Add(new MaterialItem.TitaniumAlloy(1));
+    //        Load();
+    //    }
 
-        public override CraftedItem CraftedItemReference()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    public override CraftedItem CraftedItemReference()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 
     
-    public class Gun : BluePrintItem
-    {
-        public Gun()
-        {
-            specificName = "Gun";
-            importTimer = 20;
-            craftTimer = 10;
-            materialsList.Add(new MaterialItem.AluminumAlloy(5));
-            materialsList.Add(new MaterialItem.TitaniumAlloy(7));
-            materialsList.Add(new MaterialItem.Ceramic(2));
-            Load();
-        }
+    //public class Gun : BluePrintItem
+    //{
+    //    public Gun()
+    //    {
+    //        specificName = "Gun";
+    //        importTimer = 20;
+    //        craftTimer = 10;
+    //        materialsList.Add(new MaterialItem.AluminumAlloy(5));
+    //        materialsList.Add(new MaterialItem.TitaniumAlloy(7));
+    //        materialsList.Add(new MaterialItem.Ceramic(2));
+    //        Load();
+    //    }
 
-        public override CraftedItem CraftedItemReference()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    public override CraftedItem CraftedItemReference()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 
-    public class Plant : BluePrintItem
-    {
-        public Plant()
-        {
-            specificName = "Plant";
-            importTimer = 15;
-            craftTimer = 10;
-            materialsList.Add(new MaterialItem.Ceramic(3));
-            Load();
-        }
+    //public class Plant : BluePrintItem
+    //{
+    //    public Plant()
+    //    {
+    //        specificName = "Plant";
+    //        importTimer = 15;
+    //        craftTimer = 10;
+    //        materialsList.Add(new MaterialItem.Ceramic(3));
+    //        Load();
+    //    }
 
-        public override CraftedItem CraftedItemReference()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    public override CraftedItem CraftedItemReference()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 
     public class DataPadBlueprint : BluePrintItem
     {
