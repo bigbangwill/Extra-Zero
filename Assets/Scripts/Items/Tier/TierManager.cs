@@ -9,6 +9,7 @@ using UnityEngine.Rendering.Universal;
 
 public class TierManager : MonoBehaviour
 {
+    private int unlockedTier = 0;
 
     private List<CraftedItem> firstTierCraftedItems = new();
     private List<CraftedItem> secondTierCraftedItems = new();
@@ -21,11 +22,31 @@ public class TierManager : MonoBehaviour
     private List<PotionEffect> forthTierPotionEffects = new();
 
 
+    private event Action OnTierChangedEvent;
+
+    private TierManagerRefrence refrence;
+
+
+    private void SetRefrence()
+    {
+        refrence = (TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+        }
+        refrence.val = this;
+    }
+
+    private void Awake()
+    {
+        SetRefrence();
+    }
 
     private void Start()
     {
         InitTierCraftedList();
         SetPotionEffectTiers();
+        UnlockNewTier(1);
     }
 
     private void InitTierCraftedList()
@@ -64,5 +85,67 @@ public class TierManager : MonoBehaviour
         forthTierPotionEffects = PotionLibrary.forthTierBasePotion;
     }
 
+    private void UnlockNewTier(int tierNumber)
+    {
+        unlockedTier = tierNumber;
+        OnTierChangedEvent?.Invoke();
+    }
 
+
+    public List<ItemBehaviour> GetNewTierCraftedItemList()
+    {
+        List<ItemBehaviour> targetList = new();
+        if (unlockedTier == 1)
+        {
+            targetList.AddRange(firstTierCraftedItems);
+            AddPotionsToList(firstTierPotionEffects, targetList);
+        }
+        else if (unlockedTier == 2)
+        {
+            targetList.AddRange(firstTierCraftedItems);
+            targetList.AddRange(secondTierCraftedItems);
+            AddPotionsToList(firstTierPotionEffects, targetList);
+            AddPotionsToList(secondTierPotionEffects,targetList);
+        }
+        else if (unlockedTier == 3)
+        {
+            targetList.AddRange(firstTierCraftedItems);
+            targetList.AddRange(secondTierCraftedItems);
+            targetList.AddRange(thirdTierCraftedItems);
+            AddPotionsToList(firstTierPotionEffects, targetList);
+            AddPotionsToList(secondTierPotionEffects, targetList);
+            AddPotionsToList(thirdTierPotionEffects, targetList);
+        }
+        else if (unlockedTier == 4)
+        {
+            targetList.AddRange(firstTierCraftedItems);
+            targetList.AddRange(secondTierCraftedItems);
+            targetList.AddRange(thirdTierCraftedItems);
+            targetList.AddRange(forthTierPotionEffects);
+            AddPotionsToList(firstTierPotionEffects, targetList);
+            AddPotionsToList(secondTierPotionEffects, targetList);
+            AddPotionsToList(thirdTierPotionEffects, targetList);
+            AddPotionsToList(forthTierPotionEffects, targetList);
+        }
+        return targetList;
+    }
+
+    private void AddPotionsToList(List<PotionEffect> potion, List<ItemBehaviour> target)
+    {
+        foreach (var effect in potion)
+        {
+            target.Add(new PotionItem(effect));
+        }
+    }
+
+
+    public void TierChangeAddListener(Action action)
+    {
+        OnTierChangedEvent += action;
+    }
+
+    public void TierChangeRemoveListener(Action action)
+    {
+        OnTierChangedEvent -= action;
+    }
 }

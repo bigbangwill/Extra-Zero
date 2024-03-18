@@ -46,7 +46,7 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
     /// <summary>
     /// Used localy to load the needed icon
     /// </summary>
-    protected void LoadIcon()
+    protected virtual void LoadIcon()
     {
         AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(specificAddress);
         handle.WaitForCompletion(); // Wait for the async operation to complete synchronously

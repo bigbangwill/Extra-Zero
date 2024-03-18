@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class PotionItem : ItemBehaviour
 {
@@ -12,6 +14,23 @@ public class PotionItem : ItemBehaviour
     public string GetSpecificName()
     {
         return specificName;
+    }
+
+    protected override void LoadIcon()
+    {
+        string address = "Potion Effect/" + firstEffect.name;
+        AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(address);
+        handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
+
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            itemIcon = handle.Result;
+            Addressables.Release(handle);
+        }
+        else
+        {
+            Debug.LogError("Failed to load the asset");
+        }
     }
 
 

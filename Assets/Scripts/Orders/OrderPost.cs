@@ -34,10 +34,12 @@ public class OrderPost : MonoBehaviour
     private OrderPostHealth postHealthScript;
 
     private OrderManagerRefrence orderManagerRefrence;
+    private TierManager tierManager;
 
     private void LoadSORefrence()
     {
         orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
+        tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
     }
 
 
@@ -46,6 +48,7 @@ public class OrderPost : MonoBehaviour
     {
         LoadSORefrence();
         postHealthScript = GetComponent<OrderPostHealth>();
+        tierManager.TierChangeAddListener(GetNewOrderList);
     }
 
 
@@ -71,6 +74,11 @@ public class OrderPost : MonoBehaviour
     {
         orderableItems = orderableList;
 
+    }
+
+    public void GetNewOrderList()
+    {
+        orderableItems = tierManager.GetNewTierCraftedItemList();
     }
 
     public WalkingOrder CreateWalkingOrder(int combinationCount,float walkingOrderSpeed,float orderTimer)
