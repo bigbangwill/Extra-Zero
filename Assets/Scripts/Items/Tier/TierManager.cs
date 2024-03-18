@@ -9,17 +9,28 @@ using UnityEngine.Rendering.Universal;
 
 public class TierManager : MonoBehaviour
 {
+
+    [SerializeField] private int firstTierCount = 2;
+    [SerializeField] private int secondTierCount = 3;
+    [SerializeField] private int thirdTierCount = 5;
+    [SerializeField] private int fourthTierCount = 7;
+
     private int unlockedTier = 0;
 
-    private List<CraftedItem> firstTierCraftedItems = new();
-    private List<CraftedItem> secondTierCraftedItems = new();
-    private List<CraftedItem> thirdTierCraftedItems = new();
-    private List<CraftedItem> forthTierCraftedItems = new();
+    private List<ItemBehaviour> firstTierItems = new();
+    private List<ItemBehaviour> secondTierItems = new();
+    private List<ItemBehaviour> thirdTierItems = new();
+    private List<ItemBehaviour> forthTierItems = new();
 
-    private List<PotionEffect> firstTierPotionEffects = new();
-    private List<PotionEffect> secondTierPotionEffects = new();
-    private List<PotionEffect> thirdTierPotionEffects = new();
-    private List<PotionEffect> forthTierPotionEffects = new();
+
+    private List<ItemBehaviour> milestoneFirstTier = new();
+    private List<ItemBehaviour> milestoneSecondTier = new();
+    private List<ItemBehaviour> milestoneThirdTier = new();
+    private List<ItemBehaviour> milestoneForthTier = new();
+
+    private List<ItemBehaviour> currentActiveMilestone;
+
+
 
 
     private event Action OnTierChangedEvent;
@@ -44,9 +55,24 @@ public class TierManager : MonoBehaviour
 
     private void Start()
     {
+        //SetDefault();
         InitTierCraftedList();
         SetPotionEffectTiers();
+        SetupMilestoneTierLists();
         UnlockNewTier(1);
+    }
+
+    private void SetDefault()
+    {
+        firstTierItems = new();
+        secondTierItems = new();
+        thirdTierItems = new();
+        forthTierItems = new();
+        milestoneFirstTier = new();
+        milestoneSecondTier = new();
+        milestoneThirdTier = new();
+        milestoneForthTier = new();
+        currentActiveMilestone = new();
     }
 
     private void InitTierCraftedList()
@@ -67,27 +93,103 @@ public class TierManager : MonoBehaviour
             }
             switch (highestTier)
             {
-                case 1: firstTierCraftedItems.Add(target.CraftedItemReference()); break;
-                case 2: secondTierCraftedItems.Add(target.CraftedItemReference()); break;
-                case 3: thirdTierCraftedItems.Add(target.CraftedItemReference()); break;
-                case 4: forthTierCraftedItems.Add(target.CraftedItemReference()); break;
+                case 1: firstTierItems.Add(target.CraftedItemReference()); break;
+                case 2: secondTierItems.Add(target.CraftedItemReference()); break;
+                case 3: thirdTierItems.Add(target.CraftedItemReference()); break;
+                case 4: forthTierItems.Add(target.CraftedItemReference()); break;
                 default: Debug.LogWarning("CHECK HERE ASAP"); break;
             }
+        }
+
+        craftedItems.Clear();
+        craftedItems = Assembly.GetAssembly(typeof(MaterialItem))
+        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(MaterialItem))).ToList();
+
+        foreach(var item in craftedItems) 
+        {
+            MaterialItem target = (MaterialItem)Activator.CreateInstance(item);
+            firstTierItems.Add(target);
+        }
+        craftedItems.Clear();
+        craftedItems = Assembly.GetAssembly(typeof(Herb))
+        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Herb))).ToList();
+
+        foreach (var item in craftedItems)
+        {
+            Herb target = (Herb)Activator.CreateInstance(item);
+            firstTierItems.Add(target);
+        }
+
+        craftedItems.Clear();
+        craftedItems = Assembly.GetAssembly(typeof(Seed))
+        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Seed))).ToList();
+
+        foreach (var item in craftedItems)
+        {
+            Seed Target = (Seed)Activator.CreateInstance(item);
+            firstTierItems.Add(Target);
         }
     }
 
     private void SetPotionEffectTiers()
     {
         PotionLibrary.Initialize();
-        firstTierPotionEffects = PotionLibrary.firstTierBasePotion;
-        secondTierPotionEffects = PotionLibrary.secondTierBasePotion;
-        thirdTierPotionEffects = PotionLibrary.thirdTierBasePotion;
-        forthTierPotionEffects = PotionLibrary.forthTierBasePotion;
+
+        AddPotionsToList(PotionLibrary.firstTierBasePotion, firstTierItems);
+        AddPotionsToList(PotionLibrary.secondTierBasePotion, secondTierItems);
+        AddPotionsToList(PotionLibrary.thirdTierBasePotion, thirdTierItems);
+        AddPotionsToList(PotionLibrary.forthTierBasePotion, firstTierItems);
+    }
+
+    private void SetupMilestoneTierLists()
+    {
+        for(int i = 0; i <firstTierCount; i++)
+        {
+            milestoneFirstTier.Add(firstTierItems[UnityEngine.Random.Range(0, firstTierItems.Count)]);
+        }
+        for (int i = 0; i < secondTierCount; i++)
+        {
+            milestoneSecondTier.Add(secondTierItems[UnityEngine.Random.Range(0, secondTierItems.Count)]);
+        }
+        for (int i = 0; i < thirdTierCount; i++)
+        {
+            milestoneThirdTier.Add(thirdTierItems[UnityEngine.Random.Range(0, thirdTierItems.Count)]);
+        }
+        for (int i = 0; i < fourthTierCount; i++)
+        {
+            milestoneForthTier.Add(forthTierItems[UnityEngine.Random.Range(0, forthTierItems.Count)]);
+        }
+    }
+
+
+    public void MilestoneCheckItem(List<ItemBehaviour> holdingItems)
+    {
+        foreach (var item in holdingItems)
+        {
+            if (currentActiveMilestone.Contains(item))
+            {
+                currentActiveMilestone.Remove(item);
+                if (currentActiveMilestone.Count == 0)
+                {
+                    UnlockNewTier(unlockedTier++);
+                    return;
+                }
+            }
+        }
     }
 
     private void UnlockNewTier(int tierNumber)
     {
         unlockedTier = tierNumber;
+        switch (unlockedTier)
+        {
+            case 1: currentActiveMilestone = milestoneFirstTier; break;
+            case 2: currentActiveMilestone = milestoneSecondTier; break;
+            case 3: currentActiveMilestone = milestoneThirdTier; break;
+            case 4:currentActiveMilestone = milestoneForthTier; break;
+            default: Debug.LogWarning("Check here asap"); break;
+        }
+
         OnTierChangedEvent?.Invoke();
     }
 
@@ -97,35 +199,25 @@ public class TierManager : MonoBehaviour
         List<ItemBehaviour> targetList = new();
         if (unlockedTier == 1)
         {
-            targetList.AddRange(firstTierCraftedItems);
-            AddPotionsToList(firstTierPotionEffects, targetList);
+            targetList.AddRange(firstTierItems);
         }
         else if (unlockedTier == 2)
         {
-            targetList.AddRange(firstTierCraftedItems);
-            targetList.AddRange(secondTierCraftedItems);
-            AddPotionsToList(firstTierPotionEffects, targetList);
-            AddPotionsToList(secondTierPotionEffects,targetList);
+            targetList.AddRange(firstTierItems);
+            targetList.AddRange(secondTierItems);
         }
         else if (unlockedTier == 3)
         {
-            targetList.AddRange(firstTierCraftedItems);
-            targetList.AddRange(secondTierCraftedItems);
-            targetList.AddRange(thirdTierCraftedItems);
-            AddPotionsToList(firstTierPotionEffects, targetList);
-            AddPotionsToList(secondTierPotionEffects, targetList);
-            AddPotionsToList(thirdTierPotionEffects, targetList);
+            targetList.AddRange(firstTierItems);
+            targetList.AddRange(secondTierItems);
+            targetList.AddRange(thirdTierItems);
         }
         else if (unlockedTier == 4)
         {
-            targetList.AddRange(firstTierCraftedItems);
-            targetList.AddRange(secondTierCraftedItems);
-            targetList.AddRange(thirdTierCraftedItems);
-            targetList.AddRange(forthTierPotionEffects);
-            AddPotionsToList(firstTierPotionEffects, targetList);
-            AddPotionsToList(secondTierPotionEffects, targetList);
-            AddPotionsToList(thirdTierPotionEffects, targetList);
-            AddPotionsToList(forthTierPotionEffects, targetList);
+            targetList.AddRange(firstTierItems);
+            targetList.AddRange(secondTierItems);
+            targetList.AddRange(thirdTierItems);
+            targetList.AddRange(firstTierItems);
         }
         return targetList;
     }
