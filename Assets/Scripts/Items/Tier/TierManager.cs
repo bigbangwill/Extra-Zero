@@ -13,7 +13,7 @@ public class TierManager : MonoBehaviour
     [SerializeField] private int firstTierCount = 2;
     [SerializeField] private int secondTierCount = 3;
     [SerializeField] private int thirdTierCount = 5;
-    [SerializeField] private int fourthTierCount = 7;
+    [SerializeField] private int forthTierCount = 7;
 
     private int unlockedTier = 0;
 
@@ -143,21 +143,65 @@ public class TierManager : MonoBehaviour
 
     private void SetupMilestoneTierLists()
     {
-        for(int i = 0; i <firstTierCount; i++)
+        List<ItemBehaviour> firstNonMaterialList = new();
+        List<ItemBehaviour> secondNonMaterialList = new();
+        List<ItemBehaviour> thirdNonMaterialList = new();
+        List<ItemBehaviour> forthNonMaterialList = new();
+        foreach (var item in firstTierItems)
         {
-            milestoneFirstTier.Add(firstTierItems[UnityEngine.Random.Range(0, firstTierItems.Count)]);
+            if (item.GetType() != typeof(MaterialItem) && item.GetType() != typeof(Herb) && item.GetType() != typeof(Seed))
+            {
+                firstNonMaterialList.Add(item);
+            }
         }
-        for (int i = 0; i < secondTierCount; i++)
+        foreach(var item in secondTierItems)
         {
-            milestoneSecondTier.Add(secondTierItems[UnityEngine.Random.Range(0, secondTierItems.Count)]);
+            secondNonMaterialList.Add(item);
         }
-        for (int i = 0; i < thirdTierCount; i++)
+        foreach (var item in thirdTierItems)
         {
-            milestoneThirdTier.Add(thirdTierItems[UnityEngine.Random.Range(0, thirdTierItems.Count)]);
+            thirdNonMaterialList.Add(item);
         }
-        for (int i = 0; i < fourthTierCount; i++)
+        foreach (var item in forthTierItems)
         {
-            milestoneForthTier.Add(forthTierItems[UnityEngine.Random.Range(0, forthTierItems.Count)]);
+            forthNonMaterialList.Add(item);
+        }
+
+        int safeChecker = firstNonMaterialList.Count;
+        if (safeChecker >= firstTierCount)
+            safeChecker = firstTierCount;
+        for(int i = 0; i <safeChecker; i++)
+        {
+            ItemBehaviour target = firstNonMaterialList[UnityEngine.Random.Range(0, firstNonMaterialList.Count)];
+            firstNonMaterialList.Remove(target);
+            milestoneFirstTier.Add(target);
+        }
+        safeChecker = secondNonMaterialList.Count;
+        if(safeChecker >= secondTierCount)
+            safeChecker = secondTierCount;
+        for (int i = 0; i < safeChecker; i++)
+        {
+            ItemBehaviour target = secondNonMaterialList[UnityEngine.Random.Range(0, secondNonMaterialList.Count)];
+            secondNonMaterialList.Remove(target);
+            milestoneSecondTier.Add(target);
+        }
+        safeChecker = thirdNonMaterialList.Count;
+        if (safeChecker >= thirdTierCount)
+            safeChecker = thirdTierCount;
+        for (int i = 0; i < safeChecker; i++)
+        {
+            ItemBehaviour target = thirdNonMaterialList[UnityEngine.Random.Range(0,thirdNonMaterialList.Count)];
+            thirdNonMaterialList.Remove(target);
+            milestoneThirdTier.Add(target);
+        }
+        safeChecker = forthNonMaterialList.Count;
+        if (safeChecker >= forthNonMaterialList.Count)
+            safeChecker = forthTierCount;
+        for (int i = 0; i < safeChecker; i++)
+        {
+            ItemBehaviour target = forthNonMaterialList[UnityEngine.Random.Range(0, forthNonMaterialList.Count)];
+            forthNonMaterialList.Remove(target);
+            milestoneForthTier.Add(target);
         }
     }
 

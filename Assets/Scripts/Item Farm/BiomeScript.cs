@@ -7,12 +7,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using Unity.VisualScripting;
 
 public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 
     [SerializeField] private GameObject dragObject;
-    private enum SeedToHold { Chamomile,Sage,Lavander};
+    private enum SeedToHold { Chamomile, Sage, Lavander, Hellebore, Patchouli };
 
     [SerializeField] SeedToHold holdingSeedEnum;
 
@@ -42,6 +43,8 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
             case SeedToHold.Chamomile: holdingSeed = new Seed.Chamomile(1);break;
             case SeedToHold.Sage: holdingSeed = new Seed.Sage(1);break;
             case SeedToHold.Lavander: holdingSeed = new Seed.Lavender(1); break;
+            case SeedToHold.Hellebore : holdingSeed = new Seed.Hellebore(1); break;
+            case SeedToHold.Patchouli : holdingSeed = new Seed.Patchouli(1); break;
             default: Debug.LogWarning("CHECK HERE ASAP"); break;
         }
         seedIcon.sprite = holdingSeed.IconRefrence();
