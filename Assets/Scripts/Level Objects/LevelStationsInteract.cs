@@ -59,7 +59,6 @@ public class LevelStationsInteract : MonoBehaviour, IInteractable, IReacheable
 
     public virtual void Interact()
     {
-        Debug.Log("Here");
         if (lastActive != null)
         {
             lastActive.SetActive(true);

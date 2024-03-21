@@ -98,6 +98,20 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
 
         AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
         AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
 
         //AddItemToInventory(new MaterialItem.Plastic(10));
         //AddItemToInventory(new MaterialItem.AluminumAlloy(10));

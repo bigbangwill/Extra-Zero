@@ -106,7 +106,7 @@ public class OrderManager : MonoBehaviour
     /// <param name="waveDifficulty"></param>
     public void StartNewWave(WaveDifficultySO waveDifficulty)
     {
-        Debug.Log("It's Day Time");
+        //Debug.Log("It's Day Time");
         currentWaveDifficulty = waveDifficulty;
         currentWaveNumber++;
         waveCurrentTimer = 0;
@@ -148,7 +148,7 @@ public class OrderManager : MonoBehaviour
         nightCurrentTimer = 0;
         nightMaxTimer = currentWaveDifficulty.GetNightMaxTime();
         waveChosingUI.CreateWaveOptionUI();
-        Debug.Log("It's Night TIME ");
+        //Debug.Log("It's Night TIME ");
     }
 
     private void FinishNightTime()
@@ -162,7 +162,7 @@ public class OrderManager : MonoBehaviour
         activeWalkingOrders.Remove(walkingOrder);
         if(activeWalkingOrders.Count == 0 )
         {
-            Debug.Log("Wave Finished");
+            //Debug.Log("Wave Finished");
         }
     }
 

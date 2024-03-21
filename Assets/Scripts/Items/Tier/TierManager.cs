@@ -216,13 +216,19 @@ public class TierManager : MonoBehaviour
     {
         foreach (var item in holdingItems)
         {
-            if (currentActiveMilestone.Contains(item))
+            foreach (var mileItem in currentActiveMilestone.ToList())
             {
-                currentActiveMilestone.Remove(item);
-                if (currentActiveMilestone.Count == 0)
+                if (mileItem.Equals(item))
                 {
-                    UnlockNewTier(unlockedTier++);
-                    return;
+                    currentActiveMilestone.Remove(mileItem);
+                    tierUI.CheckItemInDictionary(mileItem);
+                    if (currentActiveMilestone.Count == 0)
+                    {
+                        int newTier = unlockedTier + 1;
+                        UnlockNewTier(newTier);
+                        Debug.LogWarning("Hit hereeee");
+                        return;
+                    }
                 }
             }
         }
@@ -239,6 +245,7 @@ public class TierManager : MonoBehaviour
             case 4:currentActiveMilestone = milestoneForthTier; break;
             default: Debug.LogWarning("Check here asap"); break;
         }
+        Debug.LogWarning(unlockedTier);
 
         OnTierChangedEvent?.Invoke();
     }

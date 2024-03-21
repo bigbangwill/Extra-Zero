@@ -140,7 +140,6 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         m_GraphicRaycaster.Raycast(m_PointerEventData, results);
         if (results.Count <= 1)
         {
-            Debug.Log("Throw out");
             if (RaycastWorldSpace())
             {
                 transform.position = startPos;

@@ -21,7 +21,7 @@ public class WaveChosingUI : MonoBehaviour
     {
         orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
         waveManagerRefrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");
-        Debug.Log("WAVE MANAGER REFRENCE", waveManagerRefrence.val.gameObject);
+        
     }
 
     

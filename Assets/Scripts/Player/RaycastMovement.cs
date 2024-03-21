@@ -35,12 +35,11 @@ public class RaycastMovement : MonoBehaviour, IPointerDownHandler
             RaycastHit2D[] raycastHits = Physics2D.RaycastAll(targetPos, Vector2.zero);
             foreach (RaycastHit2D hit in raycastHits)
             {
-                Debug.Log(hit.collider.name);
+                //Debug.Log(hit.collider.name);
                 if (hit.collider.TryGetComponent<IReacheable>(out var reacheable))
                 {
                     NavmeshReachableInformation navInfo = reacheable.ReachAction();
                     playerMovementScript.MovetoTarget(navInfo);
-                    Debug.Log("We are in");
                     return;
                 }
             }

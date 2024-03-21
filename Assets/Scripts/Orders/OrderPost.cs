@@ -79,6 +79,7 @@ public class OrderPost : MonoBehaviour
     public void GetNewOrderList()
     {
         orderableItems = tierManager.GetNewTierCraftedItemList();
+        Debug.LogWarning("Got the new list");
     }
 
     public WalkingOrder CreateWalkingOrder(int combinationCount,float walkingOrderSpeed,float orderTimer)
@@ -155,7 +156,7 @@ public class OrderPost : MonoBehaviour
     public void CurrentOrderFullfilled()
     {
         postUI.SetOrderImage(currentOrder);
-        tierManager.MilestoneCheckItem(currentOrder.GetOrderItems());
+        tierManager.MilestoneCheckItem(currentOrder.GetFilledItems());
         RemoveTopWalkingOrder();
     }
 

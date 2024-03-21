@@ -42,7 +42,7 @@ public class Order
     /// To return the finished item.
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<ItemBehaviour> GetFilledItems()
+    public List<ItemBehaviour> GetFilledItems()
     {
         return fulfilledItems;
     }

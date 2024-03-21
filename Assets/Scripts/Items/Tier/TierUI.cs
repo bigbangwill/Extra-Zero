@@ -63,9 +63,17 @@ public class TierUI : MonoBehaviour
 
     public void CheckItemInDictionary(ItemBehaviour targetItem)
     {
-        if (itemTierDictionary.ContainsKey(targetItem))
+        //if (itemTierDictionary.ContainsKey(targetItem))
+        //{
+        //    itemTierDictionary[targetItem].SetState(true);
+        //}
+
+        foreach (var item in itemTierDictionary.Keys)
         {
-            itemTierDictionary[targetItem].SetState(true);
+            if (item.Equals(targetItem))
+            {
+                itemTierDictionary[targetItem].SetState(true);
+            }
         }
     }
 
