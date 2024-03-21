@@ -33,7 +33,7 @@ public class Order
     /// To return the current items that are not finished.
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<ItemBehaviour> GetOrderItems()
+    public List<ItemBehaviour> GetOrderItems()
     {
         return orderItems;
     }

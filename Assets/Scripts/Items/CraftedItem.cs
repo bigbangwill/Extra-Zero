@@ -66,9 +66,9 @@ public abstract class CraftedItem : ItemBehaviour
         public SignalBooster()
         {
             specificName = "Signal Booster";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -82,9 +82,9 @@ public abstract class CraftedItem : ItemBehaviour
         public EnergyCell()
         {
             specificName = "Energy Cell";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -98,9 +98,9 @@ public abstract class CraftedItem : ItemBehaviour
         public SurvivalKit()
         {
             specificName = "Survival Kit";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -114,9 +114,9 @@ public abstract class CraftedItem : ItemBehaviour
         public RepairDrone()
         {
             specificName = "Repair Drone";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -130,9 +130,9 @@ public abstract class CraftedItem : ItemBehaviour
         public WaterPurifier()
         {
             specificName = "Water Purifier";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -146,9 +146,9 @@ public abstract class CraftedItem : ItemBehaviour
         public SolarCharger()
         {
             specificName = "Solar Charger";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -162,9 +162,9 @@ public abstract class CraftedItem : ItemBehaviour
         public ThermalBlanket()
         {
             specificName = "Thermal Blanket";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -178,9 +178,9 @@ public abstract class CraftedItem : ItemBehaviour
         public RadiationDetector()
         {
             specificName = "Radiation Detector";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -194,9 +194,9 @@ public abstract class CraftedItem : ItemBehaviour
         public CommunicationRelay()
         {
             specificName = "Communication Relay";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -211,9 +211,9 @@ public abstract class CraftedItem : ItemBehaviour
         public HeatShield()
         {
             specificName = "Heat Shield";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -227,9 +227,9 @@ public abstract class CraftedItem : ItemBehaviour
         public MemoryCore()
         {
             specificName = "Memory Core";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -243,9 +243,9 @@ public abstract class CraftedItem : ItemBehaviour
         public PowerConduit()
         {
             specificName = "Power Conduit";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -259,9 +259,9 @@ public abstract class CraftedItem : ItemBehaviour
         public CircuitFrame()
         {
             specificName = "Circuit Frame";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -275,9 +275,9 @@ public abstract class CraftedItem : ItemBehaviour
         public InsulationFoam()
         {
             specificName = "Insulation Foam";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -292,9 +292,9 @@ public abstract class CraftedItem : ItemBehaviour
         public AICore()
         {
             specificName = "AI Core";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -308,9 +308,9 @@ public abstract class CraftedItem : ItemBehaviour
         public EnvironmentalRegulator()
         {
             specificName = "Environmental Regulator";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -324,9 +324,9 @@ public abstract class CraftedItem : ItemBehaviour
         public HapticInterface()
         {
             specificName = "Haptic Interface";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -340,9 +340,9 @@ public abstract class CraftedItem : ItemBehaviour
         public QuantumProcessor()
         {
             specificName = "Quantum Processor";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()
@@ -356,9 +356,9 @@ public abstract class CraftedItem : ItemBehaviour
         public BiometricScanner()
         {
             specificName = "Biometric Scanner";
-            Load();
             is_Activeable = false;
             is_Usable = false;
+            Load();
         }
 
         public override void Use()

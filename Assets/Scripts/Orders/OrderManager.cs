@@ -8,13 +8,6 @@ using Unity.VisualScripting;
 
 public class OrderManager : MonoBehaviour
 {
-    //#region Sinleton
-    //public static OrderManager Instance
-    //{
-    //    get { return ((OrderManager)_Instance); }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
 
 
     [SerializeField] private List<OrderPost> postList = new();
@@ -49,6 +42,7 @@ public class OrderManager : MonoBehaviour
 
     private PlayerInventoryRefrence inventoryRefrence;
     private UsableCanvasManagerRefrence usableRefrence;
+    private TierManager tierManager;
 
     private void SetRefrence()
     {
@@ -65,8 +59,9 @@ public class OrderManager : MonoBehaviour
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
         usableRefrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
+        tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
     }
-    
+
 
     private void Awake()
     {
@@ -189,22 +184,9 @@ public class OrderManager : MonoBehaviour
     // To add all of the createable items to the list.
     private void Init()
     {
-        List<Type> childTypesList = Assembly.GetAssembly(typeof(ItemBehaviour))
-        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType != typeof(PotionItem)
-        && !typeof(BluePrintItem).IsAssignableFrom(TheType) && TheType != typeof(EmptyItem)
-        && TheType.IsSubclassOf(typeof(ItemBehaviour))).ToList();
-
-        
-
-        foreach (var item in childTypesList)
-        {
-            ItemBehaviour createdItem = Activator.CreateInstance(item) as ItemBehaviour;
-            orderableItems.Add(createdItem);
-        }
-
         foreach (var post in postList)
         {
-            post.InitList(orderableItems);
+            post.InitList(tierManager.GetNewTierCraftedItemList());
         }
 
     }

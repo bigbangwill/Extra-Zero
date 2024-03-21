@@ -15,7 +15,9 @@ public class TierManager : MonoBehaviour
     [SerializeField] private int thirdTierCount = 5;
     [SerializeField] private int forthTierCount = 7;
 
-    private int unlockedTier = 0;
+    [SerializeField] private TierUI tierUI;
+
+    private int unlockedTier = 1;
 
     private List<ItemBehaviour> firstTierItems = new();
     private List<ItemBehaviour> secondTierItems = new();
@@ -51,15 +53,19 @@ public class TierManager : MonoBehaviour
     private void Awake()
     {
         SetRefrence();
+        InitTierCraftedList();
+        SetPotionEffectTiers();
+        SetupMilestoneTierLists();
     }
 
     private void Start()
     {
         //SetDefault();
-        InitTierCraftedList();
-        SetPotionEffectTiers();
-        SetupMilestoneTierLists();
         UnlockNewTier(1);
+        tierUI.SetFirstTier(milestoneFirstTier);
+        tierUI.SetSecondTier(milestoneSecondTier);
+        tierUI.SetThirdTier(milestoneThirdTier);
+        tierUI.SetForthTier(milestoneForthTier);
     }
 
     private void SetDefault()
@@ -138,7 +144,7 @@ public class TierManager : MonoBehaviour
         AddPotionsToList(PotionLibrary.firstTierBasePotion, firstTierItems);
         AddPotionsToList(PotionLibrary.secondTierBasePotion, secondTierItems);
         AddPotionsToList(PotionLibrary.thirdTierBasePotion, thirdTierItems);
-        AddPotionsToList(PotionLibrary.forthTierBasePotion, firstTierItems);
+        AddPotionsToList(PotionLibrary.forthTierBasePotion, forthTierItems);
     }
 
     private void SetupMilestoneTierLists()
@@ -149,7 +155,7 @@ public class TierManager : MonoBehaviour
         List<ItemBehaviour> forthNonMaterialList = new();
         foreach (var item in firstTierItems)
         {
-            if (item.GetType() != typeof(MaterialItem) && item.GetType() != typeof(Herb) && item.GetType() != typeof(Seed))
+            if (item.ItemTypeValue() == ItemType.craftedItem || item.ItemTypeValue() == ItemType.potion)
             {
                 firstNonMaterialList.Add(item);
             }
@@ -261,7 +267,7 @@ public class TierManager : MonoBehaviour
             targetList.AddRange(firstTierItems);
             targetList.AddRange(secondTierItems);
             targetList.AddRange(thirdTierItems);
-            targetList.AddRange(firstTierItems);
+            targetList.AddRange(forthTierItems);
         }
         return targetList;
     }

@@ -91,14 +91,12 @@ public class PlayerMovement : MonoBehaviour
         {
             agent.SetDestination(pos);
             yield return new WaitUntil(() => Vector2.Distance(transform.position, pos) <= agent.stoppingDistance);
-            Debug.Log("Inside Coroutine");
             Reached();
         }
     }
 
     private void Reached()
     {
-        Debug.Log("reached");
         if (currentPendingCoroutine != null)
         {
             StopCoroutine(currentPendingCoroutine);

@@ -93,6 +93,12 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
     {
         LoadSORefrence();
         AddISaveableToDictionary();
+        AddItemToInventory(new CraftedItem.InsulationFoam());
+        AddItemToInventory(new CraftedItem.MemoryCore());
+
+        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+
         //AddItemToInventory(new MaterialItem.Plastic(10));
         //AddItemToInventory(new MaterialItem.AluminumAlloy(10));
         //AddItemToInventory(new MaterialItem.Ceramic(10));

@@ -155,6 +155,7 @@ public class OrderPost : MonoBehaviour
     public void CurrentOrderFullfilled()
     {
         postUI.SetOrderImage(currentOrder);
+        tierManager.MilestoneCheckItem(currentOrder.GetOrderItems());
         RemoveTopWalkingOrder();
     }
 
