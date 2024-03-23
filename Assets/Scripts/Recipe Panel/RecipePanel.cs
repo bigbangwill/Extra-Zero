@@ -12,8 +12,11 @@ public class RecipePanel : MonoBehaviour
     [SerializeField] private GameObject seedRecipePrefab;
     [SerializeField] private GameObject materialRecipePrefab;
 
-    [Header("Transfroms")]
-    [SerializeField] private Transform RecipeHolderTransform;
+    [SerializeField] private GameObject iconPrefab;
+
+    [Header("Transfrom")]
+    [SerializeField] private Transform scrollView;
+    [SerializeField] private Transform recipeHolder;
     
  
     private List<ItemBehaviour> orderItems = new();
@@ -23,6 +26,11 @@ public class RecipePanel : MonoBehaviour
 
     public void ReloadCurrentOrders()
     {
+        orderItems.Clear();
+        foreach (Transform item in scrollView.transform)
+        {
+            Destroy(item.gameObject);
+        }
         foreach(var post in orderPosts)
         {
             Order currentOrder = post.GetCurrentOrder();
@@ -35,25 +43,31 @@ public class RecipePanel : MonoBehaviour
             }
         }
 
-
         foreach (var item in orderItems)
         {
-            switch (item.ItemTypeValue())
-            {
-                case ItemType.craftedItem: CreateCraftedItem((CraftedItem)item); break;
-                case ItemType.potion: CreatePotionItem((PotionItem)item); break;
-                case ItemType.herb: CreateHerbItem((Herb)item); break;
-                case ItemType.seed: CreateSeedItem((Seed)item); break;
-                case ItemType.material: CreateMaterialItem((MaterialItem)item);break;
-                default: Debug.LogWarning("CHECK HERE ASAP"); break;
-            }
+            GameObject iconGO = Instantiate(iconPrefab, scrollView);
+            iconGO.GetComponent<RecipeIcon>().SetItem(item);
+        }        
+    }
+
+    public void IconPrefabClick(ItemBehaviour target)
+    {
+        switch (target.ItemTypeValue())
+        {
+            case ItemType.craftedItem: CreateCraftedItem((CraftedItem)target); break;
+            case ItemType.potion: CreatePotionItem((PotionItem)target); break;
+            case ItemType.herb: CreateHerbItem((Herb)target); break;
+            case ItemType.seed: CreateSeedItem((Seed)target); break;
+            case ItemType.material: CreateMaterialItem((MaterialItem)target); break;
+            default: Debug.LogWarning("CHECK HERE ASAP"); break;
         }
     }
 
 
     private void CreateCraftedItem(CraftedItem item)
     {
-
+        GameObject GO = Instantiate(craftingItemPrefab, recipeHolder);
+        GO.GetComponent<CraftedItemRecipePrefab>().InitIcon(item);
     }
 
     private void CreatePotionItem(PotionItem item)
