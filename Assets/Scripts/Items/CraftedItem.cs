@@ -21,6 +21,7 @@ public abstract class CraftedItem : ItemBehaviour
         LoadIcon();
     }
 
+    public abstract BluePrintItem GetCraftingRecipe();
 
 
     public override bool Equals(object obj)
@@ -59,6 +60,11 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {            
+            return new BluePrintItem.DataPadBlueprint();
+        }
     }
 
     public class SignalBooster : CraftedItem
@@ -74,6 +80,10 @@ public abstract class CraftedItem : ItemBehaviour
         public override void Use()
         {
             throw new NotImplementedException();
+        }
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.SignalBoosterBlueprint();
         }
     }
 
@@ -91,6 +101,10 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.EnergyCellBlueprint();
+        }
     }
 
     public class SurvivalKit : CraftedItem
@@ -107,6 +121,11 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.SurvivalKitBlueprint();
+        }
+
     }
 
     public class RepairDrone : CraftedItem
@@ -122,6 +141,11 @@ public abstract class CraftedItem : ItemBehaviour
         public override void Use()
         {
             throw new NotImplementedException();
+        }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.RepairDroneBlueprint();
         }
     }
 
@@ -139,6 +163,11 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.WaterPurifierBlueprint();
+        }
     }
 
     public class SolarCharger : CraftedItem
@@ -155,6 +184,12 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.SolarChargerBlueprint();
+        }
+
     }
 
     public class ThermalBlanket : CraftedItem
@@ -171,6 +206,12 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.ThermalBlanketBlueprint();
+        }
+
     }
 
     public class RadiationDetector : CraftedItem
@@ -187,6 +228,12 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.RadiationDetectorBlueprint();
+        }
+
     }
 
     public class CommunicationRelay : CraftedItem
@@ -203,6 +250,12 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.CommunicationRelayBlueprint();
+        }
+
     }
 
 
@@ -220,6 +273,11 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.HeatShieldBlueprint();
+        }
     }
 
     public class MemoryCore : CraftedItem
@@ -236,6 +294,11 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.MemoryCoreBlueprint();
+        }
+
     }
 
     public class PowerConduit : CraftedItem
@@ -251,6 +314,11 @@ public abstract class CraftedItem : ItemBehaviour
         public override void Use()
         {
             throw new NotImplementedException();
+        }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.PowerConduitBlueprint();
         }
     }
 
@@ -268,6 +336,11 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.CircuitFrameBlueprint();
+        }
     }
 
     public class InsulationFoam : CraftedItem
@@ -283,6 +356,11 @@ public abstract class CraftedItem : ItemBehaviour
         public override void Use()
         {
             throw new NotImplementedException();
+        }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.InsulationFoamBlueprint();
         }
     }
 
@@ -301,6 +379,11 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.AICoreBlueprint();
+        }
     }
 
     public class EnvironmentalRegulator : CraftedItem
@@ -316,6 +399,11 @@ public abstract class CraftedItem : ItemBehaviour
         public override void Use()
         {
             throw new NotImplementedException();
+        }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.EnvironmentalRegulatorBlueprint();
         }
     }
 
@@ -333,6 +421,11 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.HapticInterfaceBlueprint();
+        }
     }
 
     public class QuantumProcessor : CraftedItem
@@ -349,6 +442,10 @@ public abstract class CraftedItem : ItemBehaviour
         {
             throw new NotImplementedException();
         }
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.QuantumProcessorBlueprint();
+        }
     }
 
     public class BiometricScanner : CraftedItem
@@ -364,6 +461,10 @@ public abstract class CraftedItem : ItemBehaviour
         public override void Use()
         {
             throw new NotImplementedException();
+        }
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return new BluePrintItem.BiometricScannerBlueprint();
         }
     }
 
@@ -389,6 +490,13 @@ public abstract class CraftedItem : ItemBehaviour
             LoadAddressable();
             //OnCreate();
             is_Activeable = true;
+        }
+
+
+        // NEED A FIX FOR THIS ASAP
+        public override BluePrintItem GetCraftingRecipe()
+        {
+            return null;
         }
 
         private void LoadAddressable()

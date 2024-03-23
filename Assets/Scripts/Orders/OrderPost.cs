@@ -187,6 +187,11 @@ public class OrderPost : MonoBehaviour
         }
     }
 
+    public Order GetCurrentOrder()
+    {
+        return currentOrder;
+    }
+
 
     public void AddWalkingOrder(WalkingOrder walkingOrder)
     {
