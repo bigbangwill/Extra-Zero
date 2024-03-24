@@ -6,9 +6,12 @@ using UnityEngine;
 public class EconomyManager : MonoBehaviour
 {
 
-    private int inGameCurrencyCurrentStack = 5;
-    private int inGameCurrencyMaxStack = 10;
-
+    [SerializeField] private int inGameCurrencyCurrentStack = 5;
+    [SerializeField] private int inGameCurrencyMaxStack = 10;
+    [SerializeField] private int outGameCurrencyCurrentStack = 5;
+    [SerializeField] private int outGameCurrencyMaxStack = 10;
+    [SerializeField] private int quantumQuartersCurrentStack = 5;
+    [SerializeField] private int quantumQuartersMaxStack = 10;
 
     private EconomyManagerRefrence refrence;
     private static EconomyManager instance;
@@ -64,14 +67,14 @@ public class EconomyManager : MonoBehaviour
         }
     }
 
-    private int outGameCurrencyCurrentStack = 5;
-    private int outGameCurrencyMaxStack = 10;
+    
 
     public int OutGameCurrencyCurrentStack
     {
         get => outGameCurrencyCurrentStack;
         set
         {
+            if (value > outGameCurrencyMaxStack) return;
             outGameCurrencyCurrentStack = value;
             ValuesChanged();
         }
@@ -82,13 +85,39 @@ public class EconomyManager : MonoBehaviour
         get => outGameCurrencyMaxStack;
         set
         {
-            if (value > outGameCurrencyMaxStack) return;
             outGameCurrencyMaxStack = value;
             ValuesChanged();
         }
     }
 
+    
+
+    public int QuantumQuartersCurrentStack
+    {
+        get => quantumQuartersCurrentStack;
+        set
+        {
+            if (value > quantumQuartersMaxStack) return;
+            ValuesChanged();
+        }
+    }
+
+    public int QuantumQuarterssMaxStack
+    {
+        get => quantumQuartersMaxStack;
+        set
+        {
+            quantumQuartersMaxStack = value;
+        }
+    }
+
+
     private static event Action ValuesChangedEvent;
+
+
+
+    
+
 
 
     public void AddListener(Action listener)

@@ -35,11 +35,13 @@ public class OrderPost : MonoBehaviour
 
     private OrderManagerRefrence orderManagerRefrence;
     private TierManager tierManager;
+    private EconomyManager economyManager;
 
     private void LoadSORefrence()
     {
         orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
         tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
+        economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
     }
 
 
@@ -157,6 +159,7 @@ public class OrderPost : MonoBehaviour
         postUI.SetOrderImage(currentOrder);
         tierManager.MilestoneCheckItem(currentOrder.GetFilledItems());
         RemoveTopWalkingOrder();
+        
     }
 
     // to implement later to punish the player!.

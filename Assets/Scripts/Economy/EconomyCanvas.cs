@@ -11,6 +11,8 @@ public class EconomyCanvas : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textInGame;
     [SerializeField] private Image outGameIcon;
     [SerializeField] private TextMeshProUGUI textOutGame;
+    [SerializeField] private Image quantumQuarterIcon;
+    [SerializeField] private TextMeshProUGUI textQuantumQuarter;
 
 
     private EconomyManagerRefrence economyManagerRefrence;
@@ -76,8 +78,12 @@ public class EconomyCanvas : MonoBehaviour
         string outGameMaxStack = economyManagerRefrence.val.OutGameCurrencyMaxStack.ToString();
 
         textOutGame.text = outGameCurrentStack + " / " + outGameMaxStack;
+
+        string quantumQuartersCurrentStack = economyManagerRefrence.val.QuantumQuartersCurrentStack.ToString();
+        string quantymQuartersMaxStack = economyManagerRefrence.val.QuantumQuarterssMaxStack.ToString();
+
+        textQuantumQuarter.text = quantumQuartersCurrentStack + " / " + quantymQuartersMaxStack;
+
     }
-
-
     
 }
