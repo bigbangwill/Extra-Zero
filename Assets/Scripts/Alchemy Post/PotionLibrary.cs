@@ -157,7 +157,7 @@ public abstract class PotionEffect
         return name;
     }
 
-    public IEnumerable HerbReceipe()
+    public List<Herb> HerbReceipe()
     {
         return receipeList;
     }

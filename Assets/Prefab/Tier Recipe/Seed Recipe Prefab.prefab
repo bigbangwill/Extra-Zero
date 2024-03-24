@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 3373692087543795539}
   - component: {fileID: 8987501297243338718}
   - component: {fileID: 4676004943545367648}
+  - component: {fileID: 4392346075383407193}
   m_Layer: 5
   m_Name: Seed Recipe Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3373692087543795539
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78,6 +79,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4392346075383407193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984416425690210065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0e45d2a979dba46a39c128656a6047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 1366317830456684824}
+  itemName: {fileID: 755120522122499941}
+  biomeIcon: {fileID: 6341638556586609513}
+  chamomileBiome: {fileID: -4897717107445516267, guid: 57a02cd9a136a1247ba633d2aa65a02f, type: 3}
+  sageBiome: {fileID: 2093037610033623542, guid: 09df80f663357664ea1f9c941350cb6f, type: 3}
+  lavenderBiome: {fileID: -6537762896949504489, guid: 65942a034c2b92b498d1e0300e9becaa, type: 3}
+  patchouliBiome: {fileID: 3378600286249086143, guid: d14077409e07acf4c86ad8cc2ff3ce3e, type: 3}
+  helleboreBiome: {fileID: 3834978316263549618, guid: d15eb9fd66a3e864f96e0948808f1b0e, type: 3}
 --- !u!1 &1715039869118971212
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +428,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4812329260383199426}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4392346075383407193}
+        m_TargetAssemblyTypeName: SeedItemRecipePrefab, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6305009769626720024
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HerbItemRecipePrefab : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Image icon;
+    [SerializeField] private TextMeshProUGUI itemName;
+
+    [SerializeField] private RecipeIcon seedIcon;
+
+    public void InitItem(Herb item)
     {
-        
+        icon.sprite = item.IconRefrence();
+        itemName.text = item.GetName();
+
+        seedIcon.SetItem(item.GetSeed());
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Close()
     {
-        
+        Destroy(gameObject);
     }
+
 }

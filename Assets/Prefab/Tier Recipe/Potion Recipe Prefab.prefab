@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 4929951391085364502}
   - component: {fileID: 4246571701116899789}
   - component: {fileID: 8003667586716642050}
+  - component: {fileID: 4429871511886507113}
   m_Layer: 5
   m_Name: Recipe 1
   m_TagString: Untagged
@@ -361,6 +362,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4429871511886507113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2315270552131258956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52be6acbdc8f294e9705da84ba72c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 5546756484772785980}
+  itemText: {fileID: 1050780367032491373}
 --- !u!1 &4103351577452017159
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +571,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3956332331444471950}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8797706401451511036}
+        m_TargetAssemblyTypeName: PotionItemRecipePrefab, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6183080210011133153
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +806,7 @@ GameObject:
   - component: {fileID: 6517320166507877634}
   - component: {fileID: 5241221943724914785}
   - component: {fileID: 8929751005235075648}
+  - component: {fileID: 1363365610109353628}
   m_Layer: 5
   m_Name: Recipe 3
   m_TagString: Untagged
@@ -845,6 +873,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1363365610109353628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6979905977273659070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52be6acbdc8f294e9705da84ba72c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 317853908617449333}
+  itemText: {fileID: 8934347916285860723}
 --- !u!1 &6996311442889678473
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +898,7 @@ GameObject:
   - component: {fileID: 6141374685946180098}
   - component: {fileID: 5948588641138698708}
   - component: {fileID: 2601085750683298518}
+  - component: {fileID: 1108006145374096848}
   m_Layer: 5
   m_Name: Recipe 2
   m_TagString: Untagged
@@ -922,6 +965,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1108006145374096848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6996311442889678473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52be6acbdc8f294e9705da84ba72c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 178159066141341704}
+  itemText: {fileID: 6753790063519281050}
 --- !u!1 &7135653734926511061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,13 +1392,14 @@ GameObject:
   - component: {fileID: 3717949058526280438}
   - component: {fileID: 5241697191247434403}
   - component: {fileID: 1580111851477750874}
+  - component: {fileID: 8797706401451511036}
   m_Layer: 5
   m_Name: Potion Recipe Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3717949058526280438
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1404,6 +1462,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8797706401451511036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7840576153110580723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41df0ccb3a35e4e4b81738970d956850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipeIcons:
+  - {fileID: 4429871511886507113}
+  - {fileID: 1108006145374096848}
+  - {fileID: 1363365610109353628}
+  icon: {fileID: 7519039574173412656}
+  itemName: {fileID: 7559786939753726000}
 --- !u!1 &8992304715061954638
 GameObject:
   m_ObjectHideFlags: 0

@@ -354,13 +354,14 @@ GameObject:
   - component: {fileID: 4415791549097418701}
   - component: {fileID: 630027221347308671}
   - component: {fileID: 744960597486319303}
+  - component: {fileID: 7223315155904744046}
   m_Layer: 5
   m_Name: Material Recipe Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4415791549097418701
 RectTransform:
   m_ObjectHideFlags: 0
@@ -421,6 +422,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7223315155904744046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5592192627512652066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a983bc685426c4aab66b614ceee2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 3920376506927518543}
+  itemName: {fileID: 145011470622381505}
+  farmSpotIcon: {fileID: 6890659839024724739}
+  plasticSpot: {fileID: 4245885293669296655, guid: 32b2e9470bcd486468031fe0b45a7374, type: 3}
+  CeramicSpot: {fileID: -2427426691799174346, guid: 344d98a328370174694a2fa3e44c7146, type: 3}
+  TitaniumAlloySpot: {fileID: 7827900188437657327, guid: 1f4232cba2e27da48a7dc27701907f26, type: 3}
+  AluminumAlloySpot: {fileID: 3736660914100989541, guid: db4d819cefcda9241ad6aa28b4c1c55e, type: 3}
+  StainlessSteelSpot: {fileID: -2660589970440170282, guid: ec104ca1460d5d84dad50e49db284e0a, type: 3}
 --- !u!1 &6223379585344796672
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +562,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6604084383358290936}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7223315155904744046}
+        m_TargetAssemblyTypeName: MaterialItemRecipePrefab, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7642209890133499862
 GameObject:
   m_ObjectHideFlags: 0

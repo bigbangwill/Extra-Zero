@@ -226,7 +226,6 @@ public class TierManager : MonoBehaviour
                     {
                         int newTier = unlockedTier + 1;
                         UnlockNewTier(newTier);
-                        Debug.LogWarning("Hit hereeee");
                         return;
                     }
                 }
@@ -245,7 +244,6 @@ public class TierManager : MonoBehaviour
             case 4:currentActiveMilestone = milestoneForthTier; break;
             default: Debug.LogWarning("Check here asap"); break;
         }
-        Debug.LogWarning(unlockedTier);
 
         OnTierChangedEvent?.Invoke();
     }

@@ -79,7 +79,6 @@ public class OrderPost : MonoBehaviour
     public void GetNewOrderList()
     {
         orderableItems = tierManager.GetNewTierCraftedItemList();
-        Debug.LogWarning("Got the new list");
     }
 
     public WalkingOrder CreateWalkingOrder(int combinationCount,float walkingOrderSpeed,float orderTimer)

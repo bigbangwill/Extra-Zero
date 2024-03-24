@@ -11,6 +11,8 @@ public class RecipeIcon : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image itemIcon;
     [SerializeField] private TextMeshProUGUI itemText;
+    [SerializeField] private TextMeshProUGUI itemStack;
+    [SerializeField] private bool stackMatters;
 
     private ItemBehaviour setItem;
     private RecipePanel recipePanel;
@@ -39,7 +41,17 @@ public class RecipeIcon : MonoBehaviour, IPointerClickHandler
         }
         setItem = target;
         itemIcon.sprite = target.IconRefrence();
-        itemText.text =  target.GetName();        
+        itemText.text = target.GetName();
+        if (stackMatters)
+        {
+            if (target.IsStackable())
+            {
+                itemStack.text = target.CurrentStack().ToString();
+            }
+            else
+                itemStack.gameObject.SetActive(false);
+        }
+
     }
 
     public T GetComponentInParents<T>() where T : Component

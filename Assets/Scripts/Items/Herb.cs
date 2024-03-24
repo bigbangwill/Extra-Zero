@@ -26,6 +26,8 @@ public abstract class Herb : ItemBehaviour
         return herbTier;
     }
 
+    public abstract Seed GetSeed();
+
 
     public override bool Equals(object obj)
     {
@@ -73,6 +75,11 @@ public abstract class Herb : ItemBehaviour
             herbTier = 1;
             Load();
         }
+
+        public override Seed GetSeed()
+        {
+            return new Seed.Chamomile();
+        }
     }
 
     public class Lavender : Herb
@@ -97,6 +104,11 @@ public abstract class Herb : ItemBehaviour
             currentStack = count;
             herbTier = 1;
             Load();
+        }
+
+        public override Seed GetSeed()
+        {
+            return new Seed.Lavender();
         }
 
     }
@@ -124,6 +136,10 @@ public abstract class Herb : ItemBehaviour
             herbTier = 2;
             Load();
         }
+        public override Seed GetSeed()
+        {
+            return new Seed.Sage();
+        }
     }
 
     public class Patchouli : Herb
@@ -149,6 +165,11 @@ public abstract class Herb : ItemBehaviour
             herbTier = 3;
             Load();
         }
+
+        public override Seed GetSeed()
+        {
+            return new Seed.Patchouli();
+        }
     }
 
     public class Hellebore : Herb 
@@ -172,6 +193,11 @@ public abstract class Herb : ItemBehaviour
             currentStack = count;
             herbTier = 4;
             Load();
-        }    
+        }
+
+        public override Seed GetSeed()
+        {
+            return new Seed.Hellebore();
+        }
     }
 }
