@@ -10,7 +10,7 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private int inGameCurrencyMaxStack = 10;
     [SerializeField] private int outGameCurrencyCurrentStack = 5;
     [SerializeField] private int outGameCurrencyMaxStack = 10;
-    [SerializeField] private int quantumQuartersCurrentStack = 5;
+    [SerializeField] private int quantumQuartersCurrentStack = 1;
     [SerializeField] private int quantumQuartersMaxStack = 10;
 
     private EconomyManagerRefrence refrence;
@@ -51,7 +51,12 @@ public class EconomyManager : MonoBehaviour
         get => inGameCurrencyCurrentStack;
         set
         {
-            if (value > inGameCurrencyMaxStack) return;
+            if (value > inGameCurrencyMaxStack)
+            {
+                InGameCurrencyCurrentStack = inGameCurrencyMaxStack;
+                ValuesChanged();
+                return;
+            }
             inGameCurrencyCurrentStack = value;
             ValuesChanged();
         }
@@ -74,7 +79,12 @@ public class EconomyManager : MonoBehaviour
         get => outGameCurrencyCurrentStack;
         set
         {
-            if (value > outGameCurrencyMaxStack) return;
+            if (value > outGameCurrencyMaxStack)
+            {
+                OutGameCurrencyCurrentStack = outGameCurrencyMaxStack;
+                ValuesChanged();
+                return;
+            }
             outGameCurrencyCurrentStack = value;
             ValuesChanged();
         }
@@ -97,7 +107,14 @@ public class EconomyManager : MonoBehaviour
         get => quantumQuartersCurrentStack;
         set
         {
-            if (value > quantumQuartersMaxStack) return;
+            if (value > quantumQuartersMaxStack)
+            {
+                quantumQuartersCurrentStack = quantumQuartersMaxStack;
+                ValuesChanged();
+                return;
+            }
+
+            quantumQuartersCurrentStack = value;
             ValuesChanged();
         }
     }
@@ -108,6 +125,7 @@ public class EconomyManager : MonoBehaviour
         set
         {
             quantumQuartersMaxStack = value;
+            ValuesChanged();
         }
     }
 

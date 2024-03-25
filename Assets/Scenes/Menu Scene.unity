@@ -6606,7 +6606,7 @@ MonoBehaviour:
   inGameCurrencyMaxStack: 10
   outGameCurrencyCurrentStack: 5
   outGameCurrencyMaxStack: 10
-  quantumQuartersCurrentStack: 5
+  quantumQuartersCurrentStack: 1
   quantumQuartersMaxStack: 10
 --- !u!4 &1778064552
 Transform:

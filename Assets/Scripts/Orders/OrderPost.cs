@@ -158,6 +158,8 @@ public class OrderPost : MonoBehaviour
     {
         postUI.SetOrderImage(currentOrder);
         tierManager.MilestoneCheckItem(currentOrder.GetFilledItems());
+        Debug.Log("Fullfilled");
+        economyManager.QuantumQuartersCurrentStack += 1 * currentOrder.TotalItemCount();
         RemoveTopWalkingOrder();
         
     }
