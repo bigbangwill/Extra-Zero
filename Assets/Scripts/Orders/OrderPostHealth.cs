@@ -202,7 +202,7 @@ public class HealthRecoverReceipe
             case 2: itemList.Add(new MaterialItem.Plastic(5)); break;
             case 3: itemList.Add(new MaterialItem.StainlessSteel(5)); break;
             case 4: itemList.Add(new MaterialItem.TitaniumAlloy(5)); break;
-            default: itemList.Add(new MaterialItem.AluminumAlloy(10)); break;
+            default: itemList.Add(new MaterialItem.AluminumAlloy(10)); Debug.LogWarning("Might need to check here"); break;
         }
     }
 

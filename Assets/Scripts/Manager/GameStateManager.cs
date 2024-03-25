@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum GameState { OnMenu,InGame}
+public enum GameState { OnMenu,InGame,LostGame}
 public class GameStateManager : MonoBehaviour
 {
 
@@ -77,6 +77,12 @@ public class GameStateManager : MonoBehaviour
     public GameState GetGameState()
     {
         return currentGameState;
+    }
+
+    public void GameIsLost()
+    {
+        currentGameState = GameState.LostGame;
+        ChangeStateInvoke();
     }
 
 }
