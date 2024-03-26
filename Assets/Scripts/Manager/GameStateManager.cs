@@ -79,10 +79,16 @@ public class GameStateManager : MonoBehaviour
         return currentGameState;
     }
 
-    public void GameIsLost()
+    public void PauseGame()
     {
-        currentGameState = GameState.LostGame;
-        ChangeStateInvoke();
+        Time.timeScale = 0;
+        Debug.Log("Game is Paused");
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        Debug.Log("Game is resumed");
     }
 
 }

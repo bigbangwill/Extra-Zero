@@ -27,6 +27,8 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     private bool targeted = false;
     public bool Targeted { get => targeted; set => targeted = value; }
 
+    [SerializeField] private CurrentGameStateSetter currentGameStateSetter;
+
 
     private PlayerInventoryRefrence inventoryRefrence;
     private UsableCanvasManagerRefrence usableRefrence;
@@ -105,7 +107,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     public void TakeDamage()
     {
         currentHealth--;
-        if(currentHealth <= 0 )
+        if(currentHealth < 0 )
         {
             PostZeroHealth();
         }
@@ -130,6 +132,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     private void PostZeroHealth()
     {
         currentHealth = 0;
+        currentGameStateSetter.GameIsLost();
     }
     private void Init()
     {
