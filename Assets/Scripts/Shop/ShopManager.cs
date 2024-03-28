@@ -18,10 +18,19 @@ public class ShopManager : MonoBehaviour
 
     private List<BluePrintItem> bluePrintList = new();
 
+    private EconomyManager economyManager;
+
+    private void LoadSORefrence()
+    {
+        economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
+    }
+
+
     private void Start()
     {
         Init();
         CreateBlueprintShoppingList();
+        LoadSORefrence();
     }
 
     private void Init()
@@ -62,9 +71,6 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void Purchase()
-    {
-        Debug.LogWarning("Purchased!");
-    }
+    
     
 }

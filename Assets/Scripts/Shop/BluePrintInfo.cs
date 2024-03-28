@@ -24,15 +24,18 @@ public class BluePrintInfo : MonoBehaviour
     [SerializeField] private TextMeshProUGUI material3Name;
     [SerializeField] private TextMeshProUGUI material3Stack;
 
-
     [SerializeField] private Image resultIcon;
 
+    private BluePrintItem currentItem;
+
     private EconomyManager economyManager;
+    private PlayerInventory inventory;
     private bool isLoaded = false;
     
     private void LoadSORefrence()
     {
         economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
+        inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
         Debug.Log(economyManager, economyManager.gameObject);
         isLoaded = true;
     }
@@ -44,6 +47,7 @@ public class BluePrintInfo : MonoBehaviour
             LoadSORefrence();
         }
         blueprintIcon.sprite = target.IconRefrence();
+        currentItem = target;
 
         if (target.materialsList.Count == 1)
         {
@@ -73,6 +77,21 @@ public class BluePrintInfo : MonoBehaviour
             purchaseButton.interactable = false;
         }
 
+    }
+
+
+    public void Purchase()
+    {
+        
+        if (economyManager.QuantumQuartersCurrentStack >= currentItem.PurchaseCost)
+        {
+            if (inventory.HaveEmptySlot(currentItem, true))
+            {
+                economyManager.QuantumQuartersCurrentStack -= currentItem.PurchaseCost;
+                transform.parent.gameObject.SetActive(false);
+            }
+            
+        }
     }
 
 

@@ -142,13 +142,21 @@ public class OrderPost : MonoBehaviour
             if (currentOrder.ItemIsEqual(item,slotNumber))
             {
                 if (currentOrder != null)
+                {
                     postUI.SetOrderImage(currentOrder);
+                    return;
+                }
             }
             else
             {
                 Debug.Log("Doesnt match");
             }
         }
+    }
+
+    public void RefreshUI()
+    {
+        postUI.SetOrderImage(currentOrder);
     }
     
     /// <summary>

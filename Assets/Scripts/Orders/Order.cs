@@ -92,6 +92,7 @@ public class Order
         else
         {
             orderItem.SetCurrentStack(orderStack - inventoryStack);
+            relatedPost.RefreshUI();
         }
     }
 

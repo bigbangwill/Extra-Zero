@@ -82,7 +82,13 @@ public class TalentTreeOrbitalMovement : MonoBehaviour
 
     public void StartRotating()
     {
-        float angleStep = 360f / nodeList.Count; // Angle between each object
+        int count = nodeList.Count;
+        if (count % 2 == 0)
+        {
+            count++;
+        }
+
+        float angleStep = 360f / count; // Angle between each object
 
         for (int i = 0; i < nodeList.Count; i++)
         {
