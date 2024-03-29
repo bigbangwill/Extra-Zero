@@ -118,10 +118,20 @@ public class PotionItem : ItemBehaviour
 
     public override void Use()
     {
-        firstEffect?.effect();
-        secondEffect?.effect();
-        thirdEffect?.effect();
-        fourthEffect?.effect();
+        if (firstEffect.Equals(new PotionEffect.DrinkingPotionEffect()))
+        {
+            firstEffect?.PlayerEffectVoid();
+            secondEffect?.PlayerEffectVoid();
+            thirdEffect?.PlayerEffectVoid();
+            fourthEffect?.PlayerEffectVoid();
+        }
+        else
+        {
+            firstEffect?.BotsEffectVoid();
+            secondEffect?.BotsEffectVoid();
+            thirdEffect?.BotsEffectVoid();
+            fourthEffect?.BotsEffectVoid();
+        }
     }
 
     public override bool Equals(object obj)

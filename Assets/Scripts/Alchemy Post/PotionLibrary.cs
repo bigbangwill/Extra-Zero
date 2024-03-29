@@ -22,6 +22,23 @@ public static class PotionLibrary
     public readonly static List<PotionEffect> forthTierBasePotion = new();
 
 
+
+    private static BuffSystemManager buffSystemManager;
+    private static PlayerMovement playerMovement;
+
+
+    public static BuffSystemManager BuffSystemManager { get => buffSystemManager; }
+    public static PlayerMovement PlayerMovement { get => playerMovement; }
+
+
+    private static void LoadSORefrence()
+    {
+        buffSystemManager = ((BuffSystemManagerRefrence)FindSORefrence<BuffSystemManager>.FindScriptableObject("Buff System Manager Refrence")).val;
+    }
+
+
+
+
     public static void Initialize()
     {
         if (isInited)
@@ -162,7 +179,9 @@ public abstract class PotionEffect
         return receipeList;
     }
 
-    public abstract void EffectVoid();
+    public abstract void BotsEffectVoid();
+
+    public abstract void PlayerEffectVoid();
 
     public abstract void AddRecepieToCombination();
 
@@ -191,7 +210,7 @@ public abstract class PotionEffect
     {
         public EmptyEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "Empty";
             potionPriority = int.MaxValue;
             sideEffect = SideEffect.Natural;
@@ -209,11 +228,15 @@ public abstract class PotionEffect
             Debug.Log("Empty");
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
         {
             Debug.Log("Empty");
         }
 
+        public override void PlayerEffectVoid()
+        {
+            Debug.Log("Empty");
+        }
     }
 
 
@@ -222,7 +245,7 @@ public abstract class PotionEffect
     {
         public MineralOilEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "Mineral Oil";
             sideEffect = SideEffect.Natural;
             potionPriority = 0;
@@ -243,7 +266,12 @@ public abstract class PotionEffect
             PotionLibrary.AddCombination(receipeList, this);
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+
+        public override void PlayerEffectVoid()
         {
             Debug.Log("Base Effect");
         }
@@ -253,7 +281,7 @@ public abstract class PotionEffect
     {
         public SyntheticOilEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "Synthetic Oil";
             sideEffect = SideEffect.Natural;
             potionPriority = 0;
@@ -274,18 +302,59 @@ public abstract class PotionEffect
             PotionLibrary.AddCombination(receipeList, this);
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+
+        public override void PlayerEffectVoid()
         {
             Debug.Log("Base Effect");
         }
     }
 
+    public class DrinkingPotionEffect : PotionEffect
+    {
+        public DrinkingPotionEffect()
+        {
+            effect = PlayerEffectVoid;
+            name = "Drinking Potion";
+            sideEffect = SideEffect.Natural;
+            potionPriority = 0;
+            isBase = true;
+            AddHerbToReceipeList();
+            LoadIcon();
+        }
+
+        //Chamomile + Chamomile + Lavender
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Lavender());
+            receipeList.Add(new Herb.Chamomile());
+            receipeList.Add(new Herb.Chamomile());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
+        public override void BotsEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+    }
 
     public class FirstEffect : PotionEffect
     {
         public FirstEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "Speed";
             sideEffect = SideEffect.Regenerative;
             potionPriority = 1;
@@ -306,9 +375,24 @@ public abstract class PotionEffect
             PotionLibrary.AddCombination(receipeList, this);
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
         {
-            Debug.Log("First Effect");
+            PotionLibrary.BuffSystemManager.AddBuffEffect(BotsStartEffect, BotsEndEffect, 5);
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BotsStartEffect()
+        {
+            
+        }
+
+        private void BotsEndEffect()
+        {
+
         }
     }
 
@@ -316,7 +400,7 @@ public abstract class PotionEffect
     {
         public SecondEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "Health";
             sideEffect = SideEffect.Regenerative;
             potionPriority = 2;
@@ -337,16 +421,21 @@ public abstract class PotionEffect
             PotionLibrary.AddCombination(receipeList, this);
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
         {
             Debug.Log("Second Effect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            throw new NotImplementedException();
         }
     }
     public class ThirdEffect : PotionEffect
     {
         public ThirdEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "Mana";
             sideEffect = SideEffect.Regenerative;
             potionPriority = 3;
@@ -367,9 +456,14 @@ public abstract class PotionEffect
             PotionLibrary.AddCombination(receipeList, this);
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
         {
             Debug.Log("Third Effect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -377,7 +471,7 @@ public abstract class PotionEffect
     {
         public ForthEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "Random";
             potionPriority = 4;
             sideEffect = SideEffect.Necrotic;
@@ -398,9 +492,14 @@ public abstract class PotionEffect
             PotionLibrary.AddCombination(receipeList, this);
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
         {
             Debug.Log("forth Effect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -408,7 +507,7 @@ public abstract class PotionEffect
     {
         public FifthEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "FifthEffect";
             potionPriority = 5;
             sideEffect = SideEffect.Necrotic;
@@ -429,9 +528,14 @@ public abstract class PotionEffect
             PotionLibrary.AddCombination(receipeList, this);
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
         {
             Debug.Log("FifthEffect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -440,7 +544,7 @@ public abstract class PotionEffect
     {
         public SixthEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "SixthEffect";
             potionPriority = 6;
             sideEffect = SideEffect.Necrotic;
@@ -461,9 +565,14 @@ public abstract class PotionEffect
             PotionLibrary.AddCombination(receipeList, this);
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
         {
             Debug.Log("SixthEffect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -472,7 +581,7 @@ public abstract class PotionEffect
     {
         public SeventhEffect()
         {
-            effect = EffectVoid;
+            effect = BotsEffectVoid;
             name = "SeventhEffect";
             potionPriority = 7;
             sideEffect = SideEffect.Necrotic;
@@ -493,9 +602,14 @@ public abstract class PotionEffect
             PotionLibrary.AddCombination(receipeList, this);
         }
 
-        public override void EffectVoid()
+        public override void BotsEffectVoid()
         {
             Debug.Log("SeventhEffect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            throw new NotImplementedException();
         }
     }
 }
@@ -503,7 +617,7 @@ public abstract class PotionEffect
 
 
 
-//Chamomile + Chamomile + Lavender
+
 //Chamomile + Chamomile + Sage
 //Chamomile + Chamomile + Patchouli
 //Chamomile + Chamomile + Hellebore
