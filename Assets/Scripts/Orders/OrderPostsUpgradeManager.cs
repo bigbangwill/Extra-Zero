@@ -11,8 +11,6 @@ public class OrderPostsUpgradeManager : MonoBehaviour
 
     private OrderPostsUpgradeManagerRefrence refrence;
 
-    private float oldSpeed = 0;
-
 
 
     private void SetRefrence()

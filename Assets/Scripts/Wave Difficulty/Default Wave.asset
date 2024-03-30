@@ -18,7 +18,7 @@ MonoBehaviour:
   frequencyRandomness: 0.5
   timerOfOneWave: 5
   frequencyOfTimer: 0
-  timerOfNightTime: 0
+  timerOfNightTime: 10
   walkingOrderSpeed: 2
   orderFulfillTimer: 5
   orderFrequencyHardness: 0.1

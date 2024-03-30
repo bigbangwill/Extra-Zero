@@ -47,7 +47,19 @@ public class WaveChosingUI : MonoBehaviour
             WaveOptionUI targetOptionUI = targetGO.GetComponent<WaveOptionUI>();
             targetOptionUI.SetWaveChosingUI(this);
             HarderSideEffects targetHarder = waveManagerRefrence.val.GetRandomHarderEffect();
-            RewardSideEffects targetReward = waveManagerRefrence.val.GetRandomRewardEffect();
+            RewardSideEffects targetReward;
+            if (i == 0)
+            {
+                targetReward = new RewardSideEffects.GainInGameCurrency();
+            }
+            else if (i == 1)
+            {
+                targetReward = waveManagerRefrence.val.GetRandomRewardEffect();
+            }
+            else
+            {
+                targetReward = waveManagerRefrence.val.GetRandomRewardEffect();
+            }
             WaveDifficultySO waveDifficulty = waveManagerRefrence.val.GetRandomNextWave();
             targetOptionUI.SetRelatedEffectsLists(targetHarder, targetReward);
             targetOptionUI.SetWaveDififculty(waveDifficulty);

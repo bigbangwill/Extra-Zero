@@ -11,6 +11,10 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TextMeshProUGUI currentTreshText;
     [SerializeField] private GameObject miniGameObject;
     [SerializeField] private Image cooldownImage;
+
+    [SerializeField] private GameObject lockedGO;
+    private bool isLocked = false;
+
     private Image farmIcon;
 
     private MaterialItem setItem;
@@ -20,6 +24,7 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
 
     private int currentMiniGameChance = 50;
     private bool miniGameIsOn = false;
+    private int potionValue = 0;
 
     private RectTransform rt;
 
@@ -41,7 +46,25 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
         currentTreshText.text = $"{currentThreshold} / {maxThreshold}";
     }
 
-    private int potionValue = 0;
+    public void SetLockedState(bool locked)
+    {
+        if (locked)
+        {
+            isLocked = true;
+            lockedGO.SetActive(true);
+        }
+        else
+        {
+            isLocked = false;
+            lockedGO.SetActive(false);
+        }
+    }
+
+
+    public int GetTier()
+    {
+        return setItem.GetItemTier();
+    }
 
     public void StrenghtPotionBuff()
     {
@@ -100,7 +123,8 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Pickaxed();
+        if(!isLocked)
+            Pickaxed();
     }
 
     private void CheckMiniGame()

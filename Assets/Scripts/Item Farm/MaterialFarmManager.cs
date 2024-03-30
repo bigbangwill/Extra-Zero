@@ -17,6 +17,7 @@ public class MaterialFarmManager : MonoBehaviour
 
 
     private PlayerInventory inventory;
+    private TierManager tierManager;
 
     private MaterialFarmManagerRefrence refrence;
 
@@ -33,6 +34,7 @@ public class MaterialFarmManager : MonoBehaviour
     private void LoadSORefrence()
     {
         inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
+        tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
     }
 
     private void Awake()
@@ -44,6 +46,13 @@ public class MaterialFarmManager : MonoBehaviour
     {
         LoadSORefrence();
         Init();
+        tierManager.TierChangeAddListener(TierChanged);
+        TierChanged();
+    }
+
+    private void OnDestroy()
+    {
+        tierManager.TierChangeRemoveListener(TierChanged);
     }
 
     private void Init()
@@ -58,9 +67,31 @@ public class MaterialFarmManager : MonoBehaviour
             createdMaterialItems.Add(item);
             GameObject target = Instantiate(farmMaterialPrefab, contentTransform);
             BasicMaterialScript basicMaterial = target.GetComponent<BasicMaterialScript>();
+            basicMaterialScripts.Add(basicMaterial);
             basicMaterial.Init(item, inventory);
         }
     }    
+
+
+    private void TierChanged()
+    {
+        int unlockedTier = tierManager.UnlockedTier;
+        Debug.Log(unlockedTier + "HKJGQJLKHGTQ");
+        foreach (var basic in basicMaterialScripts)
+        {
+            Debug.Log(basic.GetTier());
+            if (basic.GetTier() <= unlockedTier)
+            {
+                basic.SetLockedState(false);
+            }
+            else
+            {
+                basic.SetLockedState(true);
+            }
+        }
+    }
+
+
 
     public void StrenghtPotionBuff()
     {

@@ -19,6 +19,8 @@ public class TierManager : MonoBehaviour
 
     private int unlockedTier = 1;
 
+    public int UnlockedTier { get => unlockedTier; }
+
     private List<ItemBehaviour> firstTierItems = new();
     private List<ItemBehaviour> secondTierItems = new();
     private List<ItemBehaviour> thirdTierItems = new();
@@ -37,6 +39,8 @@ public class TierManager : MonoBehaviour
 
     private event Action OnTierChangedEvent;
 
+
+    private EconomyManager economyManager;
     private TierManagerRefrence refrence;
 
 
@@ -50,6 +54,12 @@ public class TierManager : MonoBehaviour
         refrence.val = this;
     }
 
+    private void LoadSORefrence()
+    {
+        economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
+    }
+
+
     private void Awake()
     {
         SetRefrence();
@@ -61,6 +71,7 @@ public class TierManager : MonoBehaviour
     private void Start()
     {
         //SetDefault();
+        LoadSORefrence();
         UnlockNewTier(1);
         tierUI.SetFirstTier(milestoneFirstTier);
         tierUI.SetSecondTier(milestoneSecondTier);
@@ -224,6 +235,7 @@ public class TierManager : MonoBehaviour
                     tierUI.CheckItemInDictionary(mileItem);
                     if (currentActiveMilestone.Count == 0)
                     {
+                        GiveTierUnlockReward();
                         int newTier = unlockedTier + 1;
                         UnlockNewTier(newTier);
                         return;
@@ -232,6 +244,19 @@ public class TierManager : MonoBehaviour
             }
         }
     }
+
+    private void GiveTierUnlockReward()
+    {
+        switch (unlockedTier)
+        {
+            case 0: economyManager.OutGameCurrencyCurrentStack += 1; break;
+            case 1: economyManager.OutGameCurrencyCurrentStack += 2; break;
+            case 2: economyManager.OutGameCurrencyCurrentStack += 3; break;
+            case 3: economyManager.OutGameCurrencyCurrentStack += 4; break;
+            default: Debug.LogWarning("CHECK HERE ASAP");break;
+        }
+    }
+
 
     public ItemBehaviour GetRandomCurrentMilestoneItem()
     {
@@ -290,7 +315,6 @@ public class TierManager : MonoBehaviour
             target.Add(new PotionItem(effect));
         }
     }
-
 
     public void TierChangeAddListener(Action action)
     {

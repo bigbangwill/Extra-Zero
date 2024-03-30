@@ -199,10 +199,12 @@ public class WaveManager : MonoBehaviour
 
         protected PlayerInventoryRefrence inventoryRefrence;
         protected WaveManagerRefrence waveManagerRefrence;
+        protected EconomyManagerRefrence economyManagerRefrence;
         protected void LoadSORefrence()
         {
             inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
             waveManagerRefrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");
+            economyManagerRefrence = (EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence");
         }
 
         protected void LoadIcon()
@@ -366,6 +368,34 @@ public class WaveManager : MonoBehaviour
         {
             iconAddress = $"Wave Effects/GoodEffectsIconSheet[{specificName}]";
         }
+        public class GainInGameCurrency : RewardSideEffects
+        {
+            public GainInGameCurrency()
+            {
+                specificName = "InGameCurrency";
+                description = "Gained In-Game Currency";
+                iconAddress = "WaveEffects/InGame";
+                LoadIcon();
+                LoadSORefrence();
+            }
+
+            public override void ImpactEffect()
+            {
+                if (currentUpgradeState == UpgradeEnum.isPassive)
+                {
+                    economyManagerRefrence.val.InGameCurrencyCurrentStack += 1;
+                }
+                else if (currentUpgradeState == UpgradeEnum.isNotQubit)
+                {
+                    economyManagerRefrence.val.InGameCurrencyCurrentStack += 2;
+                }
+                else if (currentUpgradeState == UpgradeEnum.isQubit)
+                {
+                    economyManagerRefrence.val.InGameCurrencyCurrentStack += 3;
+                }
+            }
+        }
+
         public class GainCurrencyOfTitanium : RewardSideEffects
         {
             public GainCurrencyOfTitanium()
@@ -379,16 +409,12 @@ public class WaveManager : MonoBehaviour
 
             public override void ImpactEffect()
             {
-                
-                
-
                 if (currentUpgradeState == UpgradeEnum.isPassive)
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(3), true);
                 else if (currentUpgradeState == UpgradeEnum.isNotQubit)
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(5), true);
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
-
             }
         }
 
