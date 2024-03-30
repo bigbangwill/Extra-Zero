@@ -10,14 +10,6 @@ public enum OverlayState { RepairMode}
 
 public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
 {
-    //#region Sinleton
-    //public static UseableItemCanvasScript Instance
-    //{
-    //    get { return ((UseableItemCanvasScript)_Instance); }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
-
     [SerializeField] private List<OrderPostHealth> repairables = new();
     [SerializeField] private GameObject repairIconPrefab;
     [SerializeField] private Transform repairInstantiateParent;
@@ -69,10 +61,6 @@ public class UseableItemCanvasScript : MonoBehaviour, IPointerDownHandler
     {
         LoadSORefrence();
         overlayImage = GetComponent<Image>();
-        inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
-        inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
-        inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
-        inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(10), true);
     }
 
     public void SetDelegate(Action action ,OverlayState state,Transform UIPanel,Transform parent, Button repairButton)

@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine currentPendingCoroutine;
     private NavMeshPath path;
 
+    float oldSpeed = 10;
+
     private NavmeshReachableInformation currentNavInfo;
 
     private PlayerMovementRefrence refrence;
@@ -42,6 +44,17 @@ public class PlayerMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+    }
+
+    public void MovementSpeedBuff(float speed)
+    {
+        oldSpeed = agent.speed;
+        agent.speed = speed;
+    }
+
+    public void MovementSpeedReset()
+    {
+        agent.speed = oldSpeed;
     }
 
     public void MovetoTarget(NavmeshReachableInformation info)

@@ -7,8 +7,11 @@ public class OrderPostsUpgradeManager : MonoBehaviour
 {
     [SerializeField] private List<OrderPostHealth> orderPostHealths;
 
+    [SerializeField] private List<OrderPost> orderPosts;
+
     private OrderPostsUpgradeManagerRefrence refrence;
 
+    private float oldSpeed = 0;
 
 
 
@@ -63,6 +66,43 @@ public class OrderPostsUpgradeManager : MonoBehaviour
                 orderPost.RepairAmountMinusAmount(2);
             }
         }
+    }
+
+    public void StrenghtPotionBuff(float speed)
+    {
+        foreach (var orderPost in orderPosts)
+        {
+            orderPost.StrenghtTimeAmount(speed);
+        }
+    }
+
+    public void StrenghtPotionReset()
+    {
+        foreach (var orderPost in orderPosts)
+        {
+            orderPost.StrenghtTimeReset();
+        }
+    }
+
+    public void SpeedPotionBuff(float amount)
+    {
+        foreach (var orderPost in orderPosts)
+        {
+            orderPost.SpeedTimeAmount(amount);
+        }
+    }
+    public void SpeedPotionReset()
+    {
+        foreach (var orderPost in orderPosts)
+        {
+            orderPost.SpeedTimeReset();
+        }
+    }
+
+
+    public void PrecisionPotionBuff()
+    {
+        orderPosts[Random.Range(0,orderPosts.Count)].PrecisionBuff();
     }
 
 

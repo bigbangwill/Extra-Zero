@@ -25,22 +25,31 @@ public static class PotionLibrary
 
     private static BuffSystemManager buffSystemManager;
     private static PlayerMovement playerMovement;
+    private static OrderPostsUpgradeManager orderPostsUpgradeManager;
+    private static AlchemyPost alchemyPost;
+    private static MaterialFarmManager materialFarmManager;
 
 
     public static BuffSystemManager BuffSystemManager { get => buffSystemManager; }
     public static PlayerMovement PlayerMovement { get => playerMovement; }
+    public static OrderPostsUpgradeManager OrderPostsUpgradeManager { get => orderPostsUpgradeManager; }
+    public static AlchemyPost AlchemyPost { get => alchemyPost; }
+    public static MaterialFarmManager MaterialFarmManager { get => materialFarmManager; }
 
 
     private static void LoadSORefrence()
     {
         buffSystemManager = ((BuffSystemManagerRefrence)FindSORefrence<BuffSystemManager>.FindScriptableObject("Buff System Manager Refrence")).val;
+        playerMovement = ((PlayerMovementRefrence)FindSORefrence<PlayerMovement>.FindScriptableObject("Player Movement Refrence")).val;
+        orderPostsUpgradeManager = ((OrderPostsUpgradeManagerRefrence)FindSORefrence<OrderPostsUpgradeManager>.FindScriptableObject("Order Posts Upgrade Manager Refrence")).val;
+        alchemyPost = ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val;
+        materialFarmManager = ((MaterialFarmManagerRefrence)FindSORefrence<MaterialFarmManager>.FindScriptableObject("Materialfarm Manager Refrence")).val;
     }
-
-
 
 
     public static void Initialize()
     {
+        LoadSORefrence();
         if (isInited)
             return;
         potionEffectDictionary.Clear();
@@ -350,9 +359,9 @@ public abstract class PotionEffect
         }
     }
 
-    public class FirstEffect : PotionEffect
+    public class SpeedEffect : PotionEffect
     {
-        public FirstEffect()
+        public SpeedEffect()
         {
             effect = BotsEffectVoid;
             name = "Speed";
@@ -382,17 +391,27 @@ public abstract class PotionEffect
 
         public override void PlayerEffectVoid()
         {
-            throw new NotImplementedException();
+            PotionLibrary.BuffSystemManager.AddBuffEffect(PlayerStartEffect, PlayerEndEffect, 5);
         }
 
         private void BotsStartEffect()
         {
-            
+            PotionLibrary.OrderPostsUpgradeManager.SpeedPotionBuff(10f);
         }
 
         private void BotsEndEffect()
         {
+            PotionLibrary.OrderPostsUpgradeManager.SpeedPotionReset();
+        }
 
+        private void PlayerStartEffect()
+        {
+            PotionLibrary.PlayerMovement.MovementSpeedBuff(20);
+        }
+
+        private void PlayerEndEffect()
+        {
+            PotionLibrary.PlayerMovement.MovementSpeedReset();
         }
     }
 
@@ -401,7 +420,7 @@ public abstract class PotionEffect
         public SecondEffect()
         {
             effect = BotsEffectVoid;
-            name = "Health";
+            name = "Lucky";
             sideEffect = SideEffect.Regenerative;
             potionPriority = 2;
             isBase = false;
@@ -428,15 +447,28 @@ public abstract class PotionEffect
 
         public override void PlayerEffectVoid()
         {
-            throw new NotImplementedException();
+            PotionLibrary.BuffSystemManager.AddBuffEffect(PlayerStartEffect, PlayerEndEffect, 15);
         }
+
+        private void PlayerStartEffect()
+        {
+            PotionLibrary.AlchemyPost.LuckyPotionBuff(10);
+        }
+
+        private void PlayerEndEffect()
+        {
+            PotionLibrary.AlchemyPost.LuckyPotionReset();
+        }
+
+
+
     }
     public class ThirdEffect : PotionEffect
     {
         public ThirdEffect()
         {
             effect = BotsEffectVoid;
-            name = "Mana";
+            name = "Strenght";
             sideEffect = SideEffect.Regenerative;
             potionPriority = 3;
             isBase = false;
@@ -458,13 +490,36 @@ public abstract class PotionEffect
 
         public override void BotsEffectVoid()
         {
-            Debug.Log("Third Effect");
+            PotionLibrary.BuffSystemManager.AddBuffEffect(BotsStartEffect, BotsEndEffect, 10);
         }
 
         public override void PlayerEffectVoid()
         {
-            throw new NotImplementedException();
+            PotionLibrary.BuffSystemManager.AddBuffEffect(PlayerStartEffect, PlayerEndEffect, 10);
         }
+
+
+        private void PlayerStartEffect()
+        {
+            PotionLibrary.MaterialFarmManager.StrenghtPotionBuff();
+        }
+
+        private void PlayerEndEffect()
+        {
+            PotionLibrary.MaterialFarmManager.StrenghtPotionReset();
+        }
+
+        private void BotsStartEffect()
+        {
+            PotionLibrary.OrderPostsUpgradeManager.StrenghtPotionBuff(0.1f);
+        }
+
+        private void BotsEndEffect()
+        {
+            PotionLibrary.OrderPostsUpgradeManager.StrenghtPotionReset();
+        }
+
+
     }
 
     public class ForthEffect : PotionEffect
@@ -472,7 +527,7 @@ public abstract class PotionEffect
         public ForthEffect()
         {
             effect = BotsEffectVoid;
-            name = "Random";
+            name = "Precision";
             potionPriority = 4;
             sideEffect = SideEffect.Necrotic;
             isBase = false;
@@ -494,12 +549,12 @@ public abstract class PotionEffect
 
         public override void BotsEffectVoid()
         {
-            Debug.Log("forth Effect");
+            PotionLibrary.OrderPostsUpgradeManager.PrecisionPotionBuff();
         }
 
         public override void PlayerEffectVoid()
         {
-            throw new NotImplementedException();
+            Debug.Log("Precision");
         }
     }
 
@@ -535,7 +590,7 @@ public abstract class PotionEffect
 
         public override void PlayerEffectVoid()
         {
-            throw new NotImplementedException();
+            Debug.Log("FifthEffect");
         }
     }
 
@@ -572,7 +627,7 @@ public abstract class PotionEffect
 
         public override void PlayerEffectVoid()
         {
-            throw new NotImplementedException();
+            Debug.Log("SixthEffect");
         }
     }
 
@@ -609,7 +664,7 @@ public abstract class PotionEffect
 
         public override void PlayerEffectVoid()
         {
-            throw new NotImplementedException();
+            Debug.Log("SeventhEffect");
         }
     }
 }

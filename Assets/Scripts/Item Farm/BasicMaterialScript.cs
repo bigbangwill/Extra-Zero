@@ -41,6 +41,18 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
         currentTreshText.text = $"{currentThreshold} / {maxThreshold}";
     }
 
+    private int potionValue = 0;
+
+    public void StrenghtPotionBuff()
+    {
+        potionValue = 1;
+    }
+
+    public void StrenghtPotionReset()
+    {
+        potionValue = 0;
+    }
+
     private void Pickaxed()
     {
         if (isPunishing)
@@ -51,7 +63,7 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
             return;
         }
         CheckMiniGame();
-        currentThreshold++;
+        currentThreshold += 1 + potionValue;
         if (currentThreshold >= maxThreshold)
         {
             GiveReward();
@@ -62,7 +74,7 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
 
     private void Pickaxed(int count)
     {
-        currentThreshold += count;
+        currentThreshold += count + potionValue;
         if (currentThreshold >= maxThreshold)
         {
             GiveReward();

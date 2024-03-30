@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Reflection;
+using UnityEditor.Experimental;
 
 public class AlchemyMiniGame : MonoBehaviour
 {
@@ -113,6 +114,17 @@ public class AlchemyMiniGame : MonoBehaviour
         critPassiveUpgrade = amount;
     }
 
+    private int potionLucky = 0;
+
+    public void LuckyPotionBuff(int amount)
+    {
+        potionLucky = amount;
+    }
+
+    public void LuckyPotionReset()
+    {
+        potionLucky = 0;
+    }
 
     private void OnEnable()
     {
@@ -129,7 +141,7 @@ public class AlchemyMiniGame : MonoBehaviour
     private void ActiveRewardPanel()
     {
         rewardPanel.SetActive(true);
-        int crit = UnityEngine.Random.Range(0, critMaxChance + 1) - critPassiveUpgrade;
+        int crit = UnityEngine.Random.Range(0, critMaxChance + 1) - critPassiveUpgrade - potionLucky;
         List<PotionEffect> targetEffects = new();
         bool isCrit;
         if (crit <= critChanceCurrentValue)

@@ -6,6 +6,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class PotionItem : ItemBehaviour
 {
 
+    private bool isDrinkable = false;
+
     public PotionEffect firstEffect;
     public PotionEffect secondEffect;
     public PotionEffect thirdEffect;
@@ -15,6 +17,8 @@ public class PotionItem : ItemBehaviour
     {
         return specificName;
     }
+
+    public bool IsDrinkable { get => isDrinkable; }
 
     protected override void LoadIcon()
     {
@@ -37,6 +41,7 @@ public class PotionItem : ItemBehaviour
     public PotionItem(PotionEffect first)
     {
         firstEffect = first;
+        
         secondEffect = null;
         thirdEffect = null;
         fourthEffect = null;
@@ -55,6 +60,10 @@ public class PotionItem : ItemBehaviour
     public PotionItem(PotionEffect first, PotionEffect second, PotionEffect third)
     {
         firstEffect = first;
+        if (firstEffect.Equals(new PotionEffect.DrinkingPotionEffect()))
+        {
+            isDrinkable = true;
+        }
         secondEffect = second;
         thirdEffect = third;
         fourthEffect = null;
@@ -103,7 +112,7 @@ public class PotionItem : ItemBehaviour
 
     public override void Load()
     {
-        is_Usable = true;
+        is_Usable = true;        
         is_Stackable = true;
         useDelegate = Use;
         maxStack = 5;
@@ -118,7 +127,7 @@ public class PotionItem : ItemBehaviour
 
     public override void Use()
     {
-        if (firstEffect.Equals(new PotionEffect.DrinkingPotionEffect()))
+        if (IsDrinkable)
         {
             firstEffect?.PlayerEffectVoid();
             secondEffect?.PlayerEffectVoid();

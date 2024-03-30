@@ -233,6 +233,12 @@ public class TierManager : MonoBehaviour
         }
     }
 
+    public ItemBehaviour GetRandomCurrentMilestoneItem()
+    {
+        ItemBehaviour target = currentActiveMilestone[UnityEngine.Random.Range(0, currentActiveMilestone.Count)];
+        return target;
+    }
+
     private void UnlockNewTier(int tierNumber)
     {
         unlockedTier = tierNumber;

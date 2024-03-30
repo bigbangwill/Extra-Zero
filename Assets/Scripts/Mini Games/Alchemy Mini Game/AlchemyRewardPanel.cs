@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem.iOS;
+using System.Linq;
 
 public class AlchemyRewardPanel : MonoBehaviour
 {
@@ -69,8 +70,9 @@ public class AlchemyRewardPanel : MonoBehaviour
     }
 
     // This method is for finding random effects to put in the list as the last potion effect the player can find.
-    private void SetPotionEffects(List<PotionEffect> potionEffects)
+    private void SetPotionEffects(List<PotionEffect> target)
     {
+        List<PotionEffect> potionEffects = target.ToList();
         if (potionEffects == null)
         {
             Debug.Log("Empty Effects");
@@ -113,7 +115,6 @@ public class AlchemyRewardPanel : MonoBehaviour
 
         if (targetedEffect != null)
         {
-            Debug.LogWarning("HEREEE");
             targetPotionItem.SetNextEffect(targetedEffect);
         }
         if (inventoryRefrence.val.HaveEmptySlot(targetPotionItem, true))
@@ -128,12 +129,10 @@ public class AlchemyRewardPanel : MonoBehaviour
 
         if (currentRewardisCrit)
         {
-            Debug.LogWarning("We are in crit Chance");
             if (inventoryRefrence.val.HaveEmptySlot(targetPotionItem, false))
             {
                 inventoryRefrence.val.HaveEmptySlot(targetPotionItem, true);
                 ResetBackToStart();
-                Debug.Log("Sent");
             }
             else
             {

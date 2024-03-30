@@ -123,6 +123,16 @@ public class AlchemyPost : MonoBehaviour
             }
         }
     }
+    
+    public void LuckyPotionBuff(int amount)
+    {
+        miniGame.LuckyPotionBuff(amount);
+    }
+
+    public void LuckyPotionReset()
+    {
+        miniGame.LuckyPotionReset();
+    }
 
 
     public void UpgradeQubitCritPassive(bool isQubit)

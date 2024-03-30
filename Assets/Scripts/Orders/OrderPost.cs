@@ -32,6 +32,10 @@ public class OrderPost : MonoBehaviour
     [SerializeField] private float orderMaxTimer;
     private float currentTimer = 0;
     private OrderPostHealth postHealthScript;
+    private float fasterTimeValue = 0f;
+    private float walkingOrderFasterValue = 0f;
+
+    private bool isPrecisionPotionMarked = false;
 
     private OrderManagerRefrence orderManagerRefrence;
     private TierManager tierManager;
@@ -58,7 +62,7 @@ public class OrderPost : MonoBehaviour
     {
         if (isReady)
         {
-            currentTimer += Time.deltaTime;
+            currentTimer += Time.deltaTime + fasterTimeValue;
             float percent = currentTimer / currentOrder.GetOrderTimer();
             clock.fillAmount = percent;
             if(currentOrder.GetOrderTimer() < currentTimer )
@@ -67,6 +71,34 @@ public class OrderPost : MonoBehaviour
             }
         }
     }
+
+
+    public void StrenghtTimeAmount(float speed)
+    {
+        fasterTimeValue = speed;
+    }
+
+    public void StrenghtTimeReset()
+    {
+        fasterTimeValue = 0;
+    }
+
+    public void SpeedTimeAmount(float speed)
+    {
+        walkingOrderFasterValue = speed;
+    }
+
+    public void SpeedTimeReset()
+    {
+        walkingOrderFasterValue = 0;
+    }
+
+    public void PrecisionBuff()
+    {
+        isPrecisionPotionMarked = true;
+    }
+
+
 
     /// <summary>
     /// To get called from the order manager to set it's createable items list.
@@ -85,15 +117,18 @@ public class OrderPost : MonoBehaviour
 
     public WalkingOrder CreateWalkingOrder(int combinationCount,float walkingOrderSpeed,float orderTimer)
     {
+        
         GameObject walkingOrderGO = Instantiate(walkingOrderPrefab);
         WalkingOrder walkingOrder = walkingOrderGO.GetComponent<WalkingOrder>();
         walkingOrder.Init(
             CreateOrder(combinationCount, orderTimer),
             this,
-            walkingOrderSpeed,
+            walkingOrderSpeed + walkingOrderFasterValue,
             quePosList.LastOrDefault().position);
         return walkingOrder;
     }
+
+    
 
     // for creating a single order.
     private Order CreateOrder(int combinationCount, float orderTimer)
@@ -102,7 +137,17 @@ public class OrderPost : MonoBehaviour
         for (int i = 0; i < combinationCount; i++)
         {
             int random = UnityEngine.Random.Range(0, orderableItems.Count);
-            ItemBehaviour item = orderableItems[random];
+            ItemBehaviour item; 
+            if (!isPrecisionPotionMarked)
+            {
+                item = orderableItems[random];
+            }
+            else
+            {
+                item = tierManager.GetRandomCurrentMilestoneItem();
+                isPrecisionPotionMarked = false;
+            }
+
             item.Load();
             if (item.IsStackable())
             {
@@ -172,16 +217,11 @@ public class OrderPost : MonoBehaviour
         
     }
 
-    // to implement later to punish the player!.
     private void CouldnotFullfill()
     {
         postHealthScript.TakeDamage();
-        postUI.SetUnfullfilledOrderImage(currentOrder);
-        //Punish Here.
-        
+        postUI.SetUnfullfilledOrderImage(currentOrder);        
         RemoveTopWalkingOrder();
-
-
     }
 
     private void RemoveTopWalkingOrder()

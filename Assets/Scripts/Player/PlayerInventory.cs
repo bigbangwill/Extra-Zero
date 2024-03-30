@@ -93,25 +93,25 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
     {
         LoadSORefrence();
         AddISaveableToDictionary();
-        AddItemToInventory(new CraftedItem.InsulationFoam());
-        AddItemToInventory(new CraftedItem.MemoryCore());
+        //AddItemToInventory(new CraftedItem.InsulationFoam());
+        //AddItemToInventory(new CraftedItem.MemoryCore());
 
-        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
+        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
 
         //AddItemToInventory(new MaterialItem.Plastic(10));
         //AddItemToInventory(new MaterialItem.AluminumAlloy(10));
@@ -185,6 +185,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
 
     public void SetActiveItem(int slot)
     {
+        Debug.Log("1");
         if (inventoryArray[slot].IsActiveable())
         {
             if (currentActiveItemSlotNum != slot)
@@ -199,11 +200,38 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
             else
             {
                 if (currentActiveItem.IsUseable())
+                {
                     currentActiveItem.Use();
+                }
                 currentActiveItem.OnDeactive();
                 currentActiveItem = null;
                 currentActiveItemSlotNum = int.MaxValue;
                 activeItemTranform.gameObject.SetActive(false);
+            }
+        }
+        if (inventoryArray[slot].ItemTypeValue() == ItemType.potion)
+        {
+            Debug.Log("2");
+            PotionItem item = (PotionItem)inventoryArray[slot];
+            if (item.IsDrinkable)
+            {
+                Debug.Log("3");
+                if (currentActiveItemSlotNum != slot)
+                {
+                    Debug.Log("4");
+                    currentActiveItem = inventoryArray[slot];
+                    currentActiveItemSlotNum = slot;
+                    activeItemTranform.gameObject.SetActive(true);
+                    activeItemTranform.position = itemSlotUIList[slot].transform.position;
+                }
+                else
+                {
+                    Debug.Log("5");
+                    item.Use();
+                    currentActiveItem = null;
+                    currentActiveItemSlotNum = int.MaxValue;
+                    activeItemTranform.gameObject.SetActive(false);
+                }
             }
         }
     }
