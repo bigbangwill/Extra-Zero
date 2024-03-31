@@ -8807,6 +8807,7 @@ RectTransform:
   - {fileID: 731271914}
   - {fileID: 796935814}
   - {fileID: 888347815}
+  - {fileID: 2116771621}
   m_Father: {fileID: 1023584221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
@@ -25018,13 +25019,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1023584221}
   - component: {fileID: 1023584222}
+  - component: {fileID: 1023584223}
   m_Layer: 5
   m_Name: Tier Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1023584221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25063,6 +25065,25 @@ MonoBehaviour:
   tier3Parent: {fileID: 731271914}
   tier4Parent: {fileID: 471681944}
   tierItemPrefab: {fileID: 885000191414472046, guid: b4142114cbb23504aad9d7bf05403950, type: 3}
+--- !u!114 &1023584223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023584220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1675eb82231fad849ac715f0ada8c1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftingItemPrefab: {fileID: 6615574283479898994, guid: f86a4adc6a36468479b5098fda193459, type: 3}
+  potionRecipePrefab: {fileID: 7840576153110580723, guid: cfdb35fe9a26e7843bbb49f4763bd8b2, type: 3}
+  herbRecipePrefab: {fileID: 4013035256440207827, guid: 8f00ffeb5abd39c47b1bb494bd79795d, type: 3}
+  seedRecipePrefab: {fileID: 984416425690210065, guid: 9a3c6b54b1feeda4c9492e004179064c, type: 3}
+  materialRecipePrefab: {fileID: 5592192627512652066, guid: 192917c6ae2b34e4a829cec65cc9d635, type: 3}
+  recipeHolder: {fileID: 2116771621}
+  scaleReducer: 0.9
 --- !u!1 &1029380081
 GameObject:
   m_ObjectHideFlags: 0
@@ -52962,7 +52983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2116754957
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53019,6 +53040,41 @@ MonoBehaviour:
   scrollView: {fileID: 1075231861}
   recipeHolder: {fileID: 1039840195}
   scaleReducer: 0.9
+--- !u!1 &2116771620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2116771621}
+  m_Layer: 5
+  m_Name: Info Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2116771621
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116771620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 410689187}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2126364923
 PrefabInstance:
   m_ObjectHideFlags: 0
