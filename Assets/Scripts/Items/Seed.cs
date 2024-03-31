@@ -7,6 +7,8 @@ public abstract class Seed : ItemBehaviour
     private int harvestAmount;
     private float maxHarvestTime;
 
+    private int seedTier;
+
     // Gets called from the child class to set every related infomation and load icon
     public override void Load()
     {
@@ -38,6 +40,11 @@ public abstract class Seed : ItemBehaviour
     public int GetHarvestAmount()
     {
         return harvestAmount;
+    }
+
+    public int GetSeedTier()
+    {
+        return seedTier;
     }
 
     public override bool Equals(object obj)
@@ -73,6 +80,7 @@ public abstract class Seed : ItemBehaviour
             specificName = "Chamomile";
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 1;
             Load();
         }
 
@@ -88,6 +96,7 @@ public abstract class Seed : ItemBehaviour
             currentStack = count;
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 1;
             Load();
         }
 
@@ -105,6 +114,7 @@ public abstract class Seed : ItemBehaviour
             specificName = "Lavender";
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 1;
             Load();
         }
 
@@ -120,6 +130,7 @@ public abstract class Seed : ItemBehaviour
             currentStack = count;
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 1;
             Load();
         }
         public override Herb Harvest()
@@ -138,6 +149,7 @@ public abstract class Seed : ItemBehaviour
             specificName = "Sage";
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 2;
             Load();
         }
 
@@ -153,6 +165,7 @@ public abstract class Seed : ItemBehaviour
             currentStack = count;
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 2;
             Load();
         }
 
@@ -170,6 +183,7 @@ public abstract class Seed : ItemBehaviour
             specificName = "Patchouli";
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 3;
             Load();
         }
 
@@ -185,6 +199,7 @@ public abstract class Seed : ItemBehaviour
             currentStack = count;
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 3;
             Load();
         }
 
@@ -202,6 +217,7 @@ public abstract class Seed : ItemBehaviour
             specificName = "Hellebore";
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 4;
             Load();
         }
 
@@ -217,6 +233,7 @@ public abstract class Seed : ItemBehaviour
             currentStack = count;
             harvestAmount = 3;
             maxHarvestTime = 5;
+            seedTier = 4;
             Load();
         }
         public override Herb Harvest()

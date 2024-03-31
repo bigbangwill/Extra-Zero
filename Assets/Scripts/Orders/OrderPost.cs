@@ -219,7 +219,7 @@ public class OrderPost : MonoBehaviour
 
     private void CouldnotFullfill()
     {
-        postHealthScript.TakeDamage();
+        //postHealthScript.TakeDamage();
         postUI.SetUnfullfilledOrderImage(currentOrder);        
         RemoveTopWalkingOrder();
     }

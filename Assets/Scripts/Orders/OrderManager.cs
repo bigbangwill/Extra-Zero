@@ -72,7 +72,7 @@ public class OrderManager : MonoBehaviour
     {
         LoadSORefrence();
         Init();
-        StartNewWave(defaultWave);
+        //StartNewWave(defaultWave);
     }
 
     private void Update()
@@ -97,6 +97,12 @@ public class OrderManager : MonoBehaviour
                 FinishNightTime();
             }
         }
+    }
+
+
+    public void StartGame()
+    {
+        StartNewWave(defaultWave);
     }
 
 

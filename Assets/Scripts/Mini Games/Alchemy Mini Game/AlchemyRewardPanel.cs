@@ -72,7 +72,7 @@ public class AlchemyRewardPanel : MonoBehaviour
     // This method is for finding random effects to put in the list as the last potion effect the player can find.
     private void SetPotionEffects(List<PotionEffect> target)
     {
-        List<PotionEffect> potionEffects = target.ToList();
+        List<PotionEffect> potionEffects = target;
         if (potionEffects == null)
         {
             Debug.Log("Empty Effects");
@@ -84,7 +84,7 @@ public class AlchemyRewardPanel : MonoBehaviour
         {
             int random = Random.Range(0, potionEffects.Count);
             finalArray[i] = (potionEffects[random]);
-            potionEffects.Remove(potionEffects[random]);
+            //potionEffects.Remove(potionEffects[random]);
         }
         potionEffect1 = finalArray[0];
         potionEffect2 = finalArray[1];

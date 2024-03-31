@@ -122,6 +122,24 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         //AddItemToInventory(new BluePrintItem.Hoe());
         //AddItemToInventory(new BluePrintItem.Gun());
         //AddItemToInventory(new BluePrintItem.Plant());
+
+        //HaveEmptySlot(new Herb.Chamomile(15), true);
+        //HaveEmptySlot(new Herb.Lavender(15), true);
+        //HaveEmptySlot(new Herb.Sage(15), true);
+        //HaveEmptySlot(new Herb.Chamomile(50), true);
+        //HaveEmptySlot(new Herb.Lavender(50), true);
+        //HaveEmptySlot(new Herb.Sage(50), true);
+        //HaveEmptySlot(new Herb.Patchouli(50), true);
+        //HaveEmptySlot(new Herb.Hellebore(50), true);
+
+
+
+        HaveEmptySlot(new Herb.Lavender(20), true);
+        HaveEmptySlot(new Herb.Sage(20), true);
+        HaveEmptySlot(new Herb.Chamomile(20), true);
+        HaveEmptySlot(new Herb.Patchouli(20), true);
+        HaveEmptySlot(new Herb.Hellebore(20), true);
+
     }
 
     /// <summary>
@@ -146,7 +164,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         List<T> itemBehaviours = new();
         foreach (var item in inventoryArray)
         {
-            if (item.ItemTypeValue() == _ItemType)
+            if (item.GetItemTypeValue() == _ItemType)
             {
                 T newItem = (T)(object)item;
                 itemBehaviours.Add(newItem);
@@ -163,7 +181,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
     /// <param name="slot"></param>
     public void SetActiveItem2(int slot)
     {
-        if (inventoryArray[slot].ItemTypeValue() == ItemType.empty)
+        if (inventoryArray[slot].GetItemTypeValue() == ItemType.empty)
             return;
         if (currentActiveItemSlotNum != slot)
         {
@@ -209,7 +227,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
                 activeItemTranform.gameObject.SetActive(false);
             }
         }
-        if (inventoryArray[slot].ItemTypeValue() == ItemType.potion)
+        if (inventoryArray[slot].GetItemTypeValue() == ItemType.potion)
         {
             Debug.Log("2");
             PotionItem item = (PotionItem)inventoryArray[slot];
@@ -271,8 +289,8 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         itemSlotUIList[b] = slotA;
         inventoryArray[a] = itemB;
         inventoryArray[b] = itemA;
-        Debug.Log(inventoryArray[a].ItemTypeValue());
-        Debug.Log(inventoryArray[b].ItemTypeValue());
+        Debug.Log(inventoryArray[a].GetItemTypeValue());
+        Debug.Log(inventoryArray[b].GetItemTypeValue());
     }
 
     /// <summary>

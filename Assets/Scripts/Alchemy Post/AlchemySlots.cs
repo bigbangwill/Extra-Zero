@@ -18,7 +18,7 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     [SerializeField] private Sprite lockedImage;
     [SerializeField] private Sprite unlockedImage = null;
 
-    private int herbCost;
+    private int herbCost = 5;
 
     private PlayerInventoryRefrence inventoryRefrence;
     private void LoadSORefrence()
@@ -125,13 +125,17 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void PotionCreated()
     {
+        Debug.Log("1");
         if (holdingHerb != null)
         {
+            Debug.Log("2");
             int currentStack = holdingHerb.CurrentStack();
             holdingHerb.SetCurrentStack(herbCost);
-            if (inventoryRefrence.val.HaveItemInInventory(holdingHerb, false))
+            Debug.Log(herbCost + "HERB COST");
+            Debug.Log(holdingHerb.CurrentStack() + " HOLDING HERB STACK");
+            if (inventoryRefrence.val.HaveItemInInventory(holdingHerb, true))
             {
-                inventoryRefrence.val.HaveItemInInventory(holdingHerb,true);
+                Debug.Log("3");
                 holdingHerb.SetCurrentStack(currentStack);
                 holdingHerb = null;
                 image.sprite = null;

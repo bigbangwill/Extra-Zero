@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine.Rendering.Universal;
+using static UnityEngine.GraphicsBuffer;
 
 public class TierManager : MonoBehaviour
 {
@@ -125,7 +126,15 @@ public class TierManager : MonoBehaviour
         foreach(var item in craftedItems) 
         {
             MaterialItem target = (MaterialItem)Activator.CreateInstance(item);
-            firstTierItems.Add(target);
+            switch (target.GetItemTier())
+            {
+                case 1: firstTierItems.Add(target); break;
+                case 2: secondTierItems.Add(target); break;
+                case 3: thirdTierItems.Add(target); break;
+                case 4: forthTierItems.Add(target); break;
+                default: Debug.LogWarning("CHECK HERE ASAP"); break;
+            }
+            //firstTierItems.Add(target);
         }
         craftedItems.Clear();
         craftedItems = Assembly.GetAssembly(typeof(Herb))
@@ -134,7 +143,15 @@ public class TierManager : MonoBehaviour
         foreach (var item in craftedItems)
         {
             Herb target = (Herb)Activator.CreateInstance(item);
-            firstTierItems.Add(target);
+            switch (target.GetHerbTier())
+            {
+                case 1: firstTierItems.Add(target); break;
+                case 2: secondTierItems.Add(target); break;
+                case 3: thirdTierItems.Add(target); break;
+                case 4: forthTierItems.Add(target); break;
+                default: Debug.LogWarning("CHECK HERE ASAP"); break;
+            }
+            //firstTierItems.Add(target);
         }
 
         craftedItems.Clear();
@@ -143,8 +160,16 @@ public class TierManager : MonoBehaviour
 
         foreach (var item in craftedItems)
         {
-            Seed Target = (Seed)Activator.CreateInstance(item);
-            firstTierItems.Add(Target);
+            Seed target = (Seed)Activator.CreateInstance(item);
+            switch (target.GetSeedTier())
+            {
+                case 1: firstTierItems.Add(target); break;
+                case 2: secondTierItems.Add(target); break;
+                case 3: thirdTierItems.Add(target); break;
+                case 4: forthTierItems.Add(target); break;
+                default: Debug.LogWarning("CHECK HERE ASAP"); break;
+            }
+            //firstTierItems.Add(Target);
         }
     }
 
@@ -166,7 +191,7 @@ public class TierManager : MonoBehaviour
         List<ItemBehaviour> forthNonMaterialList = new();
         foreach (var item in firstTierItems)
         {
-            if (item.ItemTypeValue() == ItemType.craftedItem || item.ItemTypeValue() == ItemType.potion)
+            if (item.GetItemTypeValue() == ItemType.craftedItem || item.GetItemTypeValue() == ItemType.potion)
             {
                 firstNonMaterialList.Add(item);
             }

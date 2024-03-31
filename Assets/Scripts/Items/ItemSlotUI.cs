@@ -21,6 +21,9 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     private ItemBehaviour itemSlot;
 
+    private LavaItemRemover lavaRefrence;
+    private ItemStashLevelObject itemStashLevelObject;
+
     private OrderPost currentPost;
 
     #region Graphic raycast related
@@ -110,7 +113,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (itemSlot.ItemTypeValue() == ItemType.empty)
+        if (itemSlot.GetItemTypeValue() == ItemType.empty)
         {
             return;
         }
@@ -119,7 +122,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (itemSlot.ItemTypeValue() == ItemType.empty)
+        if (itemSlot.GetItemTypeValue() == ItemType.empty)
         {
             return;
         }
@@ -130,7 +133,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     public void OnEndDrag(PointerEventData eventData)
     {
         isDragging = false;
-        if (itemSlot.ItemTypeValue() == ItemType.empty)
+        if (itemSlot.GetItemTypeValue() == ItemType.empty)
         {
             return;
         }        
@@ -172,7 +175,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             {
                 Debug.Log("Targeted the right one");
             }
-                transform.position = startPos;
+            transform.position = startPos;
         }
     }
 
@@ -192,6 +195,26 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 playerMovementRefrence.val.MovetoTarget(navInfo);
                 return true;
             }
+            else if (go.CompareTag("Lava Remover"))
+            {
+                if (lavaRefrence == null)
+                {
+                    lavaRefrence = go.GetComponent<LavaItemRemover>();
+                }
+                NavmeshReachableInformation navInfo = new(lavaRefrence.GetReachingTransform().position, ReachedLava);
+                playerMovementRefrence.val.MovetoTarget(navInfo);
+                return true;
+            }
+            else if (go.CompareTag("Item Stash"))
+            {
+                if (itemStashLevelObject == null)
+                {
+                    itemStashLevelObject = go.GetComponent<ItemStashLevelObject>();
+                }
+                NavmeshReachableInformation navInfo = new(itemStashLevelObject.GetReachingTransform().position, ReachedStash);
+                playerMovementRefrence.val.MovetoTarget(navInfo);
+                return true;
+            }
         }
         return false;
     }
@@ -203,8 +226,23 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             currentPost.InsertingItem(itemSlot, slotNumber);
         }
         currentPost = null;
-
     }
+
+    private void ReachedLava()
+    {
+        if (lavaRefrence != null)
+        {
+            lavaRefrence.InsertItem(slotNumber);
+        }
+    }
+    private void ReachedStash()
+    {
+        if (itemStashLevelObject != null)
+        {
+            itemStashLevelObject.AddItemToStash(itemSlot, slotNumber);
+        }
+    }
+
 
     /// <summary>
     /// To swap to new parent and slot. Should be called from outside of the script by another itemslot.
@@ -223,14 +261,14 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (itemSlot.ItemTypeValue() == ItemType.empty)
+        if (itemSlot.GetItemTypeValue() == ItemType.empty)
         {
             return;
         }
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (itemSlot.ItemTypeValue() == ItemType.empty || isDragging)
+        if (itemSlot.GetItemTypeValue() == ItemType.empty || isDragging)
         {
             return;
         }

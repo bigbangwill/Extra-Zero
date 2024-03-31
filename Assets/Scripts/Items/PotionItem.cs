@@ -149,7 +149,6 @@ public class PotionItem : ItemBehaviour
                is_Usable == item.is_Usable &&
                itemType == item.itemType &&
                is_Stackable == item.is_Stackable &&
-               maxStack == item.maxStack &&
                specificName == item.specificName;
     }
 

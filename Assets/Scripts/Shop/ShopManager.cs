@@ -62,7 +62,7 @@ public class ShopManager : MonoBehaviour
     
     public void ItemClicked(ItemBehaviour clickedItem)
     {
-        if (clickedItem.ItemTypeValue() == ItemType.bluePrint)
+        if (clickedItem.GetItemTypeValue() == ItemType.bluePrint)
         {
             infoParent.SetActive(true);
             holdingItem = clickedItem;

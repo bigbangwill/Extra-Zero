@@ -136,7 +136,7 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
     /// To return the item type only
     /// </summary>
     /// <returns></returns>
-    public ItemType ItemTypeValue()
+    public ItemType GetItemTypeValue()
     {
         return itemType;
     }

@@ -23,8 +23,8 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     private TalentRotatorRefrence refrence;
     private TalentManagerRefrence talentManagerRefrence;
     private GameStateManagerRefrence gameStateManagerRefrence;
+    private OrderManagerRefrence orderManagerRefrence;
 
-    //private static TalentRotator instance;
     private bool isUnlocked = false;
     [SerializeField] private GameObject unlockPanelGO;
 
@@ -44,19 +44,11 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         talentManagerRefrence = (TalentManagerRefrence)FindSORefrence<TalentManager>.FindScriptableObject("Talent Manager Refrence");
         gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
+        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
     }
 
     private void Awake()
     {
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(transform.parent.gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(transform.parent.gameObject);
-        //}
         SetRefrence();
     }
 
@@ -145,6 +137,7 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
         isUnlocked = true;
         unlockPanelGO.SetActive(false);
         talentManagerRefrence.val.PurchaseRandomQubit();
+        orderManagerRefrence.val.StartGame();
     }
 
 }

@@ -387,11 +387,13 @@ public abstract class PotionEffect
         public override void BotsEffectVoid()
         {
             PotionLibrary.BuffSystemManager.AddBuffEffect(BotsStartEffect, BotsEndEffect, 5);
+            Debug.Log(name);
         }
 
         public override void PlayerEffectVoid()
         {
             PotionLibrary.BuffSystemManager.AddBuffEffect(PlayerStartEffect, PlayerEndEffect, 5);
+            Debug.Log(name + "Player");
         }
 
         private void BotsStartEffect()
@@ -448,6 +450,7 @@ public abstract class PotionEffect
         public override void PlayerEffectVoid()
         {
             PotionLibrary.BuffSystemManager.AddBuffEffect(PlayerStartEffect, PlayerEndEffect, 15);
+            Debug.Log(name + "PLayer");
         }
 
         private void PlayerStartEffect()
@@ -491,11 +494,13 @@ public abstract class PotionEffect
         public override void BotsEffectVoid()
         {
             PotionLibrary.BuffSystemManager.AddBuffEffect(BotsStartEffect, BotsEndEffect, 10);
+            Debug.Log(name);
         }
 
         public override void PlayerEffectVoid()
         {
             PotionLibrary.BuffSystemManager.AddBuffEffect(PlayerStartEffect, PlayerEndEffect, 10);
+            Debug.Log(name + "Player");
         }
 
 
@@ -550,6 +555,7 @@ public abstract class PotionEffect
         public override void BotsEffectVoid()
         {
             PotionLibrary.OrderPostsUpgradeManager.PrecisionPotionBuff();
+            Debug.Log("Precision");
         }
 
         public override void PlayerEffectVoid()

@@ -353,11 +353,11 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 if (currentUpgradeState == UpgradeEnum.isPassive)
-                    waveManagerRefrence.val.orderCombinationEffectsApplied += 1;
+                    waveManagerRefrence.val.orderCombinationEffectsApplied += 0;
                 else if (currentUpgradeState == UpgradeEnum.isNotQubit)
-                    waveManagerRefrence.val.orderCombinationEffectsApplied += 1;
+                    waveManagerRefrence.val.orderCombinationEffectsApplied += 0;
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
-                    waveManagerRefrence.val.orderCombinationEffectsApplied += 1;
+                    waveManagerRefrence.val.orderCombinationEffectsApplied += 0;
             }
         }
     }

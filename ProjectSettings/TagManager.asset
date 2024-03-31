@@ -13,6 +13,8 @@ TagManager:
   - Talent Canvas
   - Talent Camera
   - Farm Pouch
+  - Lava Remover
+  - Item Stash
   layers:
   - Default
   - TransparentFX

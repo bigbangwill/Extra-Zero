@@ -58,11 +58,7 @@ public class HerbalismPost : MonoBehaviour
     {
         LoadSORefrence();
         isStarted = true;
-        inventoryRefrence.val.HaveEmptySlot(new Seed.Lavender(20), true);
-        inventoryRefrence.val.HaveEmptySlot(new Seed.Sage(20), true);
-        inventoryRefrence.val.HaveEmptySlot(new Seed.Chamomile(20), true);
-        inventoryRefrence.val.HaveEmptySlot(new Seed.Patchouli(20), true);
-        inventoryRefrence.val.HaveEmptySlot(new Seed.Hellebore(20), true);
+        
 
     }
 

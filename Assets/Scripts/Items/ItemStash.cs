@@ -9,23 +9,11 @@ public class ItemStash : MonoBehaviour, IStashable
     [SerializeField] private int inventorySlotCount;
     // For the Item slot prefab in the UI
     [SerializeField] private GameObject itemSlotPrefab;
-    // For offsetting the distance between each icon
-    [SerializeField] private float offsetHeight;
-    // For Setting a max value of slots in each rows
-    [SerializeField] private int rowCountMax;
 
 
-
-    // To put a bit of an offset for inventory instatiate method to not to start at the exact half point
-    [SerializeField] private int startingPointOffsetWidth;
-    [SerializeField] private int startingPointOffsetHeight;
 
     [SerializeField] private ItemBehaviour[] inventoryArray;
     [SerializeField] private List<ItemSlotUI> itemSlotUIList = new();
-
-    // Width and height of the item slot prefab
-    private float itemSlotPrefabWidth;
-    private float itemSlotPrefabHeight;
 
     // Variable for the current active item
     private ItemBehaviour currentActiveItem;
@@ -44,8 +32,6 @@ public class ItemStash : MonoBehaviour, IStashable
     {
         LoadSORefrence();
         inventoryArray = new ItemBehaviour[inventorySlotCount];
-        itemSlotPrefabWidth = itemSlotPrefab.GetComponent<RectTransform>().rect.width;
-        itemSlotPrefabHeight = itemSlotPrefab.GetComponent<RectTransform>().rect.height;
         for (int i = 0; i < inventoryArray.Length; i++)
         {
             inventoryArray[i] = new EmptyItem();
@@ -53,33 +39,33 @@ public class ItemStash : MonoBehaviour, IStashable
 
         InitUI();
 
-        HaveEmptySlot(new Herb.Lavender(30), true);
-        HaveEmptySlot(new Herb.Sage(30), true);
-        HaveEmptySlot(new Herb.Chamomile(30), true);
-        HaveEmptySlot(new Herb.Lavender(30), true);
-        HaveEmptySlot(new Herb.Sage(30), true);
-        HaveEmptySlot(new Herb.Chamomile(30), true);
-        HaveEmptySlot(new Herb.Lavender(30), true);
-        HaveEmptySlot(new Herb.Sage(30), true);
-        HaveEmptySlot(new Herb.Chamomile(30), true);
-        HaveEmptySlot(new Herb.Lavender(30), true);
-        HaveEmptySlot(new Herb.Sage(30), true);
-        HaveEmptySlot(new Herb.Chamomile(30), true);
-        HaveEmptySlot(new Herb.Lavender(30), true);
-        HaveEmptySlot(new Herb.Sage(30), true);
-        HaveEmptySlot(new Herb.Chamomile(30), true);
-        HaveEmptySlot(new Herb.Lavender(30), true);
-        HaveEmptySlot(new Herb.Sage(30), true);
-        HaveEmptySlot(new Herb.Chamomile(30), true);
-        HaveEmptySlot(new Herb.Lavender(30), true);
-        HaveEmptySlot(new Herb.Sage(30), true);
-        HaveEmptySlot(new Herb.Chamomile(30), true);
-        HaveEmptySlot(new Herb.Lavender(30), true);
-        HaveEmptySlot(new Herb.Sage(30), true);
-        HaveEmptySlot(new Herb.Chamomile(30), true);
-        HaveEmptySlot(new Herb.Lavender(30), true);
-        HaveEmptySlot(new Herb.Sage(30), true);
-        HaveEmptySlot(new Herb.Chamomile(30), true);
+        //HaveEmptySlot(new Herb.Lavender(30), true);
+        //HaveEmptySlot(new Herb.Sage(30), true);
+        //HaveEmptySlot(new Herb.Chamomile(30), true);
+        //HaveEmptySlot(new Herb.Lavender(30), true);
+        //HaveEmptySlot(new Herb.Sage(30), true);
+        //HaveEmptySlot(new Herb.Chamomile(30), true);
+        //HaveEmptySlot(new Herb.Lavender(30), true);
+        //HaveEmptySlot(new Herb.Sage(30), true);
+        //HaveEmptySlot(new Herb.Chamomile(30), true);
+        //HaveEmptySlot(new Herb.Lavender(30), true);
+        //HaveEmptySlot(new Herb.Sage(30), true);
+        //HaveEmptySlot(new Herb.Chamomile(30), true);
+        //HaveEmptySlot(new Herb.Lavender(30), true);
+        //HaveEmptySlot(new Herb.Sage(30), true);
+        //HaveEmptySlot(new Herb.Chamomile(30), true);
+        //HaveEmptySlot(new Herb.Lavender(30), true);
+        //HaveEmptySlot(new Herb.Sage(30), true);
+        //HaveEmptySlot(new Herb.Chamomile(30), true);
+        //HaveEmptySlot(new Herb.Lavender(30), true);
+        //HaveEmptySlot(new Herb.Sage(30), true);
+        //HaveEmptySlot(new Herb.Chamomile(30), true);
+        //HaveEmptySlot(new Herb.Lavender(30), true);
+        //HaveEmptySlot(new Herb.Sage(30), true);
+        //HaveEmptySlot(new Herb.Chamomile(30), true);
+        //HaveEmptySlot(new Herb.Lavender(30), true);
+        //HaveEmptySlot(new Herb.Sage(30), true);
+        //HaveEmptySlot(new Herb.Chamomile(30), true);
     }
 
     private void OnEnable()
@@ -150,7 +136,7 @@ public class ItemStash : MonoBehaviour, IStashable
     /// <param name="slot"></param>
     public void SetActiveItem(int slot)
     {
-        if (inventoryArray[slot].ItemTypeValue() == ItemType.empty)
+        if (inventoryArray[slot].GetItemTypeValue() == ItemType.empty)
             return;
         if (currentActiveItemSlotNum != slot)
         {
@@ -363,47 +349,14 @@ public class ItemStash : MonoBehaviour, IStashable
 
     public void InitUI()
     {
-        float width, height;
-        width = GetComponentInParent<RectTransform>().rect.width;
-        height = GetComponentInParent<RectTransform>().rect.height;
-
-        int maxDevidedWidth = (int)((width) / itemSlotPrefabWidth);
-        int maxDevidedHeight = (int)((height - offsetHeight - startingPointOffsetHeight) / itemSlotPrefabHeight);
-
-        // To automatically turn the extra count of inventory slot available that is more than the 
-        // rows needed to offset.
-        int offsetWidth = 0;
-        if (maxDevidedWidth > rowCountMax)
+        for (int count = 0; count < inventorySlotCount; count++)
         {
-            int extra = maxDevidedWidth - rowCountMax;
-            int extraWidth = (int)(extra * itemSlotPrefabWidth);
-            offsetWidth = extraWidth / rowCountMax;
-        }
-
-
-        // for the if checker to see if it's gonna pass the total count of the inventoryslotcount
-        int instantiatedSlots = 0;
-        for (int columnCount = 0; columnCount < maxDevidedHeight; columnCount++)
-        {
-            //****There is a minus -2 here to make sure that the col count wouldnt go up to ** slots****
-            for (int rowCount = 0; rowCount < rowCountMax; rowCount++)
-            {
-                GameObject go = Instantiate(itemSlotPrefab);
-                // To find the starting point to instantiate the slot UI at the proper position
-                float startingPointWidth = ((width - startingPointOffsetWidth) / 2) * -1;
-                float startingPointHeight = startingPointOffsetHeight * -1;
-                Vector2 itemSlotPosition = new Vector2(startingPointWidth + (rowCount * (itemSlotPrefabWidth + offsetWidth))
-                    , startingPointHeight - (columnCount * (itemSlotPrefabHeight + offsetHeight)));
-                go.transform.localPosition = itemSlotPosition;
-                go.transform.SetParent(transform, false);
-                ItemSlotUI itemSlotUI = go.GetComponentInChildren<ItemSlotUI>();
-                itemSlotUI.SetStashable(this);
-                itemSlotUI.slotNumber = instantiatedSlots;
-                itemSlotUIList.Add(itemSlotUI);
-                instantiatedSlots++;
-                if (instantiatedSlots == inventorySlotCount)
-                    return;
-            }
+            GameObject go = Instantiate(itemSlotPrefab);
+            go.transform.SetParent(transform, false);
+            ItemSlotUI itemSlotUI = go.GetComponentInChildren<ItemSlotUI>();
+            itemSlotUI.SetStashable(this);
+            itemSlotUI.slotNumber = count;
+            itemSlotUIList.Add(itemSlotUI);
         }
     }
 
@@ -430,7 +383,7 @@ public class ItemStash : MonoBehaviour, IStashable
         List<T> itemBehaviours = new();
         foreach (var item in inventoryArray)
         {
-            if (item.ItemTypeValue() == _ItemType)
+            if (item.GetItemTypeValue() == _ItemType)
             {
                 T newItem = (T)(object)item;
                 itemBehaviours.Add(newItem);
@@ -454,7 +407,7 @@ public class ItemStash : MonoBehaviour, IStashable
         itemSlotUIList[b] = slotA;
         inventoryArray[a] = itemB;
         inventoryArray[b] = itemA;
-        Debug.Log(inventoryArray[a].ItemTypeValue());
-        Debug.Log(inventoryArray[b].ItemTypeValue());
+        Debug.Log(inventoryArray[a].GetItemTypeValue());
+        Debug.Log(inventoryArray[b].GetItemTypeValue());
     }
 }

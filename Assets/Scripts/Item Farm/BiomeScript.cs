@@ -33,9 +33,11 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     [SerializeField] private Image cooldownFillImage;
     [SerializeField] private TextMeshProUGUI currentHoldingStack;
 
+    private bool isLocked = false;
+    [SerializeField] private GameObject lockedGO;
 
 
-    private void Start()
+    private void Awake()
     {
         seedIcon = dragObject.GetComponent<Image>();
         switch (holdingSeedEnum)
@@ -73,6 +75,17 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         }
     }
 
+    public int GetSeedTier()
+    {
+        return holdingSeed.GetSeedTier();
+    }
+
+    public void SetLockedState(bool locked)
+    {
+        isLocked = locked;
+        lockedGO.SetActive(locked);
+    }
+
     private void TimerMet()
     {
         if (currentStack < maxStack)
@@ -91,6 +104,8 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (isLocked)
+            return;
         queuedActions.Clear();
         if (currentStack > 0)
         {

@@ -54,7 +54,7 @@ public class RecipePanel : MonoBehaviour
 
     public void IconPrefabClick(ItemBehaviour target)
     {
-        switch (target.ItemTypeValue())
+        switch (target.GetItemTypeValue())
         {
             case ItemType.craftedItem: CreateCraftedItem((CraftedItem)target); break;
             case ItemType.potion: CreatePotionItem((PotionItem)target); break;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Order
@@ -69,6 +70,14 @@ public class Order
     {
         foreach (ItemBehaviour orderItem in orderItems)
         {
+            if (item.GetItemTypeValue() == ItemType.potion && orderItem.GetItemTypeValue() == ItemType.potion)
+            {
+                if (((PotionItem)item).firstEffect.Equals(((PotionItem)orderItem).firstEffect))
+                {
+                    TryToFill(item,orderItem,slotNumber);
+                    return true;
+                }
+            }
             if (orderItem.Equals(item))
             {
                 TryToFill(item,orderItem, slotNumber);
@@ -105,6 +114,13 @@ public class Order
         if (orderItems.Count == 0)
         {
             Fullfilled();
+        }
+        foreach (var item in fulfilledItems)
+        {
+            if (item.GetItemTypeValue() == ItemType.potion)
+            {
+                item.Use();
+            }
         }
 
     }

@@ -54,15 +54,7 @@ public class AlchemyPost : MonoBehaviour
 
     private void Start()
     {
-        PotionLibrary.Initialize();
-        //inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(15), true);
-        //inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(15), true);
-        //inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(15), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Chamomile(50), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Lavender(50), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Sage(50), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Patchouli(50), true);
-        inventoryRefrence.val.HaveEmptySlot(new Herb.Hellebore(50), true);
+        PotionLibrary.Initialize();        
         SetLists();
     }
 

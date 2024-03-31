@@ -7,6 +7,7 @@ using System.Reflection;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
+using UnityEditor.PackageManager.Requests;
 
 public class SeedFarmManager : MonoBehaviour
 {
@@ -15,9 +16,12 @@ public class SeedFarmManager : MonoBehaviour
     [SerializeField] private Transform bonusHolder;
 
     [SerializeField] private int currentBonusChance;
-    [SerializeField] private List<Transform> bonusLocations = new List<Transform>();
+    [SerializeField] private List<Transform> bonusLocations = new();
 
     [SerializeField] private float bonusMaxTimer;
+
+    [SerializeField] private List<BiomeScript> biomeScripts = new();
+
 
     private int maxBonusChance = 101;
 
@@ -28,12 +32,13 @@ public class SeedFarmManager : MonoBehaviour
 
     private List<Bonus> bonusList = new List<Bonus>();
     
-    
+    private TierManager tierManager;
 
     private PlayerInventory inventory;
     private void LoadSoRefrence()
     {
         inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
+        tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
     }
 
     private void Start()
@@ -47,6 +52,8 @@ public class SeedFarmManager : MonoBehaviour
         {
             bonusList.Add((Bonus)Activator.CreateInstance(bonus));
         }
+        tierManager.TierChangeAddListener(TierChanged);
+        TierChanged();
     }
 
     private void OnEnable()
@@ -71,6 +78,21 @@ public class SeedFarmManager : MonoBehaviour
     private void OnDisable()
     {
         shouldCount = false;
+    }
+
+    private void TierChanged()
+    {
+        foreach (var bioms in biomeScripts)
+        {
+            if (bioms.GetSeedTier() <= tierManager.UnlockedTier)
+            {
+                bioms.SetLockedState(false);
+            }
+            else
+            {
+                bioms.SetLockedState(true);
+            }
+        }
     }
 
 
