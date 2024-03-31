@@ -11,14 +11,7 @@ public class TierUI : MonoBehaviour
 
     [SerializeField] private GameObject tierItemPrefab;
 
-
-
-
     private Dictionary<ItemBehaviour, TierUIItem> itemTierDictionary = new();
-    //private Dictionary<ItemBehaviour, TierUIItem> secondTierDictionary = new();
-    //private Dictionary<ItemBehaviour, TierUIItem> thirdTierDictionary = new();
-    //private Dictionary<ItemBehaviour, TierUIItem> forthTierDictionary = new();
-
 
     public void SetFirstTier(List<ItemBehaviour> list)
     {
@@ -63,11 +56,6 @@ public class TierUI : MonoBehaviour
 
     public void CheckItemInDictionary(ItemBehaviour targetItem)
     {
-        //if (itemTierDictionary.ContainsKey(targetItem))
-        //{
-        //    itemTierDictionary[targetItem].SetState(true);
-        //}
-
         foreach (var item in itemTierDictionary.Keys)
         {
             if (item.Equals(targetItem))
@@ -76,6 +64,4 @@ public class TierUI : MonoBehaviour
             }
         }
     }
-
-
 }

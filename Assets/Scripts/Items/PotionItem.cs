@@ -63,6 +63,7 @@ public class PotionItem : ItemBehaviour
         if (firstEffect.Equals(new PotionEffect.DrinkingPotionEffect()))
         {
             isDrinkable = true;
+            isConsumable = true;
         }
         secondEffect = second;
         thirdEffect = third;

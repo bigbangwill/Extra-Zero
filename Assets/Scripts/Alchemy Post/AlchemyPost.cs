@@ -61,11 +61,6 @@ public class AlchemyPost : MonoBehaviour
     private void OnEnable()
     {
         LoadSORefrence();
-        //if(minigameIsPlaying)
-        //{
-        //    miniGame.gameObject.SetActive(true);
-        //    transform.parent.gameObject.SetActive(false);
-        //}
         SetLists();
     }
 
@@ -235,17 +230,6 @@ public class AlchemyPost : MonoBehaviour
         firstSlot.CreatedThePotion();
         secondSlot.CreatedThePotion();
         thirdSlot.CreatedThePotion();
-
-
-        //if (!firstSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
-        //{
-        //}
-        //if (!secondSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
-        //{
-        //}
-        //if (!thirdSlot.GetCurrentEffect().Equals(new PotionEffect.EmptyEffect()))
-        //{
-        //}
     }
 
 

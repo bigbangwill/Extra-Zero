@@ -125,17 +125,12 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void PotionCreated()
     {
-        Debug.Log("1");
         if (holdingHerb != null)
         {
-            Debug.Log("2");
             int currentStack = holdingHerb.CurrentStack();
             holdingHerb.SetCurrentStack(herbCost);
-            Debug.Log(herbCost + "HERB COST");
-            Debug.Log(holdingHerb.CurrentStack() + " HOLDING HERB STACK");
             if (inventoryRefrence.val.HaveItemInInventory(holdingHerb, true))
             {
-                Debug.Log("3");
                 holdingHerb.SetCurrentStack(currentStack);
                 holdingHerb = null;
                 image.sprite = null;

@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Xml.Schema;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -24,6 +25,8 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
     protected Sprite itemSprite;
 
     protected bool is_Activeable = false;
+
+    protected bool isConsumable = false;
 
 
     // For loading the icon
@@ -91,6 +94,11 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
     public bool IsStackable()
     {
         return is_Stackable;
+    }
+
+    public bool IsConsumable()
+    {
+        return isConsumable;
     }
     /// <summary>
     /// To return the number of the current stack of the item

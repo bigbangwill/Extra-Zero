@@ -192,8 +192,10 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         }
         else
         {
-            if(currentActiveItem.IsUseable())
+            if (currentActiveItem.IsUseable())
+            {
                 currentActiveItem.Use();
+            }
             currentActiveItem = null;
             currentActiveItemSlotNum = int.MaxValue;
             activeItemTranform.gameObject.SetActive(false);
@@ -203,7 +205,6 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
 
     public void SetActiveItem(int slot)
     {
-        Debug.Log("1");
         if (inventoryArray[slot].IsActiveable())
         {
             if (currentActiveItemSlotNum != slot)
@@ -229,14 +230,11 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         }
         if (inventoryArray[slot].GetItemTypeValue() == ItemType.potion)
         {
-            Debug.Log("2");
             PotionItem item = (PotionItem)inventoryArray[slot];
             if (item.IsDrinkable)
             {
-                Debug.Log("3");
                 if (currentActiveItemSlotNum != slot)
                 {
-                    Debug.Log("4");
                     currentActiveItem = inventoryArray[slot];
                     currentActiveItemSlotNum = slot;
                     activeItemTranform.gameObject.SetActive(true);
@@ -244,8 +242,13 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
                 }
                 else
                 {
-                    Debug.Log("5");
                     item.Use();
+                    if (item.IsConsumable())
+                    { 
+                        ItemBehaviour clone = (ItemBehaviour)currentActiveItem.Clone();
+                        clone.SetCurrentStack(1);
+                        HaveItemInInventory(clone, true);
+                    }
                     currentActiveItem = null;
                     currentActiveItemSlotNum = int.MaxValue;
                     activeItemTranform.gameObject.SetActive(false);
