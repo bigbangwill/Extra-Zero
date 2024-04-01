@@ -45,6 +45,8 @@ public class WaveDifficultySO : ScriptableObject
         if (!refrenceIsSet)
             LoadSORefrence();
         int minValue = orderCombination - combinationRandomness;
+        if (minValue <= 0)
+            minValue = 1;
         int maxValue = orderCombination + combinationRandomness;
         int value = Random.Range(minValue, maxValue);
         if (value > orderManagerRefrence.val.GetMaxOrderCombination())
@@ -73,7 +75,7 @@ public class WaveDifficultySO : ScriptableObject
         float minValue = timerOfOneWave - frequencyOfTimer;
         float maxValue = timerOfOneWave + frequencyOfTimer;
         float value = Random.Range(minValue, maxValue);
-        return value;
+        return value;   
     }
 
 

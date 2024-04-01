@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de001cc83b89c1e41b3cdd7bc58842e8, type: 3}
-  m_Name: Default Wave
+  m_Name: High Load Balanced
   m_EditorClassIdentifier: 
-  orderCombination: 2
-  combinationRandomness: 0
-  orderFrequency: 20
+  orderCombination: 4
+  combinationRandomness: 1
+  orderFrequency: 40
   frequencyRandomness: 5
-  timerOfOneWave: 50
+  timerOfOneWave: 100
   frequencyOfTimer: 10
-  timerOfNightTime: 30
-  walkingOrderSpeed: 2
-  orderFulfillTimer: 20
-  orderFrequencyHardness: 0.1
-  timerOfOneWaveHardness: 0.1
-  orderFulfilTimerHardness: 0.1
-  waveIcon: {fileID: 1993861087375315171, guid: 3525e76daf54e7241bf6bb658c8ed5bd, type: 3}
-  waveDescription: A Very Default Wave!
+  timerOfNightTime: 50
+  walkingOrderSpeed: 1
+  orderFulfillTimer: 50
+  orderFrequencyHardness: 0
+  timerOfOneWaveHardness: 0
+  orderFulfilTimerHardness: 0
+  waveIcon: {fileID: -2046757049, guid: e1cf13c0eb2535548b54ab24514f3da2, type: 3}
+  waveDescription: High Load Orders

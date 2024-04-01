@@ -11,14 +11,6 @@ using Unity.VisualScripting;
 
 public class WaveManager : MonoBehaviour
 {
-    //#region Singleton
-    //public static WaveManager Instance
-    //{
-    //    get { return (WaveManager)_Instance; }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
-
     [SerializeField] private int totalWaveOptionCount;
     
     [SerializeField] private List<WaveDifficultySO> waveDifficultyList = new();
