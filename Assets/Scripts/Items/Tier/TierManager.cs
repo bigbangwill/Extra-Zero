@@ -198,15 +198,24 @@ public class TierManager : MonoBehaviour
         }
         foreach(var item in secondTierItems)
         {
-            secondNonMaterialList.Add(item);
+            if (item.GetItemTypeValue() == ItemType.craftedItem || item.GetItemTypeValue() == ItemType.potion)
+            {
+                secondNonMaterialList.Add(item);
+            }
         }
         foreach (var item in thirdTierItems)
         {
-            thirdNonMaterialList.Add(item);
+            if (item.GetItemTypeValue() == ItemType.craftedItem || item.GetItemTypeValue() == ItemType.potion)
+            {
+                thirdNonMaterialList.Add(item);
+            }
         }
         foreach (var item in forthTierItems)
         {
-            forthNonMaterialList.Add(item);
+            if (item.GetItemTypeValue() == ItemType.craftedItem || item.GetItemTypeValue() == ItemType.potion)
+            {
+                forthNonMaterialList.Add(item);
+            }
         }
 
         int safeChecker = firstNonMaterialList.Count;

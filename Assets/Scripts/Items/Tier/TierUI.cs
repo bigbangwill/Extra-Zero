@@ -19,7 +19,7 @@ public class TierUI : MonoBehaviour
         {
             GameObject target = Instantiate(tierItemPrefab,tier1Parent);
             TierUIItem tierUI = target.GetComponent<TierUIItem>();
-            tierUI.SetIcon(item.IconRefrence());
+            tierUI.SetItem(item);
             itemTierDictionary.Add(item, tierUI);
         }
     }
@@ -29,7 +29,7 @@ public class TierUI : MonoBehaviour
         {
             GameObject target = Instantiate(tierItemPrefab, tier2Parent);
             TierUIItem tierUI = target.GetComponent<TierUIItem>();
-            tierUI.SetIcon(item.IconRefrence());
+            tierUI.SetItem(item);
             itemTierDictionary.Add(item, tierUI);
         }
     }
@@ -39,7 +39,7 @@ public class TierUI : MonoBehaviour
         {
             GameObject target = Instantiate(tierItemPrefab, tier3Parent);
             TierUIItem tierUI = target.GetComponent<TierUIItem>();
-            tierUI.SetIcon(item.IconRefrence());
+            tierUI.SetItem(item);
             itemTierDictionary.Add(item, tierUI);
         }
     }
@@ -49,7 +49,7 @@ public class TierUI : MonoBehaviour
         {
             GameObject target = Instantiate(tierItemPrefab, tier4Parent);
             TierUIItem tierUI = target.GetComponent<TierUIItem>();
-            tierUI.SetIcon(item.IconRefrence());
+            tierUI.SetItem(item);
             itemTierDictionary.Add(item, tierUI);
         }
     }
