@@ -515,7 +515,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         {
             MaxCurrentStacks(broughtItem);
         }
-        eventText.CreateNewText("Inventory is full!", Color.green, Color.red);
+        eventText.CreateNewText("Inventory is full!", TextType.Error);
         return false;
     }
 

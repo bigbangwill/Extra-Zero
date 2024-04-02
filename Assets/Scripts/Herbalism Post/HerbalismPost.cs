@@ -24,6 +24,7 @@ public class HerbalismPost : MonoBehaviour
 
     private HerbalismPostRefrence refrence;
     private PlayerInventoryRefrence inventoryRefrence;
+    private EventTextManager eventTextManager;
 
     private void SetRefrence()
     {
@@ -40,6 +41,7 @@ public class HerbalismPost : MonoBehaviour
     private void LoadSORefrence()
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
     }
 
     private void Awake()

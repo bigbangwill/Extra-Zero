@@ -22,7 +22,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
 
     private ScannerSlotManagerRefrence scannerSlotManagerRefrence;
     private SaveClassManagerRefrence saveClassManagerRefrence;
-
+    private EventTextManager eventTextManager;
 
     private bool isStarted = false;
 
@@ -43,6 +43,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
         scannerSlotManagerRefrence = (ScannerSlotManagerRefrence)FindSORefrence<ScannerSlotManager>.FindScriptableObject("Scanner Slot Manager Refrence");
         saveClassManagerRefrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence");
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
     }
 
     private void Awake()
@@ -213,7 +214,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
 
         if (beenAddedBefore)
         {
-            Debug.Log("Already added to the list");
+            eventTextManager.CreateNewText("You already imported this blueprint", TextType.Information);
         }
         else if (targetSlotUI.state == ScannerSlotManager.SlotState.canRemove)
         {

@@ -35,12 +35,22 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
     [SerializeField] private bool isLocked = true;
 
     private float maxTimerHarvestUpgradeModifier = 0;
+    private EventTextManager eventTextManager;
+
+
 
     public bool IsLocked { get { return isLocked; } }
+
+    private void LoadSORefrence()
+    {
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
+    }
+
 
     private void Start()
     {
         startingColor = image.color;
+        LoadSORefrence();
         SetState();
     }
 
@@ -130,6 +140,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
             int harvestValue = currentGrowingSeed.GetHarvestAmount() / 3;
             currentGrowingSeed.SetHarvestAmount(harvestValue);
             post.SeedHarvested(currentGrowingSeed);
+            eventTextManager.CreateNewText("Decayed!", TextType.Information);
             Debug.Log("Decayed");
         }
         else if (currentTimer >= perfectValue)
@@ -137,6 +148,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
             int harvestValue = currentGrowingSeed.GetHarvestAmount();
             currentGrowingSeed.SetHarvestAmount(harvestValue);
             post.SeedHarvested(currentGrowingSeed);
+            eventTextManager.CreateNewText("Perfect!", TextType.Information);
             Debug.Log("Perfect");
         }
         else if (currentTimer >= soonValue)
@@ -144,6 +156,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
             int harvestValue = currentGrowingSeed.GetHarvestAmount() / 2;
             currentGrowingSeed.SetHarvestAmount(harvestValue);
             post.SeedHarvested(currentGrowingSeed);
+            eventTextManager.CreateNewText("Soon!", TextType.Information);
             Debug.Log("Soon");
         }
         else if (currentTimer >= zeroValue)
@@ -151,6 +164,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
             int harvestValue = currentGrowingSeed.GetHarvestAmount() / 3;
             currentGrowingSeed.SetHarvestAmount(harvestValue);
             post.SeedHarvested(currentGrowingSeed);
+            eventTextManager.CreateNewText("Too Soon!", TextType.Information);
             Debug.Log("Zero");
         }
         ResetMethod();
@@ -162,7 +176,7 @@ public class HerbalismSpot : MonoBehaviour , IPointerDownHandler
         isGrowing = false;
         currentGrowingSeed = null;
         ResetMethod();
-        Debug.Log("Decayed");
+        eventTextManager.CreateNewText("Decayed!", TextType.Warning);
     }
 
     public void OnPointerDown(PointerEventData eventData)

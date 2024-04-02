@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TextType { Information, Error, Warning}
+
 public class EventTextManager : MonoBehaviour
 {
     [SerializeField] private GameObject textPrefab;
@@ -28,14 +30,26 @@ public class EventTextManager : MonoBehaviour
 
     private void Start()
     {
-        CreateNewText("TEST",Color.black,Color.white);
+        CreateNewText("HEY",TextType.Error);
+        CreateNewText("HEY", TextType.Information);
+        CreateNewText("HEY", TextType.Warning);
     }
 
-    public void CreateNewText(string text, Color backgroundColor,Color textColor)
+
+    public void CreateNewText(string text, TextType textType)
     {
         GameObject textGO = Instantiate(textPrefab, transform);
         textGO.transform.position = startPos.position;
-        textGO.GetComponent<EventTextPrefab>().SetText(endPos,text,backgroundColor,textColor);
+        Color backgroundColor;
+        Color textColor;
+        switch(textType)
+        {
+            case TextType.Information: backgroundColor = Color.cyan;textColor = Color.gray; break;
+            case TextType.Warning: backgroundColor = Color.yellow;textColor = Color.black; break;
+            case TextType.Error: backgroundColor = Color.red;textColor = Color.black; break;
+            default: Debug.LogWarning("CHECK HERE ASAP"); backgroundColor = Color.white;textColor = Color.black; break;
+        }
+        textGO.GetComponent<EventTextPrefab>().SetText(endPos, text, textColor, backgroundColor);
     }
 
 

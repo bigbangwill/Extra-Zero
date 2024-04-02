@@ -29,6 +29,7 @@ public class AlchemyPost : MonoBehaviour
 
     private AlchemyPostRefrence refrence;
     private PlayerInventoryRefrence inventoryRefrence;
+    private EventTextManager eventTextManager;
 
     private void SetRefrence()
     {
@@ -44,6 +45,7 @@ public class AlchemyPost : MonoBehaviour
     private void LoadSORefrence()
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
     }
 
     private void Awake()
@@ -171,12 +173,12 @@ public class AlchemyPost : MonoBehaviour
         bool allIsEmpty = true;
         if (sortedPotionEfect[0].isBase == false)
         {
-            Debug.Log("No Base Effect Selected");
+            eventTextManager.CreateNewText("No base effect is selected",TextType.Error);
             return;
         }
         else if (sortedPotionEfect[1].isBase || sortedPotionEfect[2].isBase)
         {
-            Debug.Log("More than one base effect is selected");
+            eventTextManager.CreateNewText("More than one base effect is selected", TextType.Error);
             return;
         }
         foreach (var item in sortedPotionEfect)
@@ -188,7 +190,7 @@ public class AlchemyPost : MonoBehaviour
         }
         if (allIsEmpty)
         {
-            Debug.Log("No effect is selected");
+            eventTextManager.CreateNewText("No effect is selected", TextType.Error);
             return;
         }
 

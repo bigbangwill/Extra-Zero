@@ -41,6 +41,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private EventManagerRefrence eventManagerRefrence;
     private ScannerSlotManagerRefrence scannerSlotManagerRefrence;
     private SaveClassManagerRefrence saveClassManagerRefrence;
+    private EventTextManager eventTextManager;
 
     [SerializeField] private Color spriteCanAdd;
     [SerializeField] private Color spriteCanRemove;
@@ -54,6 +55,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
         scannerSlotManagerRefrence = (ScannerSlotManagerRefrence)FindSORefrence<ScannerSlotManager>.FindScriptableObject("Scanner Slot Manager Refrence");
         saveClassManagerRefrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence");
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
     }
 
     private void Start()
@@ -82,6 +84,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         scannerSlotManagerRefrence.val.AddedToSlot(item,this);
         holdingItem = item;
         image.sprite = item.IconRefrence();
+        eventTextManager.CreateNewText("Added to slot", TextType.Information);
     }
 
     /// <summary>
@@ -93,6 +96,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         scannerSlotManagerRefrence.val.RemovedFromSlot(item,this,isDone);
         image.sprite = null;
         holdingItem = null;
+        eventTextManager.CreateNewText("Removed from slot", TextType.Information);
     }
 
 
@@ -125,12 +129,25 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         else if (state == ScannerSlotManager.SlotState.canRemove
             || state == ScannerSlotManager.SlotState.isDone)
         {
-            Debug.Log(holdingItem.IsStackable());
             if (state == ScannerSlotManager.SlotState.isDone)
                 RemoveFromSlot(holdingItem, true);
             else
                 RemoveFromSlot(holdingItem, false);
         }
+        else if(state == ScannerSlotManager.SlotState.isLocked)
+        {
+            eventTextManager.CreateNewText("Slot is locked", TextType.Error);
+        }
+        else if (state == ScannerSlotManager.SlotState.passive)
+        {
+            eventTextManager.CreateNewText("Slot is pending", TextType.Error);
+        }
+        else if (state == ScannerSlotManager.SlotState.canAdd
+            && scannerSlotManagerRefrence.val.currentHologram == null)
+        {
+            eventTextManager.CreateNewText("Select a item from the list first!", TextType.Error);
+        }
+
     }
 
     public void AddISaveableToDictionary()

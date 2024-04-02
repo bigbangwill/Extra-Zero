@@ -27,8 +27,19 @@ public class ImportHolder : MonoBehaviour
     private GameObject activeImportUIGO = null;
     private int activeNumber;
 
+
+    private EventTextManager eventTextManager;
+
+    private void LoadSORefrence()
+    {
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
+    }
+
+
+
     private void Start()
     {
+        LoadSORefrence();
         InitializeUI();
     }
 
@@ -195,6 +206,7 @@ public class ImportHolder : MonoBehaviour
     public void SentButtonClicked()
     {
         itemPrinterRefrence.SentToPrinter(activeImport);
+        eventTextManager.CreateNewText("Sent to 3D-Printer", TextType.Information);
         if (activeImportUIGO != null)
         {
             activeImportUIGO.SetActive(false);
