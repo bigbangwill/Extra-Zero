@@ -44,12 +44,17 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
 
 
     private EventManagerRefrence eventManagerRefrence;
+    private PlayerInventory inventory;
     private SaveClassManagerRefrence saveClassManagerRefrence;
+    private EventTextManager eventText;
 
     private void LoadSORefrence()
     {
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
         saveClassManagerRefrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence");
+        inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
+        eventText = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
+
     }
 
     private void Awake()
@@ -254,6 +259,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         eventManagerRefrence.val.SecondsElapsedRemoveListener(SecondElapsed);
         iscrafting = false;
         isDone = true;
+        itemImage.sprite = currentBluePrint.CraftedItemReference().IconRefrence();
         foreach (var item in craftingItemArray)
         {
             item.ResetState();
@@ -284,17 +290,24 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     {
         if (isDone)
         {
-            ExportItem(currentBluePrint);
-            currentBluePrint = null;
-            itemImage.sprite = null;
-            isDone = false;
+            if (inventory.HaveEmptySlot(currentBluePrint.CraftedItemReference(), true))
+            {
+                ExportItem(currentBluePrint);
+                currentBluePrint = null;
+                itemImage.sprite = null;
+                isDone = false;
+            }
+            else
+            {
+                //eventText.CreateNewText("Inventory is full!",Color.green,Color.red);
+            }
         }
     }
 
     // Gets implemented when the player can pick up item.
     private void ExportItem(BluePrintItem bluePrintItem)
     {
-        Debug.Log("Exported item: " + bluePrintItem.GetName());
+       
     }
 
     public void AddISaveableToDictionary()

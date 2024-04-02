@@ -43,11 +43,14 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
     private UsableCanvasManagerRefrence usableRefrence;
     private SaveClassManagerRefrence saveClassManagerRefrence;
 
+    private EventTextManager eventText;
+
     private void LoadSORefrence()
     {
         eventManagerRefrence = (EventManagerRefrence)FindSORefrence<EventManager>.FindScriptableObject("Event Manager Refrence");
         usableRefrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
         saveClassManagerRefrence = (SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence");
+        eventText = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
     }
 
 
@@ -512,6 +515,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
         {
             MaxCurrentStacks(broughtItem);
         }
+        eventText.CreateNewText("Inventory is full!", Color.green, Color.red);
         return false;
     }
 

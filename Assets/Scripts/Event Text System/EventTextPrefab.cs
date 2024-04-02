@@ -10,29 +10,30 @@ public class EventTextPrefab : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI textContext;
     [SerializeField] private float speed;
+    [SerializeField] private float destroyDistance;
 
     private Image backgroundImage;
     private Transform endPos;
     private float dist;
+    private bool isSet = false;
 
     public void SetText(Transform endPos,string text, Color textColor,Color backgroundColor)
     {
+        backgroundImage = GetComponent<Image>();
         textContext.text = text;
         textContext.color = textColor;
         backgroundImage.color = backgroundColor;
         this.endPos = endPos;
         dist = Vector2.Distance(transform.position, endPos.position);
-    }
-
-    private void Start()
-    {
-        backgroundImage = GetComponent<Image>();
+        isSet = true;
     }
 
     private void Update()
     {
+        if (!isSet)
+            return;
         float distance = Vector2.Distance(transform.position, endPos.position);
-        if (distance <= 0)
+        if (distance <= destroyDistance)
         {
             Destroy(gameObject);
             return;
