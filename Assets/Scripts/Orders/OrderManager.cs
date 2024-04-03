@@ -43,6 +43,7 @@ public class OrderManager : MonoBehaviour
     private PlayerInventoryRefrence inventoryRefrence;
     private UsableCanvasManagerRefrence usableRefrence;
     private TierManager tierManager;
+    private EventTextManager eventTextManager;
 
     private void SetRefrence()
     {
@@ -60,6 +61,7 @@ public class OrderManager : MonoBehaviour
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
         usableRefrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
         tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
     }
 
 
@@ -112,13 +114,14 @@ public class OrderManager : MonoBehaviour
     /// <param name="waveDifficulty"></param>
     public void StartNewWave(WaveDifficultySO waveDifficulty)
     {
-        //Debug.Log("It's Day Time");
+        eventTextManager.CreateNewText("It's Day time!", TextType.Warning);
         currentWaveDifficulty = waveDifficulty;
         currentWaveNumber++;
         waveCurrentTimer = 0;
         currentWaveMaxTimer = currentWaveDifficulty.GetTimerOfWave();
         isWaveSpawnTime = true;
         walkingOrdersSummoned = 0;
+        eventTextManager.CreateNewText(currentWaveDifficulty.GetWaveDescription(), TextType.Information);
         SummonWalkingOrder();
     }
 
@@ -142,6 +145,7 @@ public class OrderManager : MonoBehaviour
     {
         isWaveSpawnTime = false;
         currentPendingCoroutine = StartCoroutine(WaitForPendingOrders());
+        eventTextManager.CreateNewText("Finish these orders and rest up while you can!", TextType.Information);
     }
 
     private void StartNightTime()
@@ -154,7 +158,7 @@ public class OrderManager : MonoBehaviour
         nightCurrentTimer = 0;
         nightMaxTimer = currentWaveDifficulty.GetNightMaxTime();
         waveChosingUI.CreateWaveOptionUI();
-        //Debug.Log("It's Night TIME ");
+        eventTextManager.CreateNewText("Night time!",TextType.Information);
     }
 
     private void FinishNightTime()

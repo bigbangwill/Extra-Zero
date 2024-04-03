@@ -100,7 +100,6 @@ public class CraftingItem : MonoBehaviour
             greenIndicator.SetActive(false);
             redIndicator.SetActive(false);
             greyIndicator.SetActive(false);
-            Debug.Log("Filled");
         }
     }
 

@@ -1,13 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System;
 using System.Reflection;
 using System.Linq;
-using Unity.VisualScripting;
 
 public class WaveManager : MonoBehaviour
 {
@@ -192,11 +189,13 @@ public class WaveManager : MonoBehaviour
         protected PlayerInventoryRefrence inventoryRefrence;
         protected WaveManagerRefrence waveManagerRefrence;
         protected EconomyManagerRefrence economyManagerRefrence;
+        protected EventTextManager eventTextManager;
         protected void LoadSORefrence()
         {
             inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
             waveManagerRefrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");
             economyManagerRefrence = (EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence");
+            eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
         }
 
         protected void LoadIcon()
@@ -279,6 +278,7 @@ public class WaveManager : MonoBehaviour
                     waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 1.9f;
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
                     waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 1.8f;
+                eventTextManager.CreateNewText(description, TextType.Information);
             }
         }
 
@@ -301,6 +301,7 @@ public class WaveManager : MonoBehaviour
                     waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 1.9f;
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
                     waveManagerRefrence.val.timerOfOneWaveEffectsApplied += 1.8f;
+                eventTextManager.CreateNewText("Permenantly " + description, TextType.Information);
             }
         }
 
@@ -323,7 +324,7 @@ public class WaveManager : MonoBehaviour
                     waveManagerRefrence.val.orderFrequencyEffectsApplied -= 0.4f;
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
                     waveManagerRefrence.val.orderFrequencyEffectsApplied -= 0.3f;
-
+                eventTextManager.CreateNewText("Permenantly " + description, TextType.Information);
             }
         }
 
@@ -350,6 +351,7 @@ public class WaveManager : MonoBehaviour
                     waveManagerRefrence.val.orderCombinationEffectsApplied += 0;
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
                     waveManagerRefrence.val.orderCombinationEffectsApplied += 0;
+                eventTextManager.CreateNewText("Permenantly " + description, TextType.Information);
             }
         }
     }
@@ -374,17 +376,12 @@ public class WaveManager : MonoBehaviour
             public override void ImpactEffect()
             {
                 if (currentUpgradeState == UpgradeEnum.isPassive)
-                {
                     economyManagerRefrence.val.InGameCurrencyCurrentStack += 1;
-                }
                 else if (currentUpgradeState == UpgradeEnum.isNotQubit)
-                {
                     economyManagerRefrence.val.InGameCurrencyCurrentStack += 2;
-                }
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
-                {
                     economyManagerRefrence.val.InGameCurrencyCurrentStack += 3;
-                }
+                eventTextManager.CreateNewText(description, TextType.Information);
             }
         }
 
@@ -407,6 +404,7 @@ public class WaveManager : MonoBehaviour
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(5), true);
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.TitaniumAlloy(10), true);
+                eventTextManager.CreateNewText(description, TextType.Information);
             }
         }
 
@@ -423,15 +421,13 @@ public class WaveManager : MonoBehaviour
 
             public override void ImpactEffect()
             {
-
-
                 if (currentUpgradeState == UpgradeEnum.isPassive)
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(3), true);
                 else if (currentUpgradeState == UpgradeEnum.isNotQubit)
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(5), true);
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Plastic(10), true);
-
+                eventTextManager.CreateNewText(description, TextType.Information);
             }
         }
 
@@ -455,6 +451,7 @@ public class WaveManager : MonoBehaviour
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(5), true);
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.AluminumAlloy(10), true);
+                eventTextManager.CreateNewText(description, TextType.Information);
             }
         }
 
@@ -478,7 +475,7 @@ public class WaveManager : MonoBehaviour
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(5), true);
                 else if (currentUpgradeState == UpgradeEnum.isQubit)
                     inventoryRefrence.val.HaveEmptySlot(new MaterialItem.Ceramic(10), true);
-
+                eventTextManager.CreateNewText(description, TextType.Information);
             }
         }
     }

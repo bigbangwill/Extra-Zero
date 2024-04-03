@@ -16,13 +16,11 @@ public class WaveChosingUI : MonoBehaviour
     private WaveManagerRefrence waveManagerRefrence;
 
     private OrderManagerRefrence orderManagerRefrence;
-    private EventTextManager eventTextManager;
 
     private void LoadSORefrence()
     {
         orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
-        waveManagerRefrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");
-        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
+        waveManagerRefrence = (WaveManagerRefrence)FindSORefrence<WaveManager>.FindScriptableObject("Wave Manager Refrence");        
     }
 
     

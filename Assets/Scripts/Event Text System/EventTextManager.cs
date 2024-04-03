@@ -10,6 +10,13 @@ public class EventTextManager : MonoBehaviour
     [SerializeField] private Transform startPos;
     [SerializeField] private Transform endPos;
 
+    [SerializeField] private float maxWaitTimer;
+
+    private float currentWaitTimer;
+
+    private List<GameObject> textObjects = new();
+    private bool isWainting = false;
+
     private EventTextManagerRefrence refrence;
 
     private void SetSORefrence()
@@ -28,17 +35,21 @@ public class EventTextManager : MonoBehaviour
         SetSORefrence();
     }
 
-    private void Start()
+
+    private void Update()
     {
-        CreateNewText("HEY",TextType.Error);
-        CreateNewText("HEY", TextType.Information);
-        CreateNewText("HEY", TextType.Warning);
+        if(textObjects.Count > 0 && !isWainting)
+        {
+            isWainting = true;
+            StartCoroutine(countDown(textObjects[0]));
+        }
     }
 
 
     public void CreateNewText(string text, TextType textType)
     {
         GameObject textGO = Instantiate(textPrefab, transform);
+        textGO.SetActive(false);
         textGO.transform.position = startPos.position;
         Color backgroundColor;
         Color textColor;
@@ -50,6 +61,17 @@ public class EventTextManager : MonoBehaviour
             default: Debug.LogWarning("CHECK HERE ASAP"); backgroundColor = Color.white;textColor = Color.black; break;
         }
         textGO.GetComponent<EventTextPrefab>().SetText(endPos, text, textColor, backgroundColor);
+        textObjects.Add(textGO);
+
+    }
+
+    private IEnumerator countDown(GameObject target)
+    {
+        target.SetActive(true);
+        textObjects.Remove(target);        
+        yield return new WaitForSecondsRealtime(.5f);
+        isWainting = false;
+        yield break;
     }
 
 

@@ -1,13 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
 using System.Reflection;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
-using TMPro;
-using UnityEngine.Rendering;
 
 public class TalentManager : MonoBehaviour
 {

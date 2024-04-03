@@ -30,12 +30,14 @@ public class BluePrintInfo : MonoBehaviour
 
     private EconomyManager economyManager;
     private PlayerInventory inventory;
+    private EventTextManager eventTextManager;
     private bool isLoaded = false;
     
     private void LoadSORefrence()
     {
         economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
         inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
         Debug.Log(economyManager, economyManager.gameObject);
         isLoaded = true;
     }
@@ -89,6 +91,7 @@ public class BluePrintInfo : MonoBehaviour
             {
                 economyManager.QuantumQuartersCurrentStack -= currentItem.PurchaseCost;
                 transform.parent.gameObject.SetActive(false);
+                eventTextManager.CreateNewText("Purchased " + currentItem.GetName() + "blueprint", TextType.Information);
             }
             
         }

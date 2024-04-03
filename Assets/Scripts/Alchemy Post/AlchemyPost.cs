@@ -190,7 +190,7 @@ public class AlchemyPost : MonoBehaviour
         }
         if (allIsEmpty)
         {
-            eventTextManager.CreateNewText("No effect is selected", TextType.Error);
+            eventTextManager.CreateNewText("No known potion effect is selected", TextType.Error);
             return;
         }
 

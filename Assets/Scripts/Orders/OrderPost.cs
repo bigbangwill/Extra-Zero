@@ -40,12 +40,14 @@ public class OrderPost : MonoBehaviour
     private OrderManagerRefrence orderManagerRefrence;
     private TierManager tierManager;
     private EconomyManager economyManager;
+    private EventTextManager eventTextManager;
 
     private void LoadSORefrence()
     {
         orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
         tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
         economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
     }
 
 
@@ -107,7 +109,6 @@ public class OrderPost : MonoBehaviour
     public void InitList(List<ItemBehaviour> orderableList)
     {
         orderableItems = orderableList;
-
     }
 
     public void GetNewOrderList()
@@ -194,7 +195,7 @@ public class OrderPost : MonoBehaviour
             }
             else
             {
-                Debug.Log("Doesnt match");
+                eventTextManager.CreateNewText("Doesn't match the order", TextType.Error);
             }
         }
     }

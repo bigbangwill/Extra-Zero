@@ -157,6 +157,19 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
     private float punishTimer = 3;
     private float currentPunishTimer = 0;
 
+    private void OnEnable()
+    {
+        if (currentPunishTimer > 0)
+        {
+            StartCoroutine(ResumePunish());
+        }
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(Punish());
+    }
+
     private IEnumerator Punish()
     {
         isPunishing = true;
@@ -175,4 +188,21 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
             yield return null;
         }
     }
+
+    private IEnumerator ResumePunish()
+    {
+        while (true)
+        {
+            currentPunishTimer -= Time.deltaTime;
+            cooldownImage.fillAmount = currentPunishTimer / punishTimer;
+            if (currentPunishTimer <= 0)
+            {
+                isPunishing = false;
+                cooldownImage.gameObject.SetActive(true);
+                break;
+            }
+            yield return null;
+        }
+    }
+
 }

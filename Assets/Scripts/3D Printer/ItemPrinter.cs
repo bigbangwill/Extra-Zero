@@ -13,8 +13,9 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     [SerializeField] private CraftingItem craftingItem1;
     [SerializeField] private CraftingItem craftingItem2;
     [SerializeField] private CraftingItem craftingItem3;
-
     [SerializeField] private Button cancelCrafting;
+    [SerializeField] private Button fillButton;
+    [SerializeField] private Button removeButton;
 
     private Image itemImage;
 
@@ -97,7 +98,6 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
                 return false;
             }
         }
-        Debug.Log("Ger");
         currentBluePrint = sentItem;
         Initialize();
         return true;
@@ -134,7 +134,6 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         for (int i = 0; i < craftingItemArray.Length; i++)
         {
             craftingItemArray[i].SetIndicator(requiredItemsForCrafting[i]);
-            Debug.Log("Check");
         }
     }
 
@@ -143,15 +142,23 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     /// </summary>
     public void FillAllButtonClicked()
     {
-
+        bool showedError = false;
         int i = 0;
         foreach (var item in craftingItemArray)
         {
             i++;
-            Debug.Log(i);
             if (item.GetState() == craftingItemState.CanFill)
             {
                 item.GetItemFromInventory();
+            }
+            else if(item.GetState() == craftingItemState.CantFill)
+            {
+                if (!showedError)
+                {
+                    eventText.CreateNewText("Don't have the material to fill", TextType.Error);
+                    showedError = true;
+                }
+
             }
         }
     }
@@ -183,7 +190,10 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         foreach (var item in craftingItemArray)
         {
             if (item.GetState() == craftingItemState.CanFill || item.GetState() == craftingItemState.CantFill)
+            {
                 allAreFilled = false;
+                eventText.CreateNewText("Fill the materials first!", TextType.Error);
+            }
         }
         if (allAreFilled && !isDone)
         {
@@ -235,6 +245,8 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         isCrafting = true;
         craftMaxTimer = currentBluePrint.CraftTimer();
         currentCraftTimer = craftMaxTimer;
+        fillButton.interactable = false;
+        removeButton.interactable = false;
     }
 
 
@@ -260,6 +272,8 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
         iscrafting = false;
         isDone = true;
         itemImage.sprite = currentBluePrint.CraftedItemReference().IconRefrence();
+        fillButton.interactable = true;
+        removeButton.interactable = true;
         foreach (var item in craftingItemArray)
         {
             item.ResetState();

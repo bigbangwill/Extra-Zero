@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEditor.Timeline.Actions;
 
 public class PurchasableScript : MonoBehaviour, IPointerDownHandler
 {
