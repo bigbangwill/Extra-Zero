@@ -29,13 +29,13 @@ public class SeedFarmManager : MonoBehaviour
 
     private List<Bonus> bonusList = new List<Bonus>();
     
-    private TierManager tierManager;
+    private NewTierManager tierManager;
 
     private PlayerInventory inventory;
     private void LoadSoRefrence()
     {
         inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
-        tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
+        tierManager = ((NewTierManagerRefrence)FindSORefrence<NewTierManager>.FindScriptableObject("New Tier Manager Refrence")).val;
     }
 
     private void Start()

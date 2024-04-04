@@ -17,7 +17,7 @@ public class MaterialFarmManager : MonoBehaviour
 
 
     private PlayerInventory inventory;
-    private TierManager tierManager;
+    private NewTierManager tierManager;
 
     private MaterialFarmManagerRefrence refrence;
 
@@ -34,7 +34,7 @@ public class MaterialFarmManager : MonoBehaviour
     private void LoadSORefrence()
     {
         inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
-        tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
+        tierManager = ((NewTierManagerRefrence)FindSORefrence<NewTierManager>.FindScriptableObject("New Tier Manager Refrence")).val;
     }
 
     private void Awake()

@@ -38,14 +38,14 @@ public class OrderPost : MonoBehaviour
     private bool isPrecisionPotionMarked = false;
 
     private OrderManagerRefrence orderManagerRefrence;
-    private TierManager tierManager;
+    private NewTierManager tierManager;
     private EconomyManager economyManager;
     private EventTextManager eventTextManager;
 
     private void LoadSORefrence()
     {
         orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
-        tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
+        tierManager = ((NewTierManagerRefrence)FindSORefrence<NewTierManager>.FindScriptableObject("New Tier Manager Refrence")).val;
         economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
         eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
     }

@@ -1,14 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Reflection;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine.Rendering.Universal;
-using static UnityEngine.GraphicsBuffer;
+using System.Linq.Expressions;
 
-public class TierManager : MonoBehaviour
+public class TierManager2 : MonoBehaviour
 {
 
     [SerializeField] private int firstTierCount = 2;
@@ -47,7 +44,7 @@ public class TierManager : MonoBehaviour
 
     private void SetRefrence()
     {
-        refrence = (TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence");
+        refrence = (TierManagerRefrence)FindSORefrence<TierManager2>.FindScriptableObject("Tier Manager Refrence");
         if (refrence == null)
         {
             Debug.LogWarning("Didnt find it");
@@ -63,9 +60,9 @@ public class TierManager : MonoBehaviour
 
     private void Awake()
     {
-        SetRefrence();
-        InitTierCraftedList();
-        SetPotionEffectTiers();
+        SetRefrence();        
+        //InitTierCraftedList();        
+        //SetPotionEffectTiers();
         SetupMilestoneTierLists();
     }
 
@@ -95,20 +92,34 @@ public class TierManager : MonoBehaviour
 
     private void InitTierCraftedList()
     {
-        List<Type> craftedItems = Assembly.GetAssembly(typeof(BluePrintItem))
-        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(BluePrintItem))).ToList();
+        
+        Debug.Log("DEBUG 1");
+        List<Type> craftedItems = Assembly.GetAssembly(typeof(BluePrintItem)).GetTypes().ToList().
+            Where(Thetype => Thetype.IsClass &&
+            !Thetype.IsAbstract && Thetype.IsSubclassOf(typeof(BluePrintItem))).ToList();
 
+        craftedItems.Clear();
+
+        Debug.Log("DEBUG 2");
+        Debug.Log(craftedItems.Count);
         foreach (var item in craftedItems)
         {
+
+            
+            Debug.Log("DEBUG 3");
             BluePrintItem target = (BluePrintItem)Activator.CreateInstance(item);
             int highestTier = 0;
+            Debug.Log("DEBUG 342");
             foreach (var material in target.materialsList)
             {
+                Debug.Log("DEBUG 4");
                 if (material.GetItemTier() > highestTier)
                 {
                     highestTier = material.GetItemTier();
+                    Debug.Log("DEBUG 5");
                 }
             }
+            Debug.Log("DEBUG 6");
             switch (highestTier)
             {
                 case 1: firstTierItems.Add(target.CraftedItemReference()); break;
@@ -118,14 +129,17 @@ public class TierManager : MonoBehaviour
                 default: Debug.LogWarning("CHECK HERE ASAP"); break;
             }
         }
-
+        Debug.Log("DEBUG 7");
         craftedItems.Clear();
         craftedItems = Assembly.GetAssembly(typeof(MaterialItem))
         .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(MaterialItem))).ToList();
-
-        foreach(var item in craftedItems) 
+        Debug.Log("DEBUG 8");
+        craftedItems = new();
+        foreach (var item in craftedItems)
         {
+            Debug.Log("DEBUG 9");
             MaterialItem target = (MaterialItem)Activator.CreateInstance(item);
+            Debug.Log("DEBUG 10");
             switch (target.GetItemTier())
             {
                 case 1: firstTierItems.Add(target); break;
@@ -135,11 +149,12 @@ public class TierManager : MonoBehaviour
                 default: Debug.LogWarning("CHECK HERE ASAP"); break;
             }
             //firstTierItems.Add(target);
+            Debug.Log("DEBUG 11");
         }
         craftedItems.Clear();
         craftedItems = Assembly.GetAssembly(typeof(Herb))
         .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Herb))).ToList();
-
+        Debug.Log("DEBUG 12");
         foreach (var item in craftedItems)
         {
             Herb target = (Herb)Activator.CreateInstance(item);
@@ -153,11 +168,11 @@ public class TierManager : MonoBehaviour
             }
             //firstTierItems.Add(target);
         }
-
+        Debug.Log("DEBUG 13");
         craftedItems.Clear();
         craftedItems = Assembly.GetAssembly(typeof(Seed))
         .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Seed))).ToList();
-
+        Debug.Log("DEBUG 14");
         foreach (var item in craftedItems)
         {
             Seed target = (Seed)Activator.CreateInstance(item);
@@ -170,6 +185,7 @@ public class TierManager : MonoBehaviour
                 default: Debug.LogWarning("CHECK HERE ASAP"); break;
             }
             //firstTierItems.Add(Target);
+            Debug.Log("DEBUG 15");
         }
     }
 

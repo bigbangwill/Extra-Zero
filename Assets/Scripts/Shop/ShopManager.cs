@@ -41,6 +41,7 @@ public class ShopManager : MonoBehaviour
         foreach (var item in types)
         {
             BluePrintItem target = (BluePrintItem)Activator.CreateInstance(item);
+            Debug.Log("BURN NOW");
             bluePrintList.Add(target);
         }
 

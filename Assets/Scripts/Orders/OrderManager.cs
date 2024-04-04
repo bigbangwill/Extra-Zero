@@ -42,7 +42,7 @@ public class OrderManager : MonoBehaviour
 
     private PlayerInventoryRefrence inventoryRefrence;
     private UsableCanvasManagerRefrence usableRefrence;
-    private TierManager tierManager;
+    private NewTierManager tierManager;
     private EventTextManager eventTextManager;
 
     private void SetRefrence()
@@ -60,7 +60,7 @@ public class OrderManager : MonoBehaviour
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
         usableRefrence = (UsableCanvasManagerRefrence)FindSORefrence<UseableItemCanvasScript>.FindScriptableObject("Usable Manager Refrence");
-        tierManager = ((TierManagerRefrence)FindSORefrence<TierManager>.FindScriptableObject("Tier Manager Refrence")).val;
+        tierManager = ((NewTierManagerRefrence)FindSORefrence<NewTierManager>.FindScriptableObject("New Tier Manager Refrence")).val;
         eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
     }
 
