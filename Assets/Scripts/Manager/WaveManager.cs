@@ -206,7 +206,7 @@ public class WaveManager : MonoBehaviour
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                 iconEffect = handle.Result;
-                Addressables.Release(handle);
+                //Addressables.Release(handle);
             }
             else
             {

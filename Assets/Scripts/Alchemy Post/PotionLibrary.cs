@@ -206,7 +206,7 @@ public abstract class PotionEffect
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             sprite = handle.Result;
-            Addressables.Release(handle);
+            //Addressables.Release(handle);
         }
         else
         {

@@ -33,7 +33,7 @@ public abstract class TalentLibrary
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             talentIcon = handle.Result;
-            Addressables.Release(handle);
+            //Addressables.Release(handle);
         }
         else
         {

@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 3dbe3c96b34cc63428d1407225b716b5
   m_currentHash:
     serializedVersion: 2
-    Hash: a8f50ef35543e82b0109a2b5c6164822
+    Hash: 5154577f0d73a56273b74e2fce3dc816
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -35,9 +35,9 @@ MonoBehaviour:
   m_CheckForContentUpdateRestrictionsOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: 
+    m_Id: e7fdd6da85511ba4f8852fa8a783481b
   m_RemoteCatalogLoadPath:
-    m_Id: 
+    m_Id: 34a9bf3834fc9d44aa916483145b6faf
   m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
@@ -78,6 +78,8 @@ MonoBehaviour:
         m_Value: 'ServerData/[BuildTarget]'
       - m_Id: 2f29a85f930362149861c56cabbfdee9
         m_Value: 'http://[PrivateIpAddress]:[HostingServicePort]'
+      - m_Id: 249d3e7f3f6f3504b98de12817f2b030
+        m_Value: D:/Unity Projects/Extra Zero Standard/Assets
     m_ProfileEntryNames:
     - m_Id: 35a6601c398d0594b9efa8b871da3512
       m_Name: BuildTarget
@@ -93,6 +95,9 @@ MonoBehaviour:
       m_InlineUsage: 0
     - m_Id: 2f29a85f930362149861c56cabbfdee9
       m_Name: Remote.LoadPath
+      m_InlineUsage: 0
+    - m_Id: 249d3e7f3f6f3504b98de12817f2b030
+      m_Name: New Entry
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:
@@ -116,5 +121,6 @@ MonoBehaviour:
     m_HostingServiceInfos: []
     m_Settings: {fileID: 11400000}
     m_NextInstanceId: 0
-    m_RegisteredServiceTypeRefs: []
+    m_RegisteredServiceTypeRefs:
+    - UnityEditor.AddressableAssets.HostingServices.HttpHostingService, Unity.Addressables.Editor
     m_PingTimeoutInMilliseconds: 5000

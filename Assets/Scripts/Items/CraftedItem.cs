@@ -507,7 +507,7 @@ public abstract class CraftedItem : ItemBehaviour
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                 uiPrefab = handle.Result;
-                Addressables.Release(handle);
+                //Addressables.Release(handle);
             }
             else
             {

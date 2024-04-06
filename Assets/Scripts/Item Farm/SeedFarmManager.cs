@@ -142,7 +142,7 @@ public class SeedFarmManager : MonoBehaviour
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                 icon = handle.Result;
-                Addressables.Release(handle);
+                //Addressables.Release(handle);
             }
             else
             {

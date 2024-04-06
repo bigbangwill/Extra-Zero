@@ -29,7 +29,7 @@ public class PotionItem : ItemBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             itemIcon = handle.Result;
-            Addressables.Release(handle);
+            //Addressables.Release(handle);
         }
         else
         {

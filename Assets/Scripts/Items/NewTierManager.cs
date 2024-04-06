@@ -91,32 +91,21 @@ public class NewTierManager : MonoBehaviour
 
     private void InitTierCraftedList()
     {
-
-        Debug.Log("DEBUG 1");
         List<Type> craftedItems = Assembly.GetAssembly(typeof(BluePrintItem)).GetTypes().ToList().
             Where(Thetype => Thetype.IsClass &&
             !Thetype.IsAbstract && Thetype.IsSubclassOf(typeof(BluePrintItem))).ToList();
 
-        Debug.Log("DEBUG 2");
-        Debug.Log(craftedItems.Count);
         foreach (var item in craftedItems)
         {
-
-
-            Debug.Log("DEBUG 3");
             BluePrintItem target = (BluePrintItem)Activator.CreateInstance(item);
             int highestTier = 0;
-            Debug.Log("DEBUG 342");
             foreach (var material in target.materialsList)
             {
-                Debug.Log("DEBUG 4");
                 if (material.GetItemTier() > highestTier)
                 {
                     highestTier = material.GetItemTier();
-                    Debug.Log("DEBUG 5");
                 }
             }
-            Debug.Log("DEBUG 6");
             switch (highestTier)
             {
                 case 1: firstTierItems.Add(target.CraftedItemReference()); break;
@@ -126,16 +115,12 @@ public class NewTierManager : MonoBehaviour
                 default: Debug.LogWarning("CHECK HERE ASAP"); break;
             }
         }
-        Debug.Log("DEBUG 7");
         craftedItems.Clear();
         craftedItems = Assembly.GetAssembly(typeof(MaterialItem))
         .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(MaterialItem))).ToList();
-        Debug.Log("DEBUG 8");
         foreach (var item in craftedItems)
         {
-            Debug.Log("DEBUG 9");
             MaterialItem target = (MaterialItem)Activator.CreateInstance(item);
-            Debug.Log("DEBUG 10");
             switch (target.GetItemTier())
             {
                 case 1: firstTierItems.Add(target); break;
@@ -145,12 +130,10 @@ public class NewTierManager : MonoBehaviour
                 default: Debug.LogWarning("CHECK HERE ASAP"); break;
             }
             //firstTierItems.Add(target);
-            Debug.Log("DEBUG 11");
         }
         craftedItems.Clear();
         craftedItems = Assembly.GetAssembly(typeof(Herb))
         .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Herb))).ToList();
-        Debug.Log("DEBUG 12");
         foreach (var item in craftedItems)
         {
             Herb target = (Herb)Activator.CreateInstance(item);
@@ -164,11 +147,9 @@ public class NewTierManager : MonoBehaviour
             }
             //firstTierItems.Add(target);
         }
-        Debug.Log("DEBUG 13");
         craftedItems.Clear();
         craftedItems = Assembly.GetAssembly(typeof(Seed))
         .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Seed))).ToList();
-        Debug.Log("DEBUG 14");
         foreach (var item in craftedItems)
         {
             Seed target = (Seed)Activator.CreateInstance(item);
@@ -181,7 +162,6 @@ public class NewTierManager : MonoBehaviour
                 default: Debug.LogWarning("CHECK HERE ASAP"); break;
             }
             //firstTierItems.Add(Target);
-            Debug.Log("DEBUG 15");
         }
     }
 

@@ -51,17 +51,24 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
     /// </summary>
     protected virtual void LoadIcon()
     {
-        AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(specificAddress);
-        handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
+        try
+        {
 
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            itemIcon = handle.Result;
-            Addressables.Release(handle);
+            AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(specificAddress);
+            handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
+
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                itemIcon = handle.Result;
+            }
+            else
+            {
+                Debug.LogError("Failed to load the asset");
+            }
         }
-        else
+        catch (Exception e)
         {
-            Debug.LogError("Failed to load the asset");
+            Debug.LogException(e);
         }
     }
 

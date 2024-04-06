@@ -14,17 +14,24 @@ public abstract class MaterialItem : ItemBehaviour
 
     protected void LoadFarmIcon()
     {
-        AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(farmIconAddress);
-        handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
+        try
+        {
+            AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(farmIconAddress);
+            handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
 
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            farmIcon = handle.Result;
-            Addressables.Release(handle);
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                farmIcon = handle.Result;
+                //Addressables.Release(handle);
+            }
+            else
+            {
+                Debug.LogError("Failed to load the asset");
+            }
         }
-        else
+        catch (Exception e)
         {
-            Debug.LogError("Failed to load the asset");
+            Debug.LogException(e);
         }
     }
 
@@ -39,9 +46,8 @@ public abstract class MaterialItem : ItemBehaviour
         itemName = "Materials";
         farmIconAddress = "Farm Icons/" + specificName + "[Sprite]";
         SetItemTier();
-        GetItemTier();
         LoadIcon();
-        LoadFarmIcon();        
+        LoadFarmIcon();
     }
 
     public override bool Equals(object obj)
@@ -97,7 +103,6 @@ public abstract class MaterialItem : ItemBehaviour
             maxStack = 10;
             specificName = "Plastic";
             maxThreshold = 3;
-            
             Load();
         }
 
