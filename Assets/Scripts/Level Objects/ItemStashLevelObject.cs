@@ -9,9 +9,6 @@ public class ItemStashLevelObject : MonoBehaviour
 
     private PlayerInventory inventory;
 
-
-
-
     private void LoadSORefrence()
     {
         inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
