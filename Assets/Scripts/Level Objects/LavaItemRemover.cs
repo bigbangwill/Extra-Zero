@@ -12,7 +12,6 @@ public class LavaItemRemover : MonoBehaviour
     private void LoadSORefrence()
     {
         inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
-        Debug.Log("Start");
     }
 
     private void Start()
@@ -27,8 +26,6 @@ public class LavaItemRemover : MonoBehaviour
 
     public void InsertItem(int ItemSlot)
     {
-        if(inventory == null)
-            Debug.Log("Here");
         inventory.RemoveItemFromInventory(ItemSlot);
     }
     

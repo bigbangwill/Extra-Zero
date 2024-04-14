@@ -76,10 +76,8 @@ public class MaterialFarmManager : MonoBehaviour
     private void TierChanged()
     {
         int unlockedTier = tierManager.UnlockedTier;
-        Debug.Log(unlockedTier + "HKJGQJLKHGTQ");
         foreach (var basic in basicMaterialScripts)
         {
-            Debug.Log(basic.GetTier());
             if (basic.GetTier() <= unlockedTier)
             {
                 basic.SetLockedState(false);
