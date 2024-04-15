@@ -27,7 +27,12 @@ public class OrderPostUI : MonoBehaviour
         {
             GameObject go = Instantiate(imagePrefab);
             go.GetComponent<Image>().sprite = item.IconRefrence();
-            go.GetComponentInChildren<TextMeshProUGUI>().text = item.CurrentStack().ToString();
+            string stackText;
+            if (item.IsStackable())
+                stackText = item.CurrentStack().ToString();
+            else
+                stackText = string.Empty;
+            go.GetComponentInChildren<TextMeshProUGUI>().text = stackText;
             go.transform.SetParent(transform, false);
         }
         foreach (ItemBehaviour item in order.GetFilledItems())
