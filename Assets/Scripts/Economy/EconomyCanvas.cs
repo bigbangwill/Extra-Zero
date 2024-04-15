@@ -52,6 +52,7 @@ public class EconomyCanvas : MonoBehaviour
             economyManagerRefrence.val.AddListener(RefreshUI);
         }
     }
+
     private void Start()
     {
         isInitialized = true;

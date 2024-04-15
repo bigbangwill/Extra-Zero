@@ -16,6 +16,10 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private WaveChosingUI waveChosingUI;
 
     [SerializeField] private WaveDifficultySO defaultWave;
+
+    [SerializeField] private CycleInformation cycleInformationScript;
+
+
     private List<WalkingOrder> activeWalkingOrders = new();
     private WaveDifficultySO currentWaveDifficulty;
     private WaveDifficultySO nextWaveDifficulty;
@@ -82,6 +86,8 @@ public class OrderManager : MonoBehaviour
         if (isWaveSpawnTime)
         {
             waveCurrentTimer += Time.deltaTime;
+            float timerLeft = currentWaveMaxTimer - waveCurrentTimer;
+            cycleInformationScript.SetTimerText(timerLeft);
             if(waveCurrentTimer >= currentWaveMaxTimer)
             {
                 FinishWave();
@@ -94,13 +100,14 @@ public class OrderManager : MonoBehaviour
         else if (isNightTime)
         {
             nightCurrentTimer += Time.deltaTime;
+            float timerLeft = nightMaxTimer - nightCurrentTimer;
+            cycleInformationScript.SetTimerText(timerLeft);
             if (nightCurrentTimer >= nightMaxTimer)
             {
                 FinishNightTime();
             }
         }
     }
-
 
     public void StartGame()
     {
@@ -122,6 +129,7 @@ public class OrderManager : MonoBehaviour
         isWaveSpawnTime = true;
         walkingOrdersSummoned = 0;
         eventTextManager.CreateNewText(currentWaveDifficulty.GetWaveDescription(), TextType.Information);
+        cycleInformationScript.SetIcon(CycleInformationEnum.DayTime);
         SummonWalkingOrder();
     }
 
@@ -159,6 +167,7 @@ public class OrderManager : MonoBehaviour
         nightMaxTimer = currentWaveDifficulty.GetNightMaxTime();
         waveChosingUI.CreateWaveOptionUI();
         eventTextManager.CreateNewText("Night time!",TextType.Information);
+        cycleInformationScript.SetIcon(CycleInformationEnum.NightTimer);
     }
 
     private void FinishNightTime()
