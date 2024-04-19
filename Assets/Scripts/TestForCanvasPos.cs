@@ -1,18 +1,14 @@
+using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestForCanvasPos : MonoBehaviour
 {
-    public float zOffset;
+    public NavMeshSurface surface;
 
-    private void Update()
+    private void Start()
     {
-        Vector3 pos = Camera.main.transform.position;
-        pos.z = zOffset;
-        transform.position = pos;
+        surface.BuildNavMesh();
     }
-
-
-
 }

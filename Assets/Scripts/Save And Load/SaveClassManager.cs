@@ -6,14 +6,6 @@ using UnityEngine;
 
 public class SaveClassManager : MonoBehaviour
 {
-    //#region Singleton
-    //public static SaveClassManager Instance
-    //{
-    //    get { return (SaveClassManager)_Instance; }
-    //    set { _Instance = value; }
-    //}
-    //#endregion
-
     List<ISaveable> saveables = new List<ISaveable>();
 
     public Dictionary<string, object> SaveDataDictonary = new();
@@ -96,8 +88,6 @@ public class SaveClassManager : MonoBehaviour
     /// </summary>
     public void LoadSavedGame()
     {
-        int test = 0;
-
         Dictionary<string,object> savedData = LoadData();
         Debug.Log(savedData.Count + " Saved data dictionary count");
         actionArray = new Action[orderDictionary.Count];
@@ -107,8 +97,6 @@ public class SaveClassManager : MonoBehaviour
             {
                 if (savealbleDictionary.ContainsKey(item.Key))
                 {
-                    test++;
-                    Debug.Log(test + savealbleDictionary[item.Key].GetName());
                     //actionArray[0] = () => savealbleDictionary[item.Key].Load(savedData[item.Key]);
                     Action target = () => savealbleDictionary[item.Key].Load(savedData[item.Key]);
                     SetOrder(target, item.Key);

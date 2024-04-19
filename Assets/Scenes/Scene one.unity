@@ -13441,7 +13441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &553536166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13512,6 +13512,7 @@ GameObject:
   - component: {fileID: 560483640}
   - component: {fileID: 560483639}
   - component: {fileID: 560483638}
+  - component: {fileID: 560483642}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -13638,6 +13639,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &560483642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560483637}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69099334f4b5c6f438e785db5310b2a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surface: {fileID: 635700124}
 --- !u!1 &562472754
 GameObject:
   m_ObjectHideFlags: 0
@@ -15774,7 +15788,7 @@ MonoBehaviour:
   m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 543344dbe0c4ed34a9343a0be0af750a, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &636370521
 GameObject:
   m_ObjectHideFlags: 0
@@ -17272,7 +17286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &684001154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20641,6 +20655,64 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &807504481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807504483}
+  - component: {fileID: 807504482}
+  m_Layer: 0
+  m_Name: Game Mode Setter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &807504482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807504481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3774d05cfd71a5b41ad5f9d42645dfb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scanner: {fileID: 2114224195}
+  computer: {fileID: 1817244823}
+  printer: {fileID: 655377394}
+  herbalismPost: {fileID: 1144618610}
+  alchemyPost: {fileID: 1240163769}
+  waveSelector: {fileID: 663876922}
+  quantumStation: {fileID: 294918449}
+  materialFarm: {fileID: 1378060115}
+  seedFarm: {fileID: 1639147617}
+  tierStation: {fileID: 474609755}
+  shopStation: {fileID: 1297724994}
+  lavaBucket: {fileID: 562984873}
+  itemStash: {fileID: 496332413}
+  surface: {fileID: 635700124}
+--- !u!4 &807504483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807504481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &812357265 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4182647712482639609, guid: 9ded4921c90398b4b8a3e66cce6175fc, type: 3}
@@ -43652,7 +43724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 86.51404, y: 0}
+  m_AnchoredPosition: {x: 86.51416, y: 0}
   m_SizeDelta: {x: -773.0281, y: 250}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1683543179
@@ -49512,7 +49584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1893649395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55319,7 +55391,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114224195}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -61621,6 +61693,7 @@ SceneRoots:
   - {fileID: 927506075}
   - {fileID: 760172342}
   - {fileID: 288372292}
+  - {fileID: 807504483}
   - {fileID: 939040437}
   - {fileID: 635700120}
   - {fileID: 1373961641}
