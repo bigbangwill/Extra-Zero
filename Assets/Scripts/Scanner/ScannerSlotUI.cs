@@ -6,7 +6,7 @@ using System.Reflection;
 using System;
 using System.Linq;
 
-public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, ISaveable
+public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
 
@@ -60,7 +60,7 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         LoadSORefrence();
         image = GetComponent<Image>();
-        AddISaveableToDictionary();
+        //AddISaveableToDictionary();
         SetCurrentImage();
     }
 
@@ -148,65 +148,70 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     }
 
-    public void AddISaveableToDictionary()
-    {
-        int currentOrder = 0 + slotNumber;
-        saveClassManagerRefrence.val.AddISaveableToDictionary(slotNumber + "ScannerSlotUI", this,currentOrder);
-    }
+    //public void AddISaveableToDictionary()
+    //{
+    //    int currentOrder = 0 + slotNumber;
+    //    saveClassManagerRefrence.val.AddISaveableToDictionary(slotNumber + "ScannerSlotUI", this,currentOrder);
+    //}
 
-    public object Save()
-    {
-        if (holdingItem == null)
-        {
-            SaveClassesLibrary.ScannerSlotUI saveData = new("Empty", state, slotNumber);
-            return saveData;
-        }
-        else
-        {
-            SaveClassesLibrary.ScannerSlotUI saveData = new(holdingItem.GetName(), state, slotNumber);
-            return saveData;
-        }
-    }
+    //public object Save()
+    //{
+    //    if (holdingItem == null)
+    //    {
+    //        SaveClassesLibrary.ScannerSlotUI saveData = new("Empty", state, slotNumber);
+    //        return saveData;
+    //    }
+    //    else
+    //    {
+    //        SaveClassesLibrary.ScannerSlotUI saveData = new(holdingItem.GetName(), state, slotNumber);
+    //        return saveData;
+    //    }
+    //}
 
-    public void Load(object savedData)
-    {
-        List<Type> childTypesList = Assembly.GetAssembly(typeof(BluePrintItem))
-        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(BluePrintItem))).ToList();
-        Dictionary<string,BluePrintItem> allChildDictionary = new();
+    //public void Load(object savedData)
+    //{
+    //    List<Type> childTypesList = Assembly.GetAssembly(typeof(BluePrintItem))
+    //    .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(BluePrintItem))).ToList();
+    //    Dictionary<string,BluePrintItem> allChildDictionary = new();
 
-        SaveClassesLibrary.ScannerSlotUI saved = (SaveClassesLibrary.ScannerSlotUI)savedData;
-        if (saved.holdingItemSpecificName == "Empty")
-        {
-            holdingItem = null;
-            image.sprite = null;
-            state = saved.state;
-            slotNumber = saved.slotNumber;
-            eventManagerRefrence.val.RefreshInventory();
-            return;
-        }
-        string savedDataName = saved.holdingItemSpecificName;
-        ScannerSlotManager.SlotState savedState = saved.state;
-        int savedSlotNumber = saved.slotNumber;
+    //    SaveClassesLibrary.ScannerSlotUI saved = (SaveClassesLibrary.ScannerSlotUI)savedData;
+    //    if (saved.holdingItemSpecificName == "Empty")
+    //    {
+    //        holdingItem = null;
+    //        image.sprite = null;
+    //        state = saved.state;
+    //        slotNumber = saved.slotNumber;
+    //        eventManagerRefrence.val.RefreshInventory();
+    //        return;
+    //    }
+    //    string savedDataName = saved.holdingItemSpecificName;
+    //    ScannerSlotManager.SlotState savedState = saved.state;
+    //    int savedSlotNumber = saved.slotNumber;
 
 
-        foreach (var child in childTypesList)
-        {
-            BluePrintItem targetItem = (BluePrintItem)Activator.CreateInstance(child);
-            allChildDictionary.Add(targetItem.GetName(), targetItem);
-        }
-        if (allChildDictionary.ContainsKey(savedDataName))
-        {
-            holdingItem = allChildDictionary[savedDataName];
-            holdingItem.Load();
-            image.sprite = holdingItem.IconRefrence();
-            state = savedState;
-            slotNumber = savedSlotNumber;
-            shouldLoad = true;
-        }
-        eventManagerRefrence.val.RefreshInventory();
+    //    foreach (var child in childTypesList)
+    //    {
+    //        BluePrintItem targetItem = (BluePrintItem)Activator.CreateInstance(child);
+    //        allChildDictionary.Add(targetItem.GetName(), targetItem);
+    //    }
+    //    if (allChildDictionary.ContainsKey(savedDataName))
+    //    {
+    //        holdingItem = allChildDictionary[savedDataName];
+    //        holdingItem.Load();
+    //        image.sprite = holdingItem.IconRefrence();
+    //        state = savedState;
+    //        slotNumber = savedSlotNumber;
+    //        shouldLoad = true;
+    //    }
+    //    eventManagerRefrence.val.RefreshInventory();
 
-    }
+    //}
 
+
+    //public string GetName()
+    //{
+    //    return slotNumber + "ScannerSlotUI";
+    //}
     private void Update()
     {
         if (shouldLoad)
@@ -215,11 +220,6 @@ public class ScannerSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             if (image.sprite != null)
                 shouldLoad = false;
         }
-    }
-
-    public string GetName()
-    {
-        return slotNumber + "ScannerSlotUI";
     }
     
 

@@ -48,6 +48,20 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
             nodeConnectedTo.SetUnlocked();
     }
 
+    public void GotSilentlyDone()
+    {
+        isDone = true;
+        isUnlocked = true;
+        if (nodeConnectedTo != null)
+            nodeConnectedTo.IsUnlocked = true;
+    }
+
+    public void SetReset()
+    {
+        IsDone = false;
+        isUnlocked = false;
+    }
+
     public Sprite GetRewardIcon()
     {
         return rewardIcon;

@@ -8,7 +8,7 @@ using System.Linq;
 using System;
 
 public enum craftingItemState { CanFill,CantFill,DontFill,Filled}
-public class ItemPrinter : MonoBehaviour ,ISaveable
+public class ItemPrinter : MonoBehaviour
 {
     [SerializeField] private CraftingItem craftingItem1;
     [SerializeField] private CraftingItem craftingItem2;
@@ -69,7 +69,7 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
     private void Start()
     {
         LoadSORefrence();
-        AddISaveableToDictionary();
+        //AddISaveableToDictionary();
     }
 
     private void OnEnable()
@@ -324,74 +324,74 @@ public class ItemPrinter : MonoBehaviour ,ISaveable
        
     }
 
-    public void AddISaveableToDictionary()
-    {
-        saveClassManagerRefrence.val.AddISaveableToDictionary(GetName(), this, 4);
-    }
+    //public void AddISaveableToDictionary()
+    //{
+    //    saveClassManagerRefrence.val.AddISaveableToDictionary(GetName(), this, 4);
+    //}
 
-    public object Save()
-    {
-        SaveClassesLibrary.ItemPrinter saveData = new(
-            craftingItem1.GetState(),
-            craftingItem2.GetState(),
-            craftingItem3.GetState(),
-            currentBluePrint.GetName(),
-            isCrafting,
-            currentCraftTimer,
-            craftMaxTimer);
-        return saveData;
-    }
+    //public object Save()
+    //{
+    //    SaveClassesLibrary.ItemPrinter saveData = new(
+    //        craftingItem1.GetState(),
+    //        craftingItem2.GetState(),
+    //        craftingItem3.GetState(),
+    //        currentBluePrint.GetName(),
+    //        isCrafting,
+    //        currentCraftTimer,
+    //        craftMaxTimer);
+    //    return saveData;
+    //}
 
-    public void Load(object savedData)
-    {
+    //public void Load(object savedData)
+    //{
 
-        Dictionary<string, BluePrintItem> itemFinderDictionary = new();
+    //    Dictionary<string, BluePrintItem> itemFinderDictionary = new();
 
-        List<Type> childTypesList = Assembly.GetAssembly(typeof(BluePrintItem))
-        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(BluePrintItem))).ToList();
+    //    List<Type> childTypesList = Assembly.GetAssembly(typeof(BluePrintItem))
+    //    .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(BluePrintItem))).ToList();
 
-        List<BluePrintItem> itemList = new();
-        foreach (var item in childTypesList)
-        {
-            itemList.Add((BluePrintItem)Activator.CreateInstance(item));
-        }
+    //    List<BluePrintItem> itemList = new();
+    //    foreach (var item in childTypesList)
+    //    {
+    //        itemList.Add((BluePrintItem)Activator.CreateInstance(item));
+    //    }
 
-        foreach (var child in itemList)
-        {
-            itemFinderDictionary.Add(child.GetName(), child);
-        }
+    //    foreach (var child in itemList)
+    //    {
+    //        itemFinderDictionary.Add(child.GetName(), child);
+    //    }
 
-        SaveClassesLibrary.ItemPrinter saved = (SaveClassesLibrary.ItemPrinter)savedData;
-        craftingItemArray[0].SetState(saved.state1);
-        craftingItemArray[1].SetState(saved.state2);
-        craftingItemArray[2].SetState(saved.state3);
+    //    SaveClassesLibrary.ItemPrinter saved = (SaveClassesLibrary.ItemPrinter)savedData;
+    //    craftingItemArray[0].SetState(saved.state1);
+    //    craftingItemArray[1].SetState(saved.state2);
+    //    craftingItemArray[2].SetState(saved.state3);
 
-        isCrafting = saved.isCrafting;
-        if (isCrafting)
-        {
-            eventManagerRefrence.val.SecondsElapsedAddListener(SecondElapsed);
-        }
-        currentBluePrint = itemFinderDictionary[saved.savedBluePrintName];
-        itemImage.sprite = currentBluePrint.IconRefrence();
-        currentCraftTimer = saved.currentCraftTimer;
-        craftMaxTimer = saved.maxCraftTimer;
+    //    isCrafting = saved.isCrafting;
+    //    if (isCrafting)
+    //    {
+    //        eventManagerRefrence.val.SecondsElapsedAddListener(SecondElapsed);
+    //    }
+    //    currentBluePrint = itemFinderDictionary[saved.savedBluePrintName];
+    //    itemImage.sprite = currentBluePrint.IconRefrence();
+    //    currentCraftTimer = saved.currentCraftTimer;
+    //    craftMaxTimer = saved.maxCraftTimer;
 
-        int leftToFillTheList = craftingItemArray.Length - requiredItemsForCrafting.Count;
-        for (int i = 0; i < leftToFillTheList; i++)
-        {
-            requiredItemsForCrafting.Add(new EmptyItem());
-        }
+    //    int leftToFillTheList = craftingItemArray.Length - requiredItemsForCrafting.Count;
+    //    for (int i = 0; i < leftToFillTheList; i++)
+    //    {
+    //        requiredItemsForCrafting.Add(new EmptyItem());
+    //    }
 
-        for (int i = 0; i < craftingItemArray.Length; i++)
-        {
-            craftingItemArray[i].SetBluePrint(requiredItemsForCrafting[i]);
-        }
-    }
+    //    for (int i = 0; i < craftingItemArray.Length; i++)
+    //    {
+    //        craftingItemArray[i].SetBluePrint(requiredItemsForCrafting[i]);
+    //    }
+    //}
 
     
 
-    public string GetName()
-    {
-        return "ItemPrinter";
-    }
+    //public string GetName()
+    //{
+    //    return "ItemPrinter";
+    //}
 }

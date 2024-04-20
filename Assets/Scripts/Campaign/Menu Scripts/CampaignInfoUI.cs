@@ -31,6 +31,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
     private void Start()
     {
         LoadSORefrence();
+        AddISaveableToDictionary();
         ResetDoneNodes();
     }
 
@@ -80,7 +81,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
 
     public void AddISaveableToDictionary()
     {
-        saveClassManager.AddISaveableToDictionary(GetName(), this, 10);
+        saveClassManager.AddISaveableToDictionary(GetName(), this, 0);
     }
 
     public object Save()
@@ -91,8 +92,32 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
 
     public void Load(object savedData)
     {
+
+        foreach (var node in campaignNodes)
+        {
+            node.SetReset();
+        }
+
         SaveClassesLibrary.CampaignInfoUI loadData = (SaveClassesLibrary.CampaignInfoUI)savedData;
-        doneNodes  = loadData.doneNodes;
+        //doneNodes  = loadData.doneNodes;
+        doneNodes.Clear();
+        foreach (string node in loadData.doneNodes)
+        {
+            doneNodes.Add(node);
+            Debug.Log(node);
+        }
+
+        foreach (var node in doneNodes)
+        {
+            foreach (var campNode in campaignNodes)
+            {
+                if (campNode.GetNodeName() == node)
+                {
+                    campNode.GotSilentlyDone();
+                    break;
+                }
+            }
+        }
     }
 
     public string GetName()

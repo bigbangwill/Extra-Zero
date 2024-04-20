@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SlotReaderManager : MonoBehaviour, ISaveable
+public class SlotReaderManager : MonoBehaviour
 {
 
     private List<ImportJob> jobsList = new();
@@ -55,7 +55,7 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
     private void Start()
     {
         LoadSORefrence();
-        AddISaveableToDictionary();
+        //AddISaveableToDictionary();
         isStarted = true;
         if(gameObject.activeSelf)
             InitializationUI();
@@ -309,29 +309,29 @@ public class SlotReaderManager : MonoBehaviour, ISaveable
         importHolder.ImportNewItem(hologram);
     }
 
-    public void AddISaveableToDictionary()
-    {
-        saveClassManagerRefrence.val.AddISaveableToDictionary("SlotReader", this, 4);
-    }
+    //public void AddISaveableToDictionary()
+    //{
+    //    saveClassManagerRefrence.val.AddISaveableToDictionary("SlotReader", this, 4);
+    //}
 
-    public object Save()
-    {
-        SaveClassesLibrary.SlotReaderManager savedData = new(jobsList);
-        return savedData;
-    }
+    //public object Save()
+    //{
+    //    SaveClassesLibrary.SlotReaderManager savedData = new(jobsList);
+    //    return savedData;
+    //}
 
-    public void Load(object savedData)
-    {
-        SaveClassesLibrary.SlotReaderManager data = (SaveClassesLibrary.SlotReaderManager)savedData;
-        jobsList = data.savedJobsList;
-        SavedTimeChecker();
-        InitializationUI();
-    }
+    //public void Load(object savedData)
+    //{
+    //    SaveClassesLibrary.SlotReaderManager data = (SaveClassesLibrary.SlotReaderManager)savedData;
+    //    jobsList = data.savedJobsList;
+    //    SavedTimeChecker();
+    //    InitializationUI();
+    //}
 
-    public string GetName()
-    {
-        return "SlotReader";
-    }
+    //public string GetName()
+    //{
+    //    return "SlotReader";
+    //}
 }
 
 /// <summary>

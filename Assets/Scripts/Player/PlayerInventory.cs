@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Linq;
 using Unity.VisualScripting;
 
-public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
+public class PlayerInventory : MonoBehaviour ,IStashable
 {
 
 
@@ -95,7 +95,7 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
     private void Start()
     {
         LoadSORefrence();
-        AddISaveableToDictionary();
+        //AddISaveableToDictionary();
         //AddItemToInventory(new CraftedItem.InsulationFoam());
         //AddItemToInventory(new CraftedItem.MemoryCore());
 
@@ -616,62 +616,62 @@ public class PlayerInventory : MonoBehaviour ,ISaveable ,IStashable
 
     #region Save System
 
-    public void AddISaveableToDictionary()
-    {
-        saveClassManagerRefrence.val.AddISaveableToDictionary(GetName(), this,0);
-    }
+    //public void AddISaveableToDictionary()
+    //{
+    //    saveClassManagerRefrence.val.AddISaveableToDictionary(GetName(), this,0);
+    //}
 
-    public object Save()
-    {
-        SaveClassesLibrary.PlayerInventory playerInventorySaveData = new(inventorySlotCount, inventoryArray);
-        return playerInventorySaveData;
-    }
+    //public object Save()
+    //{
+    //    SaveClassesLibrary.PlayerInventory playerInventorySaveData = new(inventorySlotCount, inventoryArray);
+    //    return playerInventorySaveData;
+    //}
 
-    public void Load(object savedData)
-    {
-        SaveClassesLibrary.PlayerInventory saved = (SaveClassesLibrary.PlayerInventory)savedData;
-        ItemBehaviour[] newInventory = new ItemBehaviour[inventorySlotCount];
-        List<Type> childTypesList = Assembly.GetAssembly(typeof(ItemBehaviour))
-        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(ItemBehaviour))).ToList();
-        Dictionary<string, ItemBehaviour> hashCodeItemBehaviourDic = new Dictionary<string, ItemBehaviour>();
+    //public void Load(object savedData)
+    //{
+    //    SaveClassesLibrary.PlayerInventory saved = (SaveClassesLibrary.PlayerInventory)savedData;
+    //    ItemBehaviour[] newInventory = new ItemBehaviour[inventorySlotCount];
+    //    List<Type> childTypesList = Assembly.GetAssembly(typeof(ItemBehaviour))
+    //    .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(ItemBehaviour))).ToList();
+    //    Dictionary<string, ItemBehaviour> hashCodeItemBehaviourDic = new Dictionary<string, ItemBehaviour>();
 
-        foreach (var childType in childTypesList)
-        {
-            ItemBehaviour target = (ItemBehaviour)Activator.CreateInstance(childType);
-            string specificName = target.GetName();
-            hashCodeItemBehaviourDic.Add(specificName, target);
-        }
+    //    foreach (var childType in childTypesList)
+    //    {
+    //        ItemBehaviour target = (ItemBehaviour)Activator.CreateInstance(childType);
+    //        string specificName = target.GetName();
+    //        hashCodeItemBehaviourDic.Add(specificName, target);
+    //    }
         
-        foreach (var kvp in saved.inventorySlotsSpecificNameDictionary)
-        {
-            string specificName = kvp.Value;
-            int slotNumber = kvp.Key;
+    //    foreach (var kvp in saved.inventorySlotsSpecificNameDictionary)
+    //    {
+    //        string specificName = kvp.Value;
+    //        int slotNumber = kvp.Key;
 
-            if (hashCodeItemBehaviourDic.ContainsKey(specificName))
-            {
-                ItemBehaviour itemTarget = hashCodeItemBehaviourDic[specificName];
-                itemTarget.SetCurrentStack(saved.listCurrentStacks[slotNumber]);
-                newInventory[slotNumber] = itemTarget;
-            }
-        }
+    //        if (hashCodeItemBehaviourDic.ContainsKey(specificName))
+    //        {
+    //            ItemBehaviour itemTarget = hashCodeItemBehaviourDic[specificName];
+    //            itemTarget.SetCurrentStack(saved.listCurrentStacks[slotNumber]);
+    //            newInventory[slotNumber] = itemTarget;
+    //        }
+    //    }
 
-        for (int i = 0;i<newInventory.Length;i++)
-        {
-            inventoryArray[i] = newInventory[i];
-        }
+    //    for (int i = 0;i<newInventory.Length;i++)
+    //    {
+    //        inventoryArray[i] = newInventory[i];
+    //    }
 
-        foreach (var item in itemSlotUIList)
-        {
-            item.Reset();
-        }
-        CallUIRefreshEvent();
+    //    foreach (var item in itemSlotUIList)
+    //    {
+    //        item.Reset();
+    //    }
+    //    CallUIRefreshEvent();
 
 
-    }
+    //}
 
-    public string GetName()
-    {
-        return "PlayerInventory";
-    }
+    //public string GetName()
+    //{
+    //    return "PlayerInventory";
+    //}
     #endregion
 }
