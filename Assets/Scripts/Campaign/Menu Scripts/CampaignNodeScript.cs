@@ -8,7 +8,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
 {
 
     [SerializeField] private CampaignNodeScript nodeConnectedTo;
-    [SerializeField] private CampaignNodeScript nodeConnectedFrom;    
+    [SerializeField] private CampaignNodeScript nodeConnectedFrom;
     [SerializeField] private string nodeName;
 
     [SerializeField] private GameObject activeIndicator;
@@ -19,9 +19,11 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private CampaignInfoUI campaignInfo;
 
-    private bool isUnlocked = false;
+    [SerializeField] private bool isUnlocked = false;
+    [SerializeField] private bool isDone = false;
 
     public bool IsUnlocked { get => isUnlocked; set => isUnlocked = value; }
+    public bool IsDone { get => isDone; set => isDone = value; }
 
     public void GotTargeted()
     {
@@ -36,11 +38,14 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     public void SetUnlocked()
     {
         IsUnlocked = true;
+        campaignInfo.ResetDoneNodes();
     }
 
     public void GotDone()
     {
-        nodeConnectedTo.SetUnlocked();
+        isDone = true;
+        if(nodeConnectedTo != null)
+            nodeConnectedTo.SetUnlocked();
     }
 
     public Sprite GetRewardIcon()
@@ -56,6 +61,11 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     public string GetRewardText()
     {
         return rewardText;
+    }
+
+    public string GetNodeName()
+    {
+        return nodeName;
     }
 
     public void OnPointerClick(PointerEventData eventData)

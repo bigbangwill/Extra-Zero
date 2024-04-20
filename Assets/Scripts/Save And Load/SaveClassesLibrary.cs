@@ -20,11 +20,11 @@ public class SaveClassesLibrary
         public PlayerInventory(int slotCount, ItemBehaviour[] inventory)
         {
             inventorySlotCount = slotCount;
-            
+
             listCurrentStacks = new int[slotCount];
             for (int i = 0; i < inventory.Length; i++)
             {
-                inventorySlotsSpecificNameDictionary.Add(i,inventory[i].GetName());
+                inventorySlotsSpecificNameDictionary.Add(i, inventory[i].GetName());
                 listCurrentStacks[i] = inventory[i].CurrentStack();
             }
         }
@@ -86,6 +86,16 @@ public class SaveClassesLibrary
             this.isCrafting = isCrafting;
             this.currentCraftTimer = currentCraftTimer;
             this.maxCraftTimer = maxCraftTimer;
+        }
+    }
+
+    [Serializable]
+    public class CampaignInfoUI : SaveClassesLibrary
+    {
+        public List<string> doneNodes = new();
+        public CampaignInfoUI(List<string> doneNodes)
+        {
+            this.doneNodes = doneNodes;
         }
     }
 }
