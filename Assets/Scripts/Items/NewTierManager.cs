@@ -60,9 +60,20 @@ public class NewTierManager : MonoBehaviour
     private void Awake()
     {
         SetRefrence();
-        InitTierCraftedList();        
-        SetPotionEffectTiers();
-        SetupMilestoneTierLists();
+        //if (GameModeState.IsCampaignMode)
+        //{
+        //    InitNewTierCraftedList();
+        //    SetupCampaignMilestone();
+        //}
+        //else
+        //{
+        //    InitTierCraftedList();        
+        //    SetPotionEffectTiers();
+        //    SetupMilestoneTierLists();
+        //}
+
+        InitNewTierCraftedList();
+        SetupCampaignMilestone();
     }
 
     private void Start()
@@ -165,6 +176,135 @@ public class NewTierManager : MonoBehaviour
         }
     }
 
+    private void InitNewTierCraftedList()
+    {
+
+        //For blueprints
+        if (GameModeState.ShopStationIsUnlocked)
+        {
+            List<Type> craftedItems = Assembly.GetAssembly(typeof(BluePrintItem)).GetTypes().ToList().
+                Where(Thetype => Thetype.IsClass &&
+                !Thetype.IsAbstract && Thetype.IsSubclassOf(typeof(BluePrintItem))).ToList();
+
+            foreach (var item in craftedItems)
+            {
+                BluePrintItem target = (BluePrintItem)Activator.CreateInstance(item);
+                int highestTier = 0;
+                foreach (var material in target.materialsList)
+                {
+                    if (material.GetItemTier() > highestTier)
+                    {
+                        highestTier = material.GetItemTier();
+                    }
+                }
+                switch (highestTier)
+                {
+                    case 1: firstTierItems.Add(target); break;
+                    case 2: secondTierItems.Add(target); break;
+                    case 3: thirdTierItems.Add(target); break;
+                    case 4: forthTierItems.Add(target); break;
+                    default: Debug.LogWarning("CHECK HERE ASAP"); break;
+                }
+            }
+        }
+
+        //For crafting items
+        if (GameModeState.ComputerIsUnlocked && GameModeState.ScannerIsUnlocked)
+        {
+            List<Type> craftedItems = Assembly.GetAssembly(typeof(BluePrintItem)).GetTypes().ToList().
+            Where(Thetype => Thetype.IsClass &&
+            !Thetype.IsAbstract && Thetype.IsSubclassOf(typeof(BluePrintItem))).ToList();
+
+            foreach (var item in craftedItems)
+            {
+                BluePrintItem target = (BluePrintItem)Activator.CreateInstance(item);
+                int highestTier = 0;
+                foreach (var material in target.materialsList)
+                {
+                    if (material.GetItemTier() > highestTier)
+                    {
+                        highestTier = material.GetItemTier();
+                    }
+                }
+                switch (highestTier)
+                {
+                    case 1: firstTierItems.Add(target.CraftedItemReference()); break;
+                    case 2: secondTierItems.Add(target.CraftedItemReference()); break;
+                    case 3: thirdTierItems.Add(target.CraftedItemReference()); break;
+                    case 4: forthTierItems.Add(target.CraftedItemReference()); break;
+                    default: Debug.LogWarning("CHECK HERE ASAP"); break;
+                }
+            }
+        }
+
+        //For mineral
+        if (GameModeState.MaterialFarmIsUnlocked)
+        {
+            List<Type> craftedItems = Assembly.GetAssembly(typeof(MaterialItem))
+            .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(MaterialItem))).ToList();
+            foreach (var item in craftedItems)
+            {
+                MaterialItem target = (MaterialItem)Activator.CreateInstance(item);
+                switch (target.GetItemTier())
+                {
+                    case 1: firstTierItems.Add(target); break;
+                    case 2: secondTierItems.Add(target); break;
+                    case 3: thirdTierItems.Add(target); break;
+                    case 4: forthTierItems.Add(target); break;
+                    default: Debug.LogWarning("CHECK HERE ASAP"); break;
+                }
+                //firstTierItems.Add(target);
+            }
+        }
+
+        //For Seeds
+        if (GameModeState.SeedFarmIsUnlocked)
+        {
+            List<Type> craftedItems = Assembly.GetAssembly(typeof(Seed))
+            .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Seed))).ToList();
+            foreach (var item in craftedItems)
+            {
+                Seed target = (Seed)Activator.CreateInstance(item);
+                switch (target.GetSeedTier())
+                {
+                    case 1: firstTierItems.Add(target); break;
+                    case 2: secondTierItems.Add(target); break;
+                    case 3: thirdTierItems.Add(target); break;
+                    case 4: forthTierItems.Add(target); break;
+                    default: Debug.LogWarning("CHECK HERE ASAP"); break;
+                }
+                //firstTierItems.Add(Target);
+            }
+        }
+
+        //For Herbs
+        if (GameModeState.HerbalismPostIsUnlocked)
+        {
+            List<Type> craftedItems = Assembly.GetAssembly(typeof(Herb))
+            .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Herb))).ToList();
+            foreach (var item in craftedItems)
+            {
+                Herb target = (Herb)Activator.CreateInstance(item);
+                switch (target.GetHerbTier())
+                {
+                    case 1: firstTierItems.Add(target); break;
+                    case 2: secondTierItems.Add(target); break;
+                    case 3: thirdTierItems.Add(target); break;
+                    case 4: forthTierItems.Add(target); break;
+                    default: Debug.LogWarning("CHECK HERE ASAP"); break;
+                }
+                //firstTierItems.Add(target);
+            }
+        }
+
+        if (GameModeState.AlchemyPostIsUnlocked)
+        {
+            SetPotionEffectTiers();
+        }
+
+    }
+
+
     private void SetPotionEffectTiers()
     {
         PotionLibrary.Initialize();
@@ -238,7 +378,68 @@ public class NewTierManager : MonoBehaviour
             milestoneThirdTier.Add(target);
         }
         safeChecker = forthNonMaterialList.Count;
-        if (safeChecker >= forthNonMaterialList.Count)
+        if (safeChecker >= forthTierCount)
+            safeChecker = forthTierCount;
+        for (int i = 0; i < safeChecker; i++)
+        {
+            ItemBehaviour target = forthNonMaterialList[UnityEngine.Random.Range(0, forthNonMaterialList.Count)];
+            forthNonMaterialList.Remove(target);
+            milestoneForthTier.Add(target);
+        }
+    }
+
+    private void SetupCampaignMilestone()
+    {
+        List<ItemBehaviour> firstNonMaterialList = new();
+        List<ItemBehaviour> secondNonMaterialList = new();
+        List<ItemBehaviour> thirdNonMaterialList = new();
+        List<ItemBehaviour> forthNonMaterialList = new();
+        foreach (var item in firstTierItems)
+        {
+            firstNonMaterialList.Add(item);
+        }
+        foreach (var item in secondTierItems)
+        {
+            secondNonMaterialList.Add(item);
+        }
+        foreach (var item in thirdTierItems)
+        {
+            thirdNonMaterialList.Add(item);
+        }
+        foreach (var item in forthTierItems)
+        {
+            forthNonMaterialList.Add(item);
+        }
+
+        int safeChecker = firstNonMaterialList.Count;
+        if (safeChecker >= firstTierCount)
+            safeChecker = firstTierCount;
+        for (int i = 0; i < safeChecker; i++)
+        {
+            ItemBehaviour target = firstNonMaterialList[UnityEngine.Random.Range(0, firstNonMaterialList.Count)];
+            firstNonMaterialList.Remove(target);
+            milestoneFirstTier.Add(target);
+        }
+        safeChecker = secondNonMaterialList.Count;
+        if (safeChecker >= secondTierCount)
+            safeChecker = secondTierCount;
+        for (int i = 0; i < safeChecker; i++)
+        {
+            ItemBehaviour target = secondNonMaterialList[UnityEngine.Random.Range(0, secondNonMaterialList.Count)];
+            secondNonMaterialList.Remove(target);
+            milestoneSecondTier.Add(target);
+        }
+        safeChecker = thirdNonMaterialList.Count;
+        if (safeChecker >= thirdTierCount)
+            safeChecker = thirdTierCount;
+        for (int i = 0; i < safeChecker; i++)
+        {
+            ItemBehaviour target = thirdNonMaterialList[UnityEngine.Random.Range(0, thirdNonMaterialList.Count)];
+            thirdNonMaterialList.Remove(target);
+            milestoneThirdTier.Add(target);
+        }
+        safeChecker = forthNonMaterialList.Count;
+        if (safeChecker >= forthTierCount)
             safeChecker = forthTierCount;
         for (int i = 0; i < safeChecker; i++)
         {

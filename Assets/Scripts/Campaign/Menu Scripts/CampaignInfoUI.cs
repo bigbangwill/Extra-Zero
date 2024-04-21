@@ -99,13 +99,13 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
         }
 
         SaveClassesLibrary.CampaignInfoUI loadData = (SaveClassesLibrary.CampaignInfoUI)savedData;
-        //doneNodes  = loadData.doneNodes;
-        doneNodes.Clear();
-        foreach (string node in loadData.doneNodes)
-        {
-            doneNodes.Add(node);
-            Debug.Log(node);
-        }
+        doneNodes  = loadData.doneNodes;
+        //doneNodes.Clear();
+        //foreach (string node in loadData.doneNodes)
+        //{
+        //    doneNodes.Add(node);
+        //    Debug.Log(node);
+        //}
 
         foreach (var node in doneNodes)
         {

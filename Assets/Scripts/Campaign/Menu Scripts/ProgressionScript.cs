@@ -2,24 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProgressionScript : MonoBehaviour
+public class ProgressionScript : MonoBehaviour, ISaveable
 {
-    [SerializeField] private bool scanner;
-    [SerializeField] private bool computer;
-    [SerializeField] private bool printer;
-    [SerializeField] private bool herbalismPost;
-    [SerializeField] private bool alchemyPost;
-    [SerializeField] private bool waveSelector;
-    [SerializeField] private bool quantumStation;
-    [SerializeField] private bool materialFarm;
-    [SerializeField] private bool seedFarm;
-    [SerializeField] private bool tierStation;
-    [SerializeField] private bool shopStation;
-    [SerializeField] private bool lavaBucket;
-    [SerializeField] private bool itemStash;
+    public bool scanner;
+    public bool computer;
+    public bool printer;
+    public bool herbalismPost;
+    public bool alchemyPost;
+    public bool waveSelector;
+    public bool quantumStation;
+    public bool materialFarm;
+    public bool seedFarm;
+    public bool tierStation;
+    public bool shopStation;
+    public bool lavaBucket;
+    public bool itemStash;
 
+    private SaveClassManager saveClassManager;
 
-
+    private void Start()
+    {
+        saveClassManager = ((SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence")).val;
+        SetGameModeState();
+        AddISaveableToDictionary();
+    }
 
     public void SetGameModeState()
     {
@@ -36,5 +42,45 @@ public class ProgressionScript : MonoBehaviour
         GameModeState.ShopStationIsUnlocked = shopStation;
         GameModeState.LavaBucketIsUnlocked = lavaBucket;
         GameModeState.ItemStashIsUnlocked = itemStash;
+
+        GameModeState.IsCampaignMode = true;
+
+    }
+
+    public void AddISaveableToDictionary()
+    {
+        saveClassManager.AddISaveableToDictionary(GetName(), this, 1);
+    }
+
+    public object Save()
+    {
+        SaveClassesLibrary.ProgressionScriptSave saveData = new(this);
+        return saveData;
+    }
+
+    public void Load(object savedData)
+    {
+        SaveClassesLibrary.ProgressionScriptSave data = (SaveClassesLibrary.ProgressionScriptSave)savedData;
+        scanner = data.scanner;
+        computer = data.computer;
+        printer = data.printer;
+        herbalismPost = data.herbalismPost;
+        alchemyPost = data.alchemyPost;
+        waveSelector = data.waveSelector;
+        quantumStation = data.quantumStation;
+        materialFarm = data.materialFarm;
+        seedFarm = data.seedFarm;
+        tierStation = data.tierStation;
+        shopStation = data.shopStation;
+        lavaBucket = data.lavaBucket;
+        itemStash = data.itemStash;
+
+
+        SetGameModeState();
+    }
+
+    public string GetName()
+    {
+        return "Progression";
     }
 }

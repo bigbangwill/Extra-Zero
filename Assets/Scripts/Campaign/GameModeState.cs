@@ -18,6 +18,10 @@ public static class GameModeState
     private static bool lavaBucketIsUnlocked = false;
     private static bool itemStashIsUnlocked = false;
 
+
+    private static bool isCampaignMode = false;
+    private static CampaignNodeScript currentCampaignNode;
+
     public static bool ScannerIsUnlocked { get => scannerIsUnlocked; set => scannerIsUnlocked = value; }
     public static bool ComputerIsUnlocked { get => computerIsUnlocked; set => computerIsUnlocked = value; }
     public static bool PrinterIsUnlocked { get => printerIsUnlocked; set => printerIsUnlocked = value; }
@@ -31,4 +35,8 @@ public static class GameModeState
     public static bool ShopStationIsUnlocked { get => shopStationIsUnlocked; set => shopStationIsUnlocked = value; }
     public static bool LavaBucketIsUnlocked { get => lavaBucketIsUnlocked; set => lavaBucketIsUnlocked = value; }
     public static bool ItemStashIsUnlocked { get => itemStashIsUnlocked; set => itemStashIsUnlocked = value; }
+
+
+    public static bool IsCampaignMode { get => isCampaignMode; set => isCampaignMode = value; }
+    public static CampaignNodeScript CurrentCampaignNode { get => currentCampaignNode; set => currentCampaignNode = value; }
 }

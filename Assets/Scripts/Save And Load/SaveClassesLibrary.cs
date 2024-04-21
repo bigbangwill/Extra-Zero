@@ -98,4 +98,43 @@ public class SaveClassesLibrary
             this.doneNodes = doneNodes;
         }
     }
+
+    [Serializable]
+    public class ProgressionScriptSave : SaveClassesLibrary
+    {
+        public bool scanner;
+        public bool computer;
+        public bool printer;
+        public bool herbalismPost;
+        public bool alchemyPost;
+        public bool waveSelector;
+        public bool quantumStation;
+        public bool materialFarm;
+        public bool seedFarm;
+        public bool tierStation;
+        public bool shopStation;
+        public bool lavaBucket;
+        public bool itemStash;
+
+        public ProgressionScriptSave(ProgressionScript data)
+        {
+            scanner = data.scanner;
+            computer = data.computer;
+            printer = data.printer;
+            herbalismPost = data.herbalismPost;
+            alchemyPost = data.alchemyPost;
+            waveSelector = data.waveSelector;
+            quantumStation = data.quantumStation;
+            materialFarm = data.materialFarm;
+            seedFarm = data.seedFarm;
+            tierStation = data.tierStation;
+            shopStation = data.shopStation;
+            lavaBucket = data.lavaBucket;
+            itemStash = data.itemStash;
+        }
+
+    }
+
+
+
 }
