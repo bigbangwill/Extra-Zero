@@ -136,7 +136,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         if (itemSlot.GetItemTypeValue() == ItemType.empty)
         {
             return;
-        }        
+        }
         m_PointerEventData = new(m_EventSystem);
         m_PointerEventData.position = Input.mousePosition;
         List<RaycastResult> results = new();
@@ -161,7 +161,6 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 targetSwap.slotNumber = slotNumber;
                 if(targetSlotNumber == slotNumber)
                 {
-                    Debug.Log("Target self");
                     transform.position = startPos;
                     return;
                 }

@@ -110,12 +110,7 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
     // should set it to add to stash and then the player can pick them up.
     private void GiveReward()
     {
-        Debug.Log(setItem.CurrentStack());
-        if (playerInventory.HaveEmptySlot(setItem, true))
-        {
-            Debug.Log("Gave the reward");
-        }
-        else
+        if (!playerInventory.HaveEmptySlot(setItem, true))
         {
             Debug.Log("Is full");
         }
@@ -142,7 +137,6 @@ public class BasicMaterialScript : MonoBehaviour, IPointerClickHandler
     {
         miniGameObject.SetActive(false);
         miniGameIsOn = false;
-        Debug.Log("Double Damage");
         Pickaxed(2);
     }
 

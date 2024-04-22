@@ -14,6 +14,8 @@ public class NewTierManager : MonoBehaviour
 
     [SerializeField] private TierUI tierUI;
 
+    [SerializeField] private GameObject winScreenCanvas;
+
     private int unlockedTier = 1;
 
     public int UnlockedTier { get => unlockedTier; }
@@ -500,6 +502,7 @@ public class NewTierManager : MonoBehaviour
             case 2: currentActiveMilestone = milestoneSecondTier; break;
             case 3: currentActiveMilestone = milestoneThirdTier; break;
             case 4: currentActiveMilestone = milestoneForthTier; break;
+            case 5: winScreenCanvas.gameObject.SetActive(true); break;
             default: Debug.LogWarning("Check here asap"); break;
         }
 

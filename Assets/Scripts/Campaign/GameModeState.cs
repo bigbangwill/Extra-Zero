@@ -20,7 +20,9 @@ public static class GameModeState
 
 
     private static bool isCampaignMode = false;
-    private static CampaignNodeScript currentCampaignNode;
+    private static string currentCampaignNode;
+
+    private static bool isFinished = false;
 
     public static bool ScannerIsUnlocked { get => scannerIsUnlocked; set => scannerIsUnlocked = value; }
     public static bool ComputerIsUnlocked { get => computerIsUnlocked; set => computerIsUnlocked = value; }
@@ -38,5 +40,6 @@ public static class GameModeState
 
 
     public static bool IsCampaignMode { get => isCampaignMode; set => isCampaignMode = value; }
-    public static CampaignNodeScript CurrentCampaignNode { get => currentCampaignNode; set => currentCampaignNode = value; }
+    public static string CurrentCampaignNode { get => currentCampaignNode; set => currentCampaignNode = value; }
+    public static bool IsFinished { get => isFinished; set => isFinished = value; }
 }

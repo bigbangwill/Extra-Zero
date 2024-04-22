@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CampaignInfoUI : MonoBehaviour, ISaveable
@@ -19,6 +20,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
 
 
     private List<string> doneNodes = new();
+    private List<string> unlockedNodes = new();
 
 
     private SaveClassManager saveClassManager;
@@ -64,10 +66,23 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
 
     public void StartCampaign()
     {
-        currentActiveNode.GotDone();
+        GameModeState.CurrentCampaignNode = currentActiveNode.GetNodeName();
+        GameModeState.IsFinished = false;
+        saveClassManager.SaveCurrentState();
+        SceneManager.LoadScene("Scene One");
     }
 
-
+    public void GiveReward(string name)
+    {
+        foreach (var node in campaignNodes)
+        {
+            if (node.GetNodeName() == name)
+            {
+                node.GiveReward();
+                node.GotDone();
+            }
+        }
+    }
 
     public void ResetDoneNodes()
     {
@@ -76,6 +91,8 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
         {
             if(node.IsDone)
                 doneNodes.Add(node.GetNodeName());
+            if(node.IsUnlocked)
+                unlockedNodes.Add(node.GetNodeName());
         }
     }
 
@@ -86,7 +103,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
 
     public object Save()
     {
-        SaveClassesLibrary.CampaignInfoUI saveData = new(doneNodes);
+        SaveClassesLibrary.CampaignInfoUI saveData = new(doneNodes,unlockedNodes);
         return saveData;
     }
 
@@ -100,6 +117,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
 
         SaveClassesLibrary.CampaignInfoUI loadData = (SaveClassesLibrary.CampaignInfoUI)savedData;
         doneNodes  = loadData.doneNodes;
+        unlockedNodes = loadData.unlockedNodes;
         //doneNodes.Clear();
         //foreach (string node in loadData.doneNodes)
         //{
@@ -118,6 +136,19 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
                 }
             }
         }
+
+        foreach (var node in unlockedNodes)
+        {
+            foreach (var campNode in campaignNodes)
+            {
+                if (campNode.GetNodeName() == node)
+                {
+                    campNode.IsUnlocked = true;
+                    break;
+                }
+            }
+        }
+
     }
 
     public string GetName()

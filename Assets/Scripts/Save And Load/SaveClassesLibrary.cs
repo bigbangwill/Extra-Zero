@@ -93,9 +93,11 @@ public class SaveClassesLibrary
     public class CampaignInfoUI : SaveClassesLibrary
     {
         public List<string> doneNodes = new();
-        public CampaignInfoUI(List<string> doneNodes)
+        public List<string> unlockedNodes = new();
+        public CampaignInfoUI(List<string> doneNodes, List<string> unlockedNodes)
         {
             this.doneNodes = doneNodes;
+            this.unlockedNodes = unlockedNodes;
         }
     }
 
@@ -118,19 +120,19 @@ public class SaveClassesLibrary
 
         public ProgressionScriptSave(ProgressionScript data)
         {
-            scanner = data.scanner;
-            computer = data.computer;
-            printer = data.printer;
-            herbalismPost = data.herbalismPost;
-            alchemyPost = data.alchemyPost;
-            waveSelector = data.waveSelector;
-            quantumStation = data.quantumStation;
-            materialFarm = data.materialFarm;
-            seedFarm = data.seedFarm;
-            tierStation = data.tierStation;
-            shopStation = data.shopStation;
-            lavaBucket = data.lavaBucket;
-            itemStash = data.itemStash;
+            scanner = data.Scanner;
+            computer = data.Computer;
+            printer = data.Printer;
+            herbalismPost = data.HerbalismPost;
+            alchemyPost = data.AlchemyPost;
+            waveSelector = data.WaveSelector;
+            quantumStation = data.QuantumStation;
+            materialFarm = data.MaterialFarm;
+            seedFarm = data.SeedFarm;
+            tierStation = data.TierStation;
+            shopStation = data.ShopStation;
+            lavaBucket = data.LavaBucket;
+            itemStash = data.ItemStash;
         }
 
     }

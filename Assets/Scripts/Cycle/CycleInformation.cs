@@ -14,6 +14,14 @@ public class CycleInformation : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
 
 
+    private OrderManagerRefrence orderManagerRefrence;
+
+    private void Start()
+    {
+        orderManagerRefrence = (OrderManagerRefrence)FindSORefrence<OrderManager>.FindScriptableObject("Order Manager Refrence");
+    }
+
+
     public void SetIcon(CycleInformationEnum info)
     {
         if (info == CycleInformationEnum.DayTime)
@@ -29,5 +37,10 @@ public class CycleInformation : MonoBehaviour
     public void SetTimerText(float time)
     {
         timerText.text = ((int)time).ToString();
+    }
+
+    public void StartGame()
+    {
+        orderManagerRefrence.val.StartGame();
     }
 }

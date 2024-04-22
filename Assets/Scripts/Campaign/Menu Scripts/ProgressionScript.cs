@@ -4,44 +4,107 @@ using UnityEngine;
 
 public class ProgressionScript : MonoBehaviour, ISaveable
 {
-    public bool scanner;
-    public bool computer;
-    public bool printer;
-    public bool herbalismPost;
-    public bool alchemyPost;
-    public bool waveSelector;
-    public bool quantumStation;
-    public bool materialFarm;
-    public bool seedFarm;
-    public bool tierStation;
-    public bool shopStation;
-    public bool lavaBucket;
-    public bool itemStash;
+    [SerializeField] private bool scanner;
+    [SerializeField] private bool computer;
+    [SerializeField] private bool printer;
+    [SerializeField] private bool herbalismPost;
+    [SerializeField] private bool alchemyPost;
+    [SerializeField] private bool waveSelector;
+    [SerializeField] private bool quantumStation;
+    [SerializeField] private bool materialFarm;
+    [SerializeField] private bool seedFarm;
+    [SerializeField] private bool tierStation;
+    [SerializeField] private bool shopStation;
+    [SerializeField] private bool lavaBucket;
+    [SerializeField] private bool itemStash;
+
+    [SerializeField] private CampaignInfoUI infoUI;
 
     private SaveClassManager saveClassManager;
 
+    public bool Scanner { get => scanner; set {
+            scanner = value; 
+            SetGameModeState(); 
+        } }
+    public bool Computer { get => computer; set {
+            computer = value;
+            SetGameModeState(); 
+        } }
+    public bool Printer { get => printer; set {
+            printer = value;
+            SetGameModeState();
+        } }
+    public bool HerbalismPost { get => herbalismPost; set {
+            herbalismPost = value;
+            SetGameModeState();
+        } }
+    public bool AlchemyPost { get => alchemyPost; set {
+            alchemyPost = value;
+            SetGameModeState();
+        } }
+    public bool WaveSelector { get => waveSelector; set {
+            waveSelector = value;
+            SetGameModeState();
+        } }
+    public bool QuantumStation { get => quantumStation; set {
+            quantumStation = value;
+            SetGameModeState();
+        } }
+    public bool MaterialFarm { get => materialFarm; set {
+            materialFarm = value;
+            SetGameModeState();
+        } }
+    public bool SeedFarm { get => seedFarm; set {
+            seedFarm = value;
+            SetGameModeState();
+        } }
+    public bool TierStation { get => tierStation; set {
+            tierStation = value;
+            SetGameModeState();
+        } }
+    public bool ShopStation { get => shopStation; set {
+            shopStation = value;
+            SetGameModeState();
+        } }
+    public bool LavaBucket { get => lavaBucket; set {
+            lavaBucket = value;
+            SetGameModeState();
+        } }
+    public bool ItemStash { get => itemStash; set {
+            itemStash = value;
+            SetGameModeState();
+        } }
+
+
+
     private void Start()
-    {
+    {        
         saveClassManager = ((SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence")).val;
         SetGameModeState();
         AddISaveableToDictionary();
+
+        if (GameModeState.IsFinished)
+        {
+            saveClassManager.LoadSavedGame();
+            infoUI.GiveReward(GameModeState.CurrentCampaignNode);
+        }
     }
 
     public void SetGameModeState()
     {
-        GameModeState.ScannerIsUnlocked = scanner;
-        GameModeState.ComputerIsUnlocked = computer;
-        GameModeState.PrinterIsUnlocked = printer;
-        GameModeState.HerbalismPostIsUnlocked = herbalismPost;
-        GameModeState.AlchemyPostIsUnlocked = alchemyPost;
-        GameModeState.WaveSelectorIsUnlocked = waveSelector;
-        GameModeState.QuantumStationIsUnlocked = quantumStation;
-        GameModeState.MaterialFarmIsUnlocked = materialFarm;
-        GameModeState.SeedFarmIsUnlocked  = seedFarm;
-        GameModeState.TierStationIsUnlocked = tierStation;
-        GameModeState.ShopStationIsUnlocked = shopStation;
-        GameModeState.LavaBucketIsUnlocked = lavaBucket;
-        GameModeState.ItemStashIsUnlocked = itemStash;
+        GameModeState.ScannerIsUnlocked = Scanner;
+        GameModeState.ComputerIsUnlocked = Computer;
+        GameModeState.PrinterIsUnlocked = Printer;
+        GameModeState.HerbalismPostIsUnlocked = HerbalismPost;
+        GameModeState.AlchemyPostIsUnlocked = AlchemyPost;
+        GameModeState.WaveSelectorIsUnlocked = WaveSelector;
+        GameModeState.QuantumStationIsUnlocked = QuantumStation;
+        GameModeState.MaterialFarmIsUnlocked = MaterialFarm;
+        GameModeState.SeedFarmIsUnlocked  = SeedFarm;
+        GameModeState.TierStationIsUnlocked = TierStation;
+        GameModeState.ShopStationIsUnlocked = ShopStation;
+        GameModeState.LavaBucketIsUnlocked = LavaBucket;
+        GameModeState.ItemStashIsUnlocked = ItemStash;
 
         GameModeState.IsCampaignMode = true;
 
@@ -61,19 +124,19 @@ public class ProgressionScript : MonoBehaviour, ISaveable
     public void Load(object savedData)
     {
         SaveClassesLibrary.ProgressionScriptSave data = (SaveClassesLibrary.ProgressionScriptSave)savedData;
-        scanner = data.scanner;
-        computer = data.computer;
-        printer = data.printer;
-        herbalismPost = data.herbalismPost;
-        alchemyPost = data.alchemyPost;
-        waveSelector = data.waveSelector;
-        quantumStation = data.quantumStation;
-        materialFarm = data.materialFarm;
-        seedFarm = data.seedFarm;
-        tierStation = data.tierStation;
-        shopStation = data.shopStation;
-        lavaBucket = data.lavaBucket;
-        itemStash = data.itemStash;
+        Scanner = data.scanner;
+        Computer = data.computer;
+        Printer = data.printer;
+        HerbalismPost = data.herbalismPost;
+        AlchemyPost = data.alchemyPost;
+        WaveSelector = data.waveSelector;
+        QuantumStation = data.quantumStation;
+        MaterialFarm = data.materialFarm;
+        SeedFarm = data.seedFarm;
+        TierStation = data.tierStation;
+        ShopStation = data.shopStation;
+        LavaBucket = data.lavaBucket;
+        ItemStash = data.itemStash;
 
 
         SetGameModeState();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NavMeshPlus.Components;
+using UnityEngine.SceneManagement;
 
 public class DeviceStateSetter : MonoBehaviour
 {
@@ -75,4 +76,17 @@ public class DeviceStateSetter : MonoBehaviour
 
         surface.BuildNavMesh();
     }
+
+
+
+    //ONLY FOR TEST PURPOSE REMOVE LATER
+    public void FinishTheWave()
+    {
+        GameModeState.IsFinished = true;
+        SceneManager.LoadScene("Menu Scene");
+    }
+
+
+
+
 }

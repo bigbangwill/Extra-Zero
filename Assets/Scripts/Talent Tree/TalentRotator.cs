@@ -137,7 +137,7 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
         isUnlocked = true;
         unlockPanelGO.SetActive(false);
         talentManagerRefrence.val.PurchaseRandomQubit();
-        orderManagerRefrence.val.StartGame();
+        //orderManagerRefrence.val.StartGame();
     }
 
 }
