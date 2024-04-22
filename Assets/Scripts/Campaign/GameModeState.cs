@@ -17,6 +17,8 @@ public static class GameModeState
     private static bool shopStationIsUnlocked = false;
     private static bool lavaBucketIsUnlocked = false;
     private static bool itemStashIsUnlocked = false;
+    private static bool repairHammerIsUnlocked = false;
+    private static bool recipeTabletIsUnlocked = false;
 
 
     private static bool isCampaignMode = false;
@@ -37,6 +39,8 @@ public static class GameModeState
     public static bool ShopStationIsUnlocked { get => shopStationIsUnlocked; set => shopStationIsUnlocked = value; }
     public static bool LavaBucketIsUnlocked { get => lavaBucketIsUnlocked; set => lavaBucketIsUnlocked = value; }
     public static bool ItemStashIsUnlocked { get => itemStashIsUnlocked; set => itemStashIsUnlocked = value; }
+    public static bool RepairHammerIsUnlocked { get => repairHammerIsUnlocked; set => repairHammerIsUnlocked = value; }
+    public static bool RecipeTabletIsUnlocked { get => recipeTabletIsUnlocked; set => recipeTabletIsUnlocked = value; }
 
 
     public static bool IsCampaignMode { get => isCampaignMode; set => isCampaignMode = value; }

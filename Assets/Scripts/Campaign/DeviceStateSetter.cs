@@ -19,7 +19,8 @@ public class DeviceStateSetter : MonoBehaviour
     [SerializeField] private GameObject shopStation;
     [SerializeField] private GameObject lavaBucket;
     [SerializeField] private GameObject itemStash;
-
+    [SerializeField] private GameObject repairHammer;
+    [SerializeField] private GameObject recipeTablet;
 
     [SerializeField] private NavMeshSurface surface;
 
@@ -73,6 +74,12 @@ public class DeviceStateSetter : MonoBehaviour
 
         itemStash.GetComponent<Collider2D>().enabled = GameModeState.ItemStashIsUnlocked;
         itemStash.GetComponent<SpriteRenderer>().enabled = GameModeState.ItemStashIsUnlocked;
+
+        repairHammer.GetComponent<Collider2D>().enabled = GameModeState.RepairHammerIsUnlocked;
+        repairHammer.GetComponent<SpriteRenderer>().enabled = GameModeState.RepairHammerIsUnlocked;
+
+        recipeTablet.GetComponent<Collider2D>().enabled = GameModeState.RecipeTabletIsUnlocked;
+        recipeTablet.GetComponent<Collider2D>().enabled = GameModeState.RecipeTabletIsUnlocked;
 
         surface.BuildNavMesh();
     }

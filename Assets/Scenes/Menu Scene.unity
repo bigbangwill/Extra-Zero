@@ -1261,6 +1261,8 @@ MonoBehaviour:
   shopStation: 0
   lavaBucket: 0
   itemStash: 0
+  repairHammer: 1
+  recipeTablet: 1
   infoUI: {fileID: 387777789}
 --- !u!4 &224246430
 Transform:
@@ -1887,7 +1889,7 @@ MonoBehaviour:
   nodeConnectedFrom: {fileID: 612971204}
   nodeName: 101
   activeIndicator: {fileID: 1110237946}
-  rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
+  rewardIcon: {fileID: 7650988652918590780, guid: 4737359608331234da4d6ef1068584e4, type: 3}
   rewardStack: 5
   rewardText: Night
   campaignInfo: {fileID: 387777789}
@@ -5808,7 +5810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1110237947
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6623,7 +6625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1278577588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8907,7 +8909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1664468130
 RectTransform:
   m_ObjectHideFlags: 0

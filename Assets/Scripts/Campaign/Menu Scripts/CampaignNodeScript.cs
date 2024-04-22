@@ -22,7 +22,9 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         tierStation,
         shopStation,
         lavaBucket,
-        itemStash
+        itemStash,
+        repairHammer,
+        recipeTablet
     }
 
 
@@ -63,8 +65,10 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
             case campaignRewardEnum.seedFarm: progressionScript.SeedFarm = true; break;
             case campaignRewardEnum.tierStation: progressionScript.TierStation = true; break;
             case campaignRewardEnum.shopStation: progressionScript.ShopStation = true; break;
-            case campaignRewardEnum.lavaBucket:progressionScript.LavaBucket = true; break;
-            case campaignRewardEnum.itemStash:progressionScript.ItemStash = true; break;
+            case campaignRewardEnum.lavaBucket: progressionScript.LavaBucket = true; break;
+            case campaignRewardEnum.itemStash: progressionScript.ItemStash = true; break;
+            case campaignRewardEnum.repairHammer: progressionScript.RepairHammer = true; break;
+            case campaignRewardEnum.recipeTablet: progressionScript.RecipeTablet = true; break;
             default:Debug.LogWarning("ASAP"); break;
         }
     }

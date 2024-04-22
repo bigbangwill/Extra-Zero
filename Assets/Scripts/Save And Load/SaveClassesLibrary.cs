@@ -117,6 +117,8 @@ public class SaveClassesLibrary
         public bool shopStation;
         public bool lavaBucket;
         public bool itemStash;
+        public bool repairHammer;
+        public bool recipeTablet;
 
         public ProgressionScriptSave(ProgressionScript data)
         {
@@ -133,6 +135,8 @@ public class SaveClassesLibrary
             shopStation = data.ShopStation;
             lavaBucket = data.LavaBucket;
             itemStash = data.ItemStash;
+            repairHammer = data.RepairHammer;
+            recipeTablet = data.RecipeTablet;
         }
 
     }
