@@ -95,6 +95,7 @@ public class ProgressionScript : MonoBehaviour, ISaveable
         saveClassManager = ((SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence")).val;
         SetGameModeState();
         AddISaveableToDictionary();
+        GameModeState.CurrentDialogue = null;
 
         if (GameModeState.IsFinished)
         {

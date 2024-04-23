@@ -20220,7 +20220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentDialogue: {fileID: 11400000, guid: 24d7acc2f045d334fae5bc83521a8588, type: 2}
   textObject: {fileID: 1012115107}
-  textAddingSpeed: 0.5
+  textAddingSpeed: 0.05
 --- !u!114 &716569904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21318,6 +21318,7 @@ GameObject:
   - component: {fileID: 753918779}
   - component: {fileID: 753918781}
   - component: {fileID: 753918780}
+  - component: {fileID: 753918782}
   m_Layer: 5
   m_Name: Touch Layer
   m_TagString: Untagged
@@ -21382,6 +21383,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753918778}
   m_CullTransparentMesh: 1
+--- !u!114 &753918782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753918778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673ba1ffafcb7a34592fafb77cc074dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 716569903}
 --- !u!1 &759559835
 GameObject:
   m_ObjectHideFlags: 0

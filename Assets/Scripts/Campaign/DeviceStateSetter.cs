@@ -25,12 +25,17 @@ public class DeviceStateSetter : MonoBehaviour
     [SerializeField] private NavMeshSurface surface;
 
 
+    private DialogueManagerRefrence dialogueManagerRefrence;
 
+    private void LoadSoRefrence()
+    {
+        dialogueManagerRefrence = (DialogueManagerRefrence)FindSORefrence<DialogueManager>.FindScriptableObject("Dialogue Manager Refrence");
+    }
 
     private void Start()
     {
+        LoadSoRefrence();
         SetCurrentState();
-
     }
 
 
@@ -82,6 +87,11 @@ public class DeviceStateSetter : MonoBehaviour
         recipeTablet.GetComponent<Collider2D>().enabled = GameModeState.RecipeTabletIsUnlocked;
 
         surface.BuildNavMesh();
+
+        if (GameModeState.CurrentDialogue != null)
+            dialogueManagerRefrence.val.ShowDialogue(GameModeState.CurrentDialogue);
+        else
+            dialogueManagerRefrence.val.FinishedDialogue();
     }
 
 

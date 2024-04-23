@@ -1,3 +1,4 @@
+using ExtraZero.Dialogue;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -46,9 +47,11 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private ProgressionScript progressionScript;
     [SerializeField] private campaignRewardEnum holdingReward;
+    [SerializeField] private Dialogue dialogue;
 
     public bool IsUnlocked { get => isUnlocked; set => isUnlocked = value; }
     public bool IsDone { get => isDone; set => isDone = value; }
+    public Dialogue Dialogue { get => dialogue; set => dialogue = value; }
 
     //private void Awake()
     //{

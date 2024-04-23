@@ -1,3 +1,4 @@
+using ExtraZero.Dialogue;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,9 @@ public static class GameModeState
 
     private static bool isFinished = false;
 
+    private static Dialogue currentDialogue = null;
+
+
     public static bool ScannerIsUnlocked { get => scannerIsUnlocked; set => scannerIsUnlocked = value; }
     public static bool ComputerIsUnlocked { get => computerIsUnlocked; set => computerIsUnlocked = value; }
     public static bool PrinterIsUnlocked { get => printerIsUnlocked; set => printerIsUnlocked = value; }
@@ -46,4 +50,5 @@ public static class GameModeState
     public static bool IsCampaignMode { get => isCampaignMode; set => isCampaignMode = value; }
     public static string CurrentCampaignNode { get => currentCampaignNode; set => currentCampaignNode = value; }
     public static bool IsFinished { get => isFinished; set => isFinished = value; }
+    public static Dialogue CurrentDialogue { get => currentDialogue; set => currentDialogue = value; }
 }

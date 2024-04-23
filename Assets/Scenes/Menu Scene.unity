@@ -512,6 +512,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 15
+  dialogue: {fileID: 0}
 --- !u!114 &59356645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,6 +731,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 10
+  dialogue: {fileID: 0}
 --- !u!114 &72015576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,6 +834,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &72273470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1111,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 10
+  dialogue: {fileID: 0}
 --- !u!114 &117314108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,6 +1216,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 7
+  dialogue: {fileID: 0}
 --- !u!114 &138766615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1448,6 +1453,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &168337957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1748,6 +1754,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 10
+  dialogue: {fileID: 0}
 --- !u!114 &192854519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2196,6 +2203,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &226786338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2298,6 +2306,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &232140836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2400,6 +2409,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &242600913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2502,6 +2512,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 5
+  dialogue: {fileID: 0}
 --- !u!114 &250772411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2723,6 +2734,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &267838961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2959,6 +2971,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 3
+  dialogue: {fileID: 0}
 --- !u!114 &297834558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3308,6 +3321,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &346650119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4112,6 +4126,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &466967259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4657,6 +4672,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 5
+  dialogue: {fileID: 0}
 --- !u!114 &508654093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5441,6 +5457,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 11
+  dialogue: {fileID: 0}
 --- !u!114 &578063068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5751,6 +5768,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 9
+  dialogue: {fileID: 0}
 --- !u!114 &612971205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6430,6 +6448,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &685209356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6896,6 +6915,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &719276329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7463,6 +7483,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &834291527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7940,6 +7961,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &889401030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8595,6 +8617,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 10
+  dialogue: {fileID: 0}
 --- !u!114 &978178172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8697,6 +8720,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 5
+  dialogue: {fileID: 0}
 --- !u!114 &981835825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9432,6 +9456,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 5
+  dialogue: {fileID: 0}
 --- !u!114 &1083111540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9743,6 +9768,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 11400000, guid: 24d7acc2f045d334fae5bc83521a8588, type: 2}
 --- !u!114 &1106391258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10210,6 +10236,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1161370508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10312,6 +10339,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 2
+  dialogue: {fileID: 0}
 --- !u!114 &1164187683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11481,6 +11509,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 11
+  dialogue: {fileID: 0}
 --- !u!114 &1360650085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11799,6 +11828,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1382800869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11901,6 +11931,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1393128540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12003,6 +12034,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1393761043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12304,6 +12336,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1423130214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13125,6 +13158,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 4
+  dialogue: {fileID: 0}
 --- !u!1 &1510423120
 GameObject:
   m_ObjectHideFlags: 0
@@ -13931,6 +13965,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 11
+  dialogue: {fileID: 0}
 --- !u!114 &1583204303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14442,6 +14477,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 12
+  dialogue: {fileID: 0}
 --- !u!114 &1644185661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14575,6 +14611,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1656569368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14677,6 +14714,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1656630623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14854,6 +14892,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1670044806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15102,6 +15141,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 11
+  dialogue: {fileID: 0}
 --- !u!114 &1708520267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15516,6 +15556,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1751921671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16189,6 +16230,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1804697671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16291,6 +16333,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 11
+  dialogue: {fileID: 0}
 --- !u!114 &1812256848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16675,6 +16718,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1843485649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16777,6 +16821,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 10
+  dialogue: {fileID: 0}
 --- !u!114 &1858686731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17345,6 +17390,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1917696707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17978,6 +18024,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &1979471433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18118,6 +18165,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 1
+  dialogue: {fileID: 0}
 --- !u!1 &2006282666
 GameObject:
   m_ObjectHideFlags: 0
@@ -19233,6 +19281,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
+  dialogue: {fileID: 0}
 --- !u!114 &2108232596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19670,6 +19719,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 5
+  dialogue: {fileID: 0}
 --- !u!114 &2132279415
 MonoBehaviour:
   m_ObjectHideFlags: 0

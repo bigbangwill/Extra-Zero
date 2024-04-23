@@ -68,6 +68,8 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
     {
         GameModeState.CurrentCampaignNode = currentActiveNode.GetNodeName();
         GameModeState.IsFinished = false;
+        if (currentActiveNode.Dialogue != null) 
+            GameModeState.CurrentDialogue = currentActiveNode.Dialogue;
         saveClassManager.SaveCurrentState();
         SceneManager.LoadScene("Scene One");
     }
