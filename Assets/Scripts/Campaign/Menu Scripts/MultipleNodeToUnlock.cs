@@ -9,14 +9,12 @@ public class MultipleNodeToUnlock : CampaignNodeScript
     {
         foreach (var node in nodeConnectedFrom)
         {
-            Debug.Log("Here");
             if (!node.IsDone)
             {
                 Debug.Log("Hit the if");
                 return;
             }
         }
-        Debug.Log("Before calling base");
         IsUnlocked = true;
         campaignInfo.ResetDoneNodes();
     }

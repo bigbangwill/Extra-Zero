@@ -103,6 +103,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
 
     public object Save()
     {
+        ResetDoneNodes();
         SaveClassesLibrary.CampaignInfoUI saveData = new(doneNodes,unlockedNodes);
         return saveData;
     }

@@ -99,7 +99,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     public virtual void SetUnlocked()
     {
         IsUnlocked = true;
-        campaignInfo.ResetDoneNodes();
+        //campaignInfo.ResetDoneNodes();
     }
 
     public void GotDone()
@@ -120,7 +120,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         isUnlocked = true;
         foreach (var node in nodeConnectedToList)
         {
-            node.IsUnlocked = true;
+            node.SetUnlocked();
         }
     }
 
