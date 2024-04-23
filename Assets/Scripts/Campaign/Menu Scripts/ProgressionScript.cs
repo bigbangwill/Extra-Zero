@@ -96,9 +96,11 @@ public class ProgressionScript : MonoBehaviour, ISaveable
         SetGameModeState();
         AddISaveableToDictionary();
 
+        Debug.LogWarning("Before hitting the thing");
         if (GameModeState.IsFinished)
         {
             saveClassManager.LoadSavedGame();
+            Debug.LogWarning("Inside the thing " + GameModeState.CurrentCampaignNode);
             infoUI.GiveReward(GameModeState.CurrentCampaignNode);
         }
     }

@@ -10,6 +10,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
 
     public enum campaignRewardEnum
     {
+        none,
         scanner,
         computer,
         printer,
@@ -27,9 +28,9 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         recipeTablet
     }
 
+    [SerializeField] private List<CampaignNodeScript> nodeConnectedToList = new();
 
-    [SerializeField] private CampaignNodeScript nodeConnectedTo;
-    [SerializeField] private CampaignNodeScript nodeConnectedFrom;
+    [SerializeField] protected List<CampaignNodeScript> nodeConnectedFrom = new();
     [SerializeField] private string nodeName;
 
     [SerializeField] private GameObject activeIndicator;
@@ -38,7 +39,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     [SerializeField] private string rewardStack;
     [SerializeField] private string rewardText;
 
-    [SerializeField] private CampaignInfoUI campaignInfo;
+    [SerializeField] protected CampaignInfoUI campaignInfo;
 
     [SerializeField] private bool isUnlocked = false;
     [SerializeField] private bool isDone = false;
@@ -48,6 +49,11 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
 
     public bool IsUnlocked { get => isUnlocked; set => isUnlocked = value; }
     public bool IsDone { get => isDone; set => isDone = value; }
+
+    //private void Awake()
+    //{
+    //    nodeName = gameObject.name;
+    //}
 
 
     public void GiveReward()
@@ -73,6 +79,13 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         }
     }
 
+
+    public void SetNodeName(string name)
+    {
+        nodeName = name;
+    }
+
+
     public void GotTargeted()
     {
         activeIndicator.SetActive(true);
@@ -83,7 +96,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         activeIndicator.SetActive(false);
     }
 
-    public void SetUnlocked()
+    public virtual void SetUnlocked()
     {
         IsUnlocked = true;
         campaignInfo.ResetDoneNodes();
@@ -92,16 +105,23 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     public void GotDone()
     {
         isDone = true;
-        if(nodeConnectedTo != null)
-            nodeConnectedTo.SetUnlocked();
+        Debug.LogWarning("GOT DONE " + nodeName);
+        foreach (var node in nodeConnectedToList)
+        {
+            node.SetUnlocked();
+        }
+        //if(nodeConnectedTo != null)
+        //    nodeConnectedTo.SetUnlocked();
     }
 
     public void GotSilentlyDone()
     {
         isDone = true;
         isUnlocked = true;
-        if (nodeConnectedTo != null)
-            nodeConnectedTo.IsUnlocked = true;
+        foreach (var node in nodeConnectedToList)
+        {
+            node.IsUnlocked = true;
+        }
     }
 
     public void SetReset()

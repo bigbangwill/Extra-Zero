@@ -139,7 +139,6 @@ public class SaveClassManager : MonoBehaviour
         if (orderDictionary.ContainsKey(name))
         {
             actionArray[orderDictionary[name]] = method;
-            Debug.Log("Added the method");
         }
         else
         {
