@@ -16,10 +16,10 @@ public class BarRewardManager : MonoBehaviour
     private bool firstRewardUnlocked;
     private bool secondRewardUnlocked;
     private bool thirdRewardUnlocked;
-    private bool doubleRewardUnlocked;
 
     private RewardBarRefrence refrence;
 
+    private EconomyManagerRefrence economyManagerRefrence;
 
     private void SetRefrence()
     {
@@ -32,15 +32,27 @@ public class BarRewardManager : MonoBehaviour
         refrence.val = this;
     }
 
+
+    private void LoadSoRefrence()
+    {
+        economyManagerRefrence = (EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence");
+
+
+    }
+
+
     private void Awake()
     {
         SetRefrence();
     }
 
+    
+
 
 
     private void Start()
     {
+        LoadSoRefrence();
         if (!GameModeState.IsCampaignMode)
         {
             barSlider.maxValue = barMaxValue;
@@ -51,7 +63,6 @@ public class BarRewardManager : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
 
 
     public void AddToBar(float value)
@@ -71,9 +82,24 @@ public class BarRewardManager : MonoBehaviour
         }
     }
 
-    private void GiveReward()
+    public void GiveReward(bool isDoubled)
     {
-        
+        int doubleModifier = 1;
+        if (isDoubled)
+            doubleModifier = 2;
+        if (firstRewardUnlocked)
+        {
+            economyManagerRefrence.val.OutGameCurrencyCurrentStack += 1 * doubleModifier;
+        }
+        if (secondRewardUnlocked)
+        {
+            economyManagerRefrence.val.CampaignEnergyCurrentStack += 1 * doubleModifier;
+        }
+        if (thirdRewardUnlocked)
+        {
+            economyManagerRefrence.val.CampaignEnergyCurrentStack += 2 * doubleModifier;
+        }
+
     }
 
 }

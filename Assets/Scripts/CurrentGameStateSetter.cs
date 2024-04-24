@@ -14,14 +14,18 @@ public class CurrentGameStateSetter : MonoBehaviour
     [SerializeField] private GameObject pauseMenuCanvas;
     [SerializeField] private GameObject lostMenuCanvas;
     [SerializeField] private Button watchAdButton;
-
+    [SerializeField] private Button doubleWatchAdButton;
     private bool watchedAd = false;
 
+    private bool isDoubled = false;
 
+
+    private RewardBarRefrence rewardBarRefrence;
 
     private void LoadSORefrence()
     {
         gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
+        rewardBarRefrence = (RewardBarRefrence)FindSORefrence<BarRewardManager>.FindScriptableObject("Reward Bar Refrence");
     }
 
     private void Start()
@@ -53,6 +57,10 @@ public class CurrentGameStateSetter : MonoBehaviour
         else
         {
             watchAdButton.interactable = false;
+            if (!GameModeState.IsCampaignMode)
+            {
+                doubleWatchAdButton.gameObject.SetActive(true);
+            }
         }
         gameStateManagerRefrence.val.PauseGame();
     }
@@ -60,7 +68,15 @@ public class CurrentGameStateSetter : MonoBehaviour
     public void BackToStartMenu()
     {
         gameStateManagerRefrence.val.ResumeGame();
+        if(!GameModeState.IsCampaignMode)
+            rewardBarRefrence.val.GiveReward(isDoubled);
         SceneManager.LoadScene("Menu Scene");
+    }
+
+    public void DoubleRewardClicked()
+    {
+        isDoubled = true;
+        doubleWatchAdButton.gameObject.SetActive(false);
     }
 
     public void GotBackInTheGame()

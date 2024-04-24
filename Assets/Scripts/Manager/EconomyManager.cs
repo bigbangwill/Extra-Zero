@@ -12,7 +12,8 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private int outGameCurrencyMaxStack = 10;
     [SerializeField] private int quantumQuartersCurrentStack = 1;
     [SerializeField] private int quantumQuartersMaxStack = 10;
-
+    [SerializeField] private int campaignEnergyCurrentStack = 0;
+    [SerializeField] private int campaignEnergyMaxStack = 10;
     private EconomyManagerRefrence refrence;
     private static EconomyManager instance;
 
@@ -125,6 +126,34 @@ public class EconomyManager : MonoBehaviour
         set
         {
             quantumQuartersMaxStack = value;
+            ValuesChanged();
+        }
+    }
+
+
+
+    public int CampaignEnergyCurrentStack
+    {
+        get => campaignEnergyCurrentStack;
+        set
+        {
+            if (value > campaignEnergyMaxStack)
+            {
+                campaignEnergyCurrentStack = campaignEnergyMaxStack;
+                ValuesChanged();
+                return;
+            }
+            campaignEnergyCurrentStack = value;
+            ValuesChanged();
+        }
+    }
+
+    public int CampaignEnergyMaxStack
+    {
+        get => campaignEnergyMaxStack;
+        set
+        {
+            campaignEnergyMaxStack = value;
             ValuesChanged();
         }
     }
