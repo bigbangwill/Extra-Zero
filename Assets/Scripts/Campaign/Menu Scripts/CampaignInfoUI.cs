@@ -67,10 +67,21 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
     public void StartCampaign()
     {
         GameModeState.CurrentCampaignNode = currentActiveNode.GetNodeName();
+        GameModeState.IsCampaignMode = true;
         GameModeState.IsFinished = false;
         if (currentActiveNode.Dialogue != null) 
             GameModeState.CurrentDialogue = currentActiveNode.Dialogue;
         saveClassManager.SaveCurrentState();
+        SceneManager.LoadScene("Scene One");
+    }
+
+    public void StartEndlessMode()
+    {
+        GameModeState.CurrentCampaignNode = null;
+        GameModeState.IsFinished = false;
+        GameModeState.CurrentDialogue = null;
+        saveClassManager.SaveCurrentState();
+        GameModeState.IsCampaignMode = false;
         SceneManager.LoadScene("Scene One");
     }
 

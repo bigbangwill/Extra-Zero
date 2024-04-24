@@ -37,10 +37,13 @@ public class OrderPost : MonoBehaviour
 
     private bool isPrecisionPotionMarked = false;
 
+    private bool isCampaign = false;
+
     private OrderManagerRefrence orderManagerRefrence;
     private NewTierManager tierManager;
     private EconomyManager economyManager;
     private EventTextManager eventTextManager;
+    private RewardBarRefrence rewardBar;
 
     private void LoadSORefrence()
     {
@@ -48,6 +51,7 @@ public class OrderPost : MonoBehaviour
         tierManager = ((NewTierManagerRefrence)FindSORefrence<NewTierManager>.FindScriptableObject("New Tier Manager Refrence")).val;
         economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
         eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
+        rewardBar = (RewardBarRefrence)FindSORefrence<BarRewardManager>.FindScriptableObject("Reward Bar Refrence");
     }
 
 
@@ -57,6 +61,7 @@ public class OrderPost : MonoBehaviour
         LoadSORefrence();
         postHealthScript = GetComponent<OrderPostHealth>();
         tierManager.TierChangeAddListener(GetNewOrderList);
+        isCampaign = GameModeState.IsCampaignMode;
     }
 
 
@@ -214,6 +219,8 @@ public class OrderPost : MonoBehaviour
         tierManager.MilestoneCheckItem(currentOrder.GetFilledItems());
         Debug.Log("Fullfilled");
         economyManager.QuantumQuartersCurrentStack += 1 * currentOrder.TotalItemCount();
+        if(!isCampaign)
+            rewardBar.val.AddToBar(1 * currentOrder.TotalItemCount());
         RemoveTopWalkingOrder();
         
     }
