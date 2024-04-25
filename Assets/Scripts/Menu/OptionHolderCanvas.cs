@@ -23,6 +23,7 @@ public class OptionHolderCanvas : MonoBehaviour
         if(isInitialized)
         {
             LoadSORefrence();
+            InitUI();
             optionHolderRefrence.val.AddListener(InitUI);
         }
     }
