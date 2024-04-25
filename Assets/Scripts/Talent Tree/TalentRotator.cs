@@ -88,7 +88,7 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
         //    SetCameraRefrence();
 
         talentCamera.gameObject.SetActive(false);
-        closeButton.SetActive(false);
+        //closeButton.SetActive(false);
         enabled = false;
         if (gameStateManagerRefrence.val.GetGameState() == GameState.InGame)
         {

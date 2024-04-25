@@ -43,9 +43,9 @@ public class OptionHolder : MonoBehaviour
 
     private void Start()
     {
-        SetQubitMax(10);
-        SetGateMax(10);
-        SetEntangleMax(10);
+        SetQubitMax(0);
+        SetGateMax(0);
+        SetEntangleMax(0);
     }
 
     public void AddListener(Action action)

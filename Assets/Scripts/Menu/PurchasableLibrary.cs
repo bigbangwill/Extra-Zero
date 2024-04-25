@@ -46,7 +46,7 @@ public class Qubit : PurchasableLibrary
 {
     public Qubit()
     {
-        cost = 2;
+        cost = 1;
         specificAddress = "Purchasable/Qubit[Sprite]";
         purchasableDescription = "THIS IS QUBIT";
         LoadIcon();
@@ -77,7 +77,7 @@ public class Entangle : PurchasableLibrary
 {
     public Entangle()
     {
-        cost = 2;
+        cost = 4;
         specificAddress = "Purchasable/Entangle[Sprite]";
         purchasableDescription = "THIS IS Entangle";
         LoadIcon();
