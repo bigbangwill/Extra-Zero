@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class OptionHolder : MonoBehaviour
+public class OptionHolder : MonoBehaviour, ISaveable
 {
 
     private int qubitMaxCount;
@@ -23,6 +23,7 @@ public class OptionHolder : MonoBehaviour
     public event Action ValuesChanged;
 
     private OptionHolderRefrence refrence;
+    private SaveClassManager saveClassManager;
 
 
     private void SetRefrence()
@@ -36,6 +37,11 @@ public class OptionHolder : MonoBehaviour
         refrence.val = this;
     }
 
+    private void LoadSORefrence()
+    {
+        saveClassManager = ((SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence")).val;
+    }
+
     private void Awake()
     {
         SetRefrence();
@@ -43,9 +49,11 @@ public class OptionHolder : MonoBehaviour
 
     private void Start()
     {
+        LoadSORefrence();
         SetQubitMax(0);
         SetGateMax(0);
         SetEntangleMax(0);
+        AddISaveableToDictionary();
     }
 
     public void AddListener(Action action)
@@ -150,5 +158,33 @@ public class OptionHolder : MonoBehaviour
         if(entangleCurrentCount < entangleMaxCount)
             return true;
         return false;
+    }
+
+    public void AddISaveableToDictionary()
+    {
+        saveClassManager.AddISaveableToDictionary(GetName(), this, 3);
+    }
+
+    public object Save()
+    {
+        SaveClassesLibrary.OptionHolderSave saveData = 
+            new(qubitMaxCount, gateMaxCount, entangleMaxCount,qubitCurrentCount,gateCurrentCount,entangleCurrentCount);
+        return saveData;
+    }
+
+    public void Load(object savedData)
+    {
+        SaveClassesLibrary.OptionHolderSave data = (SaveClassesLibrary.OptionHolderSave)savedData;
+        qubitMaxCount = data.qubitMax;
+        gateMaxCount = data.gateMax;
+        entangleMaxCount = data.entangleMax;
+        qubitCurrentCount = data.qubitCurrent;
+        gateCurrentCount = data.gateCurrent;
+        entangleCurrentCount = data.entangleCurrent;
+    }
+
+    public string GetName()
+    {
+        return "OptionHolder";
     }
 }

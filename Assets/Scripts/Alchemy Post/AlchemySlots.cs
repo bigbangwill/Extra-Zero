@@ -27,6 +27,11 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     }
 
 
+    private void OnEnable()
+    {
+        Reset();
+    }
+
     private void Start()
     {
         LoadSORefrence();
@@ -149,7 +154,7 @@ public class AlchemySlots : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     private void OnDisable()
     {
-        //Reset();
+        Reset();
     }
 
 }

@@ -172,6 +172,11 @@ public class NodePassive : MonoBehaviour
         return gateToNode;
     }
 
+    public NodePassive GetNodeToEntangle()
+    {
+        return entangleToNode;
+    }
+
     public int GetTalentCost()
     {
         return talent.GetTalentCost();
@@ -205,6 +210,11 @@ public class NodePassive : MonoBehaviour
     public string GetTalentDescriptionQubit()
     {
         return talent.GetTalentDescriptionQubit();
+    }
+
+    public string GetTalentName()
+    {
+        return talent.GetSpecificName();
     }
 
     public void SetNodeState(NodePurchaseState nodePurchase)

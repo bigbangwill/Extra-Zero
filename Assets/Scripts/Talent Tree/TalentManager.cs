@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using System.Reflection;
+using System.Data;
 
 public class TalentManager : MonoBehaviour, ISaveable
 {
@@ -107,6 +108,11 @@ public class TalentManager : MonoBehaviour, ISaveable
         }
         //gameStateManagerRefrence.val.ChangeStateAddListener(StateChanged);
         StateChanged();
+    }
+
+    public List<NodePassive> GetNodePassives()
+    {
+        return orbits;
     }
 
 
@@ -516,61 +522,105 @@ public class TalentManager : MonoBehaviour, ISaveable
 
     public void AddISaveableToDictionary()
     {
-        saveClassManager.AddISaveableToDictionary(GetName(), this, 3);
+        saveClassManager.AddISaveableToDictionary(GetName(), this, 4);
     }
 
     public object Save()
     {
-        SaveClassesLibrary.TalentManagerSave data = new();
+        SaveClassesLibrary.TalentManagerSave data = new(this);
         return data;
     }
 
     public void Load(object savedData)
     {
         SaveClassesLibrary.TalentManagerSave loadData = (SaveClassesLibrary.TalentManagerSave)savedData;
+        //foreach (var orbit in loadData.qubitList)
+        //{
+        //    foreach (var createdNodes in CreatedTalents.GetTalents())
+        //    {
+        //        if (orbit == createdNodes.GetSpecificName())
+        //        {
+        //            createdNodes.UpgradeToQubit();
+        //        }
+        //    }
+        //}
+        //for (int i = 0; i < loadData.gateListKey.Count; i++)
+        //{
+        //    foreach (var createdNodes in CreatedTalents.GetTalents())
+        //    {
+        //        if (loadData.gateListKey[i] == createdNodes.GetSpecificName())
+        //        {
+        //            foreach (var secondCreatedNodes in CreatedTalents.GetTalents())
+        //            {
+        //                if (loadData.gateListValue[i] == secondCreatedNodes.GetSpecificName())
+        //                {
+        //                    createdNodes.AddGateToQubit(secondCreatedNodes);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        //for (int i = 0; i < loadData.entangleListKey.Count; i++)
+        //{
+        //    foreach (var createdNodes in CreatedTalents.GetTalents())
+        //    {
+        //        if (loadData.entangleListKey[i] == createdNodes.GetSpecificName())
+        //        {
+        //            foreach (var secondCreatedNodes in CreatedTalents.GetTalents())
+        //            {
+        //                if (loadData.entangleListValue[i] == secondCreatedNodes.GetSpecificName())
+        //                {
+        //                    createdNodes.AddEntangleToQubit(secondCreatedNodes);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
         foreach (var orbit in loadData.qubitList)
         {
-            foreach (var createdNodes in CreatedTalents.GetTalents())
+            foreach (var createdNodes in orbits)
             {
-                if (orbit == createdNodes.GetSpecificName())
+                if (orbit == createdNodes.talent.GetSpecificName())
                 {
-                    createdNodes.UpgradeToQubit();
+                    createdNodes.UpgradeQubit();
                 }
             }
         }
         for (int i = 0; i < loadData.gateListKey.Count; i++)
         {
-            foreach (var createdNodes in CreatedTalents.GetTalents())
+            foreach (var createdNodes in orbits)
             {
-                if (loadData.gateListKey[i] == createdNodes.GetSpecificName())
+                if (loadData.gateListKey[i] == createdNodes.talent.GetSpecificName())
                 {
-                    foreach (var secondCreatedNodes in CreatedTalents.GetTalents())
+                    foreach (var secondCreatedNodes in orbits)
                     {
-                        if (loadData.gateListValue[i] == secondCreatedNodes.GetSpecificName())
+                        if (loadData.gateListValue[i] == secondCreatedNodes.talent.GetSpecificName())
                         {
-                            createdNodes.AddGateToQubit(secondCreatedNodes);
+                            createdNodes.UpgradeGate(secondCreatedNodes.talent);
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < loadData.entangleListKey.Count; i++)
+        {
+            foreach (var createdNodes in orbits)
+            {
+                if (loadData.entangleListKey[i] == createdNodes.talent.GetSpecificName())
+                {
+                    foreach (var secondCreatedNodes in orbits)
+                    {
+                        if (loadData.entangleListValue[i] == secondCreatedNodes.talent.GetSpecificName())
+                        {
+                            createdNodes.UpgradeEntangle(secondCreatedNodes.talent);
                         }
                     }
                 }
             }
         }
 
-        for (int i = 0; i < loadData.entangleListKey.Count; i++)
-        {
-            foreach (var createdNodes in CreatedTalents.GetTalents())
-            {
-                if (loadData.entangleListKey[i] == createdNodes.GetSpecificName())
-                {
-                    foreach (var secondCreatedNodes in CreatedTalents.GetTalents())
-                    {
-                        if (loadData.entangleListValue[i] == secondCreatedNodes.GetSpecificName())
-                        {
-                            createdNodes.AddEntangleToQubit(secondCreatedNodes);
-                        }
-                    }
-                }
-            }
-        }
     }
 
     public string GetName()

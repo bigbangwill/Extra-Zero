@@ -89,7 +89,7 @@ public class TalentRotator : MonoBehaviour, IPointerDownHandler, IDragHandler
 
         talentCamera.gameObject.SetActive(false);
         //closeButton.SetActive(false);
-        enabled = false;
+        //enabled = false;
         if (gameStateManagerRefrence.val.GetGameState() == GameState.InGame)
         {
             FindSORefrence<RaycastMovement>.FindScriptableObject

@@ -169,25 +169,66 @@ public class SaveClassesLibrary
 
 
 
-        public TalentManagerSave()
+        public TalentManagerSave(TalentManager data)
         {
-            foreach (var talent in CreatedTalents.GetTalents())
+            //foreach (var talent in CreatedTalents.GetTalents())
+            //{
+            //    if (talent.IsQubit)
+            //    {
+            //        qubitList.Add(talent.GetSpecificName());
+            //    }
+            //    if(talent.IsGated)
+            //    {
+            //        gateListKey.Add(talent.GetSpecificName());
+            //        gateListValue.Add(talent.GetRelatedNodePassive().talent.GetSpecificName());
+            //    }
+            //    else if (talent.IsEntangled)
+            //    {
+            //        entangleListKey.Add(talent.GetSpecificName());
+            //        entangleListValue.Add(talent.GetRelatedNodePassive().talent.GetSpecificName());
+            //    }
+            //}
+
+            foreach(var talent in data.GetNodePassives())
             {
-                if (talent.IsQubit)
+                if (talent.IsQubit())
                 {
-                    qubitList.Add(talent.GetSpecificName());
+                    qubitList.Add(talent.GetTalentName());
                 }
-                if(talent.IsGated)
+                if (talent.IsGated())
                 {
-                    gateListKey.Add(talent.GetSpecificName());
-                    gateListValue.Add(talent.GetRelatedNodePassive().talent.GetSpecificName());
+                    gateListKey.Add(talent.GetTalentName());
+                    gateListValue.Add(talent.GetNodeToGate().GetTalentName());
                 }
-                else if (talent.IsEntangled)
+                if (talent.IsEntangled())
                 {
-                    entangleListKey.Add(talent.GetSpecificName());
-                    entangleListValue.Add(talent.GetRelatedNodePassive().talent.GetSpecificName());
+                    entangleListKey.Add(talent.GetTalentName());
+                    entangleListValue.Add(talent.GetNodeToEntangle().GetTalentName());
                 }
             }
+
+
+        }
+    }
+
+    [Serializable]
+    public class OptionHolderSave : SaveClassesLibrary
+    {
+        public int qubitMax;
+        public int qubitCurrent;    
+        public int gateMax;
+        public int gateCurrent;
+        public int entangleMax;
+        public int entangleCurrent;
+
+        public OptionHolderSave(int qubitMax,int gateMax, int entangleMax, int qubitCurrent, int gateCurrent, int entangleCurrent)
+        {
+            this.qubitMax = qubitMax;
+            this.gateMax = gateMax;
+            this.entangleMax = entangleMax;
+            this.qubitCurrent = qubitCurrent;
+            this.gateCurrent = gateCurrent;
+            this.entangleCurrent = entangleCurrent;
         }
     }
 }

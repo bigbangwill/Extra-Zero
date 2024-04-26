@@ -81,6 +81,7 @@ public class EffectSlots : MonoBehaviour
     {
         currentEffect = null;
         image.sprite = null;
+        
     }
 
     /// <summary>
@@ -111,5 +112,8 @@ public class EffectSlots : MonoBehaviour
     private void OnDisable()
     {
         SetNoPotion();
+        herbArray[0] = null;
+        herbArray[1] = null;
+        herbArray[2] = null;
     }
 }
