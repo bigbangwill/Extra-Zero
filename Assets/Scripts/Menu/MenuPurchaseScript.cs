@@ -68,7 +68,6 @@ public class MenuPurchaseScript : MonoBehaviour
 
     public void PurchaseButtonClicked()
     {
-        Debug.Log("Clicked");
         activePurchasable.Purchasable.purchasedMethod();
         economyManagerRefrence.val.OutGameCurrencyCurrentStack -= activePurchasable.Purchasable.Cost;
         SetButtonState();

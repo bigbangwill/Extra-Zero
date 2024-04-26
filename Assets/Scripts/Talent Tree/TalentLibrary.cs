@@ -102,6 +102,7 @@ public abstract class TalentLibrary
     {
         return entangledNode;
     }
+
     public Sprite GetTalentIcon()
     {
         return talentIcon;

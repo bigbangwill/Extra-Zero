@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EconomyManager : MonoBehaviour
+public class EconomyManager : MonoBehaviour, ISaveable
 {
 
     [SerializeField] private int inGameCurrencyCurrentStack = 5;
@@ -17,9 +17,12 @@ public class EconomyManager : MonoBehaviour
     private EconomyManagerRefrence refrence;
     private static EconomyManager instance;
 
+
+    private SaveClassManager saveClassManager;
+
     private void LoadSORefrence()
     {
-
+        saveClassManager = ((SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence")).val;
     }
 
     private void SetRefrence()
@@ -46,6 +49,13 @@ public class EconomyManager : MonoBehaviour
         }
         SetRefrence();
     }
+
+    private void Start()
+    {
+        LoadSORefrence();
+        AddISaveableToDictionary();
+    }
+
 
     public int InGameCurrencyCurrentStack 
     { 
@@ -162,11 +172,6 @@ public class EconomyManager : MonoBehaviour
     private static event Action ValuesChangedEvent;
 
 
-
-    
-
-
-
     public void AddListener(Action listener)
     {
         ValuesChangedEvent += listener;
@@ -180,5 +185,30 @@ public class EconomyManager : MonoBehaviour
     private void ValuesChanged()
     {
         ValuesChangedEvent?.Invoke();
+    }
+
+    public void AddISaveableToDictionary()
+    {
+        saveClassManager.AddISaveableToDictionary(GetName(), this, 2);
+    }
+
+    public object Save()
+    {
+        SaveClassesLibrary.EconomyManagerSave economyManagerSave = new(this);
+        return economyManagerSave;
+    }
+
+    public void Load(object savedData)
+    {
+        SaveClassesLibrary.EconomyManagerSave data = (SaveClassesLibrary.EconomyManagerSave)savedData;
+        OutGameCurrencyCurrentStack = data.outGameCurrent;
+        OutGameCurrencyMaxStack = data.outGameMax;
+        CampaignEnergyCurrentStack = data.campaignEnergyCurrent;
+        CampaignEnergyMaxStack = data.campaignEnergyMax;
+    }
+
+    public string GetName()
+    {
+        return "EconomyManager";
     }
 }

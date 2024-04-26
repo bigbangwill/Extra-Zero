@@ -4,7 +4,7 @@ using System.Linq;
 using System;
 using System.Reflection;
 
-public class TalentManager : MonoBehaviour
+public class TalentManager : MonoBehaviour, ISaveable
 {
 
     [SerializeField] private List<TalentTreeOrbitalMovement> talentTrees = new();
@@ -61,12 +61,14 @@ public class TalentManager : MonoBehaviour
 
 
     private ScannerSlotManagerRefrence scannerSlotManagerRefrence;
-    
+
+    private SaveClassManager saveClassManager;
 
     private void LoadSORefrence()
     {
         gameStateManagerRefrence = (GameStateManagerRefrence)FindSORefrence<GameStateManager>.FindScriptableObject("Game State Manager Refrence");
         optionHolderRefrence = (OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Option Holder Refrence");
+        saveClassManager = ((SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence")).val;
     }
 
     private void SetRefrence()
@@ -92,6 +94,7 @@ public class TalentManager : MonoBehaviour
     private void Start()
     {
         LoadSORefrence();
+        AddISaveableToDictionary();
         if (!nodesCreated)
         {
             if (!CreatedTalents.IsCreated)
@@ -511,4 +514,67 @@ public class TalentManager : MonoBehaviour
         orbits[target].PurchaseTalent();
     }
 
+    public void AddISaveableToDictionary()
+    {
+        saveClassManager.AddISaveableToDictionary(GetName(), this, 3);
+    }
+
+    public object Save()
+    {
+        SaveClassesLibrary.TalentManagerSave data = new();
+        return data;
+    }
+
+    public void Load(object savedData)
+    {
+        SaveClassesLibrary.TalentManagerSave loadData = (SaveClassesLibrary.TalentManagerSave)savedData;
+        foreach (var orbit in loadData.qubitList)
+        {
+            foreach (var createdNodes in CreatedTalents.GetTalents())
+            {
+                if (orbit == createdNodes.GetSpecificName())
+                {
+                    createdNodes.UpgradeToQubit();
+                }
+            }
+        }
+        for (int i = 0; i < loadData.gateListKey.Count; i++)
+        {
+            foreach (var createdNodes in CreatedTalents.GetTalents())
+            {
+                if (loadData.gateListKey[i] == createdNodes.GetSpecificName())
+                {
+                    foreach (var secondCreatedNodes in CreatedTalents.GetTalents())
+                    {
+                        if (loadData.gateListValue[i] == secondCreatedNodes.GetSpecificName())
+                        {
+                            createdNodes.AddGateToQubit(secondCreatedNodes);
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < loadData.entangleListKey.Count; i++)
+        {
+            foreach (var createdNodes in CreatedTalents.GetTalents())
+            {
+                if (loadData.entangleListKey[i] == createdNodes.GetSpecificName())
+                {
+                    foreach (var secondCreatedNodes in CreatedTalents.GetTalents())
+                    {
+                        if (loadData.entangleListValue[i] == secondCreatedNodes.GetSpecificName())
+                        {
+                            createdNodes.AddEntangleToQubit(secondCreatedNodes);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public string GetName()
+    {
+        return "TalentManager";
+    }
 }

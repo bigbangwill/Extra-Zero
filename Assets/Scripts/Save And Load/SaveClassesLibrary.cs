@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [Serializable]
 public class SaveClassesLibrary
@@ -138,9 +139,55 @@ public class SaveClassesLibrary
             repairHammer = data.RepairHammer;
             recipeTablet = data.RecipeTablet;
         }
-
     }
 
+    [Serializable]
+    public class EconomyManagerSave : SaveClassesLibrary
+    {
+        public int outGameCurrent;
+        public int outGameMax;
+        public int campaignEnergyCurrent;
+        public int campaignEnergyMax;
+
+        public EconomyManagerSave(EconomyManager data)
+        {
+            outGameCurrent = data.OutGameCurrencyCurrentStack;
+            outGameMax = data.OutGameCurrencyMaxStack;
+            campaignEnergyCurrent = data.CampaignEnergyCurrentStack;
+            campaignEnergyMax = data.CampaignEnergyMaxStack;
+        }
+    }
+
+    [Serializable]
+    public class TalentManagerSave : SaveClassesLibrary
+    {
+        public List<string> qubitList = new();
+        public List<string> gateListKey = new();
+        public List<string> gateListValue = new();
+        public List<string> entangleListKey = new();
+        public List<string> entangleListValue = new();
 
 
+
+        public TalentManagerSave()
+        {
+            foreach (var talent in CreatedTalents.GetTalents())
+            {
+                if (talent.IsQubit)
+                {
+                    qubitList.Add(talent.GetSpecificName());
+                }
+                if(talent.IsGated)
+                {
+                    gateListKey.Add(talent.GetSpecificName());
+                    gateListValue.Add(talent.GetRelatedNodePassive().talent.GetSpecificName());
+                }
+                else if (talent.IsEntangled)
+                {
+                    entangleListKey.Add(talent.GetSpecificName());
+                    entangleListValue.Add(talent.GetRelatedNodePassive().talent.GetSpecificName());
+                }
+            }
+        }
+    }
 }
