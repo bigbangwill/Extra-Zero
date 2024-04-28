@@ -7,7 +7,7 @@ using System.Linq;
 using UnityEngine.UI;
 using TMPro;
 
-public class MenuPurchaseScript : MonoBehaviour
+public class MenuPurchaseScript : MonoBehaviour, ILoadDependent
 {
     [SerializeField] private Transform scrollViewContent;
     [SerializeField] private GameObject purchasePrefab;
@@ -82,5 +82,15 @@ public class MenuPurchaseScript : MonoBehaviour
         {
             purchaseButton.interactable = false;
         }
+    }
+
+    public void CallAwake()
+    {
+        
+    }
+
+    public void CallStart()
+    {
+        Start();
     }
 }

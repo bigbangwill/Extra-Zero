@@ -26,7 +26,8 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         lavaBucket,
         itemStash,
         repairHammer,
-        recipeTablet
+        recipeTablet,
+        shopMenu
     }
 
     [SerializeField] private List<CampaignNodeScript> nodeConnectedToList = new();
@@ -61,6 +62,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
 
     public void GiveReward()
     {
+        Debug.Log(holdingReward.ToString());
         switch (holdingReward) 
         {
             case campaignRewardEnum.scanner: progressionScript.Scanner = true; break;
@@ -78,6 +80,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
             case campaignRewardEnum.itemStash: progressionScript.ItemStash = true; break;
             case campaignRewardEnum.repairHammer: progressionScript.RepairHammer = true; break;
             case campaignRewardEnum.recipeTablet: progressionScript.RecipeTablet = true; break;
+            case campaignRewardEnum.shopMenu: progressionScript.MenuShopIsUnlocked = true; break;
             default:Debug.LogWarning("ASAP"); break;
         }
     }
@@ -108,8 +111,11 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     public void GotDone()
     {
         isDone = true;
-        Debug.LogWarning("GOT DONE " + nodeName);
         foreach (var node in nodeConnectedToList)
+        {
+            node.SetUnlocked();
+        }
+        foreach (var node in nodeConnectedFrom)
         {
             node.SetUnlocked();
         }

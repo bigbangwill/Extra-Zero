@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EconomyManager : MonoBehaviour, ISaveable
+public class EconomyManager : MonoBehaviour, ISaveable, ILoadDependent
 {
 
     [SerializeField] private int inGameCurrencyCurrentStack = 5;
@@ -19,6 +19,10 @@ public class EconomyManager : MonoBehaviour, ISaveable
 
 
     private SaveClassManager saveClassManager;
+
+    private bool isAwakeCalled = false;
+    private bool isStartCalled = false;
+
 
     private void LoadSORefrence()
     {
@@ -38,22 +42,28 @@ public class EconomyManager : MonoBehaviour, ISaveable
 
     private void Awake()
     {
-        if (instance == null)
+        if (!isAwakeCalled)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            SetRefrence();
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-        SetRefrence();
     }
 
     private void Start()
     {
-        LoadSORefrence();
-        AddISaveableToDictionary();
+        if (!isStartCalled)
+        {
+            LoadSORefrence();
+            AddISaveableToDictionary();            
+        }
     }
 
 
@@ -210,5 +220,17 @@ public class EconomyManager : MonoBehaviour, ISaveable
     public string GetName()
     {
         return "EconomyManager";
+    }
+
+    public void CallAwake()
+    {
+        Awake();
+        isAwakeCalled = true;
+    }
+
+    public void CallStart()
+    {
+        Start();
+        isStartCalled = true;
     }
 }

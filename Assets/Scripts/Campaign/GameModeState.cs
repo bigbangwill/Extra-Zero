@@ -1,6 +1,7 @@
 using ExtraZero.Dialogue;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class GameModeState
@@ -20,6 +21,7 @@ public static class GameModeState
     private static bool itemStashIsUnlocked = false;
     private static bool repairHammerIsUnlocked = false;
     private static bool recipeTabletIsUnlocked = false;
+    private static bool menuShopIsUnlocked = false;
 
 
     private static bool isCampaignMode = false;
@@ -51,4 +53,5 @@ public static class GameModeState
     public static string CurrentCampaignNode { get => currentCampaignNode; set => currentCampaignNode = value; }
     public static bool IsFinished { get => isFinished; set => isFinished = value; }
     public static Dialogue CurrentDialogue { get => currentDialogue; set => currentDialogue = value; }
+    public static bool MenuShopIsUnlocked { get => menuShopIsUnlocked; set => menuShopIsUnlocked = value; }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CampaignInfoUI : MonoBehaviour, ISaveable
+public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
 {
     [SerializeField] private Image infoImage;
     [SerializeField] private TextMeshProUGUI infoText;
@@ -25,6 +25,8 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
 
     private SaveClassManager saveClassManager;
 
+    private bool isStartCalled = false;
+
     private void LoadSORefrence()
     {
         saveClassManager = ((SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence")).val;
@@ -32,9 +34,12 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
 
     private void Start()
     {
-        LoadSORefrence();
-        AddISaveableToDictionary();
-        ResetDoneNodes();
+        if (!isStartCalled)
+        {
+            LoadSORefrence();
+            AddISaveableToDictionary();
+            ResetDoneNodes();
+        }
     }
 
     public void SetInfoPanelActive(CampaignNodeScript campaignNode)
@@ -162,11 +167,21 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable
                 }
             }
         }
-
     }
 
     public string GetName()
     {
         return "CampaignInfoUI";
+    }
+
+    public void CallAwake()
+    {
+        
+    }
+
+    public void CallStart()
+    {
+        Start();
+        isStartCalled = true;
     }
 }

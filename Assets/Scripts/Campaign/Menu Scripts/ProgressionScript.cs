@@ -19,6 +19,7 @@ public class ProgressionScript : MonoBehaviour, ISaveable
     [SerializeField] private bool itemStash;
     [SerializeField] private bool repairHammer;
     [SerializeField] private bool recipeTablet;
+    [SerializeField] private bool menuShopIsUnlocked;
 
     [SerializeField] private CampaignInfoUI infoUI;
 
@@ -86,6 +87,14 @@ public class ProgressionScript : MonoBehaviour, ISaveable
             recipeTablet = value;
             SetGameModeState();
         } }
+    public bool MenuShopIsUnlocked
+    {
+        get => menuShopIsUnlocked; set
+        {
+            menuShopIsUnlocked = value;
+            SetGameModeState();
+        }
+    }
 
 
 
@@ -121,6 +130,7 @@ public class ProgressionScript : MonoBehaviour, ISaveable
         GameModeState.ItemStashIsUnlocked = ItemStash;
         GameModeState.RepairHammerIsUnlocked = repairHammer;
         GameModeState.RecipeTabletIsUnlocked = recipeTablet;
+        GameModeState.MenuShopIsUnlocked = menuShopIsUnlocked;
 
         GameModeState.IsCampaignMode = true;
 
@@ -155,6 +165,7 @@ public class ProgressionScript : MonoBehaviour, ISaveable
         ItemStash = data.itemStash;
         RepairHammer = data.repairHammer;
         RecipeTablet = data.recipeTablet;
+        MenuShopIsUnlocked = data.menuShop;
 
         SetGameModeState();
     }

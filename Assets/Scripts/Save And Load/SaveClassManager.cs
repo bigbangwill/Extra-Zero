@@ -50,6 +50,7 @@ public class SaveClassManager : MonoBehaviour
     {
         savealbleDictionary.Add(key, item);
         orderDictionary.Add(key, order);
+        Debug.Log(key + "    " + order);
     }
 
     /// <summary>
@@ -136,8 +137,14 @@ public class SaveClassManager : MonoBehaviour
     /// <param name="name"></param>
     private void SetOrder(Action method, string name)
     {
+        foreach (var item in orderDictionary)
+        {
+            Debug.Log(item.Key);
+        }
         if (orderDictionary.ContainsKey(name))
         {
+            Debug.Log(orderDictionary[name]);
+            Debug.Log(actionArray.Length);
             actionArray[orderDictionary[name]] = method;
         }
         else

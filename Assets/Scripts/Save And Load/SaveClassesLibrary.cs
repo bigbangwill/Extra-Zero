@@ -120,6 +120,7 @@ public class SaveClassesLibrary
         public bool itemStash;
         public bool repairHammer;
         public bool recipeTablet;
+        public bool menuShop;
 
         public ProgressionScriptSave(ProgressionScript data)
         {
@@ -138,6 +139,7 @@ public class SaveClassesLibrary
             itemStash = data.ItemStash;
             repairHammer = data.RepairHammer;
             recipeTablet = data.RecipeTablet;
+            menuShop = data.MenuShopIsUnlocked;
         }
     }
 

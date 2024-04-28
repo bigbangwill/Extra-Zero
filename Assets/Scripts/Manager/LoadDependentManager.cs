@@ -24,6 +24,7 @@ public class LoadDependentManager : MonoBehaviour
             yield return null;
             lastActive = go;
             lastActive.SetActive(isActive);
+            
         }
     }
 
