@@ -1,10 +1,14 @@
 using ExtraZero.Dialogue;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
 {
@@ -50,14 +54,42 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     [SerializeField] private campaignRewardEnum holdingReward;
     [SerializeField] private Dialogue dialogue;
 
+    private string iconSpecificAddress;
+
     public bool IsUnlocked { get => isUnlocked; set => isUnlocked = value; }
     public bool IsDone { get => isDone; set => isDone = value; }
     public Dialogue Dialogue { get => dialogue; set => dialogue = value; }
 
-    //private void Awake()
-    //{
-    //    nodeName = gameObject.name;
-    //}
+    private void Start()
+    {
+        SetTotalState();
+    }
+
+
+    protected virtual void LoadIcon()
+    {
+        try
+        {
+
+            AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>("Talent Reward Icon/" + iconSpecificAddress + "[Sprite]");
+            handle.WaitForCompletion(); // Wait for the async operation to complete synchronously
+
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                rewardIcon = handle.Result;
+            }
+            else
+            {
+                Debug.Log("Talent Reward Icon/" + iconSpecificAddress + "[Sprite]");
+                Debug.LogError("Failed to load the asset");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+    }
+
 
 
     public void GiveReward()
@@ -119,8 +151,6 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         {
             node.SetUnlocked();
         }
-        //if(nodeConnectedTo != null)
-        //    nodeConnectedTo.SetUnlocked();
     }
 
     public void GotSilentlyDone()
@@ -163,4 +193,66 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     {
         campaignInfo.SetInfoPanelActive(this);
     }
+
+
+
+    private void SetTotalState()
+    {
+        SetIconName();
+        SetRewardText();
+        LoadIcon();
+    }
+
+    private void SetRewardText()
+    {
+        switch (holdingReward)
+        {
+        case campaignRewardEnum.none: rewardText = "None"; break;
+        case campaignRewardEnum.scanner: rewardText = "Scanner"; break;
+        case campaignRewardEnum.computer: rewardText = "Computer"; break;
+        case campaignRewardEnum.printer: rewardText = "Printer"; break;
+        case campaignRewardEnum.herbalismPost: rewardText = "HerbalismPost"; break;
+        case campaignRewardEnum.alchemyPost: rewardText = "AlchemyPost"; break;
+        case campaignRewardEnum.waveSelector: rewardText = "WaveSelector"; break;
+        case campaignRewardEnum.quantumStation: rewardText = "QuantumStation"; break;
+        case campaignRewardEnum.materialFarm: rewardText = "MaterialFarm"; break;
+        case campaignRewardEnum.seedFarm: rewardText = "SeedFarm"; break;
+        case campaignRewardEnum.tierStation: rewardText = "TierStation"; break;
+        case campaignRewardEnum.shopStation: rewardText = "ShopStation"; break;
+        case campaignRewardEnum.lavaBucket: rewardText = "LavaBucket"; break;
+        case campaignRewardEnum.itemStash: rewardText = "ItemStash"; break;
+        case campaignRewardEnum.repairHammer: rewardText = "RepairHammer"; break;
+        case campaignRewardEnum.recipeTablet: rewardText = "RecipeTablet"; break;
+        case campaignRewardEnum.shopMenu: rewardText = "ShopMenu"; break;
+        default: Debug.LogWarning("CHECK HERE ASAP"); break;
+        }
+    }   
+
+
+    private void SetIconName()
+    {
+        switch (holdingReward)
+        {
+            case campaignRewardEnum.none: iconSpecificAddress = "None"; break;
+            case campaignRewardEnum.scanner: iconSpecificAddress = "Scanner"; break;
+            case campaignRewardEnum.computer: iconSpecificAddress = "Computer"; break;
+            case campaignRewardEnum.printer: iconSpecificAddress = "Printer"; break;
+            case campaignRewardEnum.herbalismPost: iconSpecificAddress = "HerbalismPost"; break;
+            case campaignRewardEnum.alchemyPost: iconSpecificAddress = "AlchemyPost"; break;
+            case campaignRewardEnum.waveSelector: iconSpecificAddress = "WaveSelector"; break;
+            case campaignRewardEnum.quantumStation: iconSpecificAddress = "QuantumStation"; break;
+            case campaignRewardEnum.materialFarm: iconSpecificAddress = "MaterialFarm"; break;
+            case campaignRewardEnum.seedFarm: iconSpecificAddress = "SeedFarm"; break;
+            case campaignRewardEnum.tierStation: iconSpecificAddress = "TierStation"; break;
+            case campaignRewardEnum.shopStation: iconSpecificAddress = "ShopStation"; break;
+            case campaignRewardEnum.lavaBucket: iconSpecificAddress = "LavaBucket"; break;
+            case campaignRewardEnum.itemStash: iconSpecificAddress = "ItemStash"; break;
+            case campaignRewardEnum.repairHammer: iconSpecificAddress = "RepairHammer"; break;
+            case campaignRewardEnum.recipeTablet: iconSpecificAddress = "RecipeTablet"; break;
+            case campaignRewardEnum.shopMenu: iconSpecificAddress = "ShopMenu"; break;
+            default: Debug.LogWarning("CHECK HERE ASAP"); break;
+        }
+    }
+
+
 }
