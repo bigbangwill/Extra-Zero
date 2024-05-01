@@ -74,6 +74,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
         GameModeState.CurrentCampaignNode = currentActiveNode.GetNodeName();
         GameModeState.IsCampaignMode = true;
         GameModeState.IsFinished = false;
+        GameModeState.MilestoneReward = currentActiveNode.GetMilestone();
         if (currentActiveNode.Dialogue != null) 
             GameModeState.CurrentDialogue = currentActiveNode.Dialogue;
         saveClassManager.SaveCurrentState();

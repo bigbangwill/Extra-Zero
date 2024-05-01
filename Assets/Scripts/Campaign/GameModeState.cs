@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static CampaignNodeScript;
 
 public static class GameModeState
 {
@@ -30,6 +31,8 @@ public static class GameModeState
     private static bool isFinished = false;
 
     private static Dialogue currentDialogue = null;
+    private static CampaignRewardEnum milestoneReward = CampaignRewardEnum.none;
+
 
 
     public static bool ScannerIsUnlocked { get => scannerIsUnlocked; set => scannerIsUnlocked = value; }
@@ -54,4 +57,6 @@ public static class GameModeState
     public static bool IsFinished { get => isFinished; set => isFinished = value; }
     public static Dialogue CurrentDialogue { get => currentDialogue; set => currentDialogue = value; }
     public static bool MenuShopIsUnlocked { get => menuShopIsUnlocked; set => menuShopIsUnlocked = value; }
+
+    public static CampaignRewardEnum MilestoneReward { get => milestoneReward; set => milestoneReward = value; }
 }

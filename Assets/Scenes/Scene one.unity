@@ -20615,6 +20615,22 @@ MonoBehaviour:
   currentDialogue: {fileID: 11400000, guid: 24d7acc2f045d334fae5bc83521a8588, type: 2}
   textObject: {fileID: 1012115107}
   textAddingSpeed: 0.05
+  scanner: {fileID: 2114224198}
+  computer: {fileID: 1817244826}
+  printer: {fileID: 655377397}
+  herbalismPost: {fileID: 1144618613}
+  alchemyPost: {fileID: 1240163772}
+  waveSelector: {fileID: 663876927}
+  quantumStation: {fileID: 294918454}
+  materialFarm: {fileID: 1378060120}
+  seedFarm: {fileID: 1639147622}
+  tierStation: {fileID: 474609760}
+  shopStation: {fileID: 1297724999}
+  lavaBucket: {fileID: 562984878}
+  itemStash: {fileID: 496332415}
+  repairHammer: {fileID: 225778004}
+  recipeTablet: {fileID: 1754089009}
+  mainCamera: {fileID: 519420032}
 --- !u!114 &716569904
 MonoBehaviour:
   m_ObjectHideFlags: 0

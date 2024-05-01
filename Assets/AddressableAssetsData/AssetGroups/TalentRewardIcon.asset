@@ -102,10 +102,14 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61cfdc9ab8615b641a2bd84763efb5fa
+    m_Address: Talent Reward Icon/MaterialFarm
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: d866701d162d15448ac61defb9fafdeb, type: 2}
     - {fileID: 11400000, guid: 8adaf0ea2f17e7b46b958871878c8323, type: 2}
-    - {fileID: 11400000, guid: 396ef89f92dda6e4994b93a83f9792de, type: 2}

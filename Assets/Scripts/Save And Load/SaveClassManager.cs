@@ -50,7 +50,6 @@ public class SaveClassManager : MonoBehaviour
     {
         savealbleDictionary.Add(key, item);
         orderDictionary.Add(key, order);
-        Debug.Log(key + "    " + order);
     }
 
     /// <summary>

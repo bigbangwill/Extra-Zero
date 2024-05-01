@@ -10,29 +10,30 @@ using UnityEngine.EventSystems;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
+
+public enum CampaignRewardEnum
+{
+    none,
+    scanner,
+    computer,
+    printer,
+    herbalismPost,
+    alchemyPost,
+    waveSelector,
+    quantumStation,
+    materialFarm,
+    seedFarm,
+    tierStation,
+    shopStation,
+    lavaBucket,
+    itemStash,
+    repairHammer,
+    recipeTablet,
+    shopMenu
+}
+
 public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
 {
-
-    public enum campaignRewardEnum
-    {
-        none,
-        scanner,
-        computer,
-        printer,
-        herbalismPost,
-        alchemyPost,
-        waveSelector,
-        quantumStation,
-        materialFarm,
-        seedFarm,
-        tierStation,
-        shopStation,
-        lavaBucket,
-        itemStash,
-        repairHammer,
-        recipeTablet,
-        shopMenu
-    }
 
     [SerializeField] private List<CampaignNodeScript> nodeConnectedToList = new();
 
@@ -51,7 +52,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     [SerializeField] private bool isDone = false;
 
     [SerializeField] private ProgressionScript progressionScript;
-    [SerializeField] private campaignRewardEnum holdingReward;
+    [SerializeField] private CampaignRewardEnum holdingReward;
     [SerializeField] private Dialogue dialogue;
 
     private string iconSpecificAddress;
@@ -97,22 +98,22 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         Debug.Log(holdingReward.ToString());
         switch (holdingReward) 
         {
-            case campaignRewardEnum.scanner: progressionScript.Scanner = true; break;
-            case campaignRewardEnum.computer: progressionScript.Computer = true; break;
-            case campaignRewardEnum.printer: progressionScript.Printer = true; break;
-            case campaignRewardEnum.herbalismPost: progressionScript.HerbalismPost = true; break;
-            case campaignRewardEnum.alchemyPost: progressionScript.AlchemyPost = true; break;
-            case campaignRewardEnum.waveSelector: progressionScript.WaveSelector = true; break;
-            case campaignRewardEnum.quantumStation: progressionScript.QuantumStation = true; break;
-            case campaignRewardEnum.materialFarm: progressionScript.MaterialFarm = true; break;
-            case campaignRewardEnum.seedFarm: progressionScript.SeedFarm = true; break;
-            case campaignRewardEnum.tierStation: progressionScript.TierStation = true; break;
-            case campaignRewardEnum.shopStation: progressionScript.ShopStation = true; break;
-            case campaignRewardEnum.lavaBucket: progressionScript.LavaBucket = true; break;
-            case campaignRewardEnum.itemStash: progressionScript.ItemStash = true; break;
-            case campaignRewardEnum.repairHammer: progressionScript.RepairHammer = true; break;
-            case campaignRewardEnum.recipeTablet: progressionScript.RecipeTablet = true; break;
-            case campaignRewardEnum.shopMenu: progressionScript.MenuShopIsUnlocked = true; break;
+            case CampaignRewardEnum.scanner: progressionScript.Scanner = true; break;
+            case CampaignRewardEnum.computer: progressionScript.Computer = true; break;
+            case CampaignRewardEnum.printer: progressionScript.Printer = true; break;
+            case CampaignRewardEnum.herbalismPost: progressionScript.HerbalismPost = true; break;
+            case CampaignRewardEnum.alchemyPost: progressionScript.AlchemyPost = true; break;
+            case CampaignRewardEnum.waveSelector: progressionScript.WaveSelector = true; break;
+            case CampaignRewardEnum.quantumStation: progressionScript.QuantumStation = true; break;
+            case CampaignRewardEnum.materialFarm: progressionScript.MaterialFarm = true; break;
+            case CampaignRewardEnum.seedFarm: progressionScript.SeedFarm = true; break;
+            case CampaignRewardEnum.tierStation: progressionScript.TierStation = true; break;
+            case CampaignRewardEnum.shopStation: progressionScript.ShopStation = true; break;
+            case CampaignRewardEnum.lavaBucket: progressionScript.LavaBucket = true; break;
+            case CampaignRewardEnum.itemStash: progressionScript.ItemStash = true; break;
+            case CampaignRewardEnum.repairHammer: progressionScript.RepairHammer = true; break;
+            case CampaignRewardEnum.recipeTablet: progressionScript.RecipeTablet = true; break;
+            case CampaignRewardEnum.shopMenu: progressionScript.MenuShopIsUnlocked = true; break;
             default:Debug.LogWarning("ASAP"); break;
         }
     }
@@ -152,6 +153,12 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
             node.SetUnlocked();
         }
     }
+
+    public CampaignRewardEnum GetMilestone()
+    {
+        return holdingReward;
+    }
+
 
     public void GotSilentlyDone()
     {
@@ -207,23 +214,23 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     {
         switch (holdingReward)
         {
-        case campaignRewardEnum.none: rewardText = "None"; break;
-        case campaignRewardEnum.scanner: rewardText = "Scanner"; break;
-        case campaignRewardEnum.computer: rewardText = "Computer"; break;
-        case campaignRewardEnum.printer: rewardText = "Printer"; break;
-        case campaignRewardEnum.herbalismPost: rewardText = "HerbalismPost"; break;
-        case campaignRewardEnum.alchemyPost: rewardText = "AlchemyPost"; break;
-        case campaignRewardEnum.waveSelector: rewardText = "WaveSelector"; break;
-        case campaignRewardEnum.quantumStation: rewardText = "QuantumStation"; break;
-        case campaignRewardEnum.materialFarm: rewardText = "MaterialFarm"; break;
-        case campaignRewardEnum.seedFarm: rewardText = "SeedFarm"; break;
-        case campaignRewardEnum.tierStation: rewardText = "TierStation"; break;
-        case campaignRewardEnum.shopStation: rewardText = "ShopStation"; break;
-        case campaignRewardEnum.lavaBucket: rewardText = "LavaBucket"; break;
-        case campaignRewardEnum.itemStash: rewardText = "ItemStash"; break;
-        case campaignRewardEnum.repairHammer: rewardText = "RepairHammer"; break;
-        case campaignRewardEnum.recipeTablet: rewardText = "RecipeTablet"; break;
-        case campaignRewardEnum.shopMenu: rewardText = "ShopMenu"; break;
+        case CampaignRewardEnum.none: rewardText = "None"; break;
+        case CampaignRewardEnum.scanner: rewardText = "Scanner"; break;
+        case CampaignRewardEnum.computer: rewardText = "Computer"; break;
+        case CampaignRewardEnum.printer: rewardText = "Printer"; break;
+        case CampaignRewardEnum.herbalismPost: rewardText = "HerbalismPost"; break;
+        case CampaignRewardEnum.alchemyPost: rewardText = "AlchemyPost"; break;
+        case CampaignRewardEnum.waveSelector: rewardText = "WaveSelector"; break;
+        case CampaignRewardEnum.quantumStation: rewardText = "QuantumStation"; break;
+        case CampaignRewardEnum.materialFarm: rewardText = "MaterialFarm"; break;
+        case CampaignRewardEnum.seedFarm: rewardText = "SeedFarm"; break;
+        case CampaignRewardEnum.tierStation: rewardText = "TierStation"; break;
+        case CampaignRewardEnum.shopStation: rewardText = "ShopStation"; break;
+        case CampaignRewardEnum.lavaBucket: rewardText = "LavaBucket"; break;
+        case CampaignRewardEnum.itemStash: rewardText = "ItemStash"; break;
+        case CampaignRewardEnum.repairHammer: rewardText = "RepairHammer"; break;
+        case CampaignRewardEnum.recipeTablet: rewardText = "RecipeTablet"; break;
+        case CampaignRewardEnum.shopMenu: rewardText = "ShopMenu"; break;
         default: Debug.LogWarning("CHECK HERE ASAP"); break;
         }
     }   
@@ -233,23 +240,23 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     {
         switch (holdingReward)
         {
-            case campaignRewardEnum.none: iconSpecificAddress = "None"; break;
-            case campaignRewardEnum.scanner: iconSpecificAddress = "Scanner"; break;
-            case campaignRewardEnum.computer: iconSpecificAddress = "Computer"; break;
-            case campaignRewardEnum.printer: iconSpecificAddress = "Printer"; break;
-            case campaignRewardEnum.herbalismPost: iconSpecificAddress = "HerbalismPost"; break;
-            case campaignRewardEnum.alchemyPost: iconSpecificAddress = "AlchemyPost"; break;
-            case campaignRewardEnum.waveSelector: iconSpecificAddress = "WaveSelector"; break;
-            case campaignRewardEnum.quantumStation: iconSpecificAddress = "QuantumStation"; break;
-            case campaignRewardEnum.materialFarm: iconSpecificAddress = "MaterialFarm"; break;
-            case campaignRewardEnum.seedFarm: iconSpecificAddress = "SeedFarm"; break;
-            case campaignRewardEnum.tierStation: iconSpecificAddress = "TierStation"; break;
-            case campaignRewardEnum.shopStation: iconSpecificAddress = "ShopStation"; break;
-            case campaignRewardEnum.lavaBucket: iconSpecificAddress = "LavaBucket"; break;
-            case campaignRewardEnum.itemStash: iconSpecificAddress = "ItemStash"; break;
-            case campaignRewardEnum.repairHammer: iconSpecificAddress = "RepairHammer"; break;
-            case campaignRewardEnum.recipeTablet: iconSpecificAddress = "RecipeTablet"; break;
-            case campaignRewardEnum.shopMenu: iconSpecificAddress = "ShopMenu"; break;
+            case CampaignRewardEnum.none: iconSpecificAddress = "None"; break;
+            case CampaignRewardEnum.scanner: iconSpecificAddress = "Scanner"; break;
+            case CampaignRewardEnum.computer: iconSpecificAddress = "Computer"; break;
+            case CampaignRewardEnum.printer: iconSpecificAddress = "Printer"; break;
+            case CampaignRewardEnum.herbalismPost: iconSpecificAddress = "HerbalismPost"; break;
+            case CampaignRewardEnum.alchemyPost: iconSpecificAddress = "AlchemyPost"; break;
+            case CampaignRewardEnum.waveSelector: iconSpecificAddress = "WaveSelector"; break;
+            case CampaignRewardEnum.quantumStation: iconSpecificAddress = "QuantumStation"; break;
+            case CampaignRewardEnum.materialFarm: iconSpecificAddress = "MaterialFarm"; break;
+            case CampaignRewardEnum.seedFarm: iconSpecificAddress = "SeedFarm"; break;
+            case CampaignRewardEnum.tierStation: iconSpecificAddress = "TierStation"; break;
+            case CampaignRewardEnum.shopStation: iconSpecificAddress = "ShopStation"; break;
+            case CampaignRewardEnum.lavaBucket: iconSpecificAddress = "LavaBucket"; break;
+            case CampaignRewardEnum.itemStash: iconSpecificAddress = "ItemStash"; break;
+            case CampaignRewardEnum.repairHammer: iconSpecificAddress = "RepairHammer"; break;
+            case CampaignRewardEnum.recipeTablet: iconSpecificAddress = "RecipeTablet"; break;
+            case CampaignRewardEnum.shopMenu: iconSpecificAddress = "ShopMenu"; break;
             default: Debug.LogWarning("CHECK HERE ASAP"); break;
         }
     }

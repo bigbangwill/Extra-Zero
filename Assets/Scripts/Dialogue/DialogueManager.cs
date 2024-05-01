@@ -14,6 +14,29 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private float textAddingSpeed;
 
 
+    [SerializeField] private Transform scanner;
+    [SerializeField] private Transform computer;
+    [SerializeField] private Transform printer;
+    [SerializeField] private Transform herbalismPost;
+    [SerializeField] private Transform alchemyPost;
+    [SerializeField] private Transform waveSelector;
+    [SerializeField] private Transform quantumStation;
+    [SerializeField] private Transform materialFarm;
+    [SerializeField] private Transform seedFarm;
+    [SerializeField] private Transform tierStation;
+    [SerializeField] private Transform shopStation;
+    [SerializeField] private Transform lavaBucket;
+    [SerializeField] private Transform itemStash;
+    [SerializeField] private Transform repairHammer;
+    [SerializeField] private Transform recipeTablet;
+
+    [SerializeField] private Transform mainCamera;
+
+
+    private bool shouldMove = false;
+    private Vector2 movingObject;
+    private Vector3 camStartPos;
+
     private float currentTimer = 0;
 
     private DialogueNode currentNode;
@@ -57,6 +80,17 @@ public class DialogueManager : MonoBehaviour
                 }
             }
         }
+
+        if (shouldMove)
+        {
+            mainCamera.position = Vector2.Lerp(mainCamera.position, movingObject, Time.deltaTime);
+            mainCamera.position = new Vector3(mainCamera.position.x, mainCamera.position.y, -20);
+            if (Vector2.Distance(transform.position, mainCamera.position) < 1f)
+            {
+                shouldMove = false;
+            }
+
+        }
     }
 
 
@@ -70,6 +104,33 @@ public class DialogueManager : MonoBehaviour
         isAdding = true;
     }
 
+
+    public void SetMovingTarget(CampaignRewardEnum milestone)
+    {
+        camStartPos = mainCamera.position;
+        shouldMove = true;
+        switch (milestone)
+        {
+            case CampaignRewardEnum.none: shouldMove = false; break;
+            case CampaignRewardEnum.scanner: movingObject = scanner.position; break;
+            case CampaignRewardEnum.computer: movingObject = computer.position; break;
+            case CampaignRewardEnum.printer: movingObject = printer.position; break;
+            case CampaignRewardEnum.herbalismPost: movingObject = herbalismPost.position; break;
+            case CampaignRewardEnum.alchemyPost: movingObject = alchemyPost.position; break;
+            case CampaignRewardEnum.waveSelector: movingObject = waveSelector.position; break;
+            case CampaignRewardEnum.quantumStation: movingObject = quantumStation.position; break;
+            case CampaignRewardEnum.materialFarm: movingObject = materialFarm.position; break;
+            case CampaignRewardEnum.seedFarm: movingObject = seedFarm.position; break;
+            case CampaignRewardEnum.tierStation: movingObject = tierStation.position; break;
+            case CampaignRewardEnum.shopStation: movingObject = shopStation.position; break;
+            case CampaignRewardEnum.lavaBucket: movingObject = lavaBucket.position; break;
+            case CampaignRewardEnum.itemStash: movingObject = itemStash.position; break;
+            case CampaignRewardEnum.repairHammer: movingObject = repairHammer.position; break;
+            case CampaignRewardEnum.recipeTablet: movingObject = recipeTablet.position; break;
+            case CampaignRewardEnum.shopMenu: shouldMove = false; break;
+            default: Debug.LogWarning("CHECK HERE ASAP"); break;
+        }
+    }
 
     public void Skip()
     {
@@ -104,6 +165,7 @@ public class DialogueManager : MonoBehaviour
 
     public void FinishedDialogue()
     {
+        mainCamera.position = camStartPos;
         gameObject.SetActive(false);
     }
 
