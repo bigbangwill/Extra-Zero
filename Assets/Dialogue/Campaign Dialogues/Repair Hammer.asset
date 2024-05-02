@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9096773126571519880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: da2c48ba-c2f7-4e58-8956-9b1d99f1cca2
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Once you have it in the inventory, tap on it to active it. After activating
+    it you can click on the order posts to see if you can repair them back up!
+  children:
+  - f9bbcef1-af72-467f-9eb1-d8a0cedd803d
+  rect:
+    serializedVersion: 2
+    x: 500
+    y: -1
+    width: 200
+    height: 100
+--- !u!114 &-8253738406703415067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: f9bbcef1-af72-467f-9eb1-d8a0cedd803d
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'Now go repair as much as you''d like!
+
+    GL!!!!'
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 750
+    y: -1
+    width: 200
+    height: 100
+--- !u!114 &-570089133500731709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 81964571-aefa-4d7f-a962-7197c804d78d
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: In the act of repairing, we find strength. It's not just about fixing what's
+    broken; it's about restoring hope and resilience!
+  children:
+  - e5907ca6-143f-41c3-8384-844548d591ad
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: -1
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Repair Hammer
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -570089133500731709}
+  - {fileID: 7055914718932574534}
+  - {fileID: -9096773126571519880}
+  - {fileID: -8253738406703415067}
+--- !u!114 &7055914718932574534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: e5907ca6-143f-41c3-8384-844548d591ad
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Did you get it? now you can repair the order posts from now on. You just
+    have to pay it up in order to get it! I mean everything has a price you know!
+  children:
+  - da2c48ba-c2f7-4e58-8956-9b1d99f1cca2
+  rect:
+    serializedVersion: 2
+    x: 250
+    y: -1
+    width: 200
+    height: 100

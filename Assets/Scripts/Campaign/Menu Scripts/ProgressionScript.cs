@@ -128,8 +128,8 @@ public class ProgressionScript : MonoBehaviour, ISaveable
         GameModeState.ShopStationIsUnlocked = ShopStation;
         GameModeState.LavaBucketIsUnlocked = LavaBucket;
         GameModeState.ItemStashIsUnlocked = ItemStash;
-        GameModeState.RepairHammerIsUnlocked = repairHammer;
-        GameModeState.RecipeTabletIsUnlocked = recipeTablet;
+        GameModeState.RepairHammerIsUnlocked = RepairHammer;
+        GameModeState.RecipeTabletIsUnlocked = RecipeTablet;
         GameModeState.MenuShopIsUnlocked = menuShopIsUnlocked;
 
         GameModeState.IsCampaignMode = true;

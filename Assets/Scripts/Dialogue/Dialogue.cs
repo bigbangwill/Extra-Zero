@@ -54,7 +54,8 @@ namespace ExtraZero.Dialogue
             if (parent != null)
             {
                 parent.AddChild(newNode.name);
-                newNode.SetPlayerIsSpeaking(!parent.IsPlayerSpeaking());
+                //newNode.SetPlayerIsSpeaking(!parent.IsPlayerSpeaking());
+                newNode.SetPlayerIsSpeaking(false);
                 newNode.SetPosition(parent.GetRect().position + newNodeOffset);
             }
             Undo.RegisterCreatedObjectUndo(newNode, "Created Dialogue Node");

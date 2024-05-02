@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8596425692481176685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 6b6c7a6d-68b1-4818-8cfb-e00b415d0e58
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: And there a lot to CHANGE for! so keep it going!
+  children:
+  - b4251f78-2931-412f-a73f-1b776ef4af1b
+  rect:
+    serializedVersion: 2
+    x: 171
+    y: 94
+    width: 200
+    height: 100
+--- !u!114 &-2879810981129496302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 34532f3c-28fb-4f03-9930-f6e6ec43e01e
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Gotta say you are doing good. It is not the strongest of the species that
+    survive, nor the most intelligent, but the one most responsive to change.
+  children:
+  - 6b6c7a6d-68b1-4818-8cfb-e00b415d0e58
+  rect:
+    serializedVersion: 2
+    x: 5
+    y: 19
+    width: 200
+    height: 100
+--- !u!114 &-779782087251668949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: dabf6edb-a0eb-43a0-85de-56575d54c2cf
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: That's enough. Get ready now! GL
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 856
+    y: 373
+    width: 200
+    height: 100
+--- !u!114 &-130102826113733773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: b4251f78-2931-412f-a73f-1b776ef4af1b
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: So for this new device. it's called "EcoGenesis Seeder". With this you can
+    farm seed for the orders you get and later on for planting herbs and creating
+    potion in the alchemy post!
+  children:
+  - 939d4168-465e-4e1f-a45e-84455b4466da
+  rect:
+    serializedVersion: 2
+    x: 347
+    y: 160
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Seed Farm
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -2879810981129496302}
+  - {fileID: -8596425692481176685}
+  - {fileID: -130102826113733773}
+  - {fileID: 7483185155513460271}
+  - {fileID: 6089653769533747157}
+  - {fileID: -779782087251668949}
+--- !u!114 &6089653769533747157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: a55a0088-42bf-40e1-8c28-8763f601a6ab
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: you can drag the holding seed at hand on them to add the bonus to the seed.
+    long story short you can get more seed with them.
+  children:
+  - dabf6edb-a0eb-43a0-85de-56575d54c2cf
+  rect:
+    serializedVersion: 2
+    x: 683
+    y: 299
+    width: 200
+    height: 100
+--- !u!114 &7483185155513460271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 939d4168-465e-4e1f-a45e-84455b4466da
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'It''s exactly like the NanoVein Extractor.  But you need to drag the seed
+    in to the pouch once they are ready!
+
+    Have a look at the bouneses once they
+    pop-up. '
+  children:
+  - a55a0088-42bf-40e1-8c28-8763f601a6ab
+  rect:
+    serializedVersion: 2
+    x: 501
+    y: 227
+    width: 200
+    height: 100

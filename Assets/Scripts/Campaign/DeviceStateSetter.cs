@@ -95,7 +95,7 @@ public class DeviceStateSetter : MonoBehaviour
         repairHammer.GetComponent<SpriteRenderer>().enabled = GameModeState.RepairHammerIsUnlocked;
 
         recipeTablet.GetComponent<Collider2D>().enabled = GameModeState.RecipeTabletIsUnlocked;
-        recipeTablet.GetComponent<Collider2D>().enabled = GameModeState.RecipeTabletIsUnlocked;
+        recipeTablet.GetComponent<SpriteRenderer>().enabled = GameModeState.RecipeTabletIsUnlocked;
 
         surface.BuildNavMesh();
     }

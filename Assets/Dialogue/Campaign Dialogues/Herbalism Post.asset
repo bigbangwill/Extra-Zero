@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8423055442923175410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 810e4f2f-14e2-436a-88f9-6ef70df7c18d
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: So you wanna have a look at herbalism . Nice one. Herbalism teaches us to
+    listen to the whispers of nature, for within its leaves and roots lies the wisdom
+    of centuries, offering remedies for both body and soul.
+  children:
+  - c75a54a0-8ac9-4a6d-b912-c607f42678e7
+  rect:
+    serializedVersion: 2
+    x: 87
+    y: 93
+    width: 200
+    height: 100
+--- !u!114 &-7420408061462696600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 07d9ff33-81e5-481d-8c95-461bda0f9ab5
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Dont worry about the locked slots. We need to reach the required technology.
+    In time you will get how to unlock them.
+  children:
+  - 2b7c0a77-9400-4ce7-b818-a281cd339efe
+  rect:
+    serializedVersion: 2
+    x: 781
+    y: 345
+    width: 200
+    height: 100
+--- !u!114 &-6413650891194400590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: eb9048f6-ee4e-424b-85d9-8f58a8989379
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: First you need to import all of the seeds in your inventory in to the device.
+    Then you drag the planter handle on the slots to plant the top most seed in the
+    queue.
+  children:
+  - 6d141980-a5cb-4786-bcfe-9d99e7388efa
+  rect:
+    serializedVersion: 2
+    x: 431
+    y: 218
+    width: 200
+    height: 100
+--- !u!114 &-5810061822427225290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 2b7c0a77-9400-4ce7-b818-a281cd339efe
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Enough chit-chat. Get to it. GL!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 954
+    y: 405
+    width: 200
+    height: 100
+--- !u!114 &-3768838616784482651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: c75a54a0-8ac9-4a6d-b912-c607f42678e7
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: With the herbalism post you can plant seeds in the device and harvest them
+    to get the herb of the planted seed. have in mind that they grow real fast. that's
+    the the latest technology.
+  children:
+  - eb9048f6-ee4e-424b-85d9-8f58a8989379
+  rect:
+    serializedVersion: 2
+    x: 279
+    y: 157
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Herbalism Post
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -8423055442923175410}
+  - {fileID: -3768838616784482651}
+  - {fileID: -6413650891194400590}
+  - {fileID: 2509311231147565249}
+  - {fileID: -7420408061462696600}
+  - {fileID: -5810061822427225290}
+--- !u!114 &2509311231147565249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 6d141980-a5cb-4786-bcfe-9d99e7388efa
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: When the harvesting time comes you need to tap on the herb to harvest it.
+    try to find the perfect timer to harvest in order to get the maximum herbs count
+    ot of the seed!
+  children:
+  - 07d9ff33-81e5-481d-8c95-461bda0f9ab5
+  rect:
+    serializedVersion: 2
+    x: 608
+    y: 281
+    width: 200
+    height: 100

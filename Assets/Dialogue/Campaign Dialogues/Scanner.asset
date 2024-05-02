@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1528241184739327246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 26e11ec9-b7e3-4795-9e6c-c217ff96b869
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: This device is used to import the Blue Prints in to the computer!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 650
+    y: 155
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Scanner
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 3459071582114903784}
+  - {fileID: 512588819804557500}
+  - {fileID: -1528241184739327246}
+--- !u!114 &512588819804557500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 71503f45-c348-4f40-abe6-be552765de14
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: True mastery lies not in the arrogance of creation, but in the humility to
+    learn, adapt, and grow along the path of craftsmanship.
+  children:
+  - 26e11ec9-b7e3-4795-9e6c-c217ff96b869
+  rect:
+    serializedVersion: 2
+    x: 400
+    y: 155
+    width: 200
+    height: 100
+--- !u!114 &3459071582114903784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 3f6a3f3d-05bd-4bc7-af3f-836b3186aa53
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: This is the path of creators! You must be humble in this path. Let me tell
+    you that you need to progress in this path in order to make some difference!
+  children:
+  - 71503f45-c348-4f40-abe6-be552765de14
+  rect:
+    serializedVersion: 2
+    x: 150
+    y: 155
+    width: 200
+    height: 100

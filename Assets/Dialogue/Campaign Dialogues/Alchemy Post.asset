@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7643181786675466165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: b79a7ec5-a6f3-425e-8bdd-dfd4d31afc3e
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'In the device panel you see 1 alchemy slot that is not locked and 2 locked
+    ones.
+
+    Those 3 icons close to it are the herbs slots. when you tap on them
+    you see all of the herbs in your inventory!'
+  children:
+  - 0785cd30-4be5-4d23-99d1-7ce6330cfe3c
+  rect:
+    serializedVersion: 2
+    x: 547
+    y: 258
+    width: 200
+    height: 100
+--- !u!114 &-6200567958225856094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: bbc9f462-8ec3-4d14-9a3e-b72185a4ae2c
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'This part is my favorite! ALCHEMY POST! WOOO-HOOOOO!!!!
+
+    LET''S GOOOOOO!
+    CANT WAIT TO EXPLAIN IT.
+
+    uhm. uhhhmmm. Sorry... Got a bit excited! Just
+    a little bit.'
+  children:
+  - f214aea2-d163-4828-aca3-429f2217cbbd
+  rect:
+    serializedVersion: 2
+    x: 36
+    y: 59
+    width: 200
+    height: 100
+--- !u!114 &-6000233949789856123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 0785cd30-4be5-4d23-99d1-7ce6330cfe3c
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Choose the herb that you want. Once you fill the 3 herb slots with correct
+    combination of potion effect you can brew your potion.
+  children:
+  - def0405d-b36e-4241-89d0-c143ed08a2da
+  rect:
+    serializedVersion: 2
+    x: 711
+    y: 321
+    width: 200
+    height: 100
+--- !u!114 &-5623634019464894552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 07d45cb2-b8d5-428e-8988-7d4899bb99c4
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: There are a lot of potion effect out there. Before the start of the wave
+    make sure to play with the device abit so you can find the potion effects. at
+    start you can only brew the base effect potion.
+  children:
+  - 12b9b833-666c-4c75-93ff-b4e93336a8eb
+  rect:
+    serializedVersion: 2
+    x: 1229
+    y: 503
+    width: 200
+    height: 100
+--- !u!114 &-5042836427255783776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 44f98979-06ea-4cdc-8841-6de5d0680711
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: This device the Alchemy Lab! With this you can you can create potions that
+    will be used for the incoming orders and ... create drinking potions for your
+    self! you can drink them to get a bit stronger.
+  children:
+  - b79a7ec5-a6f3-425e-8bdd-dfd4d31afc3e
+  rect:
+    serializedVersion: 2
+    x: 376
+    y: 191
+    width: 200
+    height: 100
+--- !u!114 &-2309376504195354535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: d735f532-2a9e-4bf7-928d-b336a2166620
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'Oh before you go!
+
+    I''ve heard that there is an artifact that holds
+    all of the available potion effects in the world. Not that we have it. But just
+    to let you know! now go go. Shoo Shoo!'
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1578
+    y: 622
+    width: 200
+    height: 100
+--- !u!114 &-1834295506360292203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: f214aea2-d163-4828-aca3-429f2217cbbd
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Alchemy is the process of transforming something ordinary into something
+    extraordinary, sometimes in a way that cannot be explained.
+  children:
+  - 44f98979-06ea-4cdc-8841-6de5d0680711
+  rect:
+    serializedVersion: 2
+    x: 210
+    y: 124
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Alchemy Post
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -6200567958225856094}
+  - {fileID: -1834295506360292203}
+  - {fileID: -5042836427255783776}
+  - {fileID: -7643181786675466165}
+  - {fileID: -6000233949789856123}
+  - {fileID: 2205954600777630305}
+  - {fileID: 5129469801699656891}
+  - {fileID: -5623634019464894552}
+  - {fileID: 661847666322665125}
+  - {fileID: -2309376504195354535}
+--- !u!114 &661847666322665125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 12b9b833-666c-4c75-93ff-b4e93336a8eb
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: But in alchemy nothing is impossible. try to see if you can come up with
+    any way to add some effects to the potions you brew. Go now. GL!
+  children:
+  - d735f532-2a9e-4bf7-928d-b336a2166620
+  rect:
+    serializedVersion: 2
+    x: 1402
+    y: 563
+    width: 200
+    height: 100
+--- !u!114 &2205954600777630305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: def0405d-b36e-4241-89d0-c143ed08a2da
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: We have 2 kind of potion effects. First one is the "Base Potion Effect".
+    You must choose one and only one base effect in order to brew the potion.
+  children:
+  - 21898309-3998-4449-a4ed-a0e67bf8fa52
+  rect:
+    serializedVersion: 2
+    x: 882
+    y: 382
+    width: 200
+    height: 100
+--- !u!114 &5129469801699656891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 21898309-3998-4449-a4ed-a0e67bf8fa52
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: The second is "Buff Potion Effect". It's the one that adds effect to the
+    potion. the one that gives buff to you when you drink it and the one that effects
+    the forsaken bots out there when you fullfill their order.
+  children:
+  - 07d45cb2-b8d5-428e-8988-7d4899bb99c4
+  rect:
+    serializedVersion: 2
+    x: 1057
+    y: 443
+    width: 200
+    height: 100

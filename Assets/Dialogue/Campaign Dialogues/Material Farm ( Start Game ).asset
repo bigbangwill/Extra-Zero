@@ -1,0 +1,194 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8915082305696472471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 2347d775-7105-4f39-982d-f49a9dd5be01
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Let me just give you some basic instructions on how to survive so listen
+    carefully.
+  children:
+  - 7c86522c-fa8e-479d-a289-59aaac481c59
+  rect:
+    serializedVersion: 2
+    x: 223
+    y: 183
+    width: 200
+    height: 100
+--- !u!114 &-6786205661292281371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 7c86522c-fa8e-479d-a289-59aaac481c59
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: The device that you are looking at right now is called "NanoVein Extractor".
+    It holds the very basic mines in it. Yeah inside it. yeah yeah I know.  It's
+    the year 2500. You will get used to it!
+  children:
+  - 5ade11ba-63f6-47a9-848b-c8a556b49812
+  rect:
+    serializedVersion: 2
+    x: 398
+    y: 256
+    width: 200
+    height: 100
+--- !u!114 &-6729019993373131657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 4a211c45-5779-4d42-83f7-eff948ed4b26
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'Hey you are finaly awake!
+
+    But Sad to say that you are the only one
+    left!
+
+    Definitly would love to get to know you more but we dont have much
+    left. '
+  children:
+  - 2347d775-7105-4f39-982d-f49a9dd5be01
+  rect:
+    serializedVersion: 2
+    x: 45
+    y: 113
+    width: 200
+    height: 100
+--- !u!114 &-5039103481696130468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 7b407f14-1e34-461b-9706-c107ed497fc5
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'Now get ready. they are close!
+
+    Always try to stack up before starting
+    the incoming wave!. GL'
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1174
+    y: 463
+    width: 200
+    height: 100
+--- !u!114 &-2416350922214319246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: c92d3cb8-0c43-4888-8018-bb75864e798e
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Once you make enought taps on the mineral you will get the mined in your
+    inventory. It's the thing you see at the bottom.
+  children:
+  - 7b407f14-1e34-461b-9706-c107ed497fc5
+  rect:
+    serializedVersion: 2
+    x: 924
+    y: 463
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Material Farm ( Start Game )
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -6729019993373131657}
+  - {fileID: -8915082305696472471}
+  - {fileID: -6786205661292281371}
+  - {fileID: 3637088907303667814}
+  - {fileID: 2622036133625503041}
+  - {fileID: -2416350922214319246}
+  - {fileID: -5039103481696130468}
+--- !u!114 &2622036133625503041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: c4f4ad8e-d3d2-4dcd-9b51-befa9a64088b
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: With a single tap on the minerals you will get one. Just be carefull with
+    the red sign. When ever you tap them you will get twice progression. Count them
+    as critical strike!
+  children:
+  - c92d3cb8-0c43-4888-8018-bb75864e798e
+  rect:
+    serializedVersion: 2
+    x: 751
+    y: 394
+    width: 200
+    height: 100
+--- !u!114 &3637088907303667814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 5ade11ba-63f6-47a9-848b-c8a556b49812
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'After I finish talking, you can tap on the device to get to it and have
+    a look at how it works!
+
+    When you get to the device you will see the available
+    mineral to mine them.'
+  children:
+  - c4f4ad8e-d3d2-4dcd-9b51-befa9a64088b
+  rect:
+    serializedVersion: 2
+    x: 576
+    y: 326
+    width: 200
+    height: 100

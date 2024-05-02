@@ -646,8 +646,8 @@ MonoBehaviour:
   isUnlocked: 0
   isDone: 0
   progressionScript: {fileID: 224246429}
-  holdingReward: 15
-  dialogue: {fileID: 0}
+  holdingReward: 14
+  dialogue: {fileID: 11400000, guid: 016d0741f5f041a4c9ab5e81b4af39dd, type: 2}
 --- !u!114 &59356645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2620,21 +2620,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f241add52646d24aa12247c6407c282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanner: 1
-  computer: 1
-  printer: 1
+  scanner: 0
+  computer: 0
+  printer: 0
   herbalismPost: 0
-  alchemyPost: 1
-  waveSelector: 1
-  quantumStation: 1
-  materialFarm: 1
-  seedFarm: 1
-  tierStation: 1
-  shopStation: 1
-  lavaBucket: 1
-  itemStash: 1
-  repairHammer: 1
-  recipeTablet: 1
+  alchemyPost: 0
+  waveSelector: 0
+  quantumStation: 0
+  materialFarm: 0
+  seedFarm: 0
+  tierStation: 0
+  shopStation: 0
+  lavaBucket: 0
+  itemStash: 0
+  repairHammer: 0
+  recipeTablet: 0
   menuShopIsUnlocked: 0
   infoUI: {fileID: 387777789}
 --- !u!4 &224246430
@@ -5690,7 +5690,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 5
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: f9ba5e42ac69adf4f9c0c20c73f826ff, type: 2}
 --- !u!114 &508654093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6974,7 +6974,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 9
-  dialogue: {fileID: 11400000, guid: 24d7acc2f045d334fae5bc83521a8588, type: 2}
+  dialogue: {fileID: 11400000, guid: efba359a126de31489cdfb42141a3927, type: 2}
 --- !u!114 &612971205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10507,7 +10507,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 13
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 2ade93baa20d5d54093faf6e70301603, type: 2}
 --- !u!114 &981835825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11462,7 +11462,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 8
-  dialogue: {fileID: 11400000, guid: 24d7acc2f045d334fae5bc83521a8588, type: 2}
+  dialogue: {fileID: 11400000, guid: b5e8b8d8384a7634ea167792f5c2e83a, type: 2}
 --- !u!1 &1101066837
 GameObject:
   m_ObjectHideFlags: 0
@@ -11737,7 +11737,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 0
-  dialogue: {fileID: 11400000, guid: 24d7acc2f045d334fae5bc83521a8588, type: 2}
+  dialogue: {fileID: 0}
 --- !u!114 &1106391258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16005,7 +16005,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 4
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 50742a9cf5ccbe1489ea51476d4fb706, type: 2}
 --- !u!1 &1510423120
 GameObject:
   m_ObjectHideFlags: 0
@@ -17326,7 +17326,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 12
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 7f9cd55746a7d494d8e23d318074e005, type: 2}
 --- !u!114 &1644185661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18127,7 +18127,7 @@ MonoBehaviour:
   isUnlocked: 0
   isDone: 0
   progressionScript: {fileID: 224246429}
-  holdingReward: 14
+  holdingReward: 15
   dialogue: {fileID: 0}
 --- !u!114 &1708520267
 MonoBehaviour:

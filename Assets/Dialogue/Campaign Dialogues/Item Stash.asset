@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5659178886850906892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 2f824660-1554-4504-8ff5-2bf1da974212
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'This is a simple "Item Stash". Yeah. Simple as that.
+
+    Can you guess
+    what it does?. Yes. It stores items in it.'
+  children:
+  - 158541a3-4aa8-464e-81a3-d3ef8c5235a3
+  rect:
+    serializedVersion: 2
+    x: 331
+    y: 140
+    width: 200
+    height: 100
+--- !u!114 &-3482179485428710339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 158541a3-4aa8-464e-81a3-d3ef8c5235a3
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Just drag the item that you want to store in it from your inventory in to
+    this item. And if you want it back you can tap on the stash to open it up. once
+    you tap on the item in the stash you will have it back!
+  children:
+  - c8cddf02-3ce4-4b22-8a56-b28af000548c
+  rect:
+    serializedVersion: 2
+    x: 481
+    y: 201
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Item Stash
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 9100432545779747547}
+  - {fileID: 7287082644220395096}
+  - {fileID: -5659178886850906892}
+  - {fileID: -3482179485428710339}
+  - {fileID: 2339553826756861548}
+--- !u!114 &2339553826756861548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: c8cddf02-3ce4-4b22-8a56-b28af000548c
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'Hope I made it a bit easier for you. I''m trying you know!!!!
+
+    Go now.
+    Go!!!'
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 647
+    y: 256
+    width: 200
+    height: 100
+--- !u!114 &7287082644220395096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 5991ced3-e7d2-449e-b458-1ac72c580245
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Technology has the power to simplify our lives, allowing us to focus on what
+    truly matters.
+  children:
+  - 2f824660-1554-4504-8ff5-2bf1da974212
+  rect:
+    serializedVersion: 2
+    x: 170
+    y: 81
+    width: 200
+    height: 100
+--- !u!114 &9100432545779747547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 65d1b80c-db77-4704-95ed-0bfd66dd9cfe
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'You''ve come so far. Getting into it huh.
+
+    Here is something that will
+    make like a bit easier!'
+  children:
+  - 5991ced3-e7d2-449e-b458-1ac72c580245
+  rect:
+    serializedVersion: 2
+    x: 2
+    y: 20
+    width: 200
+    height: 100
