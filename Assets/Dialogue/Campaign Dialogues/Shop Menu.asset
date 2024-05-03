@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3539849553592396175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 215d4697-64d8-47ad-8e70-44feb7931c60
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Have you seen those reward along your way that you can upgrade the Quantum
+    Station with it! Or you havent unlocked it yet? if you didnt then there is no
+    use to this!
+  children:
+  - 014cd5a0-7675-4971-af29-e453e93d024c
+  rect:
+    serializedVersion: 2
+    x: 49
+    y: 144
+    width: 200
+    height: 100
+--- !u!114 &-2149152389488001618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 83dcf851-f983-458e-86a0-b3f57a1f8667
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Now go again! Shoo shoo!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 396
+    y: 274
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Shop Menu
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -3539849553592396175}
+  - {fileID: 8937573041068026558}
+  - {fileID: -2149152389488001618}
+--- !u!114 &8937573041068026558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 014cd5a0-7675-4971-af29-e453e93d024c
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'You can buy these 3 things in the main menu: 1- Qubit upgrade, 2- Gate upgrade,
+    3- Entangle upgrade!
+
+    Simple as that.'
+  children:
+  - 83dcf851-f983-458e-86a0-b3f57a1f8667
+  rect:
+    serializedVersion: 2
+    x: 222
+    y: 207
+    width: 200
+    height: 100

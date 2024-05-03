@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8546053819643452902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: bc22af0e-7cf6-4cc0-93e6-c8d3ed0cfab4
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Let me intruduce you to the latest technology that we have! "Quantom Station"!
+    this thing has the connection to every device. You can literally upgrade every
+    device that we have with this!
+  children:
+  - ea2af074-9fd3-45e3-93c4-aaaa555dd4e7
+  rect:
+    serializedVersion: 2
+    x: 185
+    y: 123
+    width: 200
+    height: 100
+--- !u!114 &-8210464620402416589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 5e1140e2-f2c0-4c32-aa19-2f0fdbb6ca29
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Here is when the thing gets tricky! This is the part that you can feel the
+    true power of sience!
+  children:
+  - bc22af0e-7cf6-4cc0-93e6-c8d3ed0cfab4
+  rect:
+    serializedVersion: 2
+    x: 16
+    y: 62
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Quantum Station
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -8210464620402416589}
+  - {fileID: -8546053819643452902}
+  - {fileID: 5382080777113464100}
+  - {fileID: 9094976834732545576}
+  - {fileID: 1642863522808024988}
+--- !u!114 &1642863522808024988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 742a69c0-4905-439e-8bf6-c7f33b15e8de
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'There are a lot more than just this to this device! You will discover more
+    later on.
+
+    Now go. Shoo shooo!'
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 700
+    y: 326
+    width: 200
+    height: 100
+--- !u!114 &5382080777113464100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: ea2af074-9fd3-45e3-93c4-aaaa555dd4e7
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'It can unlock most of the locked stuff! Locked alchemy slots, locked herbalism
+    slots and so on!
+
+    It has so much potential in it. You just have to discover
+    it your self!'
+  children:
+  - bd774eb1-672d-45fe-9694-823839a2157f
+  rect:
+    serializedVersion: 2
+    x: 354
+    y: 197
+    width: 200
+    height: 100
+--- !u!114 &9094976834732545576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: bd774eb1-672d-45fe-9694-823839a2157f
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Upon opening it you get one free passive upgrade. For the rest of it you
+    have to play up. You have to tap on the node that is currently unlock and you
+    can expand the talents with the 3 closest nodes to the unlocked one.
+  children:
+  - 742a69c0-4905-439e-8bf6-c7f33b15e8de
+  rect:
+    serializedVersion: 2
+    x: 526
+    y: 261
+    width: 200
+    height: 100
