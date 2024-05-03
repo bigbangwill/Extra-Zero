@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7309598401019992819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: de289e0d-036c-41c1-8423-28922403ab96
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Have you ever wonder, what happens that you win a stage? You know it's not
+    random... NO IT'S NOT!!
+  children:
+  - e1403270-436c-4ba2-9d14-2ef3f87254bc
+  rect:
+    serializedVersion: 2
+    x: 35
+    y: 54
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Tier Manager
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -7309598401019992819}
+  - {fileID: 354267376970670984}
+  - {fileID: 224654866603419159}
+  - {fileID: 6166932942447172128}
+--- !u!114 &224654866603419159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: e40c4b4f-903b-4864-b36a-c4ea24f90105
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: The other part will show you the order you currently have and the way you
+    can craft them. just a simple helper!
+  children:
+  - 4a110f83-eccb-409a-989e-b5d349530875
+  rect:
+    serializedVersion: 2
+    x: 375
+    y: 179
+    width: 200
+    height: 100
+--- !u!114 &354267376970670984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: e1403270-436c-4ba2-9d14-2ef3f87254bc
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'This device is called "Craftology Console". It shows you information about
+    the current stage of the game! The items you need to fullfill in order to get
+    a Tier Upgrade!
+
+'
+  children:
+  - e40c4b4f-903b-4864-b36a-c4ea24f90105
+  rect:
+    serializedVersion: 2
+    x: 204
+    y: 121
+    width: 200
+    height: 100
+--- !u!114 &6166932942447172128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 4a110f83-eccb-409a-989e-b5d349530875
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Yeah I know. It's too late. But trust me there couldnt have been a better
+    time! It will help ya! I know. Now go on. GL!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 549
+    y: 245
+    width: 200
+    height: 100

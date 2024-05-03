@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9011478058013868855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 8764c813-2e37-47e8-862a-525b15536677
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Now go. GL!!!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 749
+    y: 388
+    width: 200
+    height: 100
+--- !u!114 &-8093195318068004796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 2f294ba5-8b25-48d0-8946-560b12ac6b2e
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'I guess we can make a connection to the outside world!
+
+    Hope this can
+    work...
+
+    ... Nah. not that lucky. But got something for you!'
+  children:
+  - af31cc46-ddc1-4a25-951d-5cf21ac66cb1
+  rect:
+    serializedVersion: 2
+    x: 62
+    y: 139
+    width: 200
+    height: 100
+--- !u!114 &-1725632438461432806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 71cd67fa-38fc-4d1d-8417-d5d0bc836009
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: As for a shop if you wanna buy you have to pay up! No No, this thing is still
+    the same! sry about it. when ever you fullfill an order of the bots you will
+    get Quantum Quarters. With that you can buy the blueprint you need!
+  children:
+  - 8764c813-2e37-47e8-862a-525b15536677
+  rect:
+    serializedVersion: 2
+    x: 575
+    y: 330
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
+  m_Name: Ingame Shop
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -8093195318068004796}
+  - {fileID: 6365657383462624931}
+  - {fileID: 5528246223984470079}
+  - {fileID: -1725632438461432806}
+  - {fileID: -9011478058013868855}
+--- !u!114 &5528246223984470079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 060a81bd-c877-489a-b5cd-407209c893b6
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Blueprints are the first step in becoming a good crafter! If you wanna craft
+    an item you need to import the blueprint in to your computer! something that
+    we are missing for now!
+  children:
+  - 71cd67fa-38fc-4d1d-8417-d5d0bc836009
+  rect:
+    serializedVersion: 2
+    x: 403
+    y: 266
+    width: 200
+    height: 100
+--- !u!114 &6365657383462624931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: af31cc46-ddc1-4a25-951d-5cf21ac66cb1
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: This is the shop! Yeah yeah I know. You can purchase stuff from this device!
+    told ya, you need to get used to it. For now you can only buy "BluePrints" from
+    it.
+  children:
+  - 060a81bd-c877-489a-b5cd-407209c893b6
+  rect:
+    serializedVersion: 2
+    x: 231
+    y: 205
+    width: 200
+    height: 100

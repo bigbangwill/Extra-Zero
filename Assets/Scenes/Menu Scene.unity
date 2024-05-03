@@ -869,7 +869,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 10
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: bb536b00258507642a0abd817a3310a3, type: 2}
 --- !u!114 &72015576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,7 +1475,7 @@ MonoBehaviour:
   isUnlocked: 0
   isDone: 0
   progressionScript: {fileID: 224246429}
-  holdingReward: 10
+  holdingReward: 0
   dialogue: {fileID: 0}
 --- !u!114 &117314108
 MonoBehaviour:
@@ -2120,7 +2120,7 @@ MonoBehaviour:
   isUnlocked: 0
   isDone: 0
   progressionScript: {fileID: 224246429}
-  holdingReward: 10
+  holdingReward: 0
   dialogue: {fileID: 0}
 --- !u!114 &192854519
 MonoBehaviour:
@@ -3490,7 +3490,7 @@ MonoBehaviour:
   isDone: 0
   progressionScript: {fileID: 224246429}
   holdingReward: 3
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 610d959342b8af145a8a4918562f0da7, type: 2}
 --- !u!114 &297834558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6596,8 +6596,8 @@ MonoBehaviour:
   isUnlocked: 0
   isDone: 0
   progressionScript: {fileID: 224246429}
-  holdingReward: 11
-  dialogue: {fileID: 0}
+  holdingReward: 2
+  dialogue: {fileID: 11400000, guid: 943ab82c152458840b9b31623d3b5fa7, type: 2}
 --- !u!114 &578063068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10402,8 +10402,8 @@ MonoBehaviour:
   isUnlocked: 0
   isDone: 0
   progressionScript: {fileID: 224246429}
-  holdingReward: 10
-  dialogue: {fileID: 0}
+  holdingReward: 6
+  dialogue: {fileID: 11400000, guid: 4e9f70536c67df34c8d984b20127c91e, type: 2}
 --- !u!114 &978178172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12478,7 +12478,7 @@ GameObject:
   - component: {fileID: 1164187683}
   - component: {fileID: 1164187682}
   m_Layer: 5
-  m_Name: 36
+  m_Name: 36 Computer Change
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20494,7 +20494,7 @@ MonoBehaviour:
   isUnlocked: 0
   isDone: 0
   progressionScript: {fileID: 224246429}
-  holdingReward: 10
+  holdingReward: 0
   dialogue: {fileID: 0}
 --- !u!114 &1858686731
 MonoBehaviour:
@@ -21842,8 +21842,8 @@ MonoBehaviour:
   isUnlocked: 0
   isDone: 0
   progressionScript: {fileID: 224246429}
-  holdingReward: 1
-  dialogue: {fileID: 0}
+  holdingReward: 11
+  dialogue: {fileID: 11400000, guid: 2d25c463d81a6574bb9545907387e972, type: 2}
 --- !u!1 &2006282666
 GameObject:
   m_ObjectHideFlags: 0

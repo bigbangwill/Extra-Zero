@@ -108,11 +108,15 @@ public class DeviceStateSetter : MonoBehaviour
             case CampaignRewardEnum.none: break;
             case CampaignRewardEnum.scanner:
                 scanner.GetComponent<Collider2D>().enabled = true;
-                scanner.GetComponent<SpriteRenderer>().enabled = true;
+                //scanner.GetComponent<SpriteRenderer>().enabled = true;
+                computer.GetComponent<Collider2D>().enabled = true;
+                computer.GetComponent<SpriteRenderer>().enabled = true;
                 break;
             case CampaignRewardEnum.computer:
                 computer.GetComponent<Collider2D>().enabled = true;
                 computer.GetComponent<SpriteRenderer>().enabled = true;
+                scanner.GetComponent<Collider2D>().enabled = true;
+                //scanner.GetComponent<SpriteRenderer>().enabled = true;
                 break;
             case CampaignRewardEnum.printer:
                 printer.GetComponent<Collider2D>().enabled = true;

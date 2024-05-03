@@ -1,26 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1528241184739327246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
-  m_Name: 26e11ec9-b7e3-4795-9e6c-c217ff96b869
-  m_EditorClassIdentifier: 
-  isPlayerSpeaking: 0
-  text: This device is used to import the Blue Prints in to the computer!
-  children: []
-  rect:
-    serializedVersion: 2
-    x: 650
-    y: 155
-    width: 200
-    height: 100
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00385d49c3b47d744ad52f6697974316, type: 3}
-  m_Name: Scanner
+  m_Name: Wave Selector
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 3459071582114903784}
-  - {fileID: 512588819804557500}
-  - {fileID: -1528241184739327246}
---- !u!114 &512588819804557500
+  - {fileID: 612717918104120718}
+  - {fileID: 7240016743821474871}
+  - {fileID: 6907938133847626914}
+--- !u!114 &612717918104120718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,20 +26,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
-  m_Name: 71503f45-c348-4f40-abe6-be552765de14
+  m_Name: 96fa5f66-9144-4fe9-8163-6b74a958f4b8
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: True mastery lies not in the arrogance of creation, but in the humility to
-    learn, adapt, and grow along the path of craftsmanship.
+  text: Let's keep this one simple. This device is "Wave Selector". As easy as that.
+    The thing is it can be really usefull.
   children:
-  - 26e11ec9-b7e3-4795-9e6c-c217ff96b869
+  - 498a2b45-25ab-44f0-9879-433032416499
   rect:
     serializedVersion: 2
-    x: 400
-    y: 155
+    x: 0
+    y: 0
     width: 200
     height: 100
---- !u!114 &3459071582114903784
+--- !u!114 &6907938133847626914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,16 +49,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
-  m_Name: 3f6a3f3d-05bd-4bc7-af3f-836b3186aa53
+  m_Name: 2cb37d48-37df-41e9-97c5-a36eba677c00
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: This is the path of creators! You must be humble in this path. Let me tell
-    you that you need to progress in this path in order to make some difference!
-  children:
-  - 71503f45-c348-4f40-abe6-be552765de14
+  text: 'It''s kind of an Oracle! The difference is that It can change the future!!
+
+    Go
+    now shoo shooo'
+  children: []
   rect:
     serializedVersion: 2
-    x: 150
-    y: 155
+    x: 338
+    y: 127
+    width: 200
+    height: 100
+--- !u!114 &7240016743821474871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842aabce3d7af3747ae7159bf63119e0, type: 3}
+  m_Name: 498a2b45-25ab-44f0-9879-433032416499
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Each time after you finish a wave in the night time you can come to this
+    device and you get to choose the kind of incoming wave and you can choose the
+    reward that you get from the wave.
+  children:
+  - 2cb37d48-37df-41e9-97c5-a36eba677c00
+  rect:
+    serializedVersion: 2
+    x: 171
+    y: 58
     width: 200
     height: 100
