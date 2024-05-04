@@ -17,7 +17,9 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     private int healthUnlocked;
 
     private OrderPost orderPostScript;
+
     private int currentHealth;
+    private int _CurrentHealth { get { return currentHealth; } set { currentHealth = value; SetAnimation(); }  }
 
     private OrderPostHealthImageSetter healthImageSetter;
     [SerializeField] private SpriteRenderer image;
@@ -28,6 +30,8 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     public bool Targeted { get => targeted; set => targeted = value; }
 
     [SerializeField] private CurrentGameStateSetter currentGameStateSetter;
+
+    [SerializeField] private Animator animator;
 
 
     private PlayerInventoryRefrence inventoryRefrence;
@@ -52,31 +56,31 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     public bool NeedsRepair()
     {
-        if (currentHealth >= healthUnlocked) return false;
+        if (_CurrentHealth >= healthUnlocked) return false;
         else return true;
     }
 
     public IEnumerable<ItemBehaviour> RepairMaterials()
     {
-        return recoverReceipeList[currentHealth].GetItems();
+        return recoverReceipeList[_CurrentHealth].GetItems();
     }
 
     public bool Repair()
     {
         repairTargetItemsList.Clear();
-        Debug.Log(currentHealth);
-        if(currentHealth >= healthUnlocked)
+        Debug.Log(_CurrentHealth);
+        if(_CurrentHealth >= healthUnlocked)
         {
             Debug.Log("nothing to repair");
             return false;
         }
-        foreach (var item in recoverReceipeList[currentHealth].GetItems())
+        foreach (var item in recoverReceipeList[_CurrentHealth].GetItems())
         {
             Debug.Log(item.GetName() + ": " + item.CurrentStack());
         }
 
 
-        foreach (ItemBehaviour item in recoverReceipeList[currentHealth].GetItems())
+        foreach (ItemBehaviour item in recoverReceipeList[_CurrentHealth].GetItems())
         {
             repairTargetItemsList.Add(item);
             if (!inventoryRefrence.val.HaveItemInInventory(item,false))
@@ -92,12 +96,12 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
             inventoryRefrence.val.HaveItemInInventory(item,true);
             item.SetCurrentStack(savedStack);
         }
-        if (currentHealth == 0)
+        if (_CurrentHealth == 0)
         {
             // Implement the restore the shield  back up.
         }
-        currentHealth++;
-        Debug.Log($"Repaired and current health is {currentHealth}");
+        _CurrentHealth++;
+        Debug.Log($"Repaired and current health is {_CurrentHealth}");
         TurnUIUXOn();
         SetHealthImage();
         return true;
@@ -106,8 +110,8 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     public void TakeDamage()
     {
-        currentHealth--;
-        if(currentHealth < 0 )
+        _CurrentHealth--;
+        if(_CurrentHealth < 0 )
         {
             PostZeroHealth();
         }
@@ -126,18 +130,18 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
 
     private void SetHealthImage()
     {
-        image.sprite = healthImageSetter.SetHealthImage(currentHealth);
+        image.sprite = healthImageSetter.SetHealthImage(_CurrentHealth);
     }
 
     private void PostZeroHealth()
     {
-        currentHealth = 0;
+        _CurrentHealth = 0;
         currentGameStateSetter.GameIsLost();
     }
     private void Init()
     {
         healthUnlocked = 3;
-        currentHealth = healthUnlocked;
+        _CurrentHealth = healthUnlocked;
         recoverReceipeList = new HealthRecoverReceipe[maxHealth];
         SetHealthImage();
         for (int i = 0; i < maxHealth; i++)
@@ -187,6 +191,23 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     public Transform GetReachingTransfrom()
     {
         return orderPostScript.GetReachingTransfrom();
+    }
+
+
+    
+
+    private void SetAnimation()
+    {
+        switch (_CurrentHealth)
+        {
+            case 0: animator.SetTrigger("Transparent Trigger"); break;
+            case 1: animator.SetTrigger("Red Trigger"); break;
+            case 2: animator.SetTrigger("Orange Trigger"); break;
+            case 3: animator.SetTrigger("Yellow Trigger"); break;
+            case 4: animator.SetTrigger("Green Trigger"); break;
+            case 5: animator.SetTrigger("Blue Trigger"); break;
+            default: animator.SetTrigger("Transparent Trigger");Debug.LogWarning("CHECK HERE ASAP"); break;
+        }
     }
 }
 
