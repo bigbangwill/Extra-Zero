@@ -359,6 +359,195 @@ public abstract class PotionEffect
         }
     }
 
+    //Chamomile + Chamomile + Sage
+    public class ResistoraOilEffect : PotionEffect
+    {
+        public ResistoraOilEffect()
+        {
+            effect = PlayerEffectVoid;
+            name = "Resistora Oil";
+            sideEffect = SideEffect.Natural;
+            potionPriority = 0;
+            isBase = true;
+            AddHerbToReceipeList();
+            LoadIcon();
+        }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Chamomile());
+            receipeList.Add(new Herb.Chamomile());
+            receipeList.Add(new Herb.Sage());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
+        public override void BotsEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+    }
+
+    //Chamomile + Patchouli + Patchouli
+    public class VoltaraOilEffect : PotionEffect
+    {
+        public VoltaraOilEffect()
+        {
+            effect = PlayerEffectVoid;
+            name = "Voltara Oil";
+            sideEffect = SideEffect.Natural;
+            potionPriority = 0;
+            isBase = true;
+            AddHerbToReceipeList();
+            LoadIcon();
+
+        }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Chamomile());
+            receipeList.Add(new Herb.Patchouli());
+            receipeList.Add(new Herb.Patchouli());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
+        public override void BotsEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+    }
+
+
+    //Chamomile + Sage + Patchouli 
+    public class CyberelixOilEffect : PotionEffect
+    {
+        public CyberelixOilEffect()
+        {
+            effect = PlayerEffectVoid;
+            name = "Cyberelix Oil";
+            sideEffect = SideEffect.Natural;
+            potionPriority = 0;
+            isBase = true;
+            AddHerbToReceipeList();
+            LoadIcon();
+        }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Chamomile());
+            receipeList.Add(new Herb.Sage());
+            receipeList.Add(new Herb.Patchouli());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
+        public override void BotsEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+    }
+
+    //4
+    public class MegabyteaOilEffect : PotionEffect
+    {
+        public MegabyteaOilEffect()
+        {
+            effect = PlayerEffectVoid;
+            name = "Megabytea Oil";
+            sideEffect = SideEffect.Natural;
+            potionPriority = 0;
+            isBase = true;
+            AddHerbToReceipeList();
+            LoadIcon();
+        }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Hellebore());
+            receipeList.Add(new Herb.Sage());
+            receipeList.Add(new Herb.Patchouli());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
+        public override void BotsEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+    }
+
+    ////Chamomile + Lavender + Hellebore 4
+    public class TechnomistOilEffect : PotionEffect
+    {
+        public TechnomistOilEffect()
+        {
+            effect = PlayerEffectVoid;
+            name = "Technomist Oil";
+            sideEffect = SideEffect.Natural;
+            potionPriority = 0;
+            isBase = true;
+            AddHerbToReceipeList();
+            LoadIcon();
+        }
+
+        public override void AddHerbToReceipeList()
+        {
+            receipeList.Add(new Herb.Chamomile());
+            receipeList.Add(new Herb.Lavender());
+            receipeList.Add(new Herb.Hellebore());
+        }
+
+        public override void AddRecepieToCombination()
+        {
+            PotionLibrary.AddCombination(receipeList, this);
+        }
+
+        public override void BotsEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+
+        public override void PlayerEffectVoid()
+        {
+            Debug.Log("Base Effect");
+        }
+    }
+
+
+
     public class SpeedEffect : PotionEffect
     {
         public SpeedEffect()
@@ -679,16 +868,12 @@ public abstract class PotionEffect
 
 
 
-//Chamomile + Chamomile + Sage
+
 //Chamomile + Chamomile + Patchouli
 //Chamomile + Chamomile + Hellebore
-//Chamomile + Lavender + Sage
 //Chamomile + Lavender + Patchouli
-//Chamomile + Lavender + Hellebore
 //Chamomile + Sage + Sage
-//Chamomile + Sage + Patchouli
 //Chamomile + Sage + Hellebore
-//Chamomile + Patchouli + Patchouli
 //Chamomile + Patchouli + Hellebore
 //Chamomile + Hellebore + Hellebore
 //Lavender + Lavender + Sage
@@ -701,7 +886,6 @@ public abstract class PotionEffect
 //Sage + Sage + Patchouli
 //Sage + Sage + Hellebore
 //Sage + Patchouli + Patchouli
-//Sage + Patchouli + Hellebore
 //Sage + Hellebore + Hellebore
 //Patchouli + Patchouli + Hellebore
 //Patchouli + Hellebore + Hellebore

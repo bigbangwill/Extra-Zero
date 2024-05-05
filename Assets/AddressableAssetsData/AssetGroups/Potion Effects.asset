@@ -92,6 +92,31 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 521c2641be1896e47bd4550665c369c9
+    m_Address: Potion Effect/Technomist Oil
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7ed6a875b8fcfe4ba5534edd20cc104
+    m_Address: Potion Effect/Cyberelix Oil
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74748969ca062444db9dc52bba738340
+    m_Address: Potion Effect/Megabytea Oil
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9836b9fc004ce8488c7f9edd74298ba
+    m_Address: Potion Effect/Resistora Oil
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2059735163635344fb65e94eca0925d8
+    m_Address: Potion Effect/Voltara Oil
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
   m_SchemaSet:

@@ -75,8 +75,10 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
         GameModeState.IsCampaignMode = true;
         GameModeState.IsFinished = false;
         GameModeState.MilestoneReward = currentActiveNode.GetMilestone();
-        if (currentActiveNode.Dialogue != null) 
+        if (currentActiveNode.Dialogue != null)
             GameModeState.CurrentDialogue = currentActiveNode.Dialogue;
+        else
+            GameModeState.CurrentDialogue = null;
         saveClassManager.SaveCurrentState();
         SceneManager.LoadScene("Scene One");
     }
@@ -88,6 +90,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
         GameModeState.CurrentDialogue = null;
         saveClassManager.SaveCurrentState();
         GameModeState.IsCampaignMode = false;
+        GameModeState.CurrentDialogue = null;
         SceneManager.LoadScene("Scene One");
     }
 

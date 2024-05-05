@@ -129,11 +129,11 @@ public class PlayerInventory : MonoBehaviour ,IStashable
         //HaveEmptySlot(new Herb.Chamomile(15), true);
         //HaveEmptySlot(new Herb.Lavender(15), true);
         //HaveEmptySlot(new Herb.Sage(15), true);
-        //HaveEmptySlot(new Herb.Chamomile(50), true);
-        //HaveEmptySlot(new Herb.Lavender(50), true);
-        //HaveEmptySlot(new Herb.Sage(50), true);
-        //HaveEmptySlot(new Herb.Patchouli(50), true);
-        //HaveEmptySlot(new Herb.Hellebore(50), true);
+        HaveEmptySlot(new Herb.Chamomile(50), true);
+        HaveEmptySlot(new Herb.Lavender(50), true);
+        HaveEmptySlot(new Herb.Sage(50), true);
+        HaveEmptySlot(new Herb.Patchouli(50), true);
+        HaveEmptySlot(new Herb.Hellebore(50), true);
 
 
 

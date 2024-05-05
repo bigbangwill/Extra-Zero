@@ -62,7 +62,9 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         SetRefrence();
+        camStartPos = mainCamera.transform.localPosition;
     }
+
 
     private void Update()
     {
@@ -165,7 +167,7 @@ public class DialogueManager : MonoBehaviour
 
     public void FinishedDialogue()
     {
-        mainCamera.position = camStartPos;
+        mainCamera.localPosition = camStartPos;
         gameObject.SetActive(false);
     }
 
