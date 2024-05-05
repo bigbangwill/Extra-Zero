@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,8 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
     [SerializeField] private TextMeshProUGUI infoStackText;
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private Button startButton;
+    [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private TextMeshProUGUI costText;
 
     [SerializeField] private List<CampaignNodeScript> campaignNodes = new();
 
@@ -24,12 +27,14 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
 
 
     private SaveClassManager saveClassManager;
+    private EconomyManager economyManager;
 
     private bool isStartCalled = false;
 
     private void LoadSORefrence()
     {
         saveClassManager = ((SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence")).val;
+        economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
     }
 
     private void Start()
@@ -52,7 +57,9 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
         infoImage.sprite = campaignNode.GetRewardIcon();
         infoText.text = campaignNode.GetRewardText();
         infoStackText.text = campaignNode.GetRewardStack();
-        if (campaignNode.IsUnlocked)
+        description.text = campaignNode.GetDescription();
+        costText.text = campaignNode.GetEnergyCost().ToString();
+        if (campaignNode.IsUnlocked && campaignNode.GetEnergyCost() <= economyManager.CampaignEnergyCurrentStack)
         {
             startButton.interactable = true;
         }
@@ -75,6 +82,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
         GameModeState.IsCampaignMode = true;
         GameModeState.IsFinished = false;
         GameModeState.MilestoneReward = currentActiveNode.GetMilestone();
+        economyManager.CampaignEnergyCurrentStack -= currentActiveNode.GetEnergyCost();
         if (currentActiveNode.Dialogue != null)
             GameModeState.CurrentDialogue = currentActiveNode.Dialogue;
         else

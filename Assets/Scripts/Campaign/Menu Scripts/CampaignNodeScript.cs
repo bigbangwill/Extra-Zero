@@ -50,6 +50,10 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private bool isUnlocked = false;
     [SerializeField] private bool isDone = false;
+    [SerializeField] private int energyCost;
+
+    [TextArea(20,30)]
+    [SerializeField] private string description;
 
     [SerializeField] private ProgressionScript progressionScript;
     [SerializeField] private CampaignRewardEnum holdingReward;
@@ -195,6 +199,17 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     {
         return nodeName;
     }
+
+    public int GetEnergyCost()
+    {
+        return energyCost;
+    }
+
+    public string GetDescription()
+    {
+        return description;
+    }
+
 
     public void OnPointerClick(PointerEventData eventData)
     {
