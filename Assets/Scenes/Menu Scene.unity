@@ -715,13 +715,13 @@ MonoBehaviour:
   nodeName: 16
   activeIndicator: {fileID: 1281300473}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocking repair hammer artifact to heal the order posts back up.
   progressionScript: {fileID: 224246429}
   holdingReward: 14
   dialogue: {fileID: 11400000, guid: 016d0741f5f041a4c9ab5e81b4af39dd, type: 2}
@@ -782,7 +782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &67560344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,13 +939,14 @@ MonoBehaviour:
   nodeName: 44
   activeIndicator: {fileID: 2055567720}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 0
+  rewardText: Tier Station
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocks tier station to show what items are left to fullfill to finish
+    the game and help with crafting recipe.
   progressionScript: {fileID: 224246429}
   holdingReward: 10
   dialogue: {fileID: 11400000, guid: bb536b00258507642a0abd817a3310a3, type: 2}
@@ -1045,12 +1046,12 @@ MonoBehaviour:
   nodeName: 7
   activeIndicator: {fileID: 867497292}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -1222,9 +1223,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1144215154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &88082410
@@ -1265,12 +1266,12 @@ MonoBehaviour:
   nodeName: 52
   activeIndicator: {fileID: 691554269}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
-  isUnlocked: 1
+  isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -1552,12 +1553,12 @@ MonoBehaviour:
   nodeName: 45
   activeIndicator: {fileID: 585869411}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -1697,13 +1698,13 @@ MonoBehaviour:
   nodeName: 49
   activeIndicator: {fileID: 1138227881}
   rewardIcon: {fileID: 6788280404870582052, guid: 49c35ba74d961fa4cb7243efe521c71a, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Quantum Station
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 5
+  description: Unlocks qunatum station to upgrade each device into better states.
   progressionScript: {fileID: 224246429}
   holdingReward: 7
   dialogue: {fileID: 11400000, guid: e1348d092b2ad684a8f9ee4d2b2fd93f, type: 2}
@@ -1878,15 +1879,15 @@ MonoBehaviour:
   nodeName: 61
   activeIndicator: {fileID: 968842582}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Gate +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Gate upgrades you have for talent upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 18
   dialogue: {fileID: 0}
 --- !u!1 &162121913
 GameObject:
@@ -2118,15 +2119,16 @@ MonoBehaviour:
   nodeName: 60
   activeIndicator: {fileID: 1853451190}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Qubit +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Qubit upgrades you have for talent
+    upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 17
   dialogue: {fileID: 0}
 --- !u!1 &168337954
 GameObject:
@@ -2186,15 +2188,16 @@ MonoBehaviour:
   nodeName: 18
   activeIndicator: {fileID: 1781098181}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Qubit +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Qubit upgrades you have for talent
+    upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 17
   dialogue: {fileID: 0}
 --- !u!114 &168337957
 MonoBehaviour:
@@ -2490,15 +2493,15 @@ MonoBehaviour:
   nodeName: 46
   activeIndicator: {fileID: 1608805490}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Increase the maximum amount of energy you can hold.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 20
   dialogue: {fileID: 0}
 --- !u!114 &192854519
 MonoBehaviour:
@@ -3088,15 +3091,15 @@ MonoBehaviour:
   nodeName: 43
   activeIndicator: {fileID: 2073937551}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Gate +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Gate upgrades you have for talent upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 18
   dialogue: {fileID: 0}
 --- !u!114 &226786338
 MonoBehaviour:
@@ -3194,15 +3197,15 @@ MonoBehaviour:
   nodeName: 6
   activeIndicator: {fileID: 402837513}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Increase the maximum amount of energy you can hold.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 20
   dialogue: {fileID: 0}
 --- !u!114 &232140836
 MonoBehaviour:
@@ -3300,15 +3303,16 @@ MonoBehaviour:
   nodeName: 42
   activeIndicator: {fileID: 1553664766}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Qubit +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Qubit upgrades you have for talent
+    upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 17
   dialogue: {fileID: 0}
 --- !u!114 &242600913
 MonoBehaviour:
@@ -3406,15 +3410,15 @@ MonoBehaviour:
   nodeName: 10
   activeIndicator: {fileID: 422269117}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Increase the maximum amount of energy you can hold.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 20
   dialogue: {fileID: 0}
 --- !u!114 &250772411
 MonoBehaviour:
@@ -3669,12 +3673,12 @@ MonoBehaviour:
   nodeName: 59
   activeIndicator: {fileID: 1248222689}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -3737,15 +3741,15 @@ MonoBehaviour:
   nodeName: 34
   activeIndicator: {fileID: 1781941648}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Increase the maximum amount of energy you can hold.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 20
   dialogue: {fileID: 0}
 --- !u!114 &267838961
 MonoBehaviour:
@@ -3977,16 +3981,16 @@ MonoBehaviour:
   nodeName: 40
   activeIndicator: {fileID: 827002471}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 0
+  rewardText: Shop Menu
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocking shop menu is the main menu to buy talent upgrades.
   progressionScript: {fileID: 224246429}
-  holdingReward: 3
-  dialogue: {fileID: 11400000, guid: 610d959342b8af145a8a4918562f0da7, type: 2}
+  holdingReward: 16
+  dialogue: {fileID: 11400000, guid: b8f6d1b7ab689d74995ffb0acd4a30a9, type: 2}
 --- !u!114 &297834558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4480,7 +4484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &337933681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4602,15 +4606,16 @@ MonoBehaviour:
   nodeName: 38
   activeIndicator: {fileID: 20784984}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Qubit +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Qubit upgrades you have for talent
+    upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 17
   dialogue: {fileID: 0}
 --- !u!114 &346650119
 MonoBehaviour:
@@ -4796,12 +4801,12 @@ MonoBehaviour:
   nodeName: 50
   activeIndicator: {fileID: 1132460876}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -5303,12 +5308,12 @@ MonoBehaviour:
   nodeName: 56
   activeIndicator: {fileID: 1980212254}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -5705,10 +5710,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 36.15
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -5880,12 +5885,12 @@ MonoBehaviour:
   nodeName: 2
   activeIndicator: {fileID: 1110237946}
   rewardIcon: {fileID: 7650988652918590780, guid: 4737359608331234da4d6ef1068584e4, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -6574,13 +6579,13 @@ MonoBehaviour:
   nodeName: 8
   activeIndicator: {fileID: 56882789}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocking alchemy post to create potions for player and oil for orders.
   progressionScript: {fileID: 224246429}
   holdingReward: 5
   dialogue: {fileID: 11400000, guid: f9ba5e42ac69adf4f9c0c20c73f826ff, type: 2}
@@ -7483,13 +7488,14 @@ MonoBehaviour:
   nodeName: 28
   activeIndicator: {fileID: 1752756523}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocking computer desk to import the blueprints and start 3D printer
+    to start crafting.
   progressionScript: {fileID: 224246429}
   holdingReward: 2
   dialogue: {fileID: 11400000, guid: 943ab82c152458840b9b31623d3b5fa7, type: 2}
@@ -7606,6 +7612,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585869411}
   m_CullTransparentMesh: 1
+--- !u!1 &589309407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 589309408}
+  - component: {fileID: 589309410}
+  - component: {fileID: 589309409}
+  m_Layer: 5
+  m_Name: Campaign Currency
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &589309408
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589309407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1553110488}
+  - {fileID: 1305823923}
+  m_Father: {fileID: 982929800}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -377, y: -37}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 1}
+--- !u!114 &589309409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589309407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &589309410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589309407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af164dae245f26e4ca6f04dd99981751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyCurrencyStack: {fileID: 1305823924}
 --- !u!1 &601182036
 GameObject:
   m_ObjectHideFlags: 0
@@ -7862,13 +7946,13 @@ MonoBehaviour:
   nodeName: 1
   activeIndicator: {fileID: 1278577587}
   rewardIcon: {fileID: 2755226219151085804, guid: 9fd9bb8ba79130e40b8c1d5b8553f47b, type: 3}
-  rewardStack: 5
-  rewardText: Day
+  rewardStack: 0
+  rewardText: Seed Farm
   campaignInfo: {fileID: 387777789}
-  isUnlocked: 1
+  isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocking the second basic farm device.
   progressionScript: {fileID: 224246429}
   holdingReward: 9
   dialogue: {fileID: 11400000, guid: efba359a126de31489cdfb42141a3927, type: 2}
@@ -8238,15 +8322,15 @@ MonoBehaviour:
   nodeName: 58
   activeIndicator: {fileID: 720697817}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Increase the maximum amount of energy you can hold.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 20
   dialogue: {fileID: 0}
 --- !u!1 &624038612
 GameObject:
@@ -8785,12 +8869,12 @@ MonoBehaviour:
   nodeName: 15
   activeIndicator: {fileID: 1326414349}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -9330,12 +9414,12 @@ MonoBehaviour:
   nodeName: 21
   activeIndicator: {fileID: 854349982}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -9824,9 +9908,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1144215154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749503779
@@ -10133,12 +10217,12 @@ MonoBehaviour:
   nodeName: 33
   activeIndicator: {fileID: 989629336}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -10823,12 +10907,12 @@ MonoBehaviour:
   nodeName: 41
   activeIndicator: {fileID: 457825585}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -11632,13 +11716,14 @@ MonoBehaviour:
   nodeName: 48
   activeIndicator: {fileID: 1883777665}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 0
+  rewardText: Wave Selector
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocks wave selector to let you choose what type of wave or reward
+    you demand for the next incoming wave.
   progressionScript: {fileID: 224246429}
   holdingReward: 6
   dialogue: {fileID: 11400000, guid: 4e9f70536c67df34c8d984b20127c91e, type: 2}
@@ -11738,13 +11823,13 @@ MonoBehaviour:
   nodeName: 12
   activeIndicator: {fileID: 422273000}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
-  isUnlocked: 1
+  isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocking item stash to store items in it for later.
   progressionScript: {fileID: 224246429}
   holdingReward: 13
   dialogue: {fileID: 11400000, guid: 2ade93baa20d5d54093faf6e70301603, type: 2}
@@ -11825,7 +11910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &982929796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11917,6 +12002,7 @@ RectTransform:
   - {fileID: 387777785}
   - {fileID: 1330461136}
   - {fileID: 1771414853}
+  - {fileID: 589309408}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12554,12 +12640,12 @@ MonoBehaviour:
   nodeName: 9
   activeIndicator: {fileID: 2141871184}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -12697,13 +12783,13 @@ MonoBehaviour:
   nodeName: -1
   activeIndicator: {fileID: 843937740}
   rewardIcon: {fileID: 2755226219151085804, guid: 9fd9bb8ba79130e40b8c1d5b8553f47b, type: 3}
-  rewardStack: 5
-  rewardText: Day
+  rewardStack: 0
+  rewardText: Material Farm
   campaignInfo: {fileID: 387777789}
   isUnlocked: 1
   isDone: 0
-  energyCost: 10
-  description: 123123123123
+  energyCost: 0
+  description: Unlocking the very first device to work with.
   progressionScript: {fileID: 224246429}
   holdingReward: 8
   dialogue: {fileID: 11400000, guid: b5e8b8d8384a7634ea167792f5c2e83a, type: 2}
@@ -12974,13 +13060,13 @@ MonoBehaviour:
   nodeName: 0
   activeIndicator: {fileID: 857448768}
   rewardIcon: {fileID: 2755226219151085804, guid: 9fd9bb8ba79130e40b8c1d5b8553f47b, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Day
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 616549681321654321
+  energyCost: 1
+  description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
   dialogue: {fileID: 0}
@@ -13665,12 +13751,12 @@ MonoBehaviour:
   nodeName: 3
   activeIndicator: {fileID: 1664468129}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -13771,16 +13857,16 @@ MonoBehaviour:
   nodeName: 36
   activeIndicator: {fileID: 438457398}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 0
+  rewardText: 3D-Printer
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocks 3D printer to craft the blueprints for orders.
   progressionScript: {fileID: 224246429}
-  holdingReward: 16
-  dialogue: {fileID: 11400000, guid: b8f6d1b7ab689d74995ffb0acd4a30a9, type: 2}
+  holdingReward: 3
+  dialogue: {fileID: 11400000, guid: 610d959342b8af145a8a4918562f0da7, type: 2}
 --- !u!114 &1164187683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15002,12 +15088,12 @@ MonoBehaviour:
   nodeName: 53
   activeIndicator: {fileID: 1814185221}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 16
@@ -15139,6 +15225,140 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304224855}
+  m_CullTransparentMesh: 1
+--- !u!1 &1305823922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1305823923}
+  - component: {fileID: 1305823925}
+  - component: {fileID: 1305823924}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1305823923
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305823922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 589309408}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1305823924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305823922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 0 / 0
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 51.15
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1305823925
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305823922}
   m_CullTransparentMesh: 1
 --- !u!1 &1326414349
 GameObject:
@@ -15658,12 +15878,12 @@ MonoBehaviour:
   nodeName: 31
   activeIndicator: {fileID: 1777896998}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 11
@@ -15980,15 +16200,15 @@ MonoBehaviour:
   nodeName: 14
   activeIndicator: {fileID: 478367029}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Increase the maximum amount of energy you can hold.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 20
   dialogue: {fileID: 0}
 --- !u!114 &1382800869
 MonoBehaviour:
@@ -16086,15 +16306,15 @@ MonoBehaviour:
   nodeName: 23
   activeIndicator: {fileID: 403253203}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Gate +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Gate upgrades you have for talent upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 18
   dialogue: {fileID: 0}
 --- !u!114 &1393128540
 MonoBehaviour:
@@ -16192,12 +16412,12 @@ MonoBehaviour:
   nodeName: 25
   activeIndicator: {fileID: 519966346}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -16497,12 +16717,12 @@ MonoBehaviour:
   nodeName: 27
   activeIndicator: {fileID: 1686173336}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -16912,7 +17132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1099.9998, y: 32.455322}
+  m_AnchoredPosition: {x: -1099.9998, y: 4020}
   m_SizeDelta: {x: 2200, y: 5000}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1434403258
@@ -17494,13 +17714,13 @@ MonoBehaviour:
   nodeName: 4
   activeIndicator: {fileID: 1696438183}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 0
+  rewardText: Herbalism Post
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocks herbalism device to grow the seeds.
   progressionScript: {fileID: 224246429}
   holdingReward: 4
   dialogue: {fileID: 11400000, guid: 50742a9cf5ccbe1489ea51476d4fb706, type: 2}
@@ -18067,6 +18287,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549312790}
   m_CullTransparentMesh: 1
+--- !u!1 &1553110487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1553110488}
+  - component: {fileID: 1553110490}
+  - component: {fileID: 1553110489}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1553110488
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553110487}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 589309408}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1553110489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553110487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -7213742777133032008, guid: 44306d003be73f441a2e5eda9bccb9d6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1553110490
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553110487}
+  m_CullTransparentMesh: 1
 --- !u!1 &1553664766
 GameObject:
   m_ObjectHideFlags: 0
@@ -18379,12 +18674,12 @@ MonoBehaviour:
   nodeName: 29
   activeIndicator: {fileID: 1101066837}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 11
@@ -18894,13 +19189,13 @@ MonoBehaviour:
   nodeName: 20
   activeIndicator: {fileID: 1465641110}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocking lava bucket to destroy your items.
   progressionScript: {fileID: 224246429}
   holdingReward: 12
   dialogue: {fileID: 11400000, guid: 7f9cd55746a7d494d8e23d318074e005, type: 2}
@@ -19031,12 +19326,12 @@ MonoBehaviour:
   nodeName: 35
   activeIndicator: {fileID: 2100887752}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -19137,12 +19432,12 @@ MonoBehaviour:
   nodeName: 19
   activeIndicator: {fileID: 846775372}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -19452,15 +19747,16 @@ MonoBehaviour:
   nodeName: 22
   activeIndicator: {fileID: 2056322342}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Qubit +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Qubit upgrades you have for talent
+    upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 17
   dialogue: {fileID: 0}
 --- !u!114 &1670044806
 MonoBehaviour:
@@ -19704,13 +20000,13 @@ MonoBehaviour:
   nodeName: 32
   activeIndicator: {fileID: 1876212324}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocking recipe tablet artifact to help with alchemy recipe list.
   progressionScript: {fileID: 224246429}
   holdingReward: 15
   dialogue: {fileID: 0}
@@ -19960,15 +20256,16 @@ MonoBehaviour:
   nodeName: 62
   activeIndicator: {fileID: 147711089}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Entangle +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Entangle upgrades you have for talent
+    upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 19
   dialogue: {fileID: 0}
 --- !u!224 &1718391498
 RectTransform:
@@ -20266,12 +20563,12 @@ MonoBehaviour:
   nodeName: 54
   activeIndicator: {fileID: 895955247}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -20334,12 +20631,12 @@ MonoBehaviour:
   nodeName: 39
   activeIndicator: {fileID: 1152745319}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -21369,12 +21666,12 @@ MonoBehaviour:
   nodeName: 5
   activeIndicator: {fileID: 425507394}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -21620,15 +21917,15 @@ MonoBehaviour:
   nodeName: 30
   activeIndicator: {fileID: 266808978}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Increase the maximum amount of energy you can hold.
   progressionScript: {fileID: 224246429}
-  holdingReward: 11
+  holdingReward: 20
   dialogue: {fileID: 0}
 --- !u!114 &1812256848
 MonoBehaviour:
@@ -22083,12 +22380,12 @@ MonoBehaviour:
   nodeName: 17
   activeIndicator: {fileID: 2124828043}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -22169,12 +22466,12 @@ MonoBehaviour:
   nodeName: 51
   activeIndicator: {fileID: 1754652043}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -22370,15 +22667,15 @@ MonoBehaviour:
   nodeName: 47
   activeIndicator: {fileID: 2044337348}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
-  rewardText: Night
+  rewardStack: 1
+  rewardText: Gate +1
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Adds 1 to the maximum amout of Gate upgrades you have for talent upgrade.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 18
   dialogue: {fileID: 0}
 --- !u!114 &1858686731
 MonoBehaviour:
@@ -22943,12 +23240,12 @@ MonoBehaviour:
   nodeName: 37
   activeIndicator: {fileID: 2064154033}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -23491,10 +23788,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 48.7
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -23558,7 +23855,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 97, y: 150}
-  m_SizeDelta: {x: 180, y: 180}
+  m_SizeDelta: {x: 208, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1979471430
 GameObject:
@@ -23618,12 +23915,12 @@ MonoBehaviour:
   nodeName: 13
   activeIndicator: {fileID: 1711282864}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -23837,13 +24134,14 @@ MonoBehaviour:
   nodeName: 24
   activeIndicator: {fileID: 1131236285}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 2
+  description: Unlocking shop station to buy blueprints and getting ready for crafting
+    order items.
   progressionScript: {fileID: 224246429}
   holdingReward: 11
   dialogue: {fileID: 11400000, guid: 2d25c463d81a6574bb9545907387e972, type: 2}
@@ -24542,12 +24840,12 @@ MonoBehaviour:
   nodeName: 57
   activeIndicator: {fileID: 1549312790}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0
@@ -25272,15 +25570,15 @@ MonoBehaviour:
   nodeName: 26
   activeIndicator: {fileID: 2072865915}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Increase the maximum amount of energy you can hold.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 20
   dialogue: {fileID: 0}
 --- !u!114 &2108232596
 MonoBehaviour:
@@ -25676,15 +25974,15 @@ MonoBehaviour:
   nodeName: 55
   activeIndicator: {fileID: 4311324}
   rewardIcon: {fileID: -1772058742462645444, guid: 7fdebc13c7b0a25459ef4946305b2435, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
-  description: 
+  energyCost: 1
+  description: Increase the maximum amount of energy you can hold.
   progressionScript: {fileID: 224246429}
-  holdingReward: 0
+  holdingReward: 20
   dialogue: {fileID: 0}
 --- !u!1 &2124828043
 GameObject:
@@ -25819,12 +26117,12 @@ MonoBehaviour:
   nodeName: 11
   activeIndicator: {fileID: 1938839337}
   rewardIcon: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
-  rewardStack: 5
+  rewardStack: 0
   rewardText: Night
   campaignInfo: {fileID: 387777789}
   isUnlocked: 0
   isDone: 0
-  energyCost: 0
+  energyCost: 1
   description: 
   progressionScript: {fileID: 224246429}
   holdingReward: 0

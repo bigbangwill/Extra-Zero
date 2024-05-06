@@ -107,6 +107,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe9a848efe78f734cb357092a5361ff8
+    m_Address: Talent Reward Icon/EntangleTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea35e46656dba3d4592266cec6100fb9
+    m_Address: Talent Reward Icon/GateTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 66ec9b922d3c91e499916f9ae32bddac
+    m_Address: Talent Reward Icon/QubitTalent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af70a4a774a4fff448947a564d8da1e1
+    m_Address: Talent Reward Icon/Energy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8e9ade72e705d0428b1c7c8252ee1bf, type: 2}
   m_SchemaSet:

@@ -28,6 +28,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
 
     private SaveClassManager saveClassManager;
     private EconomyManager economyManager;
+    private OptionHolder optionHolder;
 
     private bool isStartCalled = false;
 
@@ -35,6 +36,7 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
     {
         saveClassManager = ((SaveClassManagerRefrence)FindSORefrence<SaveClassManager>.FindScriptableObject("Save Class Manager refrence")).val;
         economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
+        optionHolder = ((OptionHolderRefrence)FindSORefrence<OptionHolder>.FindScriptableObject("Option Holder Refrence")).val;
     }
 
     private void Start()
@@ -56,7 +58,12 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
         currentActiveNode = campaignNode;
         infoImage.sprite = campaignNode.GetRewardIcon();
         infoText.text = campaignNode.GetRewardText();
-        infoStackText.text = campaignNode.GetRewardStack();
+        int stack = campaignNode.GetRewardStackCount();
+        if (stack == 0)
+            infoStackText.text = string.Empty;
+        else
+            infoStackText.text = stack.ToString();
+
         description.text = campaignNode.GetDescription();
         costText.text = campaignNode.GetEnergyCost().ToString();
         if (campaignNode.IsUnlocked && campaignNode.GetEnergyCost() <= economyManager.CampaignEnergyCurrentStack)
@@ -108,7 +115,26 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
         {
             if (node.GetNodeName() == name)
             {
-                node.GiveReward();
+                if (node.holdingReward == CampaignRewardEnum.qubitTalent)
+                {
+                    optionHolder.AddQubitMax(node.GetRewardStackCount());
+                }
+                else if (node.holdingReward == CampaignRewardEnum.gateTalent)
+                {
+                    optionHolder.AddGateMax(node.GetRewardStackCount());
+                }
+                else if (node.holdingReward == CampaignRewardEnum.entangleTalent)
+                {
+                    optionHolder.AddEntangleMax(node.GetRewardStackCount());
+                }
+                else if (node.holdingReward == CampaignRewardEnum.energyMax)
+                {
+                    economyManager.CampaignEnergyMaxStack += 1;
+                }
+                else
+                {
+                    node.GiveReward();
+                }
                 node.GotDone();
             }
         }

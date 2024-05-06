@@ -29,7 +29,11 @@ public enum CampaignRewardEnum
     itemStash,
     repairHammer,
     recipeTablet,
-    shopMenu
+    shopMenu,
+    qubitTalent,
+    gateTalent,
+    entangleTalent,
+    energyMax
 }
 
 public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
@@ -43,7 +47,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject activeIndicator;
 
     [SerializeField] private Sprite rewardIcon;
-    [SerializeField] private string rewardStack;
+    [SerializeField] private int rewardStack = 0;
     [SerializeField] private string rewardText;
 
     [SerializeField] protected CampaignInfoUI campaignInfo;
@@ -56,7 +60,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     [SerializeField] private string description;
 
     [SerializeField] private ProgressionScript progressionScript;
-    [SerializeField] private CampaignRewardEnum holdingReward;
+    public CampaignRewardEnum holdingReward;
     [SerializeField] private Dialogue dialogue;
 
     private string iconSpecificAddress;
@@ -185,7 +189,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         return rewardIcon;
     }
 
-    public string GetRewardStack()
+    public int GetRewardStackCount()
     {
         return rewardStack;
     }
@@ -229,23 +233,27 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
     {
         switch (holdingReward)
         {
-        case CampaignRewardEnum.none: rewardText = "None"; break;
-        case CampaignRewardEnum.scanner: rewardText = "Scanner"; break;
-        case CampaignRewardEnum.computer: rewardText = "Computer"; break;
-        case CampaignRewardEnum.printer: rewardText = "Printer"; break;
-        case CampaignRewardEnum.herbalismPost: rewardText = "HerbalismPost"; break;
-        case CampaignRewardEnum.alchemyPost: rewardText = "AlchemyPost"; break;
-        case CampaignRewardEnum.waveSelector: rewardText = "WaveSelector"; break;
-        case CampaignRewardEnum.quantumStation: rewardText = "QuantumStation"; break;
-        case CampaignRewardEnum.materialFarm: rewardText = "MaterialFarm"; break;
-        case CampaignRewardEnum.seedFarm: rewardText = "SeedFarm"; break;
-        case CampaignRewardEnum.tierStation: rewardText = "TierStation"; break;
-        case CampaignRewardEnum.shopStation: rewardText = "ShopStation"; break;
-        case CampaignRewardEnum.lavaBucket: rewardText = "LavaBucket"; break;
-        case CampaignRewardEnum.itemStash: rewardText = "ItemStash"; break;
-        case CampaignRewardEnum.repairHammer: rewardText = "RepairHammer"; break;
-        case CampaignRewardEnum.recipeTablet: rewardText = "RecipeTablet"; break;
-        case CampaignRewardEnum.shopMenu: rewardText = "ShopMenu"; break;
+            case CampaignRewardEnum.none: rewardText = "None"; break;
+            case CampaignRewardEnum.scanner: rewardText = "Scanner"; break;
+            case CampaignRewardEnum.computer: rewardText = "Computer"; break;
+            case CampaignRewardEnum.printer: rewardText = "Printer"; break;
+            case CampaignRewardEnum.herbalismPost: rewardText = "HerbalismPost"; break;
+            case CampaignRewardEnum.alchemyPost: rewardText = "AlchemyPost"; break;
+            case CampaignRewardEnum.waveSelector: rewardText = "WaveSelector"; break;
+            case CampaignRewardEnum.quantumStation: rewardText = "QuantumStation"; break;
+            case CampaignRewardEnum.materialFarm: rewardText = "MaterialFarm"; break;
+            case CampaignRewardEnum.seedFarm: rewardText = "SeedFarm"; break;
+            case CampaignRewardEnum.tierStation: rewardText = "TierStation"; break;
+            case CampaignRewardEnum.shopStation: rewardText = "ShopStation"; break;
+            case CampaignRewardEnum.lavaBucket: rewardText = "LavaBucket"; break;
+            case CampaignRewardEnum.itemStash: rewardText = "ItemStash"; break;
+            case CampaignRewardEnum.repairHammer: rewardText = "RepairHammer"; break;
+            case CampaignRewardEnum.recipeTablet: rewardText = "RecipeTablet"; break;
+            case CampaignRewardEnum.shopMenu: rewardText = "ShopMenu"; break;
+            case CampaignRewardEnum.qubitTalent: rewardText = "Qubit Max +1"; break;
+            case CampaignRewardEnum.gateTalent: rewardText = "Gate Max +1"; break;
+            case CampaignRewardEnum.entangleTalent: rewardText = "Entangle Max +1";break;
+            case CampaignRewardEnum.energyMax: rewardText = "Energy Max +1"; break;
         default: Debug.LogWarning("CHECK HERE ASAP"); break;
         }
     }   
@@ -272,6 +280,10 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
             case CampaignRewardEnum.repairHammer: iconSpecificAddress = "RepairHammer"; break;
             case CampaignRewardEnum.recipeTablet: iconSpecificAddress = "RecipeTablet"; break;
             case CampaignRewardEnum.shopMenu: iconSpecificAddress = "ShopMenu"; break;
+            case CampaignRewardEnum.qubitTalent: iconSpecificAddress = "QubitTalent"; break;
+            case CampaignRewardEnum.gateTalent: iconSpecificAddress = "GateTalent"; break;
+            case CampaignRewardEnum.entangleTalent: iconSpecificAddress = "EntangleTalent"; break;
+            case CampaignRewardEnum.energyMax: iconSpecificAddress = "Energy"; break;
             default: Debug.LogWarning("CHECK HERE ASAP"); break;
         }
     }
