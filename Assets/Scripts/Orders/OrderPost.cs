@@ -27,6 +27,10 @@ public class OrderPost : MonoBehaviour
     [SerializeField] private Transform reaching;
 
 
+
+    [SerializeField] private OrderPointer pointer;
+
+
     private List<WalkingOrder> walkingOrdersList = new();
 
     [SerializeField] private float orderMaxTimer;
@@ -64,15 +68,30 @@ public class OrderPost : MonoBehaviour
         isCampaign = GameModeState.IsCampaignMode;
     }
 
+    private float fadeTimer = 0;
+    private int fadeCounter = 2;
+    [SerializeField] private int fadeCounterSafe = 15;
 
     private void Update()
     {
         if (isReady)
         {
             currentTimer += Time.deltaTime + fasterTimeValue;
-            float percent = currentTimer / currentOrder.GetOrderTimer();
+            fadeTimer += Time.deltaTime;
+            float orderTimer = currentOrder.GetOrderTimer();
+            float percent = currentTimer / orderTimer;
+            float currentFade = fadeTimer * fadeCounter;
+            if (currentFade > orderTimer)
+            {
+                fadeTimer = 0;
+                fadeCounter += 2;
+                if(fadeCounterSafe > fadeCounter)
+                    fadeCounter = fadeCounterSafe;
+                pointer.Fade();
+            }
+
             clock.fillAmount = percent;
-            if(currentOrder.GetOrderTimer() < currentTimer )
+            if (currentOrder.GetOrderTimer() < currentTimer)
             {
                 TimerHit();
             }
@@ -274,6 +293,7 @@ public class OrderPost : MonoBehaviour
             currentOrder = walkingOrder.GetHoldingOrder();
             postUI.SetOrderImage(currentOrder);
             isReady = true;
+            fadeCounter = 3;
         }
     }
 

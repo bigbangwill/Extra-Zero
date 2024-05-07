@@ -23553,6 +23553,7 @@ Transform:
   - {fileID: 1409883516}
   - {fileID: 936306027}
   - {fileID: 1459328253}
+  - {fileID: 952651090}
   m_Father: {fileID: 658527922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &794033211
@@ -23580,7 +23581,9 @@ MonoBehaviour:
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
   WalkingOrderDeathSpot: {fileID: 1409883516}
   reaching: {fileID: 408104649}
+  pointer: {fileID: 952651089}
   orderMaxTimer: 10
+  fadeCounterSafe: 15
 --- !u!114 &794033213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25371,7 +25374,7 @@ GameObject:
   - component: {fileID: 869334533}
   - component: {fileID: 869334532}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25391,6 +25394,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1483770963}
   post: {fileID: 1250287114}
+  spriteRenderer: {fileID: 55736824}
+  flashSprite: {fileID: 1194950375}
+  fadeSpeed: 5
 --- !u!4 &869334533
 Transform:
   m_ObjectHideFlags: 0
@@ -25399,13 +25405,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869334531}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 3.26, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 27.730001, y: 21.9, z: 0}
   m_LocalScale: {x: 0.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 55736823}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1250287114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &870465058
 GameObject:
@@ -28476,7 +28482,7 @@ GameObject:
   - component: {fileID: 952651090}
   - component: {fileID: 952651089}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28496,6 +28502,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1483770963}
   post: {fileID: 794033210}
+  spriteRenderer: {fileID: 852204840}
+  flashSprite: {fileID: 1772644478}
+  fadeSpeed: 5
 --- !u!4 &952651090
 Transform:
   m_ObjectHideFlags: 0
@@ -28504,13 +28513,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952651088}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 3.26, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.27, y: -11.860001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 852204841}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 794033210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &970305421
 GameObject:
@@ -37334,7 +37343,9 @@ MonoBehaviour:
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
   WalkingOrderDeathSpot: {fileID: 515492542}
   reaching: {fileID: 1300572579}
+  pointer: {fileID: 869334532}
   orderMaxTimer: 10
+  fadeCounterSafe: 15
 --- !u!4 &1250287114
 Transform:
   m_ObjectHideFlags: 0
@@ -37355,6 +37366,7 @@ Transform:
   - {fileID: 515492542}
   - {fileID: 1575185678}
   - {fileID: 669567955}
+  - {fileID: 869334533}
   m_Father: {fileID: 658527922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1250287115
@@ -40872,7 +40884,9 @@ MonoBehaviour:
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
   WalkingOrderDeathSpot: {fileID: 1554627632}
   reaching: {fileID: 362425601}
+  pointer: {fileID: 1901150753}
   orderMaxTimer: 10
+  fadeCounterSafe: 15
 --- !u!4 &1393865459
 Transform:
   m_ObjectHideFlags: 0
@@ -40893,6 +40907,7 @@ Transform:
   - {fileID: 1554627632}
   - {fileID: 204393442}
   - {fileID: 327182048}
+  - {fileID: 1901150754}
   m_Father: {fileID: 658527922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1393865460
@@ -44941,7 +44956,7 @@ GameObject:
   - component: {fileID: 1502233314}
   - component: {fileID: 1502233313}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44961,6 +44976,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1483770963}
   post: {fileID: 2105670494}
+  spriteRenderer: {fileID: 1641810470}
+  flashSprite: {fileID: 1830719286}
+  fadeSpeed: 5
 --- !u!4 &1502233314
 Transform:
   m_ObjectHideFlags: 0
@@ -44969,13 +44987,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502233312}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 3.26, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -24.179998, y: 17.64, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1641810469}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2105670494}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1506086314
 GameObject:
@@ -57046,7 +57064,7 @@ GameObject:
   - component: {fileID: 1901150754}
   - component: {fileID: 1901150753}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57066,6 +57084,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1483770963}
   post: {fileID: 1393865459}
+  spriteRenderer: {fileID: 1673123053}
+  flashSprite: {fileID: 2059895722}
+  fadeSpeed: 5
 --- !u!4 &1901150754
 Transform:
   m_ObjectHideFlags: 0
@@ -57074,13 +57095,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901150752}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 3.26, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.2300005, y: -11.289999, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1673123052}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1393865459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1908347793
 GameObject:
@@ -62744,7 +62765,9 @@ MonoBehaviour:
   walkingOrderPrefab: {fileID: 8880140691522638354, guid: a9253e54f1960924aa4a48d32c00d36b, type: 3}
   WalkingOrderDeathSpot: {fileID: 938930358}
   reaching: {fileID: 1938242284}
+  pointer: {fileID: 1502233313}
   orderMaxTimer: 10
+  fadeCounterSafe: 15
 --- !u!4 &2105670494
 Transform:
   m_ObjectHideFlags: 0
@@ -62765,6 +62788,7 @@ Transform:
   - {fileID: 938930358}
   - {fileID: 430907239}
   - {fileID: 1984272714}
+  - {fileID: 1502233314}
   m_Father: {fileID: 658527922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2105670495
@@ -69785,10 +69809,6 @@ SceneRoots:
   - {fileID: 768666205}
   - {fileID: 1662377346}
   - {fileID: 901180490}
-  - {fileID: 952651090}
-  - {fileID: 1901150754}
-  - {fileID: 1502233314}
-  - {fileID: 869334533}
   - {fileID: 1483770963}
   - {fileID: 1817244826}
   - {fileID: 2114224198}
