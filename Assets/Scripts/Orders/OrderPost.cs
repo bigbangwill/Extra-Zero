@@ -260,6 +260,7 @@ public class OrderPost : MonoBehaviour
         orderManagerRefrence.val.FinishedWalkingOrder(targetWalkingOrder);
         walkingOrdersList.RemoveAt(0);
         targetWalkingOrder.WalkToDeath(WalkingOrderDeathSpot.position);
+        pointer.Hide();
         if(walkingOrdersList.Count > 0 )
         {
             MoveNext();
@@ -294,6 +295,7 @@ public class OrderPost : MonoBehaviour
             postUI.SetOrderImage(currentOrder);
             isReady = true;
             fadeCounter = 3;
+            pointer.Show();
         }
     }
 

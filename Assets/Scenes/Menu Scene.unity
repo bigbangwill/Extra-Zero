@@ -3001,21 +3001,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f241add52646d24aa12247c6407c282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanner: 1
-  computer: 1
-  printer: 1
-  herbalismPost: 1
-  alchemyPost: 1
-  waveSelector: 1
-  quantumStation: 1
-  materialFarm: 1
-  seedFarm: 1
-  tierStation: 1
-  shopStation: 1
-  lavaBucket: 1
-  itemStash: 1
-  repairHammer: 1
-  recipeTablet: 1
+  scanner: 0
+  computer: 0
+  printer: 0
+  herbalismPost: 0
+  alchemyPost: 0
+  waveSelector: 0
+  quantumStation: 0
+  materialFarm: 0
+  seedFarm: 0
+  tierStation: 0
+  shopStation: 0
+  lavaBucket: 0
+  itemStash: 0
+  repairHammer: 0
+  recipeTablet: 0
   menuShopIsUnlocked: 0
   infoUI: {fileID: 387777789}
 --- !u!4 &224246430
@@ -4484,7 +4484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &337933681
 RectTransform:
   m_ObjectHideFlags: 0

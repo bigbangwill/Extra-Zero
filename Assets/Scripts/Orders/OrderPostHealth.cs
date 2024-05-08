@@ -19,7 +19,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     private OrderPost orderPostScript;
 
     private int currentHealth;
-    private int _CurrentHealth { get { return currentHealth; } set { currentHealth = value; SetAnimation(); }  }
+    private int _CurrentHealth { get { return currentHealth; } set { currentHealth = value; /*SetAnimation();*/ }  }
 
     private OrderPostHealthImageSetter healthImageSetter;
     [SerializeField] private SpriteRenderer image;
@@ -32,6 +32,8 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
     [SerializeField] private CurrentGameStateSetter currentGameStateSetter;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private Animator damageAnimtor;
+    [SerializeField] private Animator healAnimtor;
 
 
     private PlayerInventoryRefrence inventoryRefrence;
@@ -52,6 +54,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         healthImageSetter = GetComponent<OrderPostHealthImageSetter>();
         orderPostScript = GetComponent<OrderPost>();
         Init();
+        SetAnimation();
     }
 
     public bool NeedsRepair()
@@ -115,6 +118,10 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         {
             PostZeroHealth();
         }
+        else
+        {
+            StartCoroutine(DamageCou());
+        }
         SetHealthImage();
         if (targeted)
         {
@@ -126,6 +133,18 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
             TurnUIUXOn();
         }
     }
+
+    private IEnumerator DamageCou()
+    {
+        while(true)
+        {
+            damageAnimtor.SetTrigger("Damaged");
+            yield return new WaitForSeconds(0.7f);
+            SetAnimation();
+            yield break;
+        }
+    }
+
 
 
     private void SetHealthImage()
