@@ -1,3 +1,4 @@
+using NavMeshPlus.Components;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ public class NewTierManager : MonoBehaviour
     [SerializeField] private TierUI tierUI;
 
     [SerializeField] private GameObject winScreenCanvas;
+    [SerializeField] private NavMeshSurface surface;
 
     private int unlockedTier = 1;
 
@@ -76,39 +78,7 @@ public class NewTierManager : MonoBehaviour
         //}
 
         InitNewTierCraftedList();
-        CampaignRewardEnum milestone = GameModeState.MilestoneReward;
-        switch(milestone)
-        {
-            case CampaignRewardEnum.materialFarm: AddMaterialFarm(); break;
-            case CampaignRewardEnum.seedFarm: AddSeedFarm(); break;
-            case CampaignRewardEnum.herbalismPost: AddHerbs(); break;
-            case CampaignRewardEnum.shopStation: AddShopStation();break;
-            case CampaignRewardEnum.alchemyPost:
-                if (GameModeState.HerbalismPostIsUnlocked)
-                {
-                    SetPotionEffectTiers(); 
-                }
-                break;
-            case CampaignRewardEnum.computer:
-                if (GameModeState.ComputerIsUnlocked && GameModeState.ScannerIsUnlocked && GameModeState.PrinterIsUnlocked)
-                {
-                    AddCraftedItems();
-                }
-                break;
-            case CampaignRewardEnum.scanner:
-                if (GameModeState.ComputerIsUnlocked && GameModeState.ScannerIsUnlocked && GameModeState.PrinterIsUnlocked)
-                {
-                    AddCraftedItems();
-                }
-                break;
-            case CampaignRewardEnum.printer:
-                if (GameModeState.ComputerIsUnlocked && GameModeState.ScannerIsUnlocked && GameModeState.PrinterIsUnlocked)
-                {
-                    AddCraftedItems();
-                }
-                break;
-            default: break;
-        }
+        
         SetupCampaignMilestone();
     }
 
@@ -248,6 +218,49 @@ public class NewTierManager : MonoBehaviour
         if (GameModeState.AlchemyPostIsUnlocked)
         {
             SetPotionEffectTiers();
+        }
+
+        if (GameModeState.MilestoneReward != CampaignRewardEnum.none)
+        {
+            AddMileStone();
+        }
+
+    }
+
+    private void AddMileStone()
+    {
+        CampaignRewardEnum milestone = GameModeState.MilestoneReward;
+        switch (milestone)
+        {
+            case CampaignRewardEnum.materialFarm: AddMaterialFarm(); break;
+            case CampaignRewardEnum.seedFarm: AddSeedFarm(); break;
+            case CampaignRewardEnum.herbalismPost: AddHerbs(); break;
+            case CampaignRewardEnum.shopStation: AddShopStation(); break;
+            case CampaignRewardEnum.alchemyPost:
+                if (GameModeState.HerbalismPostIsUnlocked)
+                {
+                    SetPotionEffectTiers();
+                }
+                break;
+            case CampaignRewardEnum.computer:
+                if (GameModeState.ComputerIsUnlocked && GameModeState.ScannerIsUnlocked && GameModeState.PrinterIsUnlocked)
+                {
+                    AddCraftedItems();
+                }
+                break;
+            case CampaignRewardEnum.scanner:
+                if (GameModeState.ComputerIsUnlocked && GameModeState.ScannerIsUnlocked && GameModeState.PrinterIsUnlocked)
+                {
+                    AddCraftedItems();
+                }
+                break;
+            case CampaignRewardEnum.printer:
+                if (GameModeState.ComputerIsUnlocked && GameModeState.ScannerIsUnlocked && GameModeState.PrinterIsUnlocked)
+                {
+                    AddCraftedItems();
+                }
+                break;
+            default: break;
         }
     }
 

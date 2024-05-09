@@ -215,13 +215,4 @@ public class OrderManager : MonoBehaviour
     {
         return maxOrderCombination;
     }
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 150, 100), "Add Hammer"))
-        {
-            inventoryRefrence.val.HaveEmptySlot(new CraftedItem.RepairHammer(usableRefrence.val.transform),true);
-        }
-    }
-
 }

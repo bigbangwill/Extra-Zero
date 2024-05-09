@@ -1,6 +1,7 @@
 using ExtraZero.Dialogue;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Transform recipeTablet;
 
     [SerializeField] private Transform mainCamera;
+    [SerializeField] private Vector3 cameraLocalPosition;
 
 
     private bool shouldMove = false;
@@ -167,7 +169,7 @@ public class DialogueManager : MonoBehaviour
 
     public void FinishedDialogue()
     {
-        mainCamera.localPosition = camStartPos;
+        mainCamera.localPosition = cameraLocalPosition;
         gameObject.SetActive(false);
     }
 

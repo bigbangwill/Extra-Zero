@@ -4,6 +4,7 @@ using UnityEngine;
 using NavMeshPlus.Components;
 using UnityEngine.SceneManagement;
 using static CampaignNodeScript;
+using UnityEngine.U2D;
 
 public class DeviceStateSetter : MonoBehaviour
 {
@@ -97,6 +98,57 @@ public class DeviceStateSetter : MonoBehaviour
         recipeTablet.GetComponent<Collider2D>().enabled = GameModeState.RecipeTabletIsUnlocked;
         recipeTablet.GetComponent<SpriteRenderer>().enabled = GameModeState.RecipeTabletIsUnlocked;
 
+
+        CampaignRewardEnum milestone = GameModeState.MilestoneReward;
+        switch (milestone)
+        {
+            case CampaignRewardEnum.materialFarm:
+                materialFarm.GetComponent<Collider2D>().enabled = true;
+                materialFarm.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.seedFarm:
+                seedFarm.GetComponent<Collider2D>().enabled = true;
+                seedFarm.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.herbalismPost:
+                herbalismPost.GetComponent<Collider2D>().enabled = true;
+                herbalismPost.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.shopStation:
+                shopStation.GetComponent<Collider2D>().enabled = true;
+                shopStation.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.alchemyPost:
+                alchemyPost.GetComponent<Collider2D>().enabled = true;
+                alchemyPost.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.computer:
+                computer.GetComponent<Collider2D>().enabled = true;
+                computer.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.scanner:
+                scanner.GetComponent<Collider2D>().enabled = true;
+                scanner.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.printer:
+                printer.GetComponent<Collider2D>().enabled = true;
+                printer.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.itemStash:
+                itemStash.GetComponent<Collider2D>().enabled = true;
+                itemStash.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.lavaBucket:
+                lavaBucket.GetComponent<Collider2D>().enabled = true;
+                lavaBucket.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.quantumStation:
+                printer.GetComponent<Collider2D>().enabled = true;
+                printer.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.recipeTablet:
+                recipeTablet.GetComponent<Collider2D>().enabled = true;
+                recipeTablet.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.repairHammer:
+                repairHammer.GetComponent<Collider2D>().enabled = true;
+                repairHammer.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.tierStation:
+                tierStation.GetComponent<Collider2D>().enabled = true;
+                tierStation.GetComponent<SpriteRenderer>().enabled = true; break;
+            case CampaignRewardEnum.waveSelector:
+                waveSelector.GetComponent<Collider2D>().enabled = true;
+                waveSelector.GetComponent<SpriteRenderer>().enabled = true; break;
+            default: break;
+        }
         surface.BuildNavMesh();
     }
 
@@ -174,11 +226,8 @@ public class DeviceStateSetter : MonoBehaviour
                 Debug.Log("Need to fix this later on");
                 break;
             default: Debug.LogWarning("ASAP"); break;
-
         }
-
     }
-
 
     //ONLY FOR TEST PURPOSE REMOVE LATER
     public void FinishTheWave()
@@ -186,8 +235,4 @@ public class DeviceStateSetter : MonoBehaviour
         GameModeState.IsFinished = true;
         SceneManager.LoadScene("Menu Scene");
     }
-
-
-
-
 }
