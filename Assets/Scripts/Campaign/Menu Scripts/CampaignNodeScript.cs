@@ -106,6 +106,7 @@ public class CampaignNodeScript : MonoBehaviour, IPointerClickHandler
         Debug.Log(holdingReward.ToString());
         switch (holdingReward) 
         {
+            case CampaignRewardEnum.none: break;
             case CampaignRewardEnum.scanner: progressionScript.Scanner = true; break;
             case CampaignRewardEnum.computer: progressionScript.Computer = true; break;
             case CampaignRewardEnum.printer: progressionScript.Printer = true; break;

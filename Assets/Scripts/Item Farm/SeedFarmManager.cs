@@ -162,7 +162,7 @@ public class SeedFarmManager : MonoBehaviour
             public override void ApplyEffect(Seed targetSeed)
             {
                 int stack = targetSeed.CurrentStack();
-                int newStack = stack++;
+                int newStack = stack + 1;
                 if (newStack > targetSeed.MaxStack())
                     newStack = targetSeed.MaxStack();
                 targetSeed.SetCurrentStack(newStack);
