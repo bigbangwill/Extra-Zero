@@ -35,15 +35,22 @@ namespace ExtraZero.Dialogue
             return nodes[0];
         }
 
-        public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode)
+        public List<DialogueNode> GetAllChildren(DialogueNode parentNode)
         {
+            List<DialogueNode> resultList = new();
             foreach (string childID in parentNode.GetChildren())
             {
                 if (nodeLookup.ContainsKey(childID))
                 {
-                    yield return nodeLookup[childID];
+                    resultList.Add(nodeLookup[childID]);
+
+
+
+
+                    //yield return nodeLookup[childID];
                 }
             }
+            return resultList;
         }
 
 #if UNITY_EDITOR

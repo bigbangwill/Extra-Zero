@@ -12,8 +12,8 @@ public class CycleInformation : MonoBehaviour
     [SerializeField] private Sprite nightSprite;
     [SerializeField] private Image iconImage;
     [SerializeField] private TextMeshProUGUI timerText;
-
-    private int maxTimer = 10;
+    [SerializeField] private Button startButton;
+    private int maxTimer = 60;
     private int currentTimer = 0;
 
 
@@ -62,6 +62,7 @@ public class CycleInformation : MonoBehaviour
         {
             if (currentTimer <= 0)
             {
+                startButton.gameObject.SetActive(false);
                 StartGame();
                 yield break;
             }

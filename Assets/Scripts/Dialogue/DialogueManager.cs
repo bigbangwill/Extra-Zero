@@ -2,6 +2,7 @@ using ExtraZero.Dialogue;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data.Common;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -100,11 +101,16 @@ public class DialogueManager : MonoBehaviour
     }
 
 
+    private List<DialogueNode> holdingNodes = new();
+    private int nodeCounter = 0;
+
+
     public void ShowDialogue(Dialogue input)
     {
         gameObject.SetActive(true);
         currentDialogue = input;
-        currentNode = currentDialogue.GetRootNode();
+        holdingNodes = currentDialogue.GetAllNodes().ToList();
+        currentNode = holdingNodes[nodeCounter];
         textObject.text = string.Empty;
         leftToShow = currentNode.GetText();
         isAdding = true;
@@ -154,17 +160,19 @@ public class DialogueManager : MonoBehaviour
 
     private void GoNextChild()
     {
-        var next = currentDialogue.GetAllChildren(currentNode);
-        if (next.Any())
+        if (nodeCounter < holdingNodes.Count -1)
         {
-            currentNode = next.First();
+            nodeCounter += 1;
+            currentNode = holdingNodes[nodeCounter];
             textObject.text = string.Empty;
             leftToShow = currentNode.GetText();
             isAdding = true;
+            Debug.Log("Inside if");
         }
         else
         {
             FinishedDialogue();
+            Debug.Log("outside if");
             return;
         }
     }

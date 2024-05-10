@@ -71,7 +71,7 @@ MonoBehaviour:
   - 2347d775-7105-4f39-982d-f49a9dd5be01
   rect:
     serializedVersion: 2
-    x: 45
+    x: 44
     y: 113
     width: 200
     height: 100
@@ -95,8 +95,8 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 1174
-    y: 463
+    x: 1099
+    y: 528
     width: 200
     height: 100
 --- !u!114 &-2416350922214319246

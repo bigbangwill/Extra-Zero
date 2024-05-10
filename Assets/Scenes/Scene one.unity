@@ -1158,7 +1158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -47, y: 0}
+  m_AnchoredPosition: {x: -48, y: 0}
   m_SizeDelta: {x: 200, y: 204}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &55605158
@@ -1177,6 +1177,7 @@ MonoBehaviour:
   nightSprite: {fileID: -3675621945160288520, guid: 1c00d0a578dc6ec4b80aec0b9ef83757, type: 3}
   iconImage: {fileID: 2086343260}
   timerText: {fileID: 2143424330}
+  startButton: {fileID: 1812981196}
 --- !u!114 &55605159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21170,7 +21171,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.7
+  m_fontSize: 50.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -21239,7 +21240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &716569903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53250,11 +53251,11 @@ RectTransform:
   - {fileID: 55605157}
   m_Father: {fileID: 1819625104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1389, y: 642}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 887.4298}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!1 &1778993370
 GameObject:
   m_ObjectHideFlags: 0
@@ -54532,7 +54533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1812981195
 RectTransform:
   m_ObjectHideFlags: 0
@@ -54550,8 +54551,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 27}
+  m_SizeDelta: {x: 0, y: -54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1812981196
 MonoBehaviour:
