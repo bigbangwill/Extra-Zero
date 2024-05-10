@@ -13,6 +13,10 @@ public class CycleInformation : MonoBehaviour
     [SerializeField] private Image iconImage;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    private int maxTimer = 10;
+    private int currentTimer = 0;
+
+
 
     private OrderManagerRefrence orderManagerRefrence;
 
@@ -42,5 +46,28 @@ public class CycleInformation : MonoBehaviour
     public void StartGame()
     {
         orderManagerRefrence.val.StartGame();
+    }
+
+
+    public void StartCounter()
+    {
+        currentTimer = maxTimer;
+        StartCoroutine(WaveStartCounter());
+    }
+
+
+    private IEnumerator WaveStartCounter()
+    {
+        while (true)
+        {
+            if (currentTimer <= 0)
+            {
+                StartGame();
+                yield break;
+            }
+            currentTimer -= 1;
+            timerText.text = currentTimer.ToString();
+            yield return new WaitForSeconds(1);
+        }
     }
 }

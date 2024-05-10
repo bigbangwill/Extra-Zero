@@ -1,0 +1,1949 @@
+fileFormatVersion: 2
+guid: d253f2f1e0421684884f620c6331684f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1504145118490460837
+    second: Healling_00025_0
+  - first:
+      213: -2851782951505412128
+    second: Healling_00025_1
+  - first:
+      213: -5335231830580177881
+    second: Healling_00025_2
+  - first:
+      213: -5476540885793265081
+    second: Healling_00025_3
+  - first:
+      213: 5540263501721811934
+    second: Healling_00025_4
+  - first:
+      213: 747301397988852998
+    second: Healling_00025_5
+  - first:
+      213: -4541479105204898681
+    second: Healling_00025_6
+  - first:
+      213: -7620517796893811357
+    second: Healling_00025_7
+  - first:
+      213: -2139363232000787668
+    second: Healling_00025_8
+  - first:
+      213: 4586390060417727994
+    second: Healling_00025_9
+  - first:
+      213: 2593778841746804583
+    second: Healling_00025_10
+  - first:
+      213: -3953561058248979018
+    second: Healling_00025_11
+  - first:
+      213: -306675955240096749
+    second: Healling_00025_12
+  - first:
+      213: -6032827057468306434
+    second: Healling_00025_13
+  - first:
+      213: -1217944729743109516
+    second: Healling_00025_14
+  - first:
+      213: -1611490094693706338
+    second: Healling_00025_15
+  - first:
+      213: -2757209898388253661
+    second: Healling_00025_16
+  - first:
+      213: 6264784899927625935
+    second: Healling_00025_17
+  - first:
+      213: 162233215577191610
+    second: Healling_00025_18
+  - first:
+      213: -5896737837553292281
+    second: Healling_00025_19
+  - first:
+      213: -2956238819201172840
+    second: Healling_00025_20
+  - first:
+      213: 8930638294284188122
+    second: Healling_00025_21
+  - first:
+      213: 9027642745144617125
+    second: Healling_00025_22
+  - first:
+      213: -7347204034365957374
+    second: Healling_00025_23
+  - first:
+      213: -4146724967243074923
+    second: Healling_00025_24
+  - first:
+      213: 1896707642447060505
+    second: Healling_00025_25
+  - first:
+      213: 2697977752536110099
+    second: Healling_00025_26
+  - first:
+      213: -5251248512196376261
+    second: Healling_00025_27
+  - first:
+      213: -2384827727751139208
+    second: Healling_00025_28
+  - first:
+      213: 2521112528282904579
+    second: Healling_00025_29
+  - first:
+      213: -819297657880796763
+    second: Healling_00025_30
+  - first:
+      213: 3725034529626003711
+    second: Healling_00025_31
+  - first:
+      213: 696558617191732450
+    second: Healling_00025_32
+  - first:
+      213: 355973936522644283
+    second: Healling_00025_33
+  - first:
+      213: 8681278750587280737
+    second: Healling_00025_34
+  - first:
+      213: -7782725139141189491
+    second: Healling_00025_35
+  - first:
+      213: 4126641532852765846
+    second: Healling_00025_36
+  - first:
+      213: -5114345508462516015
+    second: Healling_00025_37
+  - first:
+      213: 1010249401590420736
+    second: Healling_00025_38
+  - first:
+      213: 5269244344660241202
+    second: Healling_00025_39
+  - first:
+      213: 4502163915671223657
+    second: Healling_00025_40
+  - first:
+      213: -7639609161715578110
+    second: Healling_00025_41
+  - first:
+      213: 6806627435186609171
+    second: Healling_00025_42
+  - first:
+      213: 4265343626934820886
+    second: Healling_00025_43
+  - first:
+      213: 8484431057976157944
+    second: Healling_00025_44
+  - first:
+      213: -5735912558060804318
+    second: Healling_00025_45
+  - first:
+      213: 8923141395992888868
+    second: Healling_00025_46
+  - first:
+      213: 3480728483103271559
+    second: Healling_00025_47
+  - first:
+      213: 781938664275057845
+    second: Healling_00025_48
+  - first:
+      213: -1301926977335021591
+    second: Healling_00025_49
+  - first:
+      213: -1054537004615057899
+    second: Healling_00025_50
+  - first:
+      213: -5203630165509825538
+    second: Healling_00025_51
+  - first:
+      213: -4393217704892619329
+    second: Healling_00025_52
+  - first:
+      213: 4393441959638437510
+    second: Healling_00025_53
+  - first:
+      213: 22837871448907719
+    second: Healling_00025_54
+  - first:
+      213: 6636823676019755316
+    second: Healling_00025_55
+  - first:
+      213: 6256030478853089511
+    second: Healling_00025_56
+  - first:
+      213: 1675954350070019326
+    second: Healling_00025_57
+  - first:
+      213: 701889263072589595
+    second: Healling_00025_58
+  - first:
+      213: 5125745617309360871
+    second: Healling_00025_59
+  - first:
+      213: 561345708932262933
+    second: Healling_00025_60
+  - first:
+      213: 925902026502319279
+    second: Healling_00025_61
+  - first:
+      213: 6345282541033669605
+    second: Healling_00025_62
+  - first:
+      213: 6872421443438513357
+    second: Healling_00025_63
+  - first:
+      213: -7473763658698538753
+    second: Healling_00025_64
+  - first:
+      213: 4002342976864749042
+    second: Healling_00025_65
+  - first:
+      213: -8401188566164047999
+    second: Healling_00025_66
+  - first:
+      213: 4997359696015143289
+    second: Healling_00025_67
+  - first:
+      213: -6487860999510952281
+    second: Healling_00025_68
+  - first:
+      213: 5692528211650521396
+    second: Healling_00025_69
+  - first:
+      213: 1965611287908135943
+    second: Healling_00025_70
+  - first:
+      213: -4538723080028462009
+    second: Healling_00025_71
+  - first:
+      213: -1178482501533492078
+    second: Healling_00025_72
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Healling_00025_0
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 357
+        width: 33
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5dfcb9ebf3302be0800000000000000
+      internalID: -1504145118490460837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_1
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 344
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ef3107d38e6c68d0800000000000000
+      internalID: -2851782951505412128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_2
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 342
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72459e7dae275f5b0800000000000000
+      internalID: -5335231830580177881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_3
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 331
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74aa360941b6ff3b0800000000000000
+      internalID: -5476540885793265081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_4
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 332
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edbb03e1d48f2ec40800000000000000
+      internalID: 5540263501721811934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_5
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 324
+        width: 26
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 605474f79a2fe5a00800000000000000
+      internalID: 747301397988852998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_6
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 330
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 784376bc0dc69f0c0800000000000000
+      internalID: -4541479105204898681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_7
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 325
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36d1a9f507b7e3690800000000000000
+      internalID: -7620517796893811357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_8
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 314
+        width: 27
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2bbf0fa9747f42e0800000000000000
+      internalID: -2139363232000787668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_9
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 313
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afdb490d57126af30800000000000000
+      internalID: 4586390060417727994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_10
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 310
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76f0e383d14fef320800000000000000
+      internalID: 2593778841746804583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_11
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 298
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bd80451a212229c0800000000000000
+      internalID: -3953561058248979018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_12
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 294
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31ca2c2f7d77ebbf0800000000000000
+      internalID: -306675955240096749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_13
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 289
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efb8c3821c7174ca0800000000000000
+      internalID: -6032827057468306434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_14
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 275
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4725a93a8bdf81fe0800000000000000
+      internalID: -1217944729743109516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_15
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 291
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9598b20c46d2a9e0800000000000000
+      internalID: -1611490094693706338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_16
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 295
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 324906ba43c6cb9d0800000000000000
+      internalID: -2757209898388253661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 254
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc0da6a9cacf0f650800000000000000
+      internalID: 6264784899927625935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_18
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 284
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab47f31004e504200800000000000000
+      internalID: 162233215577191610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_19
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 270
+        width: 24
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70ce703dd249a2ea0800000000000000
+      internalID: -5896737837553292281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_20
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 253
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89a3b4ee47459f6d0800000000000000
+      internalID: -2956238819201172840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_21
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 259
+        width: 34
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad93f4c463000fb70800000000000000
+      internalID: 8930638294284188122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_22
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 267
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a82a770f31a84d70800000000000000
+      internalID: 9027642745144617125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_23
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 243
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20bdc4f9bdc790a90800000000000000
+      internalID: -7347204034365957374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_24
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 253
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 592bb32dc9fd376c0800000000000000
+      internalID: -4146724967243074923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_25
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 253
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91e53d63d85725a10800000000000000
+      internalID: 1896707642447060505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_26
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 237
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31452dfa874217520800000000000000
+      internalID: 2697977752536110099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_27
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 227
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b398c3bec41df17b0800000000000000
+      internalID: -5251248512196376261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_28
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 226
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87034e421d367eed0800000000000000
+      internalID: -2384827727751139208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_29
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 200
+        width: 44
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 308e61fac7accf220800000000000000
+      internalID: 2521112528282904579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_30
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 237
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a1a4b8fe1541a4f0800000000000000
+      internalID: -819297657880796763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_31
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 197
+        width: 20
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff81c6a2b2bf1b330800000000000000
+      internalID: 3725034529626003711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_32
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 234
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e453fe2f5caaa900800000000000000
+      internalID: 696558617191732450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_33
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 218
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3bcab3c86ca0f400800000000000000
+      internalID: 355973936522644283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_34
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 166
+        width: 78
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16dd6ec37091a7870800000000000000
+      internalID: 8681278750587280737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_35
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 207
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d80acf878b43ef390800000000000000
+      internalID: -7782725139141189491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_36
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 201
+        width: 29
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69400193c96c44930800000000000000
+      internalID: 4126641532852765846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_37
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 193
+        width: 28
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d82a756bd13609b0800000000000000
+      internalID: -5114345508462516015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_38
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 186
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 005195c6a70250e00800000000000000
+      internalID: 1010249401590420736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_39
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 170
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23ba53650dd102940800000000000000
+      internalID: 5269244344660241202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_40
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 179
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96d3a225a36ea7e30800000000000000
+      internalID: 4502163915671223657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_41
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 173
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b8f1d91f7aaf590800000000000000
+      internalID: -7639609161715578110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_42
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 179
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31cd9b8d69ff57e50800000000000000
+      internalID: 6806627435186609171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_43
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 167
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6102d601e6b813b30800000000000000
+      internalID: 4265343626934820886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_44
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 181
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f6e5f34811ceb570800000000000000
+      internalID: 8484431057976157944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_45
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 138
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 227651a2be1f560b0800000000000000
+      internalID: -5735912558060804318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_46
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 155
+        width: 20
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4264db4a2dd55db70800000000000000
+      internalID: 8923141395992888868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_47
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 150
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78a64fa1d180e4030800000000000000
+      internalID: 3480728483103271559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_48
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 146
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bc124082110ada00800000000000000
+      internalID: 781938664275057845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_49
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 153
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9efa270ef40aeede0800000000000000
+      internalID: -1301926977335021591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_50
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 150
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51e3a657e288d51f0800000000000000
+      internalID: -1054537004615057899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_51
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 139
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efb974a3fedf8c7b0800000000000000
+      internalID: -5203630165509825538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_52
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 148
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb52bee06c72803c0800000000000000
+      internalID: -4393217704892619329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_53
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 138
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68e8b815f24a8fc30800000000000000
+      internalID: 4393441959638437510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_54
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 142
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cf532f4ce2215000800000000000000
+      internalID: 22837871448907719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_55
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 131
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4394f0e48fbba1c50800000000000000
+      internalID: 6636823676019755316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_56
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 117
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e82e0c1392e1d650800000000000000
+      internalID: 6256030478853089511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_57
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 120
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4b1bf0a9f224710800000000000000
+      internalID: 1675954350070019326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_58
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 115
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b173a15e09c9db900800000000000000
+      internalID: 701889263072589595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_59
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 105
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e26db84b7e422740800000000000000
+      internalID: 5125745617309360871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_60
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 120
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51ce819b2fc4ac700800000000000000
+      internalID: 561345708932262933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_61
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 115
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fac2c7accf679dc00800000000000000
+      internalID: 925902026502319279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_62
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 101
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e3ccc13ad8fe0850800000000000000
+      internalID: 6345282541033669605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_63
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 78
+        width: 40
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcc0ee224eebf5f50800000000000000
+      internalID: 6872421443438513357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_64
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 83
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff0cc04dc8bd74890800000000000000
+      internalID: -7473763658698538753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_65
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 104
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f58d4d6bbd2b8730800000000000000
+      internalID: 4002342976864749042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_66
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 44
+        width: 36
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 187f7bea28bf86b80800000000000000
+      internalID: -8401188566164047999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_67
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 33
+        width: 43
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97136d79a203a5540800000000000000
+      internalID: 4997359696015143289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_68
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 76
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a6f90c8bcc76f5a0800000000000000
+      internalID: -6487860999510952281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_69
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 78
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 439a1598f3ceffe40800000000000000
+      internalID: 5692528211650521396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_70
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 85
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70433465d01474b10800000000000000
+      internalID: 1965611287908135943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_71
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 24
+        width: 29
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7446909e7673301c0800000000000000
+      internalID: -4538723080028462009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healling_00025_72
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 47
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c1512a86035afe0800000000000000
+      internalID: -1178482501533492078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Healling_00025_0: -1504145118490460837
+      Healling_00025_1: -2851782951505412128
+      Healling_00025_10: 2593778841746804583
+      Healling_00025_11: -3953561058248979018
+      Healling_00025_12: -306675955240096749
+      Healling_00025_13: -6032827057468306434
+      Healling_00025_14: -1217944729743109516
+      Healling_00025_15: -1611490094693706338
+      Healling_00025_16: -2757209898388253661
+      Healling_00025_17: 6264784899927625935
+      Healling_00025_18: 162233215577191610
+      Healling_00025_19: -5896737837553292281
+      Healling_00025_2: -5335231830580177881
+      Healling_00025_20: -2956238819201172840
+      Healling_00025_21: 8930638294284188122
+      Healling_00025_22: 9027642745144617125
+      Healling_00025_23: -7347204034365957374
+      Healling_00025_24: -4146724967243074923
+      Healling_00025_25: 1896707642447060505
+      Healling_00025_26: 2697977752536110099
+      Healling_00025_27: -5251248512196376261
+      Healling_00025_28: -2384827727751139208
+      Healling_00025_29: 2521112528282904579
+      Healling_00025_3: -5476540885793265081
+      Healling_00025_30: -819297657880796763
+      Healling_00025_31: 3725034529626003711
+      Healling_00025_32: 696558617191732450
+      Healling_00025_33: 355973936522644283
+      Healling_00025_34: 8681278750587280737
+      Healling_00025_35: -7782725139141189491
+      Healling_00025_36: 4126641532852765846
+      Healling_00025_37: -5114345508462516015
+      Healling_00025_38: 1010249401590420736
+      Healling_00025_39: 5269244344660241202
+      Healling_00025_4: 5540263501721811934
+      Healling_00025_40: 4502163915671223657
+      Healling_00025_41: -7639609161715578110
+      Healling_00025_42: 6806627435186609171
+      Healling_00025_43: 4265343626934820886
+      Healling_00025_44: 8484431057976157944
+      Healling_00025_45: -5735912558060804318
+      Healling_00025_46: 8923141395992888868
+      Healling_00025_47: 3480728483103271559
+      Healling_00025_48: 781938664275057845
+      Healling_00025_49: -1301926977335021591
+      Healling_00025_5: 747301397988852998
+      Healling_00025_50: -1054537004615057899
+      Healling_00025_51: -5203630165509825538
+      Healling_00025_52: -4393217704892619329
+      Healling_00025_53: 4393441959638437510
+      Healling_00025_54: 22837871448907719
+      Healling_00025_55: 6636823676019755316
+      Healling_00025_56: 6256030478853089511
+      Healling_00025_57: 1675954350070019326
+      Healling_00025_58: 701889263072589595
+      Healling_00025_59: 5125745617309360871
+      Healling_00025_6: -4541479105204898681
+      Healling_00025_60: 561345708932262933
+      Healling_00025_61: 925902026502319279
+      Healling_00025_62: 6345282541033669605
+      Healling_00025_63: 6872421443438513357
+      Healling_00025_64: -7473763658698538753
+      Healling_00025_65: 4002342976864749042
+      Healling_00025_66: -8401188566164047999
+      Healling_00025_67: 4997359696015143289
+      Healling_00025_68: -6487860999510952281
+      Healling_00025_69: 5692528211650521396
+      Healling_00025_7: -7620517796893811357
+      Healling_00025_70: 1965611287908135943
+      Healling_00025_71: -4538723080028462009
+      Healling_00025_72: -1178482501533492078
+      Healling_00025_8: -2139363232000787668
+      Healling_00025_9: 4586390060417727994
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

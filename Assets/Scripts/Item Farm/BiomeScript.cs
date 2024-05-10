@@ -33,6 +33,9 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     [SerializeField] private GameObject lockedGO;
 
 
+    private float savedTime;
+
+
     private void Awake()
     {
         seedIcon = dragObject.GetComponent<Image>();
@@ -46,6 +49,7 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
             default: Debug.LogWarning("CHECK HERE ASAP"); break;
         }
         seedIcon.sprite = holdingSeed.IconRefrence();
+        savedTime = Time.time;
     }
 
 
@@ -53,6 +57,14 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     {
         currentRefilTimer = 0;
         currentStack = 0;
+        UpdateText();
+        float currentSavedTime = Time.time - savedTime;
+        int count = (int)(currentSavedTime / refilTimer);
+        if (count > 0)
+        {
+            currentStack = count;
+        }
+        currentRefilTimer = currentSavedTime % refilTimer;
         UpdateText();
     }
 

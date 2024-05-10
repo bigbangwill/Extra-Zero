@@ -233,6 +233,7 @@ public class DeviceStateSetter : MonoBehaviour
     public void FinishTheWave()
     {
         GameModeState.IsFinished = true;
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Menu Scene");
     }
 }

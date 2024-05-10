@@ -66,6 +66,14 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
 
         description.text = campaignNode.GetDescription();
         costText.text = campaignNode.GetEnergyCost().ToString();
+        if (campaignNode.GetEnergyCost() > economyManager.CampaignEnergyCurrentStack)
+        {
+            costText.color = Color.red;
+        }
+        else
+        {
+            costText.color = Color.black;
+        }
         if (campaignNode.IsUnlocked && campaignNode.GetEnergyCost() <= economyManager.CampaignEnergyCurrentStack)
         {
             startButton.interactable = true;
@@ -89,7 +97,8 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
         GameModeState.IsCampaignMode = true;
         GameModeState.IsFinished = false;
         GameModeState.MilestoneReward = currentActiveNode.GetMilestone();
-        economyManager.CampaignEnergyCurrentStack -= currentActiveNode.GetEnergyCost();
+        //************
+        //economyManager.CampaignEnergyCurrentStack -= currentActiveNode.GetEnergyCost();
         if (currentActiveNode.Dialogue != null)
             GameModeState.CurrentDialogue = currentActiveNode.Dialogue;
         else

@@ -34,6 +34,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Transform mainCamera;
     [SerializeField] private Vector3 cameraLocalPosition;
 
+    [SerializeField] private CycleInformation cycleInformation;
+
 
     private bool shouldMove = false;
     private Vector2 movingObject;
@@ -170,6 +172,7 @@ public class DialogueManager : MonoBehaviour
     public void FinishedDialogue()
     {
         mainCamera.localPosition = cameraLocalPosition;
+        cycleInformation.StartCounter();
         gameObject.SetActive(false);
     }
 

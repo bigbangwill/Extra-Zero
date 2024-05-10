@@ -106,7 +106,8 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         _CurrentHealth++;
         Debug.Log($"Repaired and current health is {_CurrentHealth}");
         TurnUIUXOn();
-        SetHealthImage();
+        StartCoroutine(HealingCou());
+        //SetHealthImage();
         return true;
     }
 
@@ -122,7 +123,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         {
             StartCoroutine(DamageCou());
         }
-        SetHealthImage();
+        //SetHealthImage();
         if (targeted)
         {
             usableRefrence.val.CallRepair();
@@ -139,6 +140,17 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         while(true)
         {
             damageAnimtor.SetTrigger("Damaged");
+            yield return new WaitForSeconds(0.7f);
+            SetAnimation();
+            yield break;
+        }
+    }
+
+    private IEnumerator HealingCou()
+    {
+        while (true)
+        {
+            damageAnimtor.SetTrigger("Healing");
             yield return new WaitForSeconds(0.7f);
             SetAnimation();
             yield break;
@@ -162,7 +174,7 @@ public class OrderPostHealth : MonoBehaviour, IRepairable
         healthUnlocked = 3;
         _CurrentHealth = healthUnlocked;
         recoverReceipeList = new HealthRecoverReceipe[maxHealth];
-        SetHealthImage();
+        //SetHealthImage();
         for (int i = 0; i < maxHealth; i++)
         {
             recoverReceipeList[i] = new HealthRecoverReceipe(i);
