@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Security;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,8 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
     [SerializeField] private Button startButton;
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private TextMeshProUGUI costText;
+
+    [SerializeField] private RectTransform content;
 
     [SerializeField] private List<CampaignNodeScript> campaignNodes = new();
 
@@ -45,9 +48,18 @@ public class CampaignInfoUI : MonoBehaviour, ISaveable, ILoadDependent
         {
             LoadSORefrence();
             AddISaveableToDictionary();
-            ResetDoneNodes();
+            ResetDoneNodes();            
+        }
+        if (GameModeState.IsContentPosSet)
+        {
+            content.position = GameModeState.ContentPos;
         }
     }
+    private void OnDestroy()
+    {
+        GameModeState.ContentPos = content.position;
+    }
+
 
     public void SetInfoPanelActive(CampaignNodeScript campaignNode)
     {

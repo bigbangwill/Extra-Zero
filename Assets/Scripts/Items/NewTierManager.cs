@@ -43,6 +43,8 @@ public class NewTierManager : MonoBehaviour
 
 
     private EconomyManager economyManager;
+    private EventTextManager eventTextManager;
+
     private NewTierManagerRefrence refrence;
 
 
@@ -59,6 +61,8 @@ public class NewTierManager : MonoBehaviour
     private void LoadSORefrence()
     {
         economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
+        eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
+
     }
 
 
@@ -104,82 +108,6 @@ public class NewTierManager : MonoBehaviour
         milestoneThirdTier = new();
         milestoneForthTier = new();
         currentActiveMilestone = new();
-    }
-
-    private void InitTierCraftedList()
-    {
-        List<Type> craftedItems = Assembly.GetAssembly(typeof(BluePrintItem)).GetTypes().ToList().
-            Where(Thetype => Thetype.IsClass &&
-            !Thetype.IsAbstract && Thetype.IsSubclassOf(typeof(BluePrintItem))).ToList();
-
-        foreach (var item in craftedItems)
-        {
-            BluePrintItem target = (BluePrintItem)Activator.CreateInstance(item);
-            int highestTier = 0;
-            foreach (var material in target.materialsList)
-            {
-                if (material.GetItemTier() > highestTier)
-                {
-                    highestTier = material.GetItemTier();
-                }
-            }
-            switch (highestTier)
-            {
-                case 1: firstTierItems.Add(target.CraftedItemReference()); break;
-                case 2: secondTierItems.Add(target.CraftedItemReference()); break;
-                case 3: thirdTierItems.Add(target.CraftedItemReference()); break;
-                case 4: forthTierItems.Add(target.CraftedItemReference()); break;
-                default: Debug.LogWarning("CHECK HERE ASAP"); break;
-            }
-        }
-        craftedItems.Clear();
-        craftedItems = Assembly.GetAssembly(typeof(MaterialItem))
-        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(MaterialItem))).ToList();
-        foreach (var item in craftedItems)
-        {
-            MaterialItem target = (MaterialItem)Activator.CreateInstance(item);
-            switch (target.GetItemTier())
-            {
-                case 1: firstTierItems.Add(target); break;
-                case 2: secondTierItems.Add(target); break;
-                case 3: thirdTierItems.Add(target); break;
-                case 4: forthTierItems.Add(target); break;
-                default: Debug.LogWarning("CHECK HERE ASAP"); break;
-            }
-            //firstTierItems.Add(target);
-        }
-        craftedItems.Clear();
-        craftedItems = Assembly.GetAssembly(typeof(Herb))
-        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Herb))).ToList();
-        foreach (var item in craftedItems)
-        {
-            Herb target = (Herb)Activator.CreateInstance(item);
-            switch (target.GetHerbTier())
-            {
-                case 1: firstTierItems.Add(target); break;
-                case 2: secondTierItems.Add(target); break;
-                case 3: thirdTierItems.Add(target); break;
-                case 4: forthTierItems.Add(target); break;
-                default: Debug.LogWarning("CHECK HERE ASAP"); break;
-            }
-            //firstTierItems.Add(target);
-        }
-        craftedItems.Clear();
-        craftedItems = Assembly.GetAssembly(typeof(Seed))
-        .GetTypes().Where(TheType => TheType.IsClass && !TheType.IsAbstract && TheType.IsSubclassOf(typeof(Seed))).ToList();
-        foreach (var item in craftedItems)
-        {
-            Seed target = (Seed)Activator.CreateInstance(item);
-            switch (target.GetSeedTier())
-            {
-                case 1: firstTierItems.Add(target); break;
-                case 2: secondTierItems.Add(target); break;
-                case 3: thirdTierItems.Add(target); break;
-                case 4: forthTierItems.Add(target); break;
-                default: Debug.LogWarning("CHECK HERE ASAP"); break;
-            }
-            //firstTierItems.Add(Target);
-        }
     }
 
     private void InitNewTierCraftedList()
@@ -569,12 +497,13 @@ public class NewTierManager : MonoBehaviour
         switch (unlockedTier)
         {
             case 1: currentActiveMilestone = milestoneFirstTier; break;
-            case 2: currentActiveMilestone = milestoneSecondTier; break;
-            case 3: currentActiveMilestone = milestoneThirdTier; break;
-            case 4: currentActiveMilestone = milestoneForthTier; break;
+            case 2: currentActiveMilestone = milestoneSecondTier; eventTextManager.CreateNewText("Tier Upgraded", TextType.Information); break;
+            case 3: currentActiveMilestone = milestoneThirdTier; eventTextManager.CreateNewText("Tier Upgraded", TextType.Information);break;
+            case 4: currentActiveMilestone = milestoneForthTier; eventTextManager.CreateNewText("Tier Upgraded", TextType.Information); break;
             case 5: winScreenCanvas.gameObject.SetActive(true); break;
             default: Debug.LogWarning("Check here asap"); break;
         }
+        
 
         OnTierChangedEvent?.Invoke();
     }

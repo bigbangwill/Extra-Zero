@@ -5,6 +5,8 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class OrderManager : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class OrderManager : MonoBehaviour
 
     [SerializeField] private CycleInformation cycleInformationScript;
 
+    [SerializeField] private Button skipNightButton;
 
     private List<WalkingOrder> activeWalkingOrders = new();
     private WaveDifficultySO currentWaveDifficulty;
@@ -152,8 +155,15 @@ public class OrderManager : MonoBehaviour
     private void FinishWave()
     {
         isWaveSpawnTime = false;
-        currentPendingCoroutine = StartCoroutine(WaitForPendingOrders());
-        eventTextManager.CreateNewText("Finish these orders and rest up while you can!", TextType.Information);
+        if (activeWalkingOrders.Count > 0)
+        {
+            currentPendingCoroutine = StartCoroutine(WaitForPendingOrders());
+            eventTextManager.CreateNewText("Finish these orders and rest up while you can!", TextType.Information);
+        }
+        else
+        {
+            StartNightTime();
+        }
     }
 
     private void StartNightTime()
@@ -164,6 +174,7 @@ public class OrderManager : MonoBehaviour
         }
         isNightTime = true;
         nightCurrentTimer = 0;
+        skipNightButton.gameObject.SetActive(true);
         nightMaxTimer = currentWaveDifficulty.GetNightMaxTime();
         waveChosingUI.CreateWaveOptionUI();
         eventTextManager.CreateNewText("Night time!",TextType.Information);
@@ -184,6 +195,12 @@ public class OrderManager : MonoBehaviour
             //Debug.Log("Wave Finished");
         }
     }
+
+    public void SkipNightTime()
+    {        
+        FinishNightTime();
+    }
+
 
 
     private IEnumerator WaitForPendingOrders()

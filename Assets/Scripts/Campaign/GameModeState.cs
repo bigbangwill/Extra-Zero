@@ -34,6 +34,10 @@ public static class GameModeState
     private static CampaignRewardEnum milestoneReward = CampaignRewardEnum.none;
 
 
+    private static bool isContentPosSet = false;
+    private static Vector3 contentPos;
+
+
 
     public static bool ScannerIsUnlocked { get => scannerIsUnlocked; set => scannerIsUnlocked = value; }
     public static bool ComputerIsUnlocked { get => computerIsUnlocked; set => computerIsUnlocked = value; }
@@ -59,4 +63,6 @@ public static class GameModeState
     public static bool MenuShopIsUnlocked { get => menuShopIsUnlocked; set => menuShopIsUnlocked = value; }
 
     public static CampaignRewardEnum MilestoneReward { get => milestoneReward; set => milestoneReward = value; }
+    public static Vector3 ContentPos { get => contentPos; set { isContentPosSet = true; contentPos = value; } }
+    public static bool IsContentPosSet { get => isContentPosSet;}
 }

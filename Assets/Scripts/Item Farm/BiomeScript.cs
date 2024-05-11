@@ -62,7 +62,14 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         int count = (int)(currentSavedTime / refilTimer);
         if (count > 0)
         {
-            currentStack = count;
+            if (count > maxStack)
+            {
+                currentStack = maxStack;
+            }
+            else
+            {
+                currentStack = count;
+            }
         }
         currentRefilTimer = currentSavedTime % refilTimer;
         UpdateText();

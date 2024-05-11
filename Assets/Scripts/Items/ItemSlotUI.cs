@@ -52,10 +52,9 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         stackText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         isStarted = true;
         stackText.text = " ";
-
         m_EventSystem = EventSystem.current;
         m_GraphicRaycaster = GetComponentInParents<GraphicRaycaster>();
-
+        LoadIcon();
     }
 
     /// <summary>
@@ -82,15 +81,25 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         return component;
     }
 
-    private void Update()
+    //private void Update()
+    //{
+    //    if (imageComponent.sprite == null)
+    //    {
+    //        itemSlot = stashable.ItemRefrence(slotNumber);
+    //        GetComponent<Image>().sprite = itemSlot.IconRefrence();
+    //        RefreshText();
+    //    }
+    //}
+
+
+    private void LoadIcon()
     {
-        if (imageComponent.sprite == null)
-        {
-            itemSlot = stashable.ItemRefrence(slotNumber);
-            GetComponent<Image>().sprite = itemSlot.IconRefrence();
-            RefreshText();
-        }
+        itemSlot = stashable.ItemRefrence(slotNumber);
+        GetComponent<Image>().sprite = itemSlot.IconRefrence();
+        RefreshText();
     }
+
+
 
     // To reset the icon of the item
     public void Reset()
@@ -99,6 +108,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         {
             imageComponent.sprite = null;
             stackText.text = " ";
+            LoadIcon();
         }
     }
 
