@@ -116,10 +116,11 @@ public class PlayerInventory : MonoBehaviour ,IStashable
         //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
         //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
 
-        //AddItemToInventory(new MaterialItem.Plastic(10));
+        AddItemToInventory(new MaterialItem.Plastic(10));
+        AddItemToInventory(new MaterialItem.Plastic(9));
         //AddItemToInventory(new MaterialItem.AluminumAlloy(10));
-        //AddItemToInventory(new MaterialItem.Ceramic(10));
-        //AddItemToInventory(new MaterialItem.StainlessSteel(10));
+        AddItemToInventory(new MaterialItem.Ceramic(10));
+        AddItemToInventory(new MaterialItem.Ceramic(9));
         //AddItemToInventory(new MaterialItem.TitaniumAlloy(10));
         //AddItemToInventory(new BluePrintItem.WalkingStick());
         //AddItemToInventory(new BluePrintItem.Hoe());

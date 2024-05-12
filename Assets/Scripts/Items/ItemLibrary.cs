@@ -170,6 +170,8 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
     {
         return MemberwiseClone();
     }
+
+
 }
 
 public class EmptyItem : ItemBehaviour

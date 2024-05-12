@@ -166,6 +166,32 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             if (result.gameObject.CompareTag("Item Slot"))
             {
                 ItemSlotUI targetSwap = result.gameObject.transform.GetChild(0).GetComponent<ItemSlotUI>();
+
+                ItemBehaviour targetItem = stashable.ItemRefrence(targetSwap.slotNumber);
+                ItemBehaviour dragItem = stashable.ItemRefrence(slotNumber);
+
+                if(targetItem.IsStackable() && targetSwap.slotNumber != slotNumber && targetItem.Equals(dragItem))
+                {
+                    if (targetItem.CurrentStack() + dragItem.CurrentStack() <= targetItem.MaxStack())
+                    {
+                        targetItem.SetCurrentStack(targetItem.CurrentStack() + dragItem.CurrentStack());
+                        targetSwap.Reset();
+                        stashable.RemoveItemFromInventory(slotNumber);
+                        Debug.Log("1");
+                        Reset();
+                    }
+                    else
+                    {
+                        int cachedTargetStack = targetItem.CurrentStack();
+                        int addedCount = targetItem.MaxStack() - cachedTargetStack;
+                        targetItem.SetCurrentStack(targetItem.MaxStack());
+                        dragItem.SetCurrentStack(dragItem.CurrentStack() - addedCount);
+                        targetSwap.Reset();
+                        Debug.Log("2");
+                        Reset();
+                    }
+                    return;
+                }
                 int targetSlotNumber = targetSwap.slotNumber;
                 int selfSlotNumber = slotNumber;
                 targetSwap.slotNumber = slotNumber;
