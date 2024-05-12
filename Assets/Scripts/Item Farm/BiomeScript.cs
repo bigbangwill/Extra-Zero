@@ -50,29 +50,36 @@ public class BiomeScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         }
         seedIcon.sprite = holdingSeed.IconRefrence();
         savedTime = Time.time;
+        currentRefilTimer = 0;
+        currentStack = 0;
     }
 
 
     private void OnEnable()
     {
-        currentRefilTimer = 0;
-        currentStack = 0;
-        UpdateText();
+        //currentRefilTimer = 0;
+        //currentStack = 0;
+        //UpdateText();
         float currentSavedTime = Time.time - savedTime;
         int count = (int)(currentSavedTime / refilTimer);
         if (count > 0)
         {
-            if (count > maxStack)
+            if (count + currentStack >= maxStack)
             {
                 currentStack = maxStack;
             }
             else
             {
-                currentStack = count;
+                currentStack += count;
             }
         }
-        currentRefilTimer = currentSavedTime % refilTimer;
+        currentRefilTimer += currentSavedTime % refilTimer;
         UpdateText();
+    }
+
+    private void OnDisable()
+    {
+        savedTime = Time.time;
     }
 
 

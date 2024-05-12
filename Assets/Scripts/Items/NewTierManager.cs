@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Unity.VisualScripting;
+using UnityEditor.Build.Pipeline.Tasks;
 using UnityEngine;
 
 public class NewTierManager : MonoBehaviour
@@ -148,12 +149,30 @@ public class NewTierManager : MonoBehaviour
             SetPotionEffectTiers();
         }
 
-        if (GameModeState.MilestoneReward != CampaignRewardEnum.none)
+        if (GameModeState.MilestoneReward != CampaignRewardEnum.none && !CheckIsUnlocked())
         {
             AddMileStone();
         }
 
     }
+
+    private bool CheckIsUnlocked()
+    {
+        switch (GameModeState.MilestoneReward)
+        {
+            case CampaignRewardEnum.shopStation: if (GameModeState.ShopStationIsUnlocked) return true; break;
+            case CampaignRewardEnum.materialFarm: if (GameModeState.MaterialFarmIsUnlocked) return true; break;
+            case CampaignRewardEnum.seedFarm: if (GameModeState.SeedFarmIsUnlocked) return true; break;
+            case CampaignRewardEnum.herbalismPost: if (GameModeState.HerbalismPostIsUnlocked) return true; break;
+            case CampaignRewardEnum.alchemyPost: if (GameModeState.AlchemyPostIsUnlocked) return true; break;
+            case CampaignRewardEnum.computer: if (GameModeState.ComputerIsUnlocked) return true; break;
+            case CampaignRewardEnum.scanner: if(GameModeState.ScannerIsUnlocked) return true; break;
+            case CampaignRewardEnum.printer: if (GameModeState.PrinterIsUnlocked) return true; break;
+            default: Debug.LogWarning("CHECK HERE ASAP"); return true;
+        }
+        return false;
+    }
+
 
     private void AddMileStone()
     {

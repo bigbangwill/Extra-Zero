@@ -3008,8 +3008,8 @@ MonoBehaviour:
   alchemyPost: 0
   waveSelector: 0
   quantumStation: 0
-  materialFarm: 0
-  seedFarm: 0
+  materialFarm: 1
+  seedFarm: 1
   tierStation: 0
   shopStation: 0
   lavaBucket: 0

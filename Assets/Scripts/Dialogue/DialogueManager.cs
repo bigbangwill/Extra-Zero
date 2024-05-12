@@ -167,12 +167,10 @@ public class DialogueManager : MonoBehaviour
             textObject.text = string.Empty;
             leftToShow = currentNode.GetText();
             isAdding = true;
-            Debug.Log("Inside if");
         }
         else
         {
             FinishedDialogue();
-            Debug.Log("outside if");
             return;
         }
     }
