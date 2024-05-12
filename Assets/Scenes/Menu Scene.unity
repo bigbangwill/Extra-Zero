@@ -3003,13 +3003,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scanner: 0
   computer: 0
-  printer: 0
+  printer: 1
   herbalismPost: 0
   alchemyPost: 0
-  waveSelector: 0
+  waveSelector: 1
   quantumStation: 0
-  materialFarm: 1
-  seedFarm: 1
+  materialFarm: 0
+  seedFarm: 0
   tierStation: 0
   shopStation: 0
   lavaBucket: 0

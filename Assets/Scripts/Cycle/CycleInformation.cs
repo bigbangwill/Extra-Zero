@@ -16,6 +16,10 @@ public class CycleInformation : MonoBehaviour
     private int maxTimer = 60;
     private int currentTimer = 0;
 
+    private bool isRunning = false;
+
+
+    Coroutine runningCoroutine;
 
 
     private OrderManagerRefrence orderManagerRefrence;
@@ -45,6 +49,12 @@ public class CycleInformation : MonoBehaviour
 
     public void StartGame()
     {
+        if (isRunning)
+        {
+            isRunning = false;
+            if(runningCoroutine != null)
+                StopCoroutine(runningCoroutine);
+        }
         orderManagerRefrence.val.StartGame();
     }
 
@@ -52,7 +62,8 @@ public class CycleInformation : MonoBehaviour
     public void StartCounter()
     {
         currentTimer = maxTimer;
-        StartCoroutine(WaveStartCounter());
+        isRunning = true;
+        runningCoroutine = StartCoroutine(WaveStartCounter());
     }
 
 
@@ -63,6 +74,8 @@ public class CycleInformation : MonoBehaviour
             if (currentTimer <= 0)
             {
                 startButton.gameObject.SetActive(false);
+                isRunning = false;
+                runningCoroutine = null;
                 StartGame();
                 yield break;
             }

@@ -124,7 +124,6 @@ public class OrderManager : MonoBehaviour
     /// <param name="waveDifficulty"></param>
     public void StartNewWave(WaveDifficultySO waveDifficulty)
     {
-        Debug.LogWarning("Check here");
         eventTextManager.CreateNewText("It's Day time!", TextType.Warning);
         currentWaveDifficulty = waveDifficulty;
         currentWaveNumber++;
