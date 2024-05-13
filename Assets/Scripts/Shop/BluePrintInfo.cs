@@ -38,7 +38,7 @@ public class BluePrintInfo : MonoBehaviour
         economyManager = ((EconomyManagerRefrence)FindSORefrence<EconomyManager>.FindScriptableObject("Economy Manager Refrence")).val;
         inventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
         eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
-        Debug.Log(economyManager, economyManager.gameObject);
+        //Debug.Log(economyManager, economyManager.gameObject);
         isLoaded = true;
     }
 

@@ -43,6 +43,9 @@ public class OrderPost : MonoBehaviour
 
     private bool isCampaign = false;
 
+    private int currentFullCounter = 0;
+    private int maxFullCounter = 10;
+
     private OrderManagerRefrence orderManagerRefrence;
     private NewTierManager tierManager;
     private EconomyManager economyManager;
@@ -97,7 +100,6 @@ public class OrderPost : MonoBehaviour
             }
         }
     }
-
 
     public void StrenghtTimeAmount(float speed)
     {
@@ -163,14 +165,15 @@ public class OrderPost : MonoBehaviour
         {
             int random = UnityEngine.Random.Range(0, orderableItems.Count);
             ItemBehaviour item; 
-            if (!isPrecisionPotionMarked)
+            if (isPrecisionPotionMarked || currentFullCounter >= maxFullCounter)
             {
-                item = orderableItems[random];
+                item = tierManager.GetRandomCurrentMilestoneItem();
+                currentFullCounter = 0;
+                isPrecisionPotionMarked = false;
             }
             else
             {
-                item = tierManager.GetRandomCurrentMilestoneItem();
-                isPrecisionPotionMarked = false;
+                item = orderableItems[random];
             }
 
             item.Load();
@@ -228,7 +231,11 @@ public class OrderPost : MonoBehaviour
     {
         postUI.SetOrderImage(currentOrder);
     }
+
+
     
+
+
     /// <summary>
     /// Gets called from order class its self to mark the current order to finish.
     /// </summary>
@@ -236,6 +243,7 @@ public class OrderPost : MonoBehaviour
     {
         postUI.SetOrderImage(currentOrder);
         tierManager.MilestoneCheckItem(currentOrder.GetFilledItems());
+        currentFullCounter += currentOrder.TotalItemCount();
         Debug.Log("Fullfilled");
         economyManager.QuantumQuartersCurrentStack += 1 * currentOrder.TotalItemCount();
         if(!isCampaign)

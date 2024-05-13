@@ -184,6 +184,7 @@ public class OrderManager : MonoBehaviour
     private void FinishNightTime()
     {
         isNightTime = false;
+        skipNightButton.gameObject.SetActive(false);
         waveChosingUI.GetNextWaveAndExecuteEffects();
     }
 

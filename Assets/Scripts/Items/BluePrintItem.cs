@@ -339,7 +339,7 @@ public abstract class BluePrintItem : ItemBehaviour
             specificName = "Insulation Foam";
             importTimer = 15;
             craftTimer = 2;
-            purchaseCost = 2;
+            purchaseCost = 1;
             materialsList.Add(new MaterialItem.Plastic(3));
             Load();
         }
