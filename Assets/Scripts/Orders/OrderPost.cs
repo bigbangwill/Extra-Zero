@@ -181,7 +181,8 @@ public class OrderPost : MonoBehaviour
             {
                 item.SetCurrentStack(3);
             }
-            targetItems.Add(orderableItems[random]);
+            ItemBehaviour clone = (ItemBehaviour)item.Clone();
+            targetItems.Add(clone);
         }
         Order creatingOrder = new(targetItems, this,orderTimer);
         return creatingOrder;

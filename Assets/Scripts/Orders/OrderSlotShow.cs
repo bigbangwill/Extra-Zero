@@ -8,6 +8,7 @@ public class OrderSlotShow : MonoBehaviour
 {
     private SpriteRenderer image;
     [SerializeField] private TextMeshProUGUI stack;
+    [SerializeField] private TextMeshProUGUI itemName;
 
     public enum OrderState { notFilled,filled,failed}
 
@@ -21,6 +22,7 @@ public class OrderSlotShow : MonoBehaviour
     public void SetOrder(ItemBehaviour target,OrderState state)
     {
         image.sprite = target.IconRefrence();
+        itemName.text = target.GetName();
         if (target.IsStackable())
         {
             stack.text = target.CurrentStack().ToString();
@@ -43,5 +45,6 @@ public class OrderSlotShow : MonoBehaviour
         image.sprite = null;
         stack.text = string.Empty;
         image.color = Color.white;
+        itemName.text= string.Empty;
     }
 }

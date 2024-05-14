@@ -23,6 +23,7 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
     protected string itemName;
     protected Sprite itemIcon;
     protected Sprite itemSprite;
+    protected int orderShowSlot;
 
     protected bool is_Activeable = false;
 
@@ -170,6 +171,18 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
     {
         return MemberwiseClone();
     }
+
+
+    public void SetOrderShowSlot(int i)
+    {
+        orderShowSlot = i;
+    }
+
+    public int GetOrderShowSlot()
+    {
+        return orderShowSlot;
+    }
+
 
 
 }
