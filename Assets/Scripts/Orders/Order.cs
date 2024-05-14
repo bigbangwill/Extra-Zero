@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Order
 {
+
+
+
+
+
     private List<ItemBehaviour> orderItems = new();
     private List<ItemBehaviour> fulfilledItems = new();
 
