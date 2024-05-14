@@ -1,11 +1,8 @@
 using NavMeshPlus.Components;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Unity.VisualScripting;
-using UnityEditor.Build.Pipeline.Tasks;
 using UnityEngine;
 
 public class NewTierManager : MonoBehaviour

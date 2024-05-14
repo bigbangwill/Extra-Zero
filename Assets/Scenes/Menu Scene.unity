@@ -21441,7 +21441,7 @@ MonoBehaviour:
   outGameCurrencyCurrentStack: 5
   outGameCurrencyMaxStack: 10
   quantumQuartersCurrentStack: 6
-  quantumQuartersMaxStack: 10
+  quantumQuartersMaxStack: 20
   campaignEnergyCurrentStack: 5
   campaignEnergyMaxStack: 10
 --- !u!4 &1778064552

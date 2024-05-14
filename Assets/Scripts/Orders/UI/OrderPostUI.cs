@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class OrderPostUI : MonoBehaviour
 {
+    [SerializeField] private List<OrderSlotShow> orderSlotShows = new();
 
-    [SerializeField] private GameObject imagePrefab;
-    [SerializeField] private GameObject filledImagePrefab;
-    [SerializeField] private GameObject unFilledImagePrefab;
-    [SerializeField] private Image image;
+    private List<ItemBehaviour> holdingList = new();
 
 
     /// <summary>
@@ -19,47 +19,70 @@ public class OrderPostUI : MonoBehaviour
     /// <param name="order"></param>
     public void SetOrderImage(Order order)
     {
-        foreach (Transform child in transform)
+        holdingList.Clear();
+        foreach(OrderSlotShow show in orderSlotShows)
         {
-            Destroy(child.gameObject);
-        }
-        foreach(ItemBehaviour item in order.GetOrderItems())
-        {
-            GameObject go = Instantiate(imagePrefab);
-            go.GetComponent<Image>().sprite = item.IconRefrence();
-            string stackText;
-            if (item.IsStackable())
-                stackText = item.CurrentStack().ToString();
-            else
-                stackText = string.Empty;
-            go.GetComponentInChildren<TextMeshProUGUI>().text = stackText;
-            go.transform.SetParent(transform, false);
-        }
-        foreach (ItemBehaviour item in order.GetFilledItems())
-        {
-            GameObject go = Instantiate(filledImagePrefab);
-            go.GetComponent<Image>().sprite = item.IconRefrence();
-            go.transform.SetParent(transform, false);
-        }
-    }
-
-    public void SetUnfullfilledOrderImage(Order order)
-    {
-        foreach (Transform child in transform)
-        {
-            Destroy(child.gameObject);
+            show.Reset();
         }
         foreach (ItemBehaviour item in order.GetOrderItems())
         {
-            GameObject go = Instantiate(unFilledImagePrefab);
-            go.GetComponent<Image>().sprite = item.IconRefrence();
-            go.transform.SetParent(transform, false);
+            holdingList.Add(item);
+        }
+        RefreshUI(order);
+    }
+
+
+
+    public void RefreshUI(Order order)
+    {
+        foreach (OrderSlotShow show in orderSlotShows)
+        {
+            show.Reset();
+        }
+        foreach (ItemBehaviour item in order.GetOrderItems())
+        {
+            for (int i = 0; i < holdingList.Count; i++)
+            {
+                if (item.Equals(holdingList[i]))
+                    orderSlotShows[i].SetOrder(item, OrderSlotShow.OrderState.notFilled);
+            }
+
+
         }
         foreach (ItemBehaviour item in order.GetFilledItems())
         {
-            GameObject go = Instantiate(filledImagePrefab);
-            go.GetComponent<Image>().sprite = item.IconRefrence();
-            go.transform.SetParent(transform, false);
+            for (int i = 0; i < holdingList.Count; i++)
+            {
+                if (item.Equals(holdingList[i]))
+                    orderSlotShows[i].SetOrder(item, OrderSlotShow.OrderState.filled);
+            }
+        }
+    }
+
+
+    public void SetUnfullfilledOrderImage(Order order)
+    {
+        foreach (OrderSlotShow show in orderSlotShows)
+        {
+            show.Reset();
+        }
+        foreach (ItemBehaviour item in order.GetOrderItems())
+        {
+            for (int i = 0; i < holdingList.Count; i++)
+            {
+                if (item.Equals(holdingList[i]))
+                    orderSlotShows[i].SetOrder(item, OrderSlotShow.OrderState.notFilled);
+            }
+
+        }
+        foreach (ItemBehaviour item in order.GetFilledItems())
+        {
+
+            for (int i = 0; i < holdingList.Count; i++)
+            {
+                if (item.Equals(holdingList[i]))
+                    orderSlotShows[i].SetOrder(item, OrderSlotShow.OrderState.filled);
+            }
         }
     }
     

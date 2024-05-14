@@ -216,7 +216,7 @@ public class OrderPost : MonoBehaviour
             {
                 if (currentOrder != null)
                 {
-                    postUI.SetOrderImage(currentOrder);
+                    postUI.RefreshUI(currentOrder);
                     return;
                 }
             }
@@ -229,7 +229,7 @@ public class OrderPost : MonoBehaviour
 
     public void RefreshUI()
     {
-        postUI.SetOrderImage(currentOrder);
+        postUI.RefreshUI(currentOrder);
     }
 
 
@@ -241,7 +241,7 @@ public class OrderPost : MonoBehaviour
     /// </summary>
     public void CurrentOrderFullfilled()
     {
-        postUI.SetOrderImage(currentOrder);
+        postUI.RefreshUI(currentOrder);
         tierManager.MilestoneCheckItem(currentOrder.GetFilledItems());
         currentFullCounter += currentOrder.TotalItemCount();
         Debug.Log("Fullfilled");
