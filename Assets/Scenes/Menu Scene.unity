@@ -3004,12 +3004,12 @@ MonoBehaviour:
   scanner: 0
   computer: 0
   printer: 0
-  herbalismPost: 0
+  herbalismPost: 1
   alchemyPost: 0
   waveSelector: 0
   quantumStation: 0
   materialFarm: 0
-  seedFarm: 0
+  seedFarm: 1
   tierStation: 0
   shopStation: 0
   lavaBucket: 0

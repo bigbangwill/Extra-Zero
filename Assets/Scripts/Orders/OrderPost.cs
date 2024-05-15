@@ -44,7 +44,7 @@ public class OrderPost : MonoBehaviour
     private bool isCampaign = false;
 
     private int currentFullCounter = 0;
-    private int maxFullCounter = 10;
+    private int maxFullCounter = 7;
 
     private OrderManagerRefrence orderManagerRefrence;
     private NewTierManager tierManager;

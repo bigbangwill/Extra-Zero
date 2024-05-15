@@ -24,6 +24,7 @@ public class HerbalismPost : MonoBehaviour
     private HerbalismPostRefrence refrence;
     private PlayerInventoryRefrence inventoryRefrence;
     private EventTextManager eventTextManager;
+    private PlayerInventory playerInventory;
 
     private void SetRefrence()
     {
@@ -41,6 +42,7 @@ public class HerbalismPost : MonoBehaviour
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
         eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
+        playerInventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
     }
 
     private void Awake()
@@ -48,19 +50,77 @@ public class HerbalismPost : MonoBehaviour
         SetRefrence();
     }
 
+
+    private List<Seed> inventorySeedsList = new();
+
+    [SerializeField] private GrabButton chamomile;
+    [SerializeField] private GrabButton lavendar;
+    [SerializeField] private GrabButton sage;
+    [SerializeField] private GrabButton patcholi;
+    [SerializeField] private GrabButton hellebore;
+
+
+
+
     private void OnEnable()
     {
         if (!isStarted)
         {
             StartCoroutine(StashActive());
         }
+        if (isStarted)
+        {
+            inventorySeedsList = playerInventory.SearchInventoryOfItemBehaviour<Seed>(ItemType.seed);
+            CheckSeeds();
+        }
+
     }
+
+
     private void Start()
     {
         LoadSORefrence();
         isStarted = true;
         
 
+    }
+
+
+    private void CheckSeeds()
+    {
+        List<Seed> chamomileStack = new();
+        List<Seed> lavendarStack = new();
+        List<Seed> sageStack  = new();
+        List<Seed> patcholiStack = new();
+        List<Seed> helleboreStack = new();
+        foreach (Seed seed in inventorySeedsList)
+        {
+            if (seed.Equals(new Seed.Chamomile()))
+            {
+                chamomileStack.Add(seed);
+            }
+            else if (seed.Equals(new Seed.Lavender()))
+            {
+                lavendarStack.Add(seed);
+            }
+            else if (seed.Equals(new Seed.Sage()))
+            {
+                sageStack.Add(seed);
+            }
+            else if (seed.Equals(new Seed.Patchouli()))
+            {
+                patcholiStack.Add(seed);
+            }
+            else if (seed.Equals(new Seed.Hellebore()))
+            {
+                helleboreStack.Add(seed);
+            }
+        }
+        chamomile.SetStack(chamomileStack);
+        lavendar.SetStack(lavendarStack);
+        sage.SetStack(sageStack);
+        patcholi.SetStack(patcholiStack);
+        hellebore.SetStack(helleboreStack);
     }
 
 

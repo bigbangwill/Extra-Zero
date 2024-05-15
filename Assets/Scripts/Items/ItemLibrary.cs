@@ -24,6 +24,7 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
     protected Sprite itemIcon;
     protected Sprite itemSprite;
     protected int orderShowSlot;
+    protected int slotUINumber;
 
     protected bool is_Activeable = false;
 
@@ -183,6 +184,15 @@ public abstract class ItemBehaviour : IComparable<ItemBehaviour>, ICloneable
         return orderShowSlot;
     }
 
+    public void SetItemSlotUI(int slot)
+    {
+        slotUINumber = slot;
+    }
+
+    public int GetItemSlotUI()
+    {
+        return slotUINumber;
+    }
 
 
 }

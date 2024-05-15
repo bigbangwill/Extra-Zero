@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 using Unity.VisualScripting;
+using static UnityEditor.Progress;
 
 public class PlayerInventory : MonoBehaviour ,IStashable
 {
@@ -130,11 +131,11 @@ public class PlayerInventory : MonoBehaviour ,IStashable
         //HaveEmptySlot(new Herb.Chamomile(15), true);
         //HaveEmptySlot(new Herb.Lavender(15), true);
         //HaveEmptySlot(new Herb.Sage(15), true);
-        //HaveEmptySlot(new Herb.Chamomile(50), true);
-        //HaveEmptySlot(new Herb.Lavender(50), true);
-        //HaveEmptySlot(new Herb.Sage(50), true);
-        //HaveEmptySlot(new Herb.Patchouli(50), true);
-        //HaveEmptySlot(new Herb.Hellebore(50), true);
+        HaveEmptySlot(new Seed.Chamomile(50), true);
+        HaveEmptySlot(new Seed.Lavender(50), true);
+        HaveEmptySlot(new Seed.Sage(50), true);
+        HaveEmptySlot(new Seed.Patchouli(50), true);
+        HaveEmptySlot(new Seed.Hellebore(50), true);
 
 
 
@@ -176,6 +177,10 @@ public class PlayerInventory : MonoBehaviour ,IStashable
         }
         return itemBehaviours;
     }
+
+
+
+
 
 
     /// <summary>
@@ -451,6 +456,12 @@ public class PlayerInventory : MonoBehaviour ,IStashable
         }
     }
 
+
+
+
+
+
+
     /// <summary>
     /// To remove item from the inventory
     /// </summary>
@@ -568,51 +579,6 @@ public class PlayerInventory : MonoBehaviour ,IStashable
             count++;
         }
         return;
-        //float width, height;
-        //width = GetComponentInParent<RectTransform>().rect.width;
-        //height = GetComponentInParent<RectTransform>().rect.height;
-
-        //int maxDevidedWidth = (int)((width) / itemSlotPrefabWidth);
-        //int maxDevidedHeight = (int)((height - offsetHeight - startingPointOffsetHeight) / itemSlotPrefabHeight);
-
-        //Debug.Log(itemSlotPrefabHeight);
-
-        //// To automatically turn the extra count of inventory slot available that is more than the 
-        //// rows needed to offset.
-        //int offsetWidth = 0;
-        //if (maxDevidedWidth > rowCountMax)
-        //{
-        //    int extra = maxDevidedWidth - rowCountMax;
-        //    int extraWidth = (int)(extra * itemSlotPrefabWidth);
-        //    offsetWidth = extraWidth / rowCountMax;
-        //}
-
-
-        //// for the if checker to see if it's gonna pass the total count of the inventoryslotcount
-        //int instantiatedSlots = 0;
-        //for (int columnCount = 0; columnCount < maxDevidedHeight; columnCount++)
-        //{
-        //    //****There is a minus -2 here to make sure that the col count wouldnt go up to ** slots****
-        //    for (int rowCount = 0; rowCount < rowCountMax ; rowCount++)
-        //    {
-        //        GameObject go = Instantiate(itemSlotPrefab);
-        //        // To find the starting point to instantiate the slot UI at the proper position
-        //        float startingPointWidth = ((width - startingPointOffsetWidth) / 2) * -1;
-        //        float startingPointHeight = startingPointOffsetHeight * -1;
-        //        Vector2 itemSlotPosition = new Vector2(startingPointWidth + (rowCount * (itemSlotPrefabWidth + offsetWidth))
-        //            , startingPointHeight - (columnCount * (itemSlotPrefabHeight + offsetHeight)));
-        //        go.transform.localPosition = itemSlotPosition;
-        //        go.transform.SetParent(transform, false);
-        //        ItemSlotUI itemSlotUI = go.GetComponentInChildren<ItemSlotUI>();
-        //        itemSlotUI.SetStashable(this);
-        //        itemSlotUI.slotNumber = instantiatedSlots;
-        //        itemSlotUIList.Add(itemSlotUI);
-        //        instantiatedSlots++;
-        //        if (instantiatedSlots == inventorySlotCount)
-        //            return;
-        //    }
-        //}
-
     }
 
     #region Save System
