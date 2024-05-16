@@ -249,27 +249,27 @@ public class MoreAlchemySlots : TalentLibrary
         ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeQubitUnlockSlot(true);
     }
 }
-public class MorePassiveCritChance : TalentLibrary
-{
-    public MorePassiveCritChance()
-    {
-        specificName = "MorePassiveCritChance";
-        talentCost = 10;
-        talentDescription = "This talent will increase the crit chance to create double potions";
-        talentDescriptionQubit = talentDescription + "Adds a little bit more!";
-        LoadIcon();
-    }
+//public class MorePassiveCritChance : TalentLibrary
+//{
+//    public MorePassiveCritChance()
+//    {
+//        specificName = "MorePassiveCritChance";
+//        talentCost = 10;
+//        talentDescription = "This talent will increase the crit chance to create double potions";
+//        talentDescriptionQubit = talentDescription + "Adds a little bit more!";
+//        LoadIcon();
+//    }
 
 
-    protected override void NormalTalentEffect()
-    {
-        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeQubitCritPassive(false);
-    }
-    protected override void QubitTalentEffect()
-    {
-        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeQubitCritPassive(true);
-    }
-}
+//    protected override void NormalTalentEffect()
+//    {
+//        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeQubitCritPassive(false);
+//    }
+//    protected override void QubitTalentEffect()
+//    {
+//        ((AlchemyPostRefrence)FindSORefrence<AlchemyPost>.FindScriptableObject("Alchemy Post Refrence")).val.UpgradeQubitCritPassive(true);
+//    }
+//}
 public class MoreOrderPostHealth : TalentLibrary
 {
     public MoreOrderPostHealth()

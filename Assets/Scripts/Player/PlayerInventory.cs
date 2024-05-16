@@ -95,42 +95,17 @@ public class PlayerInventory : MonoBehaviour ,IStashable
     private void Start()
     {
         LoadSORefrence();
-        //AddISaveableToDictionary();
-        //AddItemToInventory(new CraftedItem.InsulationFoam());
-        //AddItemToInventory(new CraftedItem.MemoryCore());
-
-        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.MineralOilEffect()));
-        //AddItemToInventory(new PotionItem(new PotionEffect.SyntheticOilEffect()));
 
         AddItemToInventory(new MaterialItem.Plastic(10));
         AddItemToInventory(new MaterialItem.Plastic(9));
-        //AddItemToInventory(new MaterialItem.AluminumAlloy(10));
         AddItemToInventory(new MaterialItem.Ceramic(10));
         AddItemToInventory(new MaterialItem.Ceramic(9));
-        //AddItemToInventory(new MaterialItem.TitaniumAlloy(10));
-        //AddItemToInventory(new BluePrintItem.WalkingStick());
-        //AddItemToInventory(new BluePrintItem.Hoe());
-        //AddItemToInventory(new BluePrintItem.Gun());
-        //AddItemToInventory(new BluePrintItem.Plant());
 
-        //HaveEmptySlot(new Herb.Chamomile(15), true);
-        //HaveEmptySlot(new Herb.Lavender(15), true);
-        //HaveEmptySlot(new Herb.Sage(15), true);
-        //HaveEmptySlot(new Seed.Chamomile(50), true);
+        HaveEmptySlot(new Herb.Chamomile(50), true);
+        HaveEmptySlot(new Herb.Lavender(50), true);
+        HaveEmptySlot(new Herb.Sage(50), true);
+        HaveEmptySlot(new Seed.Patchouli(50), true);
+        HaveEmptySlot(new Seed.Hellebore(50), true);
 
 
 

@@ -217,9 +217,8 @@ public class HerbalismPost : MonoBehaviour
         {
             Debug.Log("Was a zero harvest");
         }
-        else if (stash.HaveEmptySlot(harvested, false))
+        else if (playerInventory.HaveEmptySlot(harvested, true))
         {
-            stash.HaveEmptySlot(harvested, true);
             Debug.Log("Added to inventory" + harvested.CurrentStack());
         }
         else

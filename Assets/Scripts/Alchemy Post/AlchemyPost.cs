@@ -30,6 +30,7 @@ public class AlchemyPost : MonoBehaviour
     private AlchemyPostRefrence refrence;
     private PlayerInventoryRefrence inventoryRefrence;
     private EventTextManager eventTextManager;
+    private PlayerInventory playerInventory;
 
     private void SetRefrence()
     {
@@ -46,6 +47,7 @@ public class AlchemyPost : MonoBehaviour
     {
         inventoryRefrence = (PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence");
         eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
+        playerInventory = ((PlayerInventoryRefrence)FindSORefrence<PlayerInventory>.FindScriptableObject("Player Inventory Refrence")).val;
     }
 
     private void Awake()
@@ -200,8 +202,16 @@ public class AlchemyPost : MonoBehaviour
 
         targetPotion = new PotionItem(first, second, third);
 
-        miniGame.CreatePotionButtonClicked(targetPotion);
-        transform.parent.gameObject.SetActive(false);
+        //miniGame.CreatePotionButtonClicked(targetPotion);
+        //transform.parent.gameObject.SetActive(false);
+        if (playerInventory.HaveEmptySlot(targetPotion, true))
+        {
+            eventTextManager.CreateNewText("Added to inventory", TextType.Information);
+        }
+        else
+        {
+            eventTextManager.CreateNewText("Inventory is full", TextType.Error);
+        }
 
         PotionCreated();
     }
