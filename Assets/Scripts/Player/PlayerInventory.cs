@@ -5,7 +5,6 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 using Unity.VisualScripting;
-using static UnityEditor.Progress;
 
 public class PlayerInventory : MonoBehaviour ,IStashable
 {
@@ -131,11 +130,7 @@ public class PlayerInventory : MonoBehaviour ,IStashable
         //HaveEmptySlot(new Herb.Chamomile(15), true);
         //HaveEmptySlot(new Herb.Lavender(15), true);
         //HaveEmptySlot(new Herb.Sage(15), true);
-        HaveEmptySlot(new Seed.Chamomile(50), true);
-        HaveEmptySlot(new Seed.Lavender(50), true);
-        HaveEmptySlot(new Seed.Sage(50), true);
-        HaveEmptySlot(new Seed.Patchouli(50), true);
-        HaveEmptySlot(new Seed.Hellebore(50), true);
+        //HaveEmptySlot(new Seed.Chamomile(50), true);
 
 
 
