@@ -22,6 +22,7 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private ItemBehaviour itemSlot;
 
     private LavaItemRemover lavaRefrence;
+    private PrinterManager printerManager;
     private ItemStashLevelObject itemStashLevelObject;
 
     private OrderPost currentPost;
@@ -250,6 +251,16 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 playerMovementRefrence.val.MovetoTarget(navInfo);
                 return true;
             }
+            else if (go.CompareTag("Printer"))
+            {
+                if (printerManager == null)
+                {
+                    printerManager = go.GetComponent<PrinterManager>();
+                }
+                NavmeshReachableInformation navInfo = new(printerManager.GetReachingTransform().position, ReachedPrinter);
+                playerMovementRefrence.val.MovetoTarget(navInfo);
+                return true;
+            }
         }
         return false;
     }
@@ -275,6 +286,14 @@ public class ItemSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         if (itemStashLevelObject != null)
         {
             itemStashLevelObject.AddItemToStash(itemSlot, slotNumber);
+        }
+    }
+
+    private void ReachedPrinter()
+    {
+        if (printerManager != null && itemSlot.GetItemTypeValue() == ItemType.material)
+        {
+            printerManager.AddMaterial((MaterialItem)itemSlot, this);
         }
     }
 

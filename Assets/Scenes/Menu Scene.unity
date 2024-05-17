@@ -3003,7 +3003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scanner: 0
   computer: 0
-  printer: 0
+  printer: 1
   herbalismPost: 1
   alchemyPost: 1
   waveSelector: 0
