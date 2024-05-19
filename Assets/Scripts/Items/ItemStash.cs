@@ -38,34 +38,6 @@ public class ItemStash : MonoBehaviour, IStashable
         }
 
         InitUI();
-
-        //HaveEmptySlot(new Herb.Lavender(30), true);
-        //HaveEmptySlot(new Herb.Sage(30), true);
-        //HaveEmptySlot(new Herb.Chamomile(30), true);
-        //HaveEmptySlot(new Herb.Lavender(30), true);
-        //HaveEmptySlot(new Herb.Sage(30), true);
-        //HaveEmptySlot(new Herb.Chamomile(30), true);
-        //HaveEmptySlot(new Herb.Lavender(30), true);
-        //HaveEmptySlot(new Herb.Sage(30), true);
-        //HaveEmptySlot(new Herb.Chamomile(30), true);
-        //HaveEmptySlot(new Herb.Lavender(30), true);
-        //HaveEmptySlot(new Herb.Sage(30), true);
-        //HaveEmptySlot(new Herb.Chamomile(30), true);
-        //HaveEmptySlot(new Herb.Lavender(30), true);
-        //HaveEmptySlot(new Herb.Sage(30), true);
-        //HaveEmptySlot(new Herb.Chamomile(30), true);
-        //HaveEmptySlot(new Herb.Lavender(30), true);
-        //HaveEmptySlot(new Herb.Sage(30), true);
-        //HaveEmptySlot(new Herb.Chamomile(30), true);
-        //HaveEmptySlot(new Herb.Lavender(30), true);
-        //HaveEmptySlot(new Herb.Sage(30), true);
-        //HaveEmptySlot(new Herb.Chamomile(30), true);
-        //HaveEmptySlot(new Herb.Lavender(30), true);
-        //HaveEmptySlot(new Herb.Sage(30), true);
-        //HaveEmptySlot(new Herb.Chamomile(30), true);
-        //HaveEmptySlot(new Herb.Lavender(30), true);
-        //HaveEmptySlot(new Herb.Sage(30), true);
-        //HaveEmptySlot(new Herb.Chamomile(30), true);
     }
 
     private void OnEnable()

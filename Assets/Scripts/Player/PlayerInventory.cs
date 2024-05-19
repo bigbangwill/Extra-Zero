@@ -262,7 +262,6 @@ public class PlayerInventory : MonoBehaviour ,IStashable
     /// <param name="b"></param>
     public void SwapItemInInventory(int a, int b)
     {
-        Debug.Log(a + "  " + b);
         ItemSlotUI slotA = itemSlotUIList[a];
         ItemBehaviour itemA = inventoryArray[a];
         ItemSlotUI slotB = itemSlotUIList[b];
@@ -271,8 +270,6 @@ public class PlayerInventory : MonoBehaviour ,IStashable
         itemSlotUIList[b] = slotA;
         inventoryArray[a] = itemB;
         inventoryArray[b] = itemA;
-        Debug.Log(inventoryArray[a].GetItemTypeValue());
-        Debug.Log(inventoryArray[b].GetItemTypeValue());
     }
 
     /// <summary>
