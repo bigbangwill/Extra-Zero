@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -13,6 +15,21 @@ public class PrinterManager : MonoBehaviour
     [SerializeField] private ItemStash stash;
 
     private bool isCrafting;
+
+
+
+
+    [Header("UI")]
+    [SerializeField] private Slider ceramicSlider;
+    [SerializeField] private Slider plasticSlider;
+    [SerializeField] private Slider titaniumSlider;
+    [SerializeField] private Slider alominumSlider;
+    [SerializeField] private Slider stainlessSteelSldier;
+
+    [SerializeField] private TextMeshProUGUI timer;
+
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button removeQueButton;
 
 
     #region Item Stats
@@ -32,6 +49,7 @@ public class PrinterManager : MonoBehaviour
     private int maxStainlessSteel = 5;
     private int currentStainlessSteel;
 
+
     public int MaxCeramic { get => maxCeramic; }
     public int CurrentCeramic { get => currentCeramic; set => currentCeramic = value; }
     public int MaxPlastic { get => maxPlastic; }
@@ -45,6 +63,10 @@ public class PrinterManager : MonoBehaviour
 
     #endregion
 
+
+    public bool isActive = false;
+
+
     private Queue<BluePrintItem> craftingQueue = new();
 
     private float currentElapsedTimer;
@@ -54,9 +76,51 @@ public class PrinterManager : MonoBehaviour
 
 
     private PlayerInventory playerInventory;
-
     private EventTextManager eventTextManager;
 
+    private PrinterManagerRefrence refrence;
+
+
+    private void SetSORefrence()
+    {
+        refrence = (PrinterManagerRefrence)FindSORefrence<PrinterManager>.FindScriptableObject("Printer Manager Refrence");
+        if (refrence == null)
+        {
+            Debug.LogWarning("Didnt find it");
+            return;
+        }
+        refrence.val = this;
+    }
+
+    private void Awake()
+    {
+        SetSORefrence();
+    }
+
+    public void RefreshUI()
+    {
+        ceramicSlider.maxValue = MaxCeramic;
+        plasticSlider.maxValue = MaxPlastic;
+        titaniumSlider.maxValue = MaxTitaniumAlloy;
+        alominumSlider.maxValue = MaxAluminumAlloy;
+        stainlessSteelSldier.maxValue = MaxStainlessSteel;
+
+        ceramicSlider.value = CurrentCeramic;
+        plasticSlider.value = CurrentPlastic;
+        titaniumSlider.value = CurrentTitaniumAlloy;
+        alominumSlider.value = CurrentAluminumAlloy;
+        stainlessSteelSldier.value = CurrentStainlessSteel;
+
+        int timerValue = (int)CurrentElapsedTimer;
+        timer.text = timerValue.ToString();
+
+        if (!isCrafting)
+        {
+            restartButton.interactable = true;
+            removeQueButton.interactable = true;
+        }
+
+    }
 
 
     private void LoadSORefrence()
@@ -69,6 +133,15 @@ public class PrinterManager : MonoBehaviour
     {
         LoadSORefrence();
     }
+
+    private void Update()
+    {
+        if (isActive && craftingQueue.Count > 0)
+        {
+            timer.text = ((int)CurrentElapsedTimer).ToString();
+        }
+    }
+
 
     public void AddMaterial(MaterialItem item, ItemSlotUI slotUI)
     {        
@@ -117,11 +190,89 @@ public class PrinterManager : MonoBehaviour
         craftingQueue.Enqueue(targetItem);
         GameObject go = Instantiate(quePrefab, quePrefabParent);
         go.GetComponent<Image>().sprite = targetItem.CraftedItemReference().IconRefrence();
-        if (!isCrafting && stash.HaveEmptySlot(targetItem.CraftedItemReference(),false))
+        Debug.Log(isCrafting);
+        Debug.Log(stash.HaveEmptySlot(targetItem.CraftedItemReference(), false));
+        Debug.Log(CheckMaterial(targetItem));
+        if (!isCrafting && stash.HaveEmptySlot(targetItem.CraftedItemReference(),false) && CheckMaterial(targetItem))
         {
             StartCoroutine(StartCrafting());
+            restartButton.interactable = false;
+            removeQueButton.interactable = false;
         }
+        else
+        {
+            eventTextManager.CreateNewText("Stopped Crafting", TextType.Error);
+            restartButton.interactable = true;
+            removeQueButton.interactable = true;
+        }
+    }
 
+    public void ReStartCrafting()
+    {
+        if (craftingQueue.Count <= 0)
+        {
+            eventTextManager.CreateNewText("Nothing To Create", TextType.Error);
+            return;
+        }
+        BluePrintItem targetItem = craftingQueue.Peek();        
+        if (!isCrafting && stash.HaveEmptySlot(targetItem.CraftedItemReference(), false) && CheckMaterial(targetItem))
+        {
+            restartButton.interactable = true;
+            removeQueButton.interactable = true;
+            StartCoroutine(StartCrafting());
+        }
+        else
+        {
+            eventTextManager.CreateNewText("Stopped Crafting", TextType.Error);
+        }
+    }
+
+    public void CancelQue()
+    {
+        foreach (Transform child in quePrefabParent)
+        {
+            Destroy(child.gameObject);
+            craftingQueue.Clear();
+        }
+    }
+
+
+    private bool CheckMaterial(BluePrintItem item)
+    {
+        List<Action> toReduce = new();
+        foreach (var material in item.materialsList)
+        {
+            if (material.Equals(new MaterialItem.Ceramic()) && material.CurrentStack() <= currentCeramic)
+            {
+                toReduce.Add(() => currentCeramic -= material.CurrentStack());
+            }
+            else if (material.Equals(new MaterialItem.Plastic()) && material.CurrentStack() <= currentPlastic)
+            {
+                toReduce.Add(() =>currentPlastic -= material.CurrentStack());
+                Debug.Log("1");
+            }
+            else if (material.Equals(new MaterialItem.StainlessSteel()) && material.CurrentStack() <= currentStainlessSteel)
+            {
+                toReduce.Add(() => currentStainlessSteel -= material.CurrentStack());
+            }
+            else if (material.Equals(new MaterialItem.AluminumAlloy()) && material.CurrentStack() <= currentAluminumAlloy)
+            {
+                toReduce.Add(() => currentAluminumAlloy -= material.CurrentStack());
+            }
+            else if (material.Equals(new MaterialItem.TitaniumAlloy()) && material.CurrentStack() <= currentTitaniumAlloy)
+            {
+                toReduce.Add(() => currentTitaniumAlloy -= material.CurrentStack());
+            }
+            else
+            {
+                return false;
+            }
+        }
+        foreach (var action in toReduce)
+        {
+            action();
+        }
+        return true;
     }
 
 
@@ -137,7 +288,7 @@ public class PrinterManager : MonoBehaviour
             while (elapsedTime < craftTime)
             {
                 // Update the string with the elapsed time
-                UpdateCraftingTimer(elapsedTime);
+                UpdateCraftingTimer(craftTime - elapsedTime);
 
                 // Wait for the next frame
                 yield return null;

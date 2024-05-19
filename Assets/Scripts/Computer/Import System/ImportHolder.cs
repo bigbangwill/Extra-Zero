@@ -29,10 +29,12 @@ public class ImportHolder : MonoBehaviour
 
 
     private EventTextManager eventTextManager;
+    private PrinterManager printerManager;
 
     private void LoadSORefrence()
     {
         eventTextManager = ((EventTextManagerRefrence)FindSORefrence<EventTextManager>.FindScriptableObject("Event Text Manager Refrence")).val;
+        printerManager = ((PrinterManagerRefrence)FindSORefrence<PrinterManager>.FindScriptableObject("Printer Manager Refrence")).val;
     }
 
 
@@ -205,7 +207,8 @@ public class ImportHolder : MonoBehaviour
 
     public void SentButtonClicked()
     {
-        itemPrinterRefrence.SentToPrinter(activeImport);
+        //itemPrinterRefrence.SentToPrinter(activeImport);
+        printerManager.SentFromComputer(activeImport);
         eventTextManager.CreateNewText("Sent to 3D-Printer", TextType.Information);
         if (activeImportUIGO != null)
         {

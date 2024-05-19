@@ -3001,8 +3001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f241add52646d24aa12247c6407c282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanner: 0
-  computer: 0
+  scanner: 1
+  computer: 1
   printer: 1
   herbalismPost: 1
   alchemyPost: 1
@@ -3011,7 +3011,7 @@ MonoBehaviour:
   materialFarm: 1
   seedFarm: 1
   tierStation: 0
-  shopStation: 0
+  shopStation: 1
   lavaBucket: 0
   itemStash: 0
   repairHammer: 0
