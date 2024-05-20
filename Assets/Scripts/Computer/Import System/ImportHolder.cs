@@ -214,6 +214,7 @@ public class ImportHolder : MonoBehaviour
         {
             activeImportUIGO.SetActive(false);
             activeImportUIGO = null;
+            activeNumber = -1;
         }
         SetSendButtonState(false);
     }

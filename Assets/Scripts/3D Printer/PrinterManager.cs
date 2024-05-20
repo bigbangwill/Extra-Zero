@@ -34,19 +34,19 @@ public class PrinterManager : MonoBehaviour
 
     #region Item Stats
 
-    private int maxCeramic = 5;
+    private int maxCeramic = 50;
     private int currentCeramic;
 
-    private int maxPlastic = 5;
+    private int maxPlastic = 50;
     private int currentPlastic;
 
-    private int maxTitaniumAlloy = 5;
+    private int maxTitaniumAlloy = 50;
     private int currentTitaniumAlloy;
 
-    private int maxAluminumAlloy = 5;
+    private int maxAluminumAlloy = 50;
     private int currentAluminumAlloy;
 
-    private int maxStainlessSteel = 5;
+    private int maxStainlessSteel = 50;
     private int currentStainlessSteel;
 
 
@@ -169,15 +169,15 @@ public class PrinterManager : MonoBehaviour
 
     private void AddMaterial(ref int current, ref int max, MaterialItem item, ItemSlotUI slotUI)
     {
-        int itemStack = item.CurrentStack();
+        int itemStack = item.CurrentStack() * 5;
         int leftToFill = max - current;
-        if (itemStack >= leftToFill && leftToFill > 0)
+        if (itemStack > leftToFill && leftToFill > 0)
         {
-            item.SetCurrentStack(item.CurrentStack() - leftToFill);
+            item.SetCurrentStack(item.CurrentStack() - leftToFill / 5);
             current = max;
             slotUI.RefreshText();
         }
-        else if (itemStack < leftToFill && leftToFill > 0)
+        else if (itemStack <= leftToFill && leftToFill > 0)
         {
             current += itemStack;
             playerInventory.RemoveItemFromInventory(slotUI.slotNumber);
@@ -190,20 +190,9 @@ public class PrinterManager : MonoBehaviour
         craftingQueue.Enqueue(targetItem);
         GameObject go = Instantiate(quePrefab, quePrefabParent);
         go.GetComponent<Image>().sprite = targetItem.CraftedItemReference().IconRefrence();
-        Debug.Log(isCrafting);
-        Debug.Log(stash.HaveEmptySlot(targetItem.CraftedItemReference(), false));
-        Debug.Log(CheckMaterial(targetItem));
-        if (!isCrafting && stash.HaveEmptySlot(targetItem.CraftedItemReference(),false) && CheckMaterial(targetItem))
+        if (!isCrafting)
         {
-            StartCoroutine(StartCrafting());
-            restartButton.interactable = false;
-            removeQueButton.interactable = false;
-        }
-        else
-        {
-            eventTextManager.CreateNewText("Stopped Crafting", TextType.Error);
-            restartButton.interactable = true;
-            removeQueButton.interactable = true;
+            ReStartCrafting();
         }
     }
 
@@ -249,7 +238,6 @@ public class PrinterManager : MonoBehaviour
             else if (material.Equals(new MaterialItem.Plastic()) && material.CurrentStack() <= currentPlastic)
             {
                 toReduce.Add(() =>currentPlastic -= material.CurrentStack());
-                Debug.Log("1");
             }
             else if (material.Equals(new MaterialItem.StainlessSteel()) && material.CurrentStack() <= currentStainlessSteel)
             {
@@ -298,9 +286,9 @@ public class PrinterManager : MonoBehaviour
             }
             // Ensure the timer shows the full craft time at the end
             UpdateCraftingTimer(craftTime);
-            Crafted();
             currentElapsedTimer = 0;
             isCrafting = false;
+            Crafted();
             yield break;
         }
     }
@@ -317,6 +305,11 @@ public class PrinterManager : MonoBehaviour
         Destroy(quePrefabParent.GetChild(0).gameObject);
         eventTextManager.CreateNewText("Crafted " + target.GetName(), TextType.Information);
         stash.HaveEmptySlot(target.CraftedItemReference(),true);
+        RefreshUI();
+        if(craftingQueue.Count > 0)
+        {
+            ReStartCrafting();
+        }
     }
 
     public Transform GetReachingTransform()

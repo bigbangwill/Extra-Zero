@@ -75,7 +75,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Data Pad";
             importTimer = 15; // You may need to set appropriate values for these timers
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.TitaniumAlloy(2));
             materialsList.Add(new MaterialItem.Plastic(1));
@@ -94,7 +94,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Signal Booster";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.StainlessSteel(3));
             materialsList.Add(new MaterialItem.Ceramic(1));
@@ -113,7 +113,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Energy Cell";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.AluminumAlloy(2));
             materialsList.Add(new MaterialItem.TitaniumAlloy(1));
@@ -132,7 +132,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Survival Kit";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.StainlessSteel(1));
             materialsList.Add(new MaterialItem.Plastic(2));
@@ -152,7 +152,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Repair Drone";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.TitaniumAlloy(3));
             materialsList.Add(new MaterialItem.Plastic(2));
@@ -171,7 +171,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Water Purifier";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.AluminumAlloy(1));
             materialsList.Add(new MaterialItem.Ceramic(2));
@@ -190,7 +190,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Solar Charger";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.StainlessSteel(2));
             materialsList.Add(new MaterialItem.AluminumAlloy(1));
@@ -209,7 +209,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Thermal Blanket";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.TitaniumAlloy(1));
             materialsList.Add(new MaterialItem.Plastic(2));
@@ -228,7 +228,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Radiation Detector";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.Ceramic(2));
             materialsList.Add(new MaterialItem.StainlessSteel(1));
@@ -247,7 +247,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Communication Relay";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.AluminumAlloy(1));
             materialsList.Add(new MaterialItem.TitaniumAlloy(2));
@@ -266,7 +266,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Heat Shield";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.TitaniumAlloy(3));
             Load();
@@ -284,7 +284,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Memory Core";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.Ceramic(2));
             Load();
@@ -302,7 +302,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Power Conduit";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.StainlessSteel(3));
             Load();
@@ -320,7 +320,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Circuit Frame";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.AluminumAlloy(2));
             Load();
@@ -338,7 +338,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Insulation Foam";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.Plastic(3));
             Load();
@@ -357,7 +357,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "AI Core";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.TitaniumAlloy(1));
             materialsList.Add(new MaterialItem.Ceramic(1));
@@ -377,7 +377,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Environmental Regulator";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.StainlessSteel(1));
             materialsList.Add(new MaterialItem.AluminumAlloy(1));
@@ -397,7 +397,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Haptic Interface";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.TitaniumAlloy(1));
             materialsList.Add(new MaterialItem.StainlessSteel(1));
@@ -417,7 +417,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Quantum Processor";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.AluminumAlloy(1));
             materialsList.Add(new MaterialItem.Ceramic(1));
@@ -437,7 +437,7 @@ public abstract class BluePrintItem : ItemBehaviour
         {
             specificName = "Biometric Scanner";
             importTimer = 15;
-            craftTimer = 2;
+            craftTimer = 5;
             purchaseCost = 1;
             materialsList.Add(new MaterialItem.StainlessSteel(1));
             materialsList.Add(new MaterialItem.Plastic(1));

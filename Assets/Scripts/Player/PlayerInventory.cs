@@ -97,9 +97,9 @@ public class PlayerInventory : MonoBehaviour ,IStashable
         LoadSORefrence();
 
         AddItemToInventory(new MaterialItem.Plastic(10));
-        AddItemToInventory(new MaterialItem.Plastic(9));
+        AddItemToInventory(new MaterialItem.AluminumAlloy(10));
         AddItemToInventory(new MaterialItem.Ceramic(10));
-        AddItemToInventory(new MaterialItem.Ceramic(9));
+        AddItemToInventory(new MaterialItem.StainlessSteel(10));
 
         HaveEmptySlot(new Herb.Chamomile(50), true);
         HaveEmptySlot(new Herb.Lavender(50), true);
