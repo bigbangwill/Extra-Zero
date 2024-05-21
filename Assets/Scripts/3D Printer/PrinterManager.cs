@@ -72,6 +72,9 @@ public class PrinterManager : MonoBehaviour
     private float currentElapsedTimer;
 
 
+    private Coroutine currentCoroutine;
+
+
     public float CurrentElapsedTimer { get => currentElapsedTimer; }
 
 
@@ -208,11 +211,15 @@ public class PrinterManager : MonoBehaviour
         {
             restartButton.interactable = true;
             removeQueButton.interactable = true;
-            StartCoroutine(StartCrafting());
+            currentCoroutine = StartCoroutine(StartCrafting());
         }
-        else
+        else if(stash.HaveEmptySlot(targetItem.CraftedItemReference(), false))
         {
-            eventTextManager.CreateNewText("Stopped Crafting", TextType.Error);
+            eventTextManager.CreateNewText("No Empty Space!", TextType.Error);
+        }
+        else if (!CheckMaterial(targetItem))
+        {
+            eventTextManager.CreateNewText("Need More Material!", TextType.Error);
         }
     }
 
@@ -220,8 +227,11 @@ public class PrinterManager : MonoBehaviour
     {
         foreach (Transform child in quePrefabParent)
         {
+            if (currentCoroutine != null)
+                StopCoroutine(currentCoroutine);
             Destroy(child.gameObject);
             craftingQueue.Clear();
+            timer.text = string.Empty;
         }
     }
 
@@ -288,6 +298,7 @@ public class PrinterManager : MonoBehaviour
             UpdateCraftingTimer(craftTime);
             currentElapsedTimer = 0;
             isCrafting = false;
+            currentCoroutine = null;
             Crafted();
             yield break;
         }

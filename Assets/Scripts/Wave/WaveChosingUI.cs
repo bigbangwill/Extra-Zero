@@ -10,7 +10,7 @@ public class WaveChosingUI : MonoBehaviour
 
     [SerializeField] private GameObject waveOptionPrefab;
     [SerializeField] private Transform optionUIHolder;
-
+    [SerializeField] private Animator animator;
 
 
     private WaveManagerRefrence waveManagerRefrence;
@@ -69,6 +69,7 @@ public class WaveChosingUI : MonoBehaviour
             targetOptionUI.SetWaveDescription(waveDifficulty.GetWaveDescription());
             targetOptionUI.SetRewardDescription(targetReward.GetEffectDescription());
         }
+        animator.SetTrigger("isWorking");
     }
 
     /// <summary>
@@ -114,6 +115,7 @@ public class WaveChosingUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        animator.SetTrigger("isIdle");
     }
 
 }
