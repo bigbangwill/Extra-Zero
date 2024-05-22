@@ -6,6 +6,7 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using Newtonsoft.Json;
+using Unity.Services.Leaderboards.Models;
 
 public class LeaderboardTest : MonoBehaviour
 {
@@ -53,8 +54,7 @@ public class LeaderboardTest : MonoBehaviour
 
     public async void GetScores()
     {
-        var scoresResponse =
-            await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId);
+        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId); 
         Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }
 
@@ -62,22 +62,19 @@ public class LeaderboardTest : MonoBehaviour
     {
         Offset = 10;
         Limit = 10;
-        var scoresResponse =
-            await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId, new GetScoresOptions { Offset = Offset, Limit = Limit });
+        var scoresResponse = await LeaderboardsService.Instance.GetScoresAsync(LeaderboardId, new GetScoresOptions { Offset = Offset, Limit = Limit });
         Debug.Log(JsonConvert.SerializeObject(scoresResponse));
     }
 
     public async void GetPlayerScore()
     {
-        var scoreResponse =
-            await LeaderboardsService.Instance.GetPlayerScoreAsync(LeaderboardId);
+        var scoreResponse = await LeaderboardsService.Instance.GetPlayerScoreAsync(LeaderboardId);
         Debug.Log(JsonConvert.SerializeObject(scoreResponse));
     }
 
     public async void GetVersionScores()
     {
-        var versionScoresResponse =
-            await LeaderboardsService.Instance.GetVersionScoresAsync(LeaderboardId, VersionId);
+        var versionScoresResponse = await LeaderboardsService.Instance.GetVersionScoresAsync(LeaderboardId, VersionId);
         Debug.Log(JsonConvert.SerializeObject(versionScoresResponse));
     }
 }

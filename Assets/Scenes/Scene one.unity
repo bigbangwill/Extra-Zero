@@ -41205,6 +41205,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodes: []
+  zoomSpeed: 0.1
+  minScale: 0.5
+  maxScale: 3
 --- !u!114 &1093738873
 MonoBehaviour:
   m_ObjectHideFlags: 0
